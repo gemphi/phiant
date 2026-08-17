@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phiant AI Ops Agent Platform</title>
+    <meta name="description" content="Phiant AI Ops Agent Platform - Real-time monitoring and chat interface for the multi-agent ecosystem">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #08080c;
+            --bg-secondary: #0f0f17;
+            --bg-tertiary: #161622;
+            --bg-card: rgba(18, 18, 28, 0.75);
+            --bg-content-container: rgba(22, 22, 34, 0.65);
+            --accent-primary: #00d4aa;
+            --accent-secondary: #6366f1;
+            --accent-warning: #f59e0b;
+            --accent-error: #ef4444;
+            --accent-success: #10b981;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --border-highlight: rgba(99, 102, 241, 0.3);
+            --glow: rgba(0, 212, 170, 0.12);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.06);
+            --glass-active: rgba(99, 102, 241, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .app {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-rows: 64px 1fr 36px;
+            min-height: 100vh;
+        }
+
+        /* Gradient Shade Headers & Sidebars */
+        .header {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            padding: 0 24px;
+            background: linear-gradient(180deg, rgba(20, 20, 32, 0.95) 0%, rgba(12, 12, 20, 0.98) 100%);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            position: relative;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, rgba(16, 16, 26, 0.95) 0%, rgba(10, 10, 16, 0.98) 100%);
+            border-right: 1px solid var(--border);
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(16px);
+        }
+
+        /* 3-Pane Alignment Architecture */
+        .pane-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            gap: 16px;
+        }
+
+        .pane-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+        }
+
+        .pane-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: right;
+            gap: 16px;
+            position: relative;
+        }
+
+        /* Header Brand */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .header-brand .logo {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #000;
+            box-shadow: 0 0 15px var(--glow);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--accent-success);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Central Toolbar Buttons & Icon Dual-Mode */
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .icon-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Hover matches middle content container background */
+        .icon-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-content-container);
+            border-color: var(--border-highlight);
+        }
+
+        .icon-btn.active {
+            color: var(--accent-primary);
+            background: var(--glass-active);
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+
+        .icon-symbol {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* Floating Tooltips for Icon-Only Mode */
+        .tooltip-target { position: relative; }
+        .tooltip-target::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -36px;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #181826;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            z-index: 200;
+        }
+
+        .tooltip-target:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Host Switcher Component (Extra Right) */
+        .host-switcher-container {
+            position: relative;
+        }
+
+        .host-switcher-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 14px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 212, 170, 0.08));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .host-switcher-btn:hover {
+            background: var(--bg-content-container);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 12px var(--glow);
+        }
+
+        .host-switcher-icon {
+            font-size: 16px;
+        }
+
+        .host-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            background: var(--accent-secondary);
+            color: white;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Wide Host Switcher Dropdown (Opens to Left) */
+        .host-switcher-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0; /* Opens to left! */
+            left: auto;
+            width: 520px;
+            background: #12121e;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(20px);
+            display: none;
+            grid-template-columns: 210px 1fr;
+            overflow: hidden;
+            z-index: 300;
+            animation: dropdownSlideLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .host-switcher-dropdown.active {
+            display: grid;
+        }
+
+        @keyframes dropdownSlideLeft {
+            from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* 2-Column Layout in Dropdown */
+        .dropdown-col-groups {
+            background: rgba(10, 10, 18, 0.7);
+            border-right: 1px solid var(--border);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .dropdown-col-mods {
+            padding: 16px;
+            background: rgba(18, 18, 28, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dropdown-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .group-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .group-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-content-container);
+        }
+
+        .group-item.active {
+            color: var(--accent-primary);
+            background: var(--glass-active);
+            font-weight: 600;
+        }
+
+        .mod-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.15s ease;
+        }
+
+        .mod-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: var(--bg-content-container);
+        }
+
+        .mod-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .mod-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mod-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Toggle Switch for Mods */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--border);
+            transition: .2s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px; width: 14px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .2s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: var(--accent-primary); }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        /* Sidebar Item Hover Matches Content Container */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 22px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-content-container);
+        }
+
+        .nav-item.active {
+            color: var(--accent-primary);
+            background: var(--glass-active);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+
+        .nav-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 14px 22px;
+        }
+
+        /* Main Content Container */
+        .main {
+            padding: 28px;
+            overflow-y: auto;
+            background: var(--bg-primary);
+        }
+
+        /* Middle Content Container Styling */
+        .content-container {
+            background: var(--bg-content-container);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover { border-color: rgba(99, 102, 241, 0.4); }
+
+        .card-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-change { font-size: 12px; margin-top: 4px; }
+        .card-change.positive { color: var(--accent-success); }
+        .card-change.negative { color: var(--accent-error); }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Agent Grid */
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .agent-card { position: relative; }
+        .agent-card .agent-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .agent-card .agent-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .agent-card .agent-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .agent-stat-label { font-size: 11px; color: var(--text-muted); }
+        .agent-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .agent-status-dot {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-success);
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Chat View */
+        .chat-container {
+            display: none;
+            flex-direction: column;
+            height: calc(100vh - 120px);
+        }
+
+        .chat-container.active { display: flex; }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .chat-avatar.user {
+            background: linear-gradient(135deg, var(--accent-secondary), #818cf8);
+            color: white;
+        }
+
+        .chat-avatar.agent {
+            background: linear-gradient(135deg, var(--accent-primary), #34d399);
+            color: #000;
+        }
+
+        .chat-bubble {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            max-width: 80%;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .chat-bubble .agent-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .chat-bubble .meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .chat-input-bar {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus { border-color: var(--accent-primary); }
+
+        .chat-send {
+            background: linear-gradient(135deg, var(--accent-primary), #34d399);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        .chat-send:hover { transform: scale(1.02); }
+        .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Activity Feed */
+        .activity-feed { max-height: 380px; overflow-y: auto; }
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .activity-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .activity-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            min-width: 56px;
+        }
+
+        /* Footer */
+        .footer {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: linear-gradient(180deg, rgba(12, 12, 20, 0.98) 0%, rgba(8, 8, 12, 0.99) 100%);
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* View Management */
+        .view { display: none; }
+        .view.active { display: block; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* Mode Badges */
+        .mode-badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .agent-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .app { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .agent-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Header with 3-Pane Alignment Architecture -->
+        <header class="header">
+            <!-- Left Pane: Brand & Status (Left Aligned) -->
+            <div class="pane-left">
+                <div class="header-brand">
+                    <div class="logo">MK</div>
+                    <span>Phiant AI Ops</span>
+                </div>
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    <span id="connection-status">Connected</span>
+                </div>
+            </div>
+
+            <!-- Center Pane: Toolbar Items (Centered, Starts Icon-Only) -->
+            <div class="pane-center">
+                <div class="toolbar-group" id="toolbar-group">
+                    <button class="icon-btn tooltip-target" data-tooltip="Dashboard View" onclick="switchView('dashboard')">
+                        <span class="icon-symbol">📊</span>
+                        <span class="btn-label" style="display: none;">Dashboard</span>
+                    </button>
+                    <button class="icon-btn tooltip-target" data-tooltip="Real-Time Chat" onclick="switchView('chat')">
+                        <span class="icon-symbol">💬</span>
+                        <span class="btn-label" style="display: none;">Chat</span>
+                    </button>
+                    <button class="icon-btn tooltip-target" data-tooltip="Agent Network" onclick="switchView('agents')">
+                        <span class="icon-symbol">🤖</span>
+                        <span class="btn-label" style="display: none;">Agents</span>
+                    </button>
+                    <button class="icon-btn tooltip-target" data-tooltip="Knowledge RAG" onclick="switchView('knowledge')">
+                        <span class="icon-symbol">📚</span>
+                        <span class="btn-label" style="display: none;">Knowledge</span>
+                    </button>
+                    <button class="icon-btn tooltip-target" data-tooltip="Toggle Mode (Host Localized)" onclick="AppStore.toggleToolbarExpand()">
+                        <span class="icon-symbol" id="toolbar-expand-icon">➡️</span>
+                        <span class="btn-label" style="display: none;">Expand</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Pane: Host Switcher (Right Aligned on Extra Right) -->
+            <div class="pane-right">
+                <div class="host-switcher-container">
+                    <button class="host-switcher-btn" id="host-switcher-trigger" onclick="AppStore.toggleHostDropdown()">
+                        <span class="host-switcher-icon" id="current-host-icon">🌐</span>
+                        <span id="current-host-name">Production Cluster</span>
+                        <span class="host-badge" id="current-host-badge">Prod</span>
+                        <span style="font-size: 10px; opacity: 0.7;">▼</span>
+                    </button>
+
+                    <!-- Wide Dropdown Opening to the Left (2-Column: Groups | Mods) -->
+                    <div class="host-switcher-dropdown" id="host-switcher-dropdown">
+                        <!-- Column 1: Groups -->
+                        <div class="dropdown-col-groups">
+                            <div class="dropdown-header">Host Groups</div>
+                            <div id="groups-list">
+                                <!-- Populated dynamically from HostStore -->
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Mods -->
+                        <div class="dropdown-col-mods">
+                            <div class="dropdown-header">Active Mods & Capabilities</div>
+                            <div id="mods-list">
+                                <!-- Populated dynamically from HostStore -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar with Gradient Background -->
+        <nav class="sidebar">
+            <div class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-view="chat" onclick="switchView('chat')">
+                <span class="nav-icon">💬</span>
+                <span>Chat</span>
+            </div>
+            <div class="nav-item" data-view="agents" onclick="switchView('agents')">
+                <span class="nav-icon">🤖</span>
+                <span>Agents</span>
+            </div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" data-view="knowledge" onclick="switchView('knowledge')">
+                <span class="nav-icon">📚</span>
+                <span>Knowledge Base</span>
+            </div>
+            <div class="nav-item" data-view="audit" onclick="switchView('audit')">
+                <span class="nav-icon">📋</span>
+                <span>Audit Log</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="view active">
+                <div class="stats-grid">
+                    <div class="card">
+                        <div class="card-title">Requests Today</div>
+                        <div class="card-value" id="stat-requests">0</div>
+                        <div class="card-change positive">Tracking live</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Active Agents</div>
+                        <div class="card-value" id="stat-agents">6/6</div>
+                        <div class="card-change positive">All healthy</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Avg Response</div>
+                        <div class="card-value" id="stat-latency">0ms</div>
+                        <div class="card-change positive">Within SLA</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Host Context</div>
+                        <div class="card-value" style="font-size: 18px;" id="stat-host-context">Production</div>
+                        <div class="card-change positive" id="stat-host-mods">5 Mods Enabled</div>
+                    </div>
+                </div>
+
+                <div class="section-header">Agent Network</div>
+                <div class="agent-grid" id="agents-grid">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div>
+                        <div class="section-header">Connectors</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                            <div class="card" style="text-align: center;">
+                                <div style="font-weight: 600; margin-bottom: 6px;">Entra ID</div>
+                                <div class="status-badge" style="justify-content: center;">
+                                    <div class="status-dot"></div>
+                                    <span>Healthy</span>
+                                </div>
+                            </div>
+                            <div class="card" style="text-align: center;">
+                                <div style="font-weight: 600; margin-bottom: 6px;">Notion</div>
+                                <div class="status-badge" style="justify-content: center;">
+                                    <div class="status-dot"></div>
+                                    <span>Healthy</span>
+                                </div>
+                            </div>
+                            <div class="card" style="text-align: center;">
+                                <div style="font-weight: 600; margin-bottom: 6px;">HiBob</div>
+                                <div class="status-badge" style="justify-content: center;">
+                                    <div class="status-dot"></div>
+                                    <span>Healthy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-header">Host Activity</div>
+                        <div class="card">
+                            <div class="activity-feed" id="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background: var(--accent-primary);"></div>
+                                    <div>
+                                        <div>Knowledge Agent answered policy query on <span id="feed-host-label">Production Cluster</span></div>
+                                        <div class="activity-time">Just now</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat View -->
+            <div id="view-chat" class="view">
+                <div class="chat-container" id="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-message">
+                            <div class="chat-avatar agent">MK</div>
+                            <div class="chat-bubble">
+                                <div class="agent-tag">System</div>
+                                <div>Welcome to Phiant AI Ops. Currently connected to <b id="chat-host-indicator">Production Cluster</b>. How can I help you?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-bar">
+                        <input type="text" class="chat-input" id="chat-input"
+                               placeholder="Ask me anything about Phiant..."
+                               onkeypress="if(event.key==='Enter')sendMessage()">
+                        <button class="chat-send" id="chat-send" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agents View -->
+            <div id="view-agents" class="view">
+                <div class="section-header">All Agents</div>
+                <div class="agent-grid" id="agents-detail-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Knowledge View -->
+            <div id="view-knowledge" class="view">
+                <div class="section-header">Knowledge Base</div>
+                <div class="card" style="margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <input type="text" class="chat-input" id="kb-search"
+                               placeholder="Search knowledge base..."
+                               onkeypress="if(event.key==='Enter')searchKnowledge()">
+                        <button class="chat-send" onclick="searchKnowledge()">Search</button>
+                    </div>
+                </div>
+                <div id="kb-results"></div>
+            </div>
+
+            <!-- Audit View -->
+            <div id="view-audit" class="view">
+                <div class="section-header">Audit Log</div>
+                <div class="card">
+                    <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <th style="text-align: left; padding: 8px; color: var(--text-muted);">Time</th>
+                                <th style="text-align: left; padding: 8px; color: var(--text-muted);">Host</th>
+                                <th style="text-align: left; padding: 8px; color: var(--text-muted);">Agent</th>
+                                <th style="text-align: left; padding: 8px; color: var(--text-muted);">Action</th>
+                                <th style="text-align: right; padding: 8px; color: var(--text-muted);">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audit-table-body">
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 8px;" colspan="5" class="activity-time">No audit events logged yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>Phiant AI Ops Platform</span>
+            <span id="footer-status-bar">Host: Production Cluster | Active Group: Prod Mesh | 5 Mods Enabled</span>
+        </footer>
+    </div>
+
+    <!-- Centralized Systematic Store & Reactive View Sync Script -->
+    <script>
+        const API_BASE = window.location.origin;
+        let requestCount = 0;
+
+        // Centralized Reactive Application Store (AppStore)
+        const AppStore = {
+            state: {
+                activeHostId: 'prod-cluster',
+                activeView: 'dashboard',
+                dropdownOpen: false,
+
+                // Host Definitions with Groups & Mods
+                hosts: {
+                    'prod-cluster': {
+                        id: 'prod-cluster',
+                        name: 'Production Cluster',
+                        badge: 'Prod',
+                        icon: '🌐',
+                        activeGroup: 'prod-mesh',
+                        expanded: false,
+                        groups: [
+                            { id: 'prod-mesh', label: 'Production Mesh', desc: 'Primary customer traffic' },
+                            { id: 'prod-storage', label: 'Storage & DB', desc: 'Postgres & Vector index' },
+                            { id: 'core-services', label: 'Core Services', desc: 'API gateway & Auth' }
+                        ],
+                        mods: {
+                            'rag_engine': { name: 'RAG Knowledge Engine', desc: 'Vector retrieval pipeline', enabled: true },
+                            'entra_auth': { name: 'Entra ID Auth', desc: 'Azure Entra user sync', enabled: true },
+                            'hibob_sync': { name: 'HiBob HR Connector', desc: 'Employee data API', enabled: true },
+                            'telemetry': { name: 'Live Telemetry', desc: 'Real-time agent metrics', enabled: true },
+                            'playbooks': { name: 'Automation Playbooks', desc: 'Workflow runner', enabled: true }
+                        }
+                    },
+                    'staging-mesh': {
+                        id: 'staging-mesh',
+                        name: 'Staging Mesh',
+                        badge: 'Staging',
+                        icon: '⚡',
+                        activeGroup: 'stage-apps',
+                        expanded: false,
+                        groups: [
+                            { id: 'stage-apps', label: 'Staging Apps', desc: 'Pre-release deployment' },
+                            { id: 'stage-sandbox', label: 'Test Sandbox', desc: 'Automated integration tests' }
+                        ],
+                        mods: {
+                            'rag_engine': { name: 'RAG Knowledge Engine', desc: 'Vector retrieval pipeline', enabled: true },
+                            'entra_auth': { name: 'Entra ID Auth', desc: 'Azure Entra user sync', enabled: false },
+                            'hibob_sync': { name: 'HiBob HR Connector', desc: 'Employee data API', enabled: true },
+                            'telemetry': { name: 'Live Telemetry', desc: 'Real-time agent metrics', enabled: true },
+                            'playbooks': { name: 'Automation Playbooks', desc: 'Workflow runner', enabled: false }
+                        }
+                    },
+                    'dev-sandbox': {
+                        id: 'dev-sandbox',
+                        name: 'Dev Sandbox',
+                        badge: 'Dev',
+                        icon: '🔒',
+                        activeGroup: 'local-dev',
+                        expanded: false,
+                        groups: [
+                            { id: 'local-dev', label: 'Local Development', desc: 'Developer workstation' },
+                            { id: 'mock-connectors', label: 'Mock Connectors', desc: 'Isolated test stubs' }
+                        ],
+                        mods: {
+                            'rag_engine': { name: 'RAG Knowledge Engine', desc: 'Vector retrieval pipeline', enabled: true },
+                            'entra_auth': { name: 'Entra ID Auth', desc: 'Azure Entra user sync', enabled: false },
+                            'hibob_sync': { name: 'HiBob HR Connector', desc: 'Employee data API', enabled: false },
+                            'telemetry': { name: 'Live Telemetry', desc: 'Real-time agent metrics', enabled: true },
+                            'playbooks': { name: 'Automation Playbooks', desc: 'Workflow runner', enabled: true }
+                        }
+                    }
+                }
+            },
+
+            listeners: [],
+
+            // Subscription method
+            subscribe(listener) {
+                this.listeners.push(listener);
+            },
+
+            notify() {
+                this.listeners.forEach(fn => fn(this.state));
+            },
+
+            // Common Store Methods
+            getActiveHost() {
+                return this.state.hosts[this.state.activeHostId];
+            },
+
+            setActiveHost(hostId) {
+                if (this.state.hosts[hostId]) {
+                    this.state.activeHostId = hostId;
+                    this.notify();
+                }
+            },
+
+            selectGroup(groupId) {
+                const host = this.getActiveHost();
+                if (host) {
+                    host.activeGroup = groupId;
+                    this.notify();
+                }
+            },
+
+            toggleMod(modId) {
+                const host = this.getActiveHost();
+                if (host && host.mods[modId]) {
+                    host.mods[modId].enabled = !host.mods[modId].enabled;
+                    this.notify();
+                }
+            },
+
+            toggleHostDropdown() {
+                this.state.dropdownOpen = !this.state.dropdownOpen;
+                this.notify();
+            },
+
+            closeHostDropdown() {
+                if (this.state.dropdownOpen) {
+                    this.state.dropdownOpen = false;
+                    this.notify();
+                }
+            },
+
+            toggleToolbarExpand() {
+                const host = this.getActiveHost();
+                if (host) {
+                    host.expanded = !host.expanded;
+                    this.notify();
+                }
+            }
+        };
+
+        // Agents Definitions
+        const AGENTS = [
+            { name: 'knowledge', label: 'Knowledge', desc: 'RAG-powered knowledge retrieval', color: '#00d4aa' },
+            { name: 'automation', label: 'Automation', desc: 'Workflow and playbook execution', color: '#6366f1' },
+            { name: 'identity', label: 'Identity', desc: 'Entra ID user management', color: '#8b5cf6' },
+            { name: 'hr', label: 'HR', desc: 'HiBob employee data', color: '#f59e0b' },
+            { name: 'docs', label: 'Docs', desc: 'Notion documentation', color: '#ec4899' },
+            { name: 'onboarding', label: 'Onboarding', desc: 'New employee setup', color: '#14b8a6' },
+        ];
+
+        // Central Reactive Sync Function (Updates Views directly from Store)
+        function renderFromStore(state) {
+            const host = AppStore.getActiveHost();
+            if (!host) return;
+
+            // 1. Update Host Switcher Button
+            document.getElementById('current-host-icon').textContent = host.icon;
+            document.getElementById('current-host-name').textContent = host.name;
+            document.getElementById('current-host-badge').textContent = host.badge;
+
+            // 2. Dropdown Visibility
+            const dropdownEl = document.getElementById('host-switcher-dropdown');
+            if (state.dropdownOpen) {
+                dropdownEl.classList.add('active');
+            } else {
+                dropdownEl.classList.remove('active');
+            }
+
+            // 3. Render Groups Column
+            const groupsContainer = document.getElementById('groups-list');
+            groupsContainer.innerHTML = host.groups.map(g => `
+                <div class="group-item ${g.id === host.activeGroup ? 'active' : ''}" onclick="AppStore.selectGroup('${g.id}')">
+                    <div>
+                        <div>${g.label}</div>
+                        <div style="font-size: 11px; opacity: 0.6;">${g.desc}</div>
+                    </div>
+                    ${g.id === host.activeGroup ? '<span>✓</span>' : ''}
+                </div>
+            `).join('');
+
+            // 4. Render Mods Column
+            const modsContainer = document.getElementById('mods-list');
+            const modEntries = Object.entries(host.mods);
+            modsContainer.innerHTML = modEntries.map(([modId, m]) => `
+                <div class="mod-card">
+                    <div class="mod-info">
+                        <div class="mod-name">${m.name}</div>
+                        <div class="mod-desc">${m.desc}</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" ${m.enabled ? 'checked' : ''} onchange="AppStore.toggleMod('${modId}')">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            `).join('');
+
+            // 5. Dual-Mode Toolbar Sync (Host Localized Expanded Mode)
+            const labels = document.querySelectorAll('.toolbar-group .btn-label');
+            const expandIcon = document.getElementById('toolbar-expand-icon');
+            labels.forEach(lbl => {
+                lbl.style.display = host.expanded ? 'inline' : 'none';
+            });
+            expandIcon.textContent = host.expanded ? '⬅️' : '➡️';
+
+            // 6. View Indicators & Stats Sync
+            const enabledModCount = modEntries.filter(([_, m]) => m.enabled).length;
+            document.getElementById('stat-host-context').textContent = host.name;
+            document.getElementById('stat-host-mods').textContent = `${enabledModCount} Mods Enabled`;
+
+            const activeGroupObj = host.groups.find(g => g.id === host.activeGroup);
+            const activeGroupLabel = activeGroupObj ? activeGroupObj.label : 'Default';
+
+            const chatIndicator = document.getElementById('chat-host-indicator');
+            if (chatIndicator) chatIndicator.textContent = `${host.name} (${activeGroupLabel})`;
+
+            const feedHostLabel = document.getElementById('feed-host-label');
+            if (feedHostLabel) feedHostLabel.textContent = host.name;
+
+            document.getElementById('footer-status-bar').textContent =
+                `Host: ${host.name} | Active Group: ${activeGroupLabel} | ${enabledModCount} Mods Enabled`;
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.querySelector('.host-switcher-container');
+            if (container && !container.contains(e.target)) {
+                AppStore.closeHostDropdown();
+            }
+        });
+
+        // View switching
+        function switchView(viewName) {
+            AppStore.state.activeView = viewName;
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.toolbar-group .icon-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById('view-' + viewName).classList.add('active');
+            const activeNav = document.querySelector(`.nav-item[data-view="${viewName}"]`);
+            if (activeNav) activeNav.classList.add('active');
+
+            if (viewName === 'chat') {
+                document.getElementById('view-chat').querySelector('.chat-container').classList.add('active');
+            }
+        }
+
+        // Render Agent Cards
+        function renderAgentCards(containerId, detailed = false) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = AGENTS.map(a => `
+                <div class="card agent-card">
+                    <div class="agent-status-dot"></div>
+                    <div class="agent-name" style="color: ${a.color};">${a.label}</div>
+                    <div class="agent-desc">${a.desc}</div>
+                    <div class="agent-stats">
+                        <div>
+                            <div class="agent-stat-label">Requests</div>
+                            <div class="agent-stat-value" id="agent-${a.name}-requests">0</div>
+                        </div>
+                        <div>
+                            <div class="agent-stat-label">Avg Latency</div>
+                            <div class="agent-stat-value" id="agent-${a.name}-latency">0ms</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Chat
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            input.value = '';
+            addChatMessage('user', message);
+
+            const sendBtn = document.getElementById('chat-send');
+            sendBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, user_id: 'dashboard-user' }),
+                });
+                const data = await response.json();
+
+                addChatMessage('agent', data.response, {
+                    agent: data.agent_used,
+                    duration: data.duration_ms,
+                    tokens: data.tokens_used,
+                });
+
+                requestCount++;
+                document.getElementById('stat-requests').textContent = requestCount;
+                document.getElementById('stat-latency').textContent = (data.duration_ms || 0) + 'ms';
+
+                addActivity(data.agent_used, `Processed: "${message.substring(0, 35)}..."`);
+            } catch (err) {
+                addChatMessage('agent', 'Connection error. Running in local mock mode.', { agent: 'system' });
+            }
+
+            sendBtn.disabled = false;
+            input.focus();
+        }
+
+        function addChatMessage(role, content, meta = {}) {
+            const messages = document.getElementById('chat-messages');
+            const isAgent = role === 'agent';
+            let metaHtml = meta.agent ? `<div class="agent-tag">${meta.agent}</div>` : '';
+            let footerHtml = meta.duration ? `<div class="meta">${meta.duration}ms</div>` : '';
+
+            messages.innerHTML += `
+                <div class="chat-message">
+                    <div class="chat-avatar ${role}">${isAgent ? 'MK' : 'U'}</div>
+                    <div class="chat-bubble">
+                        ${metaHtml}
+                        <div style="white-space: pre-wrap;">${content}</div>
+                        ${footerHtml}
+                    </div>
+                </div>
+            `;
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addActivity(agent, message) {
+            const feed = document.getElementById('activity-feed');
+            if (!feed) return;
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            item.innerHTML = `
+                <div class="activity-dot" style="background: var(--accent-primary);"></div>
+                <div>
+                    <div>[${agent}] ${message}</div>
+                    <div class="activity-time">Just now</div>
+                </div>
+            `;
+            feed.prepend(item);
+        }
+
+        function searchKnowledge() {
+            const input = document.getElementById('kb-search');
+            const query = input.value.trim();
+            if (!query) return;
+            const container = document.getElementById('kb-results');
+            container.innerHTML = `
+                <div class="card" style="margin-top: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">RAG Result: "${query}"</div>
+                    <div style="font-size: 13px; color: var(--text-secondary);">Simulated vector match score: 0.94 across active host knowledge base.</div>
+                </div>
+            `;
+        }
+
+        // Initialize Store Subscription & Initial UI Render
+        AppStore.subscribe(renderFromStore);
+
+        renderAgentCards('agents-grid');
+        renderAgentCards('agents-detail-grid', true);
+        AppStore.notify(); // Initial render
+    </script>
+</body>
+</html>
