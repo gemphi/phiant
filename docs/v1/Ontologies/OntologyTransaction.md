@@ -15,9 +15,9 @@ Commits an atomic batch of action morphisms in a single immutable DAG commit tra
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 tx = client.v2.topos.Transaction.create()
 tx.add_action("create_employee", {"email": "alex@phient.com", "title": "Security Lead"})

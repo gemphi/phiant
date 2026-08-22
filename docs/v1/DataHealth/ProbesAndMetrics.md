@@ -1,7 +1,7 @@
 # Data Health & Diagnostics (`DataHealth/ProbesAndMetrics.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/data_health` (`Check.md`, `CheckReport.md`).
-- **Phient Subsystem**: [`src/phiegg/philog/`](./phient/src/phiegg/philog/) & [`src/phiegg/phiapi/app.py`](./phient/src/phiegg/phiapi/app.py).
+- **Phient Subsystem**: [`src/phiadk/philog/`](./phient/src/phiadk/philog/) & [`src/phiadk/phiapi/app.py`](./phient/src/phiadk/phiapi/app.py).
 
 ---
 

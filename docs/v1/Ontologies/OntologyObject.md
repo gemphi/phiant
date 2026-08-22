@@ -25,9 +25,9 @@ Retrieves a single 0-simplex object by primary key.
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 emp = client.v2.topos.Object.get("Employee", "jane@phient.com")
 print("Properties:", emp.properties)

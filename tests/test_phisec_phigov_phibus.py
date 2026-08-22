@@ -3,22 +3,22 @@
 import pytest
 from starlette.testclient import TestClient
 
-from phiegg.client import PhiEggClient
-from phiegg.phibus.models import PBusEvent
-from phiegg.phibus.verbs import PBusVerb, PhiBusVerb
-from phiegg.phigov.verbs import PGovVerb, PhiGovVerb
-from phiegg.phisec.verbs import PSecVerb, PhiSecVerb
-from phiegg._core import PAgent, PNode, PSpace, PMorphism
+from phiadk.client import PhiADKClient
+from phiadk.phibus.models import PBusEvent
+from phiadk.phibus.verbs import PBusVerb, PhiBusVerb
+from phiadk.phigov.verbs import PGovVerb, PhiGovVerb
+from phiadk.phisec.verbs import PSecVerb, PhiSecVerb
+from phiadk._core import PAgent, PNode, PSpace, PMorphism
 
 
 @pytest.fixture
 def client():
-    return PhiEggClient()
+    return PhiADKClient()
 
 
 @pytest.fixture
 def api_client():
-    from phiegg.phiapi.app import app
+    from phiadk.phiapi.app import app
     return TestClient(app)
 
 

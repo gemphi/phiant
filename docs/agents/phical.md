@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Engine |
 | **Domain** | `quantum_learning` |
-| **File** | `phiegg/phical/` |
-| **Schema** | `phiegg/phical/schema.json` |
+| **File** | `phiadk/phical/` |
+| **Schema** | `phiadk/phical/schema.json` |
 
 ## What PhiCal Does
 

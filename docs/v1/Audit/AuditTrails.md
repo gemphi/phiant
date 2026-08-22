@@ -1,7 +1,7 @@
 # Audit Trails & Telemetry Logging (`Audit/AuditTrails.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/audit` (`LogFile.md`, `Organization.md`).
-- **Phient Subsystem**: [`src/phiegg/philog/`](./phient/src/phiegg/philog/).
+- **Phient Subsystem**: [`src/phiadk/philog/`](./phient/src/phiadk/philog/).
 
 ---
 
@@ -21,9 +21,9 @@ graph TD
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Emit structured log
 client.philog.info(

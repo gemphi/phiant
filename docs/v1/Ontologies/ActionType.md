@@ -25,9 +25,9 @@ Gets a specific ActionType morphism definition by API name or ID.
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 action_type = client.v2.topos.ActionType.get("promote_employee")
 print(f"Action: {action_type.display_name}")

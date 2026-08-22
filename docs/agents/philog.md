@@ -13,9 +13,9 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Infrastructure |
 | **Domain** | `telemetry` |
-| **File** | `phiegg/philog/` |
-| **Schema** | `phiegg/philog/schema.json` |
-| **Topology** | `phiegg/philog/topo/topology.mdx` |
+| **File** | `phiadk/philog/` |
+| **Schema** | `phiadk/philog/schema.json` |
+| **Topology** | `phiadk/philog/topo/topology.mdx` |
 
 ## What PhiLog Does
 

@@ -23,11 +23,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ProjectRid
 project_rid = "ri.compass.main.folder.01a79a9d-e293-48db-a585-9ffe221536e8"
@@ -76,11 +76,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ProjectRid
 project_rid = "ri.compass.main.folder.01a79a9d-e293-48db-a585-9ffe221536e8"
@@ -132,11 +132,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ProjectRid
 project_rid = "ri.compass.main.folder.01a79a9d-e293-48db-a585-9ffe221536e8"

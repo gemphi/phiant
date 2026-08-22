@@ -1,7 +1,7 @@
 # Admin & Workforce Management (`Admin/UserAndWorkforce.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/admin` (`User.md`, `Group.md`, `Role.md`, `Organization.md`).
-- **Phient Subsystem**: [`src/phiegg/phione/`](./phient/src/phiegg/phione/) & [`src/phiegg/phigov/`](./phient/src/phiegg/phigov/).
+- **Phient Subsystem**: [`src/phiadk/phione/`](./phient/src/phiadk/phione/) & [`src/phiadk/phigov/`](./phient/src/phiadk/phigov/).
 
 ---
 
@@ -21,9 +21,9 @@ graph TD
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # 1. Lookup user in workforce
 employee = client.phione.employee.get_employee_by_email("jane@phient.com")

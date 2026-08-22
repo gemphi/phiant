@@ -1,7 +1,7 @@
 # Third-Party Applications & Automation Playbooks (`ThirdPartyApplications/AutomationPlaybooks.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/third_party_applications` (`ThirdPartyApplication.md`, `Website.md`).
-- **Phient Subsystem**: [`src/phiegg/phibot/`](./phient/src/phiegg/phibot/).
+- **Phient Subsystem**: [`src/phiadk/phibot/`](./phient/src/phiadk/phibot/).
 
 ---
 

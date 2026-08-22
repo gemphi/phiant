@@ -1,7 +1,7 @@
 # Media Sets & Flow Capture (`MediaSets/FlowCaptureMedia.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/media_sets` (`MediaSet.md`).
-- **Phient Subsystem**: [`src/phiegg/phidoc/`](./phient/src/phiegg/phidoc/) & [`src/phiegg/phiora/`](./phient/src/phiegg/phiora/).
+- **Phient Subsystem**: [`src/phiadk/phidoc/`](./phient/src/phiadk/phidoc/) & [`src/phiadk/phiora/`](./phient/src/phiadk/phiora/).
 
 ---
 

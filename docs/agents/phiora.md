@@ -13,12 +13,12 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Data |
 | **Domain** | `data_storage` |
-| **File** | `phiegg/phiora/` |
-| **Schema** | `phiegg/phiora/schema.json` |
+| **File** | `phiadk/phiora/` |
+| **Schema** | `phiadk/phiora/schema.json` |
 
 ## What PhiOra Does
 
-PhiOra is the **foundational data layer** for the PhiEgg platform. It enforces strict separation of data and code by providing content-addressed immutable records (keyed by SHA-1 hashes with version ancestry like Git), vector embedding indices with cosine search, and the universal `ResolverClient` used by all agents to resolve `DataSet` references.
+PhiOra is the **foundational data layer** for the PhiADK platform. It enforces strict separation of data and code by providing content-addressed immutable records (keyed by SHA-1 hashes with version ancestry like Git), vector embedding indices with cosine search, and the universal `ResolverClient` used by all agents to resolve `DataSet` references.
 
 ## Storage Hierarchy
 

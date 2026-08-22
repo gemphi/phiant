@@ -1,11 +1,11 @@
 """Tests for PhiGen Code Synthesis & Palantir Parity Agent."""
 
 import pytest
-from phiegg.client import PhiEggClient
-from phiegg.phigen.codegen import CodeGenerator
-from phiegg.phigen.parity import ParityAuditor
-from phiegg.ontologies.engine import POntologyEngine
-from phiegg.ontologies.object import ObjectType, PropertyType
+from phiadk.client import PhiADKClient
+from phiadk.phigen.codegen import CodeGenerator
+from phiadk.phigen.parity import ParityAuditor
+from phiadk.ontologies.engine import POntologyEngine
+from phiadk.ontologies.object import ObjectType, PropertyType
 
 
 
@@ -38,7 +38,7 @@ class TestPhiGen:
 
     @pytest.mark.asyncio
     async def test_phigen_agent_verbs(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         agent = client.agents["phigen"]
 
         # generate_types verb
@@ -53,7 +53,7 @@ class TestPhiGen:
         assert audit_res["total_domain_agents"] >= 15
 
     def test_client_phigen_subclient(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         types = client.phigen.generate_types()
         assert types["count"] >= 4
         assert len(types["code"]) > 100

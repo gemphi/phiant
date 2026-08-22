@@ -23,11 +23,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # AttachmentRid | The RID of the attachment.
 attachment_rid = "ri.attachments.main.attachment.bb32154e-e043-4b00-9461-93136ca96b6f"
@@ -71,11 +71,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # AttachmentRid | The RID of the attachment.
 attachment_rid = "ri.attachments.main.attachment.bb32154e-e043-4b00-9461-93136ca96b6f"
@@ -126,11 +126,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # bytes | Body of the request
 body = None
@@ -188,11 +188,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # AttachmentRid | The `AttachmentRid` of the attachment being uploaded.
 attachment_rid = "ri.attachments.main.attachment.bb32154e-e043-4b00-9461-93136ca96b6f"

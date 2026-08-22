@@ -22,11 +22,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ThirdPartyApplicationRid | An RID identifying a third-party application created in Developer Console.
 third_party_application_rid = (
@@ -75,11 +75,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ThirdPartyApplicationRid | An RID identifying a third-party application created in Developer Console.
 third_party_application_rid = (
@@ -126,11 +126,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ThirdPartyApplicationRid | An RID identifying a third-party application created in Developer Console.
 third_party_application_rid = (

@@ -40,11 +40,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # CreateScheduleRequestAction
 action = {
@@ -119,11 +119,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -167,11 +167,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -217,11 +217,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -273,11 +273,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List[GetSchedulesBatchRequestElement] | Body of the request
 body = [{"scheduleRid": "ri.scheduler.main.schedule.5ad5c340-59f3-4a60-9fc6-161bb984f871"}]
@@ -322,11 +322,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -382,11 +382,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -464,11 +464,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -514,11 +514,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None
@@ -566,11 +566,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleRid
 schedule_rid = None

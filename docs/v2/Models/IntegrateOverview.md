@@ -29,17 +29,17 @@ graph TD
 
 ## 2. Model Training in Jupyter Code Workspaces
 
-Models can be developed and evaluated interactively in Jupyter Code Workspaces (`src/phiegg/phiapi/dashboard.html`):
+Models can be developed and evaluated interactively in Jupyter Code Workspaces (`src/phiadk/phiapi/dashboard.html`):
 
 ```python
 # Jupyter %%sql + Model Adapter Pipeline
 %%sql -o df
 SELECT email, department, leave_taken, tenure_months FROM employee_records WHERE status = 'active';
 
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from sklearn.ensemble import GradientBoostingClassifier
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Train model over resolved dataset
 X = df[['leave_taken', 'tenure_months']]
@@ -60,9 +60,9 @@ print(f"Model commit: {rec._commit_sha1}")
 For quantum state modeling, Phient allows embedding quantum circuit models directly into RAG and classification pipelines:
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute quantum classification circuit
 quantum_pred = (

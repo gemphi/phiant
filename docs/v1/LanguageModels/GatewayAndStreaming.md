@@ -1,7 +1,7 @@
 # Language Models Multi-Provider Gateway (`LanguageModels/GatewayAndStreaming.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/language_models` (`OpenAiModel.md`, `AnthropicModel.md`).
-- **Phient Subsystem**: [`src/phiegg/phillm/`](./phient/src/phiegg/phillm/).
+- **Phient Subsystem**: [`src/phiadk/phillm/`](./phient/src/phiadk/phillm/).
 
 ---
 
@@ -22,9 +22,9 @@ graph TD
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Generate completions across models seamlessly
 res = client.phillm.generate(

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from phiegg.phidoc.agent import PhiDocAgent
+from phiadk.phidoc.agent import PhiDocAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 

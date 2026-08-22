@@ -29,11 +29,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Dict[AttributeName, AttributeValues] | A map of the Group's attributes. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are subject to change.
 attributes = {
@@ -89,11 +89,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # GroupId
 group_id = None
@@ -136,11 +136,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # GroupId
 group_id = None
@@ -185,11 +185,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List[GetGroupsBatchRequestElement] | Body of the request
 body = [{"groupId": "0d1fe74e-2b70-4a93-9b1a-80070637788b"}]
@@ -235,11 +235,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Optional[PageSize] | The page size to use for the endpoint.
 page_size = None
@@ -288,11 +288,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Optional[PreviewMode] | Enables the use of preview functionality.
 preview = None
@@ -339,11 +339,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # GroupId
 group_id = None
@@ -408,11 +408,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # GroupSearchFilter
 where = {"type": "queryString", "value": "jsmith"}

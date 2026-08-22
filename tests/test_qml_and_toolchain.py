@@ -3,10 +3,10 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from src.phiegg.client import PhiEggClient
-from src.phiegg.phiapi.app import create_app
-from src.phiegg.phicli.cli import main as cli_main
-from src.phiegg.query.qml import QML
+from src.phiadk.client import PhiADKClient
+from src.phiadk.phiapi.app import create_app
+from src.phiadk.phicli.cli import main as cli_main
+from src.phiadk.query.qml import QML
 
 
 class TestQMLQueryLanguage:
@@ -49,7 +49,7 @@ class TestQMLQueryLanguage:
         assert result.collapsed_state == "|0⟩"
 
     def test_client_qml_fluent_interface(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         res = client.qml("fluent_circuit").superposition(["|0⟩", "|1⟩"]).execute()
         assert res.state_space == "fluent_circuit"
         assert res.fidelity == 1.0
@@ -88,7 +88,7 @@ class TestPalantirToolchainCLI:
 
 
     def test_cli_generate_agent(self, tmp_path, capsys):
-        from src.phiegg.phicli.scaffold import scaffold_agent
+        from src.phiadk.phicli.scaffold import scaffold_agent
         res = scaffold_agent("phitest", domain="testing", layer="application", version="2.0.0", target_dir=tmp_path / "phitest")
         assert res["agent_id"] == "phitest"
         assert res["version"] == "2.0.0"

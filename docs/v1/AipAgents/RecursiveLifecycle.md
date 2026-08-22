@@ -1,7 +1,7 @@
 # AIP Agents & Universal Recursive Lifecycle (`AipAgents/RecursiveLifecycle.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/aip_agents` (`Agent.md`, `AgentVersion.md`, `Session.md`, `SessionTrace.md`).
-- **Phient Subsystem**: [`src/phiegg/_core/agent_base.py`](./phient/src/phiegg/_core/agent_base.py) & all 14 domain agents.
+- **Phient Subsystem**: [`src/phiadk/_core/agent_base.py`](./phient/src/phiadk/_core/agent_base.py) & all 14 domain agents.
 
 ---
 
@@ -23,10 +23,10 @@ graph LR
 
 ```python
 import asyncio
-from phiegg import PhiEggClient
-from phiegg._core import AgentContext
+from phiadk import PhiADKClient
+from phiadk._core import AgentContext
 
-client = PhiEggClient()
+client = PhiADKClient()
 agent = client.agents["phione"]
 
 async def run_agent():

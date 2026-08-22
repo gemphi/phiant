@@ -1,7 +1,7 @@
 # Orchestration, Intent Routing & Virtual CEO (`Orchestration/VirtualCeoAndRouting.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/orchestration` (`Build.md`, `Job.md`, `Schedule.md`).
-- **Phient Subsystem**: [`src/phiegg/phimen/`](./phient/src/phiegg/phimen/) & [`src/orchestrator/`](./phient/src/orchestrator/).
+- **Phient Subsystem**: [`src/phiadk/phimen/`](./phient/src/phiadk/phimen/) & [`src/orchestrator/`](./phient/src/orchestrator/).
 
 ---
 
@@ -25,9 +25,9 @@ graph TD
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute high-level strategic directive
 decision = client.phimen.orchestrate_strategy(

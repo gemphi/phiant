@@ -22,9 +22,9 @@ Retrieves the complete structural metadata of an action morphism, including type
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 metadata = client.v2.topos.ActionTypeFullMetadata.get("promote_employee")
 print(f"Affected Object Types: {metadata.affected_object_types}")

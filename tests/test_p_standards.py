@@ -1,7 +1,7 @@
 """Test suite for Phient P* Standard Classes and Ontologies."""
 
 import pytest
-from src.phiegg import (
+from src.phiadk import (
     PClient,
     PAsyncClient,
     POntology,

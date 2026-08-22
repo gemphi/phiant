@@ -3,7 +3,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from src.phiegg.phiapi.app import create_app
+from src.phiadk.phiapi.app import create_app
 
 
 @pytest.fixture
@@ -16,7 +16,7 @@ class TestPhiAPI:
     def test_dashboard_endpoint_serves_html(self, api_client):
         response = api_client.get("/")
         assert response.status_code == 200
-        assert "PhiEgg AIP" in response.text
+        assert "PhiADK AIP" in response.text
         assert "mermaid" in response.text
 
     def test_list_agents_endpoint(self, api_client):

@@ -15,9 +15,9 @@ Returns all 0-simplex instances implementing the specified interface across hete
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 interface = client.v2.topos.Interface.get("SearchableDocument")
 implementations = interface.get_implementations()

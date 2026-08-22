@@ -13,9 +13,9 @@ Gets the content metadata and streamable reference for an attachment property on
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 emp = client.v2.topos.object("Employee", "jane@phient.com")
 resume_prop = emp.properties.get("resume_attachment")

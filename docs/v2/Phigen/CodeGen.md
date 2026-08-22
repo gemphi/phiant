@@ -15,7 +15,7 @@ Inspects all registered 0-simplex ObjectTypes in the POntology manifold and synt
 
 | Name | Type | Description | Notes |
 | :--- | :--- | :--- | :--- |
-| **package_name** | `Optional[str]` | Target package output namespace (defaults to `'phiegg.ontologies.generated'`). | Optional |
+| **package_name** | `Optional[str]` | Target package output namespace (defaults to `'phiadk.ontologies.generated'`). | Optional |
 
 | **target_types** | `Optional[List[str]]` | Filter list of specific ObjectType API names to generate. | Optional (default: all) |
 
@@ -26,10 +26,10 @@ Inspects all registered 0-simplex ObjectTypes in the POntology manifold and synt
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 try:
     result = client.phigen.generate_types()

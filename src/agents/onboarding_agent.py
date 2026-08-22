@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 
-from phiegg.phibrd.agent import PhiBrdAgent
+from phiadk.phibrd.agent import PhiBrdAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 

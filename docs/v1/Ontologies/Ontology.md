@@ -15,9 +15,9 @@ Retrieves the complete simplicial complex schema definitions including all 0-sim
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 schema = client.v2.topos.get_schema()
 print(f"Registered 0-Simplices: {list(schema['object_types'].keys())}")

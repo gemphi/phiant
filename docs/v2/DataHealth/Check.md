@@ -24,11 +24,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # CheckConfig
 config = None
@@ -76,11 +76,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # CheckRid
 check_rid = "ri.data-health.main.check.8e27b13a-e21b-4232-ae1b-76ccf5ff42b3"
@@ -126,11 +126,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # CheckRid
 check_rid = "ri.data-health.main.check.8e27b13a-e21b-4232-ae1b-76ccf5ff42b3"
@@ -178,11 +178,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # CheckRid
 check_rid = "ri.data-health.main.check.8e27b13a-e21b-4232-ae1b-76ccf5ff42b3"

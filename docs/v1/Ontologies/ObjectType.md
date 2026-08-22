@@ -31,10 +31,10 @@ Gets a specific 0-simplex ObjectType with the given API name from the POntology 
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 object_type = "Employee"
 
@@ -82,9 +82,9 @@ Lists all 0-simplex ObjectTypes registered in the POntology simplicial complex.
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 try:
     all_types = client.v2.topos.ObjectType.list()
@@ -122,10 +122,10 @@ Gets a specific outgoing 1-simplex LinkType connecting this object type to a tar
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 link = client.v2.topos.ObjectType.get_outgoing_link_type("Employee", "employee_identity")
 pprint(link)
@@ -152,9 +152,9 @@ Lists all outgoing 1-simplex fiber link relations originating from this ObjectTy
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 links = client.v2.topos.ObjectType.list_outgoing_link_types("Employee")
 for link in links:

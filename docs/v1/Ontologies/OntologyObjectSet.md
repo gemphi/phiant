@@ -16,9 +16,9 @@ Filters a collection of 0-simplices producing a continuous topological submanifo
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 active_staff = (
     client.v2.topos.ObjectSet.get("Employee")

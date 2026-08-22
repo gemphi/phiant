@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Data |
 | **Domain** | `knowledge_rag` |
-| **File** | `phiegg/phirag/` |
-| **Schema** | `phiegg/phirag/schema.json` |
+| **File** | `phiadk/phirag/` |
+| **Schema** | `phiadk/phirag/schema.json` |
 
 ## What PhiRAG Does
 

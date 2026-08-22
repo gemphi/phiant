@@ -1,7 +1,7 @@
 # Filesystem & Cryptographic DAG Engine (`Filesystem/ContentAddressedStorage.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/filesystem` (`Folder.md`, `Project.md`, `Resource.md`, `Space.md`).
-- **Phient Subsystem**: [`src/phiegg/phigit/engine.py`](./phient/src/phiegg/phigit/engine.py).
+- **Phient Subsystem**: [`src/phiadk/phigit/engine.py`](./phient/src/phiadk/phigit/engine.py).
 
 ---
 
@@ -18,9 +18,9 @@ Every resource, file, and schema document is stored immutably using standard Git
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Store and read file blob
 blob = client.phigit.store_blob(b"Ontologylogical schema manifest v1")

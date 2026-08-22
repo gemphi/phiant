@@ -16,9 +16,9 @@ Creates an isolated branch sandbox for evaluating tentative state mutations with
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Create what-if scenario
 scenario = client.v2.topos.Scenario.create("reorganization_q1")

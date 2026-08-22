@@ -7,9 +7,9 @@ POntology Queries execute deterministic graph evaluations, continuous distance t
 ## 1. Executing Named POntology Queries
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute registered Ontologys query
 result = client.v2.topos.queries.execute(

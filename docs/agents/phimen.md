@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Executive |
 | **Domain** | `executive` |
-| **File** | `phiegg/phimen/` |
-| **Schema** | `phiegg/phimen/schema.json` |
+| **File** | `phiadk/phimen/` |
+| **Schema** | `phiadk/phimen/schema.json` |
 
 ## What PhiMen Does
 

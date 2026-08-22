@@ -15,9 +15,9 @@ Streams continuous timestamped numeric observations for a 0-simplex metric prope
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 sensor = client.v2.topos.object("ServerNode", "node-cluster-east-1")
 series = sensor.properties["cpu_utilization"]

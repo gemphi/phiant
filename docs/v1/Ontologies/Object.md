@@ -29,10 +29,10 @@ Gets a single 0-simplex POntologyObject instance by its primary key from the man
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 object_type = "Employee"
 primary_key = "jane.smith@phient.com"
@@ -82,9 +82,9 @@ Lists objects of the specified ObjectType with pagination and property projectio
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 objects = client.v2.topos.Object.list("Employee", page_size=25)
 for obj in objects:
@@ -120,10 +120,10 @@ Searches for 0-simplex objects using structured JSON filters, exact match predic
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 search_query = {
     "type": "and",
@@ -164,10 +164,10 @@ Computes aggregations (count, min, max, avg, sum) grouped by discrete fields or 
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 aggs = client.v2.topos.Object.aggregate(
     object_type="Employee",

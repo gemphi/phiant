@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Application |
 | **Domain** | `documentation` |
-| **File** | `phiegg/phidoc/` |
-| **Schema** | `phiegg/phidoc/schema.json` |
+| **File** | `phiadk/phidoc/` |
+| **Schema** | `phiadk/phidoc/schema.json` |
 
 ## What PhiDoc Does
 

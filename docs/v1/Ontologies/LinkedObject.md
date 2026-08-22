@@ -25,9 +25,9 @@ Traverses the 1-simplex fiber relations emanating from a source 0-simplex vertex
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List all documents authored by employee
 docs = client.v2.topos.LinkedObject.list_linked_objects(

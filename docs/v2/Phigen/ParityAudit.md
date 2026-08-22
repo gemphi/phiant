@@ -23,10 +23,10 @@ Scans the Phient codebase and evaluates full 100% structural and documentation p
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 try:
     report = client.phigen.audit_parity()

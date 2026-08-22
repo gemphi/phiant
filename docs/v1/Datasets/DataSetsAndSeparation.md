@@ -1,7 +1,7 @@
 # Datasets & Strict Data Separation (`Datasets/DataSetsAndSeparation.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/datasets` (`Dataset.md`, `Branch.md`, `File.md`, `Transaction.md`, `View.md`).
-- **Phient Subsystem**: [`src/phiegg/phiora/store.py`](./phient/src/phiegg/phiora/store.py) (`DataSet`, `ResolverClient`).
+- **Phient Subsystem**: [`src/phiadk/phiora/store.py`](./phient/src/phiadk/phiora/store.py) (`DataSet`, `ResolverClient`).
 
 ---
 
@@ -21,10 +21,10 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
-from phiegg._core import DataSet
+from phiadk import PhiADKClient
+from phiadk._core import DataSet
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # 1. Create DataSet reference
 ds_ref = DataSet(set_id="workforce_salaries")

@@ -14,9 +14,9 @@ Gets the validation rules and regex/range constraints for a custom value type (e
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 vt = client.v2.topos.ValueType.get("EmailAddress")
 print(f"Base Type: {vt.base_type} | Regex: {vt.constraints.get('regex')}")

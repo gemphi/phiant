@@ -1,7 +1,7 @@
 # Connectivity & External Integrations (`Connectivity/Connectors.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/connectivity` (`Connection.md`, `FileImport.md`, `TableImport.md`, `VirtualTable.md`).
-- **Phient Subsystem**: [`src/phiegg/phiora/`](./phient/src/phiegg/phiora/) & [`src/phiegg/phione/identity.py`](./phient/src/phiegg/phione/identity.py).
+- **Phient Subsystem**: [`src/phiadk/phiora/`](./phient/src/phiadk/phiora/) & [`src/phiadk/phione/identity.py`](./phient/src/phiadk/phione/identity.py).
 
 ---
 

@@ -26,7 +26,7 @@ graph LR
 
 ```python
 from typing import Any, Dict
-from phiegg.phical.training import ModelAdapter
+from phiadk.phical.training import ModelAdapter
 
 class EmployeeChurnAdapter(ModelAdapter):
     def api_signature(self) -> Dict[str, Any]:

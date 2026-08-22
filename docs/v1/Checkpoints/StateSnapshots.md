@@ -1,7 +1,7 @@
 # State Snapshots & Checkpoints (`Checkpoints/StateSnapshots.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/checkpoints` (`Record.md`).
-- **Phient Subsystem**: [`src/phiegg/phigit/`](./phient/src/phiegg/phigit/).
+- **Phient Subsystem**: [`src/phiadk/phigit/`](./phient/src/phiadk/phigit/).
 
 ---
 
@@ -21,9 +21,9 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Checkpoint a new state snapshot
 blob = client.phigit.store_blob(b'{"state": "checkpoint_001"}')

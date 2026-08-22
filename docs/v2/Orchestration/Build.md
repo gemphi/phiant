@@ -25,11 +25,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # BuildRid | The RID of a Build.
 build_rid = "ri.foundry.main.build.a4386b7e-d546-49be-8a36-eefc355f5c58"
@@ -79,11 +79,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # FallbackBranches
 fallback_branches = []
@@ -158,11 +158,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # BuildRid | The RID of a Build.
 build_rid = "ri.foundry.main.build.a4386b7e-d546-49be-8a36-eefc355f5c58"
@@ -210,11 +210,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List[GetBuildsBatchRequestElement] | Body of the request
 body = [{"buildRid": "ri.foundry.main.build.a4386b7e-d546-49be-8a36-eefc355f5c58"}]
@@ -259,11 +259,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # BuildRid | The RID of a Build.
 build_rid = "ri.foundry.main.build.a4386b7e-d546-49be-8a36-eefc355f5c58"
@@ -315,11 +315,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # SearchBuildsFilter
 where = None

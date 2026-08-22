@@ -1,0 +1,35 @@
+{
+  "agent_id": "phidemo",
+  "agent_name": "Phidemo",
+  "domain": "demo",
+  "layer": "application",
+  "version": "1.5.0",
+  "description": "Custom generated domain agent",
+  "specs": [
+    {
+        "spec_idx": "PHIDEMO_STANDARD_SPEC",
+        "spec_id": "PHIDEMO_STANDARD_SPEC",
+        "version": "1.5.0",
+        "description": "Specification claim PHIDEMO_STANDARD_SPEC"
+    }
+],
+  "tasks": [
+    {
+        "task_id": "main_operations",
+        "name": "Main Operations",
+        "description": "Task chapter main_operations"
+    }
+],
+  "verbs": [
+    {
+        "verb_id": "demo_action",
+        "name": "Demo Action",
+        "description": "Verb action demo_action"
+    },
+    {
+        "verb_id": "demo_status",
+        "name": "Demo Status",
+        "description": "Verb action demo_status"
+    }
+]
+}

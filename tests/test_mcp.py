@@ -3,12 +3,12 @@
 import pytest
 from src.mcp.server import MCPServer
 from src.mcp.tools import MCP_TOOLS
-from src.phiegg.client import PhiEggClient
+from src.phiadk.client import PhiADKClient
 
 
 @pytest.fixture
 def mcp_server():
-    client = PhiEggClient()
+    client = PhiADKClient()
     return MCPServer(client=client)
 
 

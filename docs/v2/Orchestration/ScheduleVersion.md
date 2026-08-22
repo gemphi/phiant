@@ -21,11 +21,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleVersionRid | The RID of a schedule version
 schedule_version_rid = "ri.scheduler.main.schedule-version.4d1eb55f-6c13-411c-a911-5d84e08d8017"
@@ -71,11 +71,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ScheduleVersionRid | The RID of a schedule version
 schedule_version_rid = "ri.scheduler.main.schedule-version.4d1eb55f-6c13-411c-a911-5d84e08d8017"

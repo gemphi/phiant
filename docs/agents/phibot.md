@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Application |
 | **Domain** | `automation` |
-| **File** | `phiegg/phibot/` |
-| **Schema** | `phiegg/phibot/schema.json` |
+| **File** | `phiadk/phibot/` |
+| **Schema** | `phiadk/phibot/schema.json` |
 
 ## What PhiBot Does
 

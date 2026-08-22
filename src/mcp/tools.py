@@ -1,4 +1,4 @@
-"""MCP Tool Definitions for Phient & PhiEgg Agent Platform.
+"""MCP Tool Definitions for Phient & PhiADK Agent Platform.
 
 Complies with specs/mcp-server.md.
 """

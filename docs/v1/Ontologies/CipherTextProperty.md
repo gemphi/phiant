@@ -24,9 +24,9 @@ Cryptographically decrypts an encrypted ciphertext property using the system key
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 emp = client.v2.topos.object("Employee", "jane@phient.com")
 ssn_encrypted = emp.properties["national_id"]

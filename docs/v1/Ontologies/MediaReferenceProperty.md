@@ -13,9 +13,9 @@ Gets the media reference RID and streaming URL for a rich asset (e.g. video capt
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 page = client.v2.topos.object("DocumentPage", "doc-spec-01")
 media = page.properties.get("workflow_recording")

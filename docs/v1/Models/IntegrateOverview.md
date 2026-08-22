@@ -30,11 +30,11 @@ graph TD
     MA --> Action
 ```
 
-1. **Models Trained in Phient (`phiegg.phical.training`)**: Supervised models and parameter gradient descent trained directly within the environment.
-2. **Pre-trained Files Uploaded to Storage (`phiegg.phiora.store`)**: Weights serialized in `joblib`, `safetensors`, `onnx`, or `pt` uploaded with cryptographic SHA-1 tracking.
-3. **Externally Hosted Models (`phiegg.phillm`)**: Multi-provider inference connecting to OpenAI (`gpt-4o`), Anthropic (`claude-3-5-sonnet`), and Google (`gemini-1.5-pro`).
+1. **Models Trained in Phient (`phiadk.phical.training`)**: Supervised models and parameter gradient descent trained directly within the environment.
+2. **Pre-trained Files Uploaded to Storage (`phiadk.phiora.store`)**: Weights serialized in `joblib`, `safetensors`, `onnx`, or `pt` uploaded with cryptographic SHA-1 tracking.
+3. **Externally Hosted Models (`phiadk.phillm`)**: Multi-provider inference connecting to OpenAI (`gpt-4o`), Anthropic (`claude-3-5-sonnet`), and Google (`gemini-1.5-pro`).
 4. **Container Models**: Custom Docker runtime containers with isolated dependencies.
-5. **Quantum Models (`phiegg.query.qml`)**: Complex amplitude simulation and Born rule measurement circuits.
+5. **Quantum Models (`phiadk.query.qml`)**: Complex amplitude simulation and Born rule measurement circuits.
 
 ---
 
@@ -46,9 +46,9 @@ Every model in Phient is wrapped in a `ModelAdapter` that defines:
 - **Inference (`predict`)**: Synchronous or streaming prediction logic.
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute an inference morphism directly through the POntology
 result = client.topos.Action.apply("predict_employee_flight_risk", {

@@ -1,7 +1,7 @@
 # Relational Queries & RQL (`SqlQueries/RelationalRQL.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/sql_queries` (`SqlQuery.md`).
-- **Phient Subsystem**: [`src/phiegg/query/rql.py`](./phient/src/phiegg/query/rql.py).
+- **Phient Subsystem**: [`src/phiadk/query/rql.py`](./phient/src/phiadk/query/rql.py).
 
 ---
 
@@ -21,9 +21,9 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute relational query
 results = (

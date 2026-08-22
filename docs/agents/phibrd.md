@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Application |
 | **Domain** | `onboarding` |
-| **File** | `phiegg/phibrd/` |
-| **Schema** | `phiegg/phibrd/schema.json` |
+| **File** | `phiadk/phibrd/` |
+| **Schema** | `phiadk/phibrd/schema.json` |
 
 ## What PhiBrd Does
 

@@ -9,9 +9,9 @@ The advanced topological subsystem provides:
 
 ## 1. POntology Interfaces
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Query objects via shared interface
 billable_entities = client.v2.topos.interfaces.get("BillableResource").get_implementations()

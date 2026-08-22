@@ -5,9 +5,9 @@
 ## 1. Fluent Quantum Query Interface
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Superposition initialization -> Gates -> Entanglement -> Born Measurement
 result = (

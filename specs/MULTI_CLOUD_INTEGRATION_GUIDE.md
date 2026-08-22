@@ -1,6 +1,6 @@
 # Phient Enterprise Multi-Cloud Integration Guide
 
-This guide details how to integrate the **Phient Enterprise Platform** and the **`phiegg` SDK (`P*` Ontology Layer)** with **Microsoft Azure**, **Amazon Web Services (AWS)**, **Google Cloud Platform (GCP)**, **Snowflake**, **Databricks**, and **Palantir Foundry**.
+This guide details how to integrate the **Phient Enterprise Platform** and the **`phiadk` SDK (`P*` Ontology Layer)** with **Microsoft Azure**, **Amazon Web Services (AWS)**, **Google Cloud Platform (GCP)**, **Snowflake**, **Databricks**, and **Palantir Foundry**.
 
 ---
 
@@ -63,7 +63,7 @@ Integrate Phient's LLM engine (`phillm`) and agent reasoning loop with Azure Ope
 ```python
 import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from phiegg import PClient, POntologyEngine
+from phiadk import PClient, POntologyEngine
 
 # 1. Initialize Azure Token Provider for Managed Identity
 credential = DefaultAzureCredential()
@@ -91,7 +91,7 @@ print(f"Loaded Employee Object: {emp.primary_key}")
 Map Entra ID User Principals and Groups directly into Phient `UserIdentity` and `Employee` Object Types:
 
 ```python
-from phiegg import PClient, PActionType, PActionParameter
+from phiadk import PClient, PActionType, PActionParameter
 
 client = PClient()
 
@@ -116,7 +116,7 @@ Connect Phient to AWS Bedrock foundation models with IAM Role Assumption:
 
 ```python
 import boto3
-from phiegg import PClient
+from phiadk import PClient
 
 # Initialize AWS Bedrock Runtime Client
 bedrock = boto3.client(
@@ -138,7 +138,7 @@ client = PClient(
 Federate datasets from AWS S3 Parquet / Iceberg into Phient `POntologyObjectSet`:
 
 ```python
-from phiegg import PClient
+from phiadk import PClient
 
 client = PClient()
 
@@ -157,7 +157,7 @@ print(f"Matched {len(filtered_docs)} architecture documents from AWS S3.")
 Integrate Google Cloud's multimodal Gemini 1.5 Pro engine:
 
 ```python
-from phiegg import PClient
+from phiadk import PClient
 
 client = PClient(
     config={
@@ -177,7 +177,7 @@ client = PClient(
 Sync Snowflake relational tables and Cortex Search into Phient Ontologies:
 
 ```python
-from phiegg import PClient
+from phiadk import PClient
 
 client = PClient()
 

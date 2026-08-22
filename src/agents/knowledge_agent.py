@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from phiegg.phirag.agent import PhiRAGAgent
+from phiadk.phirag.agent import PhiRAGAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 

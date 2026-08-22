@@ -7,9 +7,9 @@ A **LinkType** represents a directional 1-simplex edge $e = (v_{\text{src}}, v_{
 ## 1. Defining & Traversing Link Types
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List active 1-simplex link types
 link_types = client.v2.topos.link_types()

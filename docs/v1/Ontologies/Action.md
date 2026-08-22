@@ -36,10 +36,10 @@ Note that a 200 HTTP status code indicates that the request was accepted and pro
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # ActionTypeApiName | The API name of the action to apply
 action = "onboard_employee"
@@ -108,10 +108,10 @@ Up to 50 actions may be applied in one batch call. All side-effects are verified
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 action = "update_security_badge"
 batch_requests = [
@@ -161,9 +161,9 @@ Validates action parameters against schema contracts and topological security co
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 check = client.v2.topos.Action.validate(
     action="onboard_employee",

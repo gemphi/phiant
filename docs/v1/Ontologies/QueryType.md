@@ -14,9 +14,9 @@ Retrieves the schema signature, input parameters, and return type of a registere
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 qt = client.v2.topos.QueryType.get("find_collaborators")
 print(f"Query: {qt.id} | Inputs: {list(qt.parameters.keys())}")

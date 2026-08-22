@@ -20,9 +20,9 @@ Retrieves the continuous series of latitude/longitude coordinate points and time
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 vehicle = client.v2.topos.object("DeliveryDrone", "drone-882")
 trajectory = vehicle.properties["flight_path"]

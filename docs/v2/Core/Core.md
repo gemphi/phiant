@@ -7,7 +7,7 @@ All schema definitions and data models for `Core` are available in [`./models/`]
 
 ### Example
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 ```

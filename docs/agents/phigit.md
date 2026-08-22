@@ -13,9 +13,9 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Data |
 | **Domain** | `git_engine` |
-| **File** | `phiegg/phigit/` |
-| **Schema** | `phiegg/phigit/schema.json` |
-| **Topology** | `phiegg/phigit/topo/topology.mdx` |
+| **File** | `phiadk/phigit/` |
+| **Schema** | `phiadk/phigit/schema.json` |
+| **Topology** | `phiadk/phigit/topo/topology.mdx` |
 
 ## What PhiGit Does
 

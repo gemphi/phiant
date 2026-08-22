@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Engine |
 | **Domain** | `model_access` |
-| **File** | `phiegg/phillm/` |
-| **Schema** | `phiegg/phillm/schema.json` |
+| **File** | `phiadk/phillm/` |
+| **Schema** | `phiadk/phillm/schema.json` |
 
 ## What PhiLLM Does
 

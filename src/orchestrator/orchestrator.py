@@ -15,7 +15,7 @@ from ..agents.hr_agent import HRAgent
 from ..agents.identity_agent import IdentityAgent
 from ..agents.knowledge_agent import KnowledgeAgent
 from ..agents.onboarding_agent import OnboardingAgent
-from ..phiegg.client import PhiEggClient
+from ..phiadk.client import PhiADKClient
 from .priority import calculate_priority
 from .router import IntentRouter
 from .state import OrchestratorState
@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class Orchestrator:
     """Multi-agent orchestrator that routes, executes, and aggregates agent results.
 
-    Supports both legacy agent adapters and the modern PhiEgg topology SDK client.
+    Supports both legacy agent adapters and the modern PhiADK topology SDK client.
     """
 
     # Mapping from legacy agent names to modern phi* 3-letter names
@@ -42,17 +42,17 @@ class Orchestrator:
         "executive": "phimen",
     }
 
-    def __init__(self, use_phiegg: bool = True) -> None:
+    def __init__(self, use_phiadk: bool = True) -> None:
         self.router = IntentRouter()
         self._agents: dict[str, BaseAgent] = {}
         self._history: list[OrchestratorState] = []
-        self._use_phiegg = use_phiegg
-        self.phiegg_client: PhiEggClient | None = None
-        if use_phiegg:
+        self._use_phiadk = use_phiadk
+        self.phiadk_client: PhiADKClient | None = None
+        if use_phiadk:
             try:
-                self.phiegg_client = PhiEggClient()
+                self.phiadk_client = PhiADKClient()
             except Exception as exc:
-                logger.warning("PhiEggClient initialization skipped: %s", exc)
+                logger.warning("PhiADKClient initialization skipped: %s", exc)
         self._initialize_agents()
 
     def _initialize_agents(self) -> None:
@@ -64,7 +64,7 @@ class Orchestrator:
             "docs": DocsAgent(),
             "onboarding": OnboardingAgent(agent_registry=self._agents),
         }
-        logger.info("Initialized %d agents (PhiEgg SDK active: %s)", len(self._agents), self.phiegg_client is not None)
+        logger.info("Initialized %d agents (PhiADK SDK active: %s)", len(self._agents), self.phiadk_client is not None)
 
     async def process(
         self,

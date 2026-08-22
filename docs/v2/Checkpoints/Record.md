@@ -22,11 +22,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # RecordRid
 record_rid = None
@@ -76,11 +76,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List[GetRecordsBatchRequestElement] | Body of the request
 body = [{"recordRid": "ri.checkpoints.main.checkpoint.a1b2c3d4-e5f6-7890-abcd-ef1234567890"}]
@@ -129,11 +129,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # SearchCheckpointRecordsRequest
 where = {"filter": {"type": "eq", "field": "checkpointType", "value": "CONTOUR_EXPORT"}}

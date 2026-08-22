@@ -1,7 +1,7 @@
 # Core Topological Primitives (`Core/TopologyPrimitives.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/core`.
-- **Phient Subsystem**: [`src/phiegg/_core/`](./phient/src/phiegg/_core/).
+- **Phient Subsystem**: [`src/phiadk/_core/`](./phient/src/phiadk/_core/).
 
 ---
 
@@ -22,7 +22,7 @@ The foundation of Phient replaces relational silos with continuous topological m
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import Node, Space, Morphism, SimplexType
+from phiadk import Node, Space, Morphism, SimplexType
 
 # Create a space and populate nodes
 space = Space(space_id="knowledge_space", dimension=4)

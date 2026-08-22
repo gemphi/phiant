@@ -21,11 +21,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # RepositoryRid | A Resource Identifier (RID) identifying a repository.
 repository_rid = "ri.stemma.main.repository.e1r31370-3cf3-4ac4-9269-h1432d7fb0b4"
@@ -73,11 +73,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # RepositoryRid | A Resource Identifier (RID) identifying a repository.
 repository_rid = "ri.stemma.main.repository.e1r31370-3cf3-4ac4-9269-h1432d7fb0b4"

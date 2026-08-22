@@ -24,11 +24,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # JobRid | The RID of a Job.
 job_rid = "ri.foundry.main.job.aaf94076-d773-4732-a1df-3b638eb50448"
@@ -79,11 +79,11 @@ Name | Type | Description  | Notes |
 ### Example
 
 ```python
-from phiegg import PhiEggClient
-import phiegg
+from phiadk import PhiADKClient
+import phiadk
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # List[GetJobsBatchRequestElement] | Body of the request
 body = [{"jobRid": "ri.foundry.main.job.aaf94076-d773-4732-a1df-3b638eb50448"}]

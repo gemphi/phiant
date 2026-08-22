@@ -1,7 +1,7 @@
 """Comprehensive tests for PhiGit, Git-backed Key/Value, ORM & Query Engines (VQL, RQL, OQL), PhiLog, PhiCLI, and MDX Ontologylogies."""
 
 import pytest
-from src.phiegg import (
+from src.phiadk import (
     Blob,
     Commit,
     DiffResult,
@@ -15,7 +15,7 @@ from src.phiegg import (
     PhiBrdAgent,
     PhiCalAgent,
     PhiDocAgent,
-    PhiEggClient,
+    PhiADKClient,
     PhiGitAgent,
     PhiLLMAgent,
     PhiLogAgent,
@@ -34,7 +34,7 @@ from src.phiegg import (
     TreeEntry,
     VQL,
 )
-from src.phiegg.phicli.cli import run_cli
+from src.phiadk.phicli.cli import run_cli
 
 
 # ── Agent Versioning Tests ────────────────────────────────────────────
@@ -107,7 +107,7 @@ class TestPhiGitEngine:
 
 class TestGitBackedKV:
     def test_kv_put_get_and_tree_lineage(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         rec1 = client.phiora.Store.put("settings", "theme", "dark", message="Set theme")
         assert rec1.sha1 != ""
         assert rec1._commit_sha1 != ""
@@ -143,7 +143,7 @@ class DemoEmployee(Node):
 
 class TestORMAndQueries:
     def test_orm_repository_save_and_filter(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         repo = Repository(DemoEmployee, store_client=client.phiora.Store, collection="demo_emp")
 
         emp1 = DemoEmployee(name="Alice", department="Engineering")
@@ -159,7 +159,7 @@ class TestORMAndQueries:
         assert eng_emps[0].name == "Alice"
 
     def test_rql_query_builder(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         client.phiora.Store.put("employees_tab", "e1", {"display_name": "Alice", "dept": "Eng", "salary": 120})
         client.phiora.Store.put("employees_tab", "e2", {"display_name": "Bob", "dept": "Eng", "salary": 110})
         client.phiora.Store.put("employees_tab", "e3", {"display_name": "Charlie", "dept": "HR", "salary": 90})
@@ -169,7 +169,7 @@ class TestORMAndQueries:
         assert results[0]["display_name"] == "Alice"
 
     def test_vql_query_builder(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         client.phiora.Vector.index("k1", "Quantum computing notes", [1.0, 0.0, 0.0, 0.0], topic="quantum")
         client.phiora.Vector.index("k2", "HR policy handbook", [0.0, 1.0, 0.0, 0.0], topic="hr")
 
@@ -178,7 +178,7 @@ class TestORMAndQueries:
         assert results[0].key == "k1"
 
     def test_oql_query_builder(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         traversal = client.oql("alice@phient.com").traverse("manages").depth(2).collect_manifold().execute()
         assert traversal.origin == "alice@phient.com"
         assert traversal.filters.get("depth") == 2
@@ -188,7 +188,7 @@ class TestORMAndQueries:
 
 class TestPhiLogTelemetry:
     def test_structured_logging_and_auditing(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         client.philog.Telemetry.info("System boot complete", node="core-1")
         client.philog.Telemetry.warn("High memory alert", usage_percent=85)
         audit = client.philog.Telemetry.record_audit("USER_PROVISION", agent_id="phione", target="alice@phient.com")
@@ -208,7 +208,7 @@ class TestPhiLogTelemetry:
 
 class TestMDXOntologylogies:
     def test_all_11_agents_have_mdx_topologies(self):
-        client = PhiEggClient()
+        client = PhiADKClient()
         topos = client.phidoc.Ontologylogy.list_agent_topologies()
         expected = [
             "phibot", "phibrd", "phical", "phidoc", "phigit",

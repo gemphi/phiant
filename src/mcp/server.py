@@ -12,17 +12,17 @@ import logging
 import sys
 from typing import Any, Dict, List, Optional
 
-from phiegg.client import PhiEggClient
+from phiadk.client import PhiADKClient
 from .tools import MCP_TOOLS
 
 logger = logging.getLogger("mcp.server")
 
 
 class MCPServer:
-    """Model Context Protocol (MCP) server exposing PhiEgg topological domain agents."""
+    """Model Context Protocol (MCP) server exposing PhiADK topological domain agents."""
 
-    def __init__(self, client: Optional[PhiEggClient] = None, orchestrator: Any = None) -> None:
-        self.client = client or PhiEggClient()
+    def __init__(self, client: Optional[PhiADKClient] = None, orchestrator: Any = None) -> None:
+        self.client = client or PhiADKClient()
         self.orchestrator = orchestrator
         self._tools = MCP_TOOLS
 
@@ -52,7 +52,7 @@ class MCPServer:
                 return emp.to_dict()
 
             elif tool_name == "check_leave_balance":
-                from phiegg.phione.verbs import PhiOneVerb
+                from phiadk.phione.verbs import PhiOneVerb
                 email = arguments.get("email", "")
                 ctx = await self.client.agents["phione"].execute_verb(PhiOneVerb.GET_LEAVE_BALANCE, {"email": email})
                 out = ctx.results.get("output", [])
@@ -62,19 +62,19 @@ class MCPServer:
                 return out if isinstance(out, dict) else {"annual_leave_balance": 21, "leave_type": "Annual Leave", "remaining": 21}
 
             elif tool_name == "list_team_members":
-                from phiegg.phione.verbs import PhiOneVerb
+                from phiadk.phione.verbs import PhiOneVerb
                 dept = arguments.get("department", "Engineering")
                 ctx = await self.client.agents["phione"].execute_verb(PhiOneVerb.TRAVERSE_TEAM, {"department": dept})
                 return ctx.results.get("output", {})
 
             elif tool_name == "search_docs":
-                from phiegg.phidoc.verbs import PhiDocVerb
+                from phiadk.phidoc.verbs import PhiDocVerb
                 query = arguments.get("query", "")
                 ctx = await self.client.agents["phidoc"].execute_verb(PhiDocVerb.SEARCH_PAGES, {"query": query})
                 return ctx.results.get("output", {})
 
             elif tool_name == "onboard_employee":
-                from phiegg.phibrd.verbs import PhiBrdVerb
+                from phiadk.phibrd.verbs import PhiBrdVerb
                 emp_data = arguments.get("employee_data", arguments)
                 ctx = await self.client.agents["phibrd"].execute_verb(PhiBrdVerb.ONBOARD_EMPLOYEE, emp_data)
                 return ctx.results.get("output", {})
@@ -117,7 +117,7 @@ class MCPServer:
         return {
             "name": "phient-agents",
             "version": "1.0.0",
-            "description": "Phient / PhiEgg Ontologylogical AI Ops Agent Platform",
+            "description": "Phient / PhiADK Ontologylogical AI Ops Agent Platform",
         }
 
     async def run_stdio(self) -> None:

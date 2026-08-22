@@ -26,10 +26,10 @@ Get the metadata and content-addressing digest of an attachment.
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # AttachmentRid | The unique RID of the attachment.
 attachment_rid = "ri.topos.main.attachment.bb32154e-e043-4b00-9461-93136ca96b6f"
@@ -74,9 +74,9 @@ Get the binary content stream of an attachment from content-addressed storage.
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 attachment_rid = "ri.topos.main.attachment.bb32154e-e043-4b00-9461-93136ca96b6f"
 
@@ -126,10 +126,10 @@ The body of the request must contain the binary content of the file and the `Con
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 with open("quarterly_report.pdf", "rb") as f:
     file_bytes = f.read()
@@ -185,9 +185,9 @@ Upload attachment bytes directly targeting a pre-allocated Resource Identifier (
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 rid = "ri.topos.main.attachment.custom-preallocated-rid"
 with open("dataset.parquet", "rb") as f:

@@ -30,9 +30,9 @@ Filters a collection of 0-simplices using chained predicates producing an immuta
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Get filtered object set
 active_engineers = (
@@ -77,10 +77,10 @@ Aggregates objects present in the `POntologyObjectSet` by computing statistical 
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 from pprint import pprint
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 results = (
     client.v2.topos.ObjectSet.of_type("Employee")
@@ -113,9 +113,9 @@ Computes the topological union manifold of two disjoint or overlapping ObjectSet
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 ny_staff = client.v2.topos.ObjectSet.of_type("Employee").filter(lambda e: e.get("city") == "NYC")
 sf_staff = client.v2.topos.ObjectSet.of_type("Employee").filter(lambda e: e.get("city") == "SF")

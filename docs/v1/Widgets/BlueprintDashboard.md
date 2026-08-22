@@ -1,7 +1,7 @@
 # Widgets & Blueprint Documentation Portal (`Widgets/BlueprintDashboard.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/widgets` (`DevModeSettings.md`, `WidgetSet.md`).
-- **Phient Subsystem**: [`src/phiegg/phiapi/dashboard.html`](./phient/src/phiegg/phiapi/dashboard.html).
+- **Phient Subsystem**: [`src/phiadk/phiapi/dashboard.html`](./phient/src/phiadk/phiapi/dashboard.html).
 
 ---
 

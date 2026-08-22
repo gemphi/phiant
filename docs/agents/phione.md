@@ -13,8 +13,8 @@ outline: deep
 | **Extends** | `PhiAgent` |
 | **Layer** | Infrastructure |
 | **Domain** | `identity_hr` |
-| **File** | `phiegg/phione/` |
-| **Schema** | `phiegg/phione/schema.json` |
+| **File** | `phiadk/phione/` |
+| **Schema** | `phiadk/phione/schema.json` |
 
 ## What PhiOne Does
 

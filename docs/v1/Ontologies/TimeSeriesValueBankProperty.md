@@ -13,9 +13,9 @@ Retrieves compressed binary stream blocks from the high-throughput time-series v
 ### Example
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 telemetry_node = client.v2.topos.object("ClusterMonitor", "prod-eu-central")
 points = telemetry_node.properties["network_io"]

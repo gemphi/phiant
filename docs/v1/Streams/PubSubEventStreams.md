@@ -1,7 +1,7 @@
 # Event Streams & PhiBus Pub/Sub (`Streams/PubSubEventStreams.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/streams` (`Stream.md`, `Subscriber.md`).
-- **Phient Subsystem**: [`src/phiegg/phibus/`](./phient/src/phiegg/phibus/).
+- **Phient Subsystem**: [`src/phiadk/phibus/`](./phient/src/phiadk/phibus/).
 
 ---
 
@@ -22,10 +22,10 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
-from phiegg.phibus import PBusEvent
+from phiadk import PhiADKClient
+from phiadk.phibus import PBusEvent
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Subscribe
 client.phibus.sub("topos.mutation", lambda evt: print(f"Mutation: {evt.payload}"))

@@ -5,7 +5,7 @@ The **POntologyEngine** is the central simplicial registry managing vertices (Ob
 ## 1. Simplicial Complex Schema
 
 ```python
-from phiegg.ontologies import POntologyEngine, ObjectType, LinkType, ActionType
+from phiadk.ontologies import POntologyEngine, ObjectType, LinkType, ActionType
 
 
 engine = POntologyEngine()

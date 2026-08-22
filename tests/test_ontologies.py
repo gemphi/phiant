@@ -2,11 +2,11 @@
 
 import pytest
 from fastapi.testclient import TestClient
-from src.phiegg.phiapi.app import create_app
-from src.phiegg.ontologies.engine import GLOBAL_ONTOLOGY, POntologyEngine
-from src.phiegg.ontologies.object import ObjectType, PropertyType, PObjectType, PPropertyType
-from src.phiegg.ontologies.link import LinkType, PLinkType
-from src.phiegg.ontologies.action import ActionType, ActionParameter, PActionType, PActionParameter
+from src.phiadk.phiapi.app import create_app
+from src.phiadk.ontologies.engine import GLOBAL_ONTOLOGY, POntologyEngine
+from src.phiadk.ontologies.object import ObjectType, PropertyType, PObjectType, PPropertyType
+from src.phiadk.ontologies.link import LinkType, PLinkType
+from src.phiadk.ontologies.action import ActionType, ActionParameter, PActionType, PActionParameter
 
 
 class TestPOntologyEngine:
@@ -38,7 +38,7 @@ class TestPOntologyEngine:
         assert "UserIdentity" in mermaid
 
     def test_ontology_singular_subclients(self):
-        from src.phiegg.client import PClient
+        from src.phiadk.client import PClient
         client = PClient()
 
         # Object & ObjectSet (singular)
@@ -142,7 +142,7 @@ class TestPOntologyApiEndpoints:
         assert "|00⟩" in res_qml.json()["probabilities"]
 
     def test_client_v1_and_v2_namespaces(self):
-        from src.phiegg.client import PClient
+        from src.phiadk.client import PClient
         client = PClient()
 
         # v1 namespace
@@ -157,7 +157,7 @@ class TestPOntologyApiEndpoints:
         assert "|00⟩" in qres.probabilities
 
     def test_ontologies_endpoints_and_import(self, api_client):
-        from phiegg.ontologies import Ontology, OntologyClient, OntologyObject
+        from phiadk.ontologies import Ontology, OntologyClient, OntologyObject
         assert Ontology is OntologyClient
 
 

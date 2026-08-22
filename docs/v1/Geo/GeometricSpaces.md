@@ -1,7 +1,7 @@
 # Geo & High-Dimensional Geometric Spaces (`Geo/GeometricSpaces.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/geo`.
-- **Phient Subsystem**: [`src/phiegg/phical/semantic_search.py`](./phient/src/phiegg/phical/semantic_search.py) & [`src/phiegg/phiora/store.py`](./phient/src/phiegg/phiora/store.py).
+- **Phient Subsystem**: [`src/phiadk/phical/semantic_search.py`](./phient/src/phiadk/phical/semantic_search.py) & [`src/phiadk/phiora/store.py`](./phient/src/phiadk/phiora/store.py).
 
 ---
 
@@ -20,9 +20,9 @@ graph TD
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # High-dimensional geometric search
 results = client.phical.search.superposition_search(

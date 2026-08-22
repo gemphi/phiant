@@ -1,7 +1,7 @@
 # Functions & Morphisms (`Functions/MorphismsAndQueries.md`)
 
 - **Palantir Symmetry**: Maps to `foundry_sdk/v2/functions` (`Execution.md`, `Query.md`, `ValueType.md`).
-- **Phient Subsystem**: [`src/phiegg/_core/topology.py`](./phient/src/phiegg/_core/topology.py) & [`src/phiegg/topos/action.py`](./phient/src/phiegg/topos/action.py).
+- **Phient Subsystem**: [`src/phiadk/_core/topology.py`](./phient/src/phiadk/_core/topology.py) & [`src/phiadk/topos/action.py`](./phient/src/phiadk/topos/action.py).
 
 ---
 
@@ -19,7 +19,7 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import Morphism
+from phiadk import Morphism
 
 # Define pure transformation morphism
 calculate_bonus = Morphism(
