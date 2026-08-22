@@ -7,6 +7,7 @@
 ## 1. Architectural & Spatial Store Diagram
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph TD
     subgraph Callers["Domain Agents & Applications"]
         A1["PhiOne (Identity & Admin)"]
@@ -40,6 +41,7 @@ graph TD
 ## 2. Spatial Store vs Raw Vector Store
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph LR
     subgraph "Raw Vector Table (Legacy)"
         V1["1D Float Array: [0.12, 0.98, ...]"] --> S1["Flat Cosine Distance"]
@@ -48,6 +50,7 @@ graph LR
 
     subgraph "PhiOraDB (Spatial Store)"
         SP1["SpatialRecord (Topological Manifold R^N)"] --> S2["Geodesic Nearest Neighbor & Bounding Box"]
+
         S2 --> D2["Git-Backed Immutable SHA-1 CAS DAG"]
     end
 ```

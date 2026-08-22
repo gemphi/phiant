@@ -9,6 +9,7 @@ The Phient Agentic Ecosystem is an enterprise multi-agent platform that orchestr
 ## 2. Layered Architecture Diagram
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph TD
     subgraph Layer5["Layer 5: Presentation & Interface"]
         UI["AIP Blueprint Dashboard (HTML/JS)"]
@@ -49,6 +50,7 @@ graph TD
 ## 3. End-to-End Request & Event Lifecycle
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#f1f5f9', 'signalColor': '#94a3b8', 'signalTextColor': '#f1f5f9', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#334155'}}}%%
 sequenceDiagram
     autonumber
     participant User as User / Client
@@ -77,6 +79,7 @@ sequenceDiagram
 ## 4. Storage Architecture: PhiOraDB (Spatial Store vs Raw Vector)
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph LR
     subgraph "Legacy Raw Vector Flat Table"
         V1["Unstructured 1D Floats"] --> V2["Flat Cosine Distance"]
@@ -89,6 +92,7 @@ graph LR
         S3 --> S4["Zero-Copy Scenario Branching"]
     end
 ```
+
 
 ---
 

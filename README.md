@@ -14,6 +14,7 @@
 **Phient (PhiADK)** is a production-grade enterprise multi-agent operating platform. Built with full **1:1 architectural parity to Palantir Foundry & AIP**, Phient coordinates **15 canonical domain agents** over a shared **Topological Ontology Substrate (`POntologyEngine`)**, real-time **Pub/Sub Event Bus (`PhiBus`)**, and a **Content-Addressed Spatial Store (`PhiOraDB`)**.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph TD
     subgraph "AIP Presentation Layer"
         UI["AIP Blueprint Console & Dashboard (HTML5/JS)"]
@@ -43,6 +44,7 @@ graph TD
     Onto --> Agents
     Agents --> OraDB & Bus & Git & Log
 ```
+
 
 ---
 
@@ -75,6 +77,7 @@ Every domain agent implements the universal 4-phase topological lifecycle: **`en
 `PhiOraDB` operates as a true **Spatial Store** rather than a flat vector table:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph LR
     subgraph "Legacy Flat Vector Table"
         V1["1D Float Array: [0.12, 0.98, ...]"] --> S1["Flat Cosine Distance"]
@@ -97,6 +100,7 @@ graph LR
 ## 4. End-to-End Event Stream Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#f1f5f9', 'signalColor': '#94a3b8', 'signalTextColor': '#f1f5f9', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#334155'}}}%%
 sequenceDiagram
     autonumber
     participant User as User / Client
@@ -119,6 +123,7 @@ sequenceDiagram
     Agent-->>Gateway: AgentContext (Results, Confidence, Sources)
     Gateway-->>User: Final Response + Audit Receipt
 ```
+
 
 ---
 
