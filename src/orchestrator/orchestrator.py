@@ -15,6 +15,7 @@ from ..agents.hr_agent import HRAgent
 from ..agents.identity_agent import IdentityAgent
 from ..agents.knowledge_agent import KnowledgeAgent
 from ..agents.onboarding_agent import OnboardingAgent
+from ..agents.philog_agent import TelemetryAgent
 from ..phiadk.client import PhiADKClient
 from .priority import calculate_priority
 from .router import IntentRouter
@@ -40,6 +41,8 @@ class Orchestrator:
         "quantum": "phical",
         "data": "phiora",
         "executive": "phimen",
+        "telemetry": "philog",
+        "logging": "philog",
     }
 
     def __init__(self, use_phiadk: bool = True) -> None:
@@ -63,8 +66,10 @@ class Orchestrator:
             "hr": HRAgent(),
             "docs": DocsAgent(),
             "onboarding": OnboardingAgent(agent_registry=self._agents),
+            "telemetry": TelemetryAgent(),
         }
         logger.info("Initialized %d agents (PhiADK SDK active: %s)", len(self._agents), self.phiadk_client is not None)
+
 
     async def process(
         self,
