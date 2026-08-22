@@ -94,7 +94,8 @@ class ActionClient:
         act = self._engine.action_types.get(action_type)
         if not act:
             raise ActionExecutionError(action_type, "Action type not registered in Ontology.")
-        return {
+        receipt = {
+
             "action_type": action_type,
             "status": "APPLIED",
             "parameters": parameters,
@@ -102,6 +103,22 @@ class ActionClient:
             "branch": branch,
             "commit_sha1": f"morphism_{action_type[:8]}",
         }
+        try:
+            from phiadk.agents.phibus.bus import GLOBAL_PBUS
+            from phiadk.agents.phibus.models import PBusEvent
+            GLOBAL_PBUS.pub(
+                f"ontology.action.{action_type}",
+                PBusEvent(
+                    topic=f"ontology.action.{action_type}",
+                    payload=receipt,
+                    source_agent="ontologies",
+                    commit_sha1=receipt["commit_sha1"],
+                ),
+            )
+        except Exception:
+            pass
+        return receipt
+
 
     def validate(self, action_type: str, parameters: Dict[str, Any]) -> Dict[str, Any]:
         act = self._engine.action_types.get(action_type)

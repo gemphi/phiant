@@ -21,12 +21,22 @@ class ScenarioClient:
     def __init__(self, engine: Optional[OntologyEngine] = None) -> None:
         self._engine = engine or GLOBAL_ONTOLOGY
 
-    def create(self, name: str, base_commit: str = "HEAD") -> OntologyScenario:
+    def create(
+        self,
+        name: str = "",
+        scenario_id: Optional[str] = None,
+        base_commit: str = "HEAD",
+        base_branch: str = "main",
+        **kwargs: Any,
+    ) -> OntologyScenario:
+        sid = scenario_id or (f"scenario_{name.lower().replace(' ', '_')}" if name else "scenario_branch")
         return OntologyScenario(
-            scenario_id=f"scenario_{name.lower().replace(' ', '_')}",
-            name=name,
+            scenario_id=sid,
+            name=name or sid,
             base_commit=base_commit,
+            status="ACTIVE",
         )
+
 
 
 # Backward compatibility and P* aliases
