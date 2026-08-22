@@ -6,7 +6,8 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 from .errors import LinkTypeNotFoundError
-from .models import OntologyObject
+from .object import OntologyObject
+
 
 
 @dataclass
@@ -76,3 +77,6 @@ class LinkClient:
 # Short standard aliases
 PLinkClient = LinkClient
 PLinkedObjectClient = LinkedObjectClient
+AsyncLinkClient = LinkClient
+AsyncLinkedObjectClient = LinkedObjectClient
+

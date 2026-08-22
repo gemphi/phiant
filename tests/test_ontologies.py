@@ -3,15 +3,15 @@
 import pytest
 from fastapi.testclient import TestClient
 from src.phiadk.phiapi.app import create_app
-from src.phiadk.ontologies.engine import GLOBAL_ONTOLOGY, POntologyEngine
-from src.phiadk.ontologies.object import ObjectType, PropertyType, PObjectType, PPropertyType
-from src.phiadk.ontologies.link import LinkType, PLinkType
-from src.phiadk.ontologies.action import ActionType, ActionParameter, PActionType, PActionParameter
+from src.phiadk.ontologies.engine import GLOBAL_ONTOLOGY, OntologyEngine
+from src.phiadk.ontologies.object import ObjectType, PropertyType
+from src.phiadk.ontologies.link import LinkType
+from src.phiadk.ontologies.action import ActionType, ActionParameter
 
 
 class TestPOntologyEngine:
     def test_ontology_default_initialization(self):
-        engine = POntologyEngine("test_ontology")
+        engine = OntologyEngine("test_ontology")
         assert "Employee" in engine.object_types
         assert "UserIdentity" in engine.object_types
         assert "DocumentPage" in engine.object_types
@@ -20,22 +20,24 @@ class TestPOntologyEngine:
         assert "onboard_employee" in engine.action_types
 
     def test_custom_object_type_registration(self):
-        engine = POntologyEngine("custom_ontology")
+        engine = OntologyEngine("custom_ontology")
         ot = (
-            PObjectType("Ticket", "Support Ticket", "IT support ticket")
-            .add_property(PPropertyType("ticket_id", "Ticket ID", "string", is_primary_key=True))
-            .add_property(PPropertyType("severity", "Severity", "integer"))
+            ObjectType("Ticket", "Support Ticket", "IT support ticket")
+            .add_property(PropertyType("ticket_id", "Ticket ID", "string", is_primary_key=True))
+            .add_property(PropertyType("severity", "Severity", "integer"))
         )
         engine.register_object_type(ot)
         assert engine.get_object_type("Ticket") is not None
         assert engine.get_object_type("Ticket").properties["severity"].data_type == "integer"
 
+
     def test_ontology_mermaid_generation(self):
-        engine = POntologyEngine("mermaid_ontology")
+        engine = OntologyEngine("mermaid_ontology")
         mermaid = engine.to_mermaid()
         assert "graph TD" in mermaid
         assert "Employee" in mermaid
         assert "UserIdentity" in mermaid
+
 
     def test_ontology_singular_subclients(self):
         from src.phiadk.client import PClient

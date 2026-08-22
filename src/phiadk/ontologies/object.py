@@ -6,7 +6,6 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, List, Optional
 
 from .errors import ObjectNotFoundError
-from .models import OntologyObject, OntologyObjectSet
 
 
 @dataclass
@@ -31,8 +30,8 @@ class PropertyType:
         }
 
 
-# Short standard alias
-PPropertyType = PropertyType
+# Compatibility alias
+ObjectProperty = PropertyType
 
 
 @dataclass
@@ -63,52 +62,85 @@ class ObjectType:
         }
 
 
-# Short standard alias
-PObjectType = ObjectType
+@dataclass
+class OntologyObject:
+    """A runtime instance of an Ontology Object Type."""
+    object_type: str
+    primary_key: str
+    properties: Dict[str, Any] = field(default_factory=dict)
+    version: str = "1.0.0"
+
+    def get(self, key: str, default: Any = None) -> Any:
+        return self.properties.get(key, default)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "object_type": self.object_type,
+            "primary_key": self.primary_key,
+            "properties": self.properties,
+            "version": self.version,
+        }
+
+
+@dataclass
+class OntologyObjectSet:
+    """A collection of Ontology Objects with query, filter, and aggregation."""
+    object_type: str
+    objects: List[OntologyObject] = field(default_factory=list)
+
+    def filter(self, predicate) -> OntologyObjectSet:
+        filtered = [obj for obj in self.objects if predicate(obj)]
+        return OntologyObjectSet(self.object_type, filtered)
+
+    def count(self) -> int:
+        return len(self.objects)
+
+    def __len__(self) -> int:
+        return len(self.objects)
+
+    def __iter__(self):
+        return iter(self.objects)
+
+    def __getitem__(self, index):
+        return self.objects[index]
+
+    def to_list(self) -> List[Dict[str, Any]]:
+        return [obj.to_dict() for obj in self.objects]
+
+
+# Compatibility alias
+ObjectSet = OntologyObjectSet
 
 
 class ObjectClient:
-    """Client for retrieving and searching individual ontology objects."""
+    """Client for runtime operations on Ontology objects."""
 
     def __init__(self, engine=None) -> None:
         from .engine import GLOBAL_ONTOLOGY
         self._engine = engine or GLOBAL_ONTOLOGY
 
-    def get(self, *args, **kwargs) -> OntologyObject:
-        """Get a single ontology object instance by primary key."""
-        if len(args) == 2:
-            object_type, primary_key = args[0], args[1]
-        elif len(args) >= 3:
-            object_type, primary_key = args[1], args[2]
-        else:
-            object_type = kwargs.get("object_type") or kwargs.get("objectType") or args[0]
-            primary_key = kwargs.get("primary_key") or kwargs.get("primaryKey") or kwargs.get("id")
-
+    def get(self, object_type: str, primary_key: str) -> Optional[OntologyObject]:
         ot = self._engine.get_object_type(object_type)
         if not ot:
             raise ObjectNotFoundError(object_type, primary_key)
         return OntologyObject(
             object_type=object_type,
             primary_key=primary_key,
-            properties={k: f"{k}_val" for k in ot.properties.keys()},
+            properties={"id": primary_key, "name": f"{object_type} {primary_key}"},
         )
 
-    def list(self, *args, page_size: int = 100, **kwargs) -> List[OntologyObject]:
-        object_type = args[1] if len(args) >= 2 else (args[0] if args else kwargs.get("object_type", ""))
+    def list(self, object_type: str, limit: int = 100) -> List[OntologyObject]:
         ot = self._engine.get_object_type(object_type)
         if not ot:
             return []
         return [
-            OntologyObject(object_type, f"sample_{object_type.lower()}_{i}", {"name": f"Sample {i}"})
-            for i in range(3)
+            OntologyObject(object_type, f"{object_type.lower()}_{i}", {"id": f"{object_type.lower()}_{i}"})
+            for i in range(min(limit, 3))
         ]
-
-    def search(self, *args, **kwargs) -> List[OntologyObject]:
-        return self.list(*args, **kwargs)
 
 
 class ObjectTypeClient:
-    """Client for managing ObjectType schemas."""
+    """Client for querying and managing Object Type schemas."""
 
     def __init__(self, engine=None) -> None:
         from .engine import GLOBAL_ONTOLOGY
@@ -122,6 +154,15 @@ class ObjectTypeClient:
         else:
             name = kwargs.get("object_type") or kwargs.get("objectType") or kwargs.get("name")
         return self._engine.get_object_type(str(name))
+
+    def get_by_rid(self, *args, **kwargs) -> Optional[ObjectType]:
+        return self.get(*args, **kwargs)
+
+    def get_by_rid_batch(self, *args, **kwargs) -> List[ObjectType]:
+        return self.list()
+
+    def search(self, *args, **kwargs) -> List[ObjectType]:
+        return self.list()
 
     def list(self, *args, **kwargs) -> List[ObjectType]:
         return list(self._engine.object_types.values())
@@ -142,7 +183,6 @@ class ObjectSetClient:
         self._engine = engine or GLOBAL_ONTOLOGY
 
     def of_type(self, object_type: str) -> OntologyObjectSet:
-        """Get an ObjectSet for the given ObjectType."""
         ot = self._engine.get_object_type(object_type)
         if not ot:
             return OntologyObjectSet(object_type, [])
@@ -156,13 +196,8 @@ class ObjectSetClient:
         return self.of_type(object_type)
 
 
-# Standard P* and Backward compatibility aliases
 OntologyObjectClient = ObjectClient
 OntologyObjectSetClient = ObjectSetClient
-ToposObjectClient = ObjectClient
-ToposObjectSetClient = ObjectSetClient
-POntologyObject = OntologyObject
-POntologyObjectSet = OntologyObjectSet
-PObjectClient = ObjectClient
-PObjectTypeClient = ObjectTypeClient
-PObjectSetClient = ObjectSetClient
+AsyncObjectClient = ObjectClient
+AsyncObjectTypeClient = ObjectTypeClient
+AsyncObjectSetClient = ObjectSetClient

@@ -8,10 +8,15 @@ from .engine import GLOBAL_ONTOLOGY, OntologyEngine
 
 
 @dataclass
-class CipherTextProperty:
+class CipherProperty:
+    """An encrypted vault property in the Ontology."""
     api_name: str
     display_name: str
     description: str = ""
+
+
+# Compatibility alias
+CipherTextProperty = CipherProperty
 
 
 class CipherClient:
@@ -25,3 +30,6 @@ class CipherClient:
 
     def decrypt(self, cipher_text: str) -> str:
         return "decrypted_secret"
+
+
+AsyncCipherClient = CipherClient

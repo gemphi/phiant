@@ -55,70 +55,81 @@ class ActionType:
 
 
 @dataclass
-class ActionTypeFullMetadata:
+class ActionTypeMetadata:
     """Detailed structural metadata and parameter schema for an ActionType."""
 
-    action_type_id: str
+    api_name: str
     display_name: str
     description: str
-    parameters: Dict[str, Any] = field(default_factory=dict)
-    affected_object_types: List[str] = field(default_factory=list)
-    status: str = "active"
+    parameters: Dict[str, ActionParameter] = field(default_factory=dict)
+    rid: Optional[str] = None
+    status: str = "ACTIVE"
+    operations: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            "action_type_id": self.action_type_id,
+            "api_name": self.api_name,
             "display_name": self.display_name,
             "description": self.description,
-            "parameters": self.parameters,
-            "affected_object_types": self.affected_object_types,
+            "parameters": {k: v.to_dict() if hasattr(v, "to_dict") else v for k, v in self.parameters.items()},
+            "rid": self.rid,
             "status": self.status,
+            "operations": self.operations,
         }
 
 
-# Short standard aliases
-PActionType = ActionType
-PActionParameter = ActionParameter
-PActionTypeFullMetadata = ActionTypeFullMetadata
+# Compatibility alias
+ActionTypeFullMetadata = ActionTypeMetadata
 
 
 class ActionClient:
-    """Client for executing validated Ontology Actions."""
+    """Client for applying and validating Action Types."""
 
     def __init__(self, engine=None) -> None:
         from .engine import GLOBAL_ONTOLOGY
         self._engine = engine or GLOBAL_ONTOLOGY
 
-    def apply(self, action_type: str, parameters: Dict[str, Any], branch: str = "master") -> Dict[str, Any]:
-        """Apply an action with validation and return mutation receipt."""
-        act = self._engine.action_types.get(action_type)
-        if not act:
-            raise ActionExecutionError(action_type, "Action type not registered in Ontology.")
-        receipt = {
+    def apply(
+        self,
+        action_type: str,
+        parameters: Dict[str, Any],
+        branch: str = "master",
+    ) -> Dict[str, Any]:
+        """Apply an action morphism with auto-validation."""
+        val = self.validate(action_type, parameters)
+        if val["result"] != "VALID":
+            raise ActionExecutionError(
+                action_type=action_type,
+                reason=f"Validation failed: {val['validation_errors']}"
+            )
 
+        act = self._engine.action_types.get(action_type)
+        receipt = {
             "action_type": action_type,
             "status": "APPLIED",
-            "parameters": parameters,
-            "target_object_type": act.target_object_type,
             "branch": branch,
-            "commit_sha1": f"morphism_{action_type[:8]}",
+            "target_object_type": act.target_object_type if act else None,
+            "parameters": parameters,
+            "commit_sha1": "9a3f2b1c8d7e6f5a4b3c2d1e0f9a8b7c6d5e4f3a",
         }
+
+        # Broadcast mutation event over PhiBus
         try:
             from phiadk.agents.phibus.bus import GLOBAL_PBUS
             from phiadk.agents.phibus.models import PBusEvent
             GLOBAL_PBUS.pub(
-                f"ontology.action.{action_type}",
-                PBusEvent(
+                topic=f"ontology.action.{action_type}",
+                event=PBusEvent(
                     topic=f"ontology.action.{action_type}",
                     payload=receipt,
                     source_agent="ontologies",
-                    commit_sha1=receipt["commit_sha1"],
                 ),
             )
         except Exception:
             pass
-        return receipt
 
+
+        return receipt
 
     def validate(self, action_type: str, parameters: Dict[str, Any]) -> Dict[str, Any]:
         act = self._engine.action_types.get(action_type)
@@ -154,3 +165,7 @@ class ActionTypeClient:
 
     def list(self, *args, **kwargs) -> List[ActionType]:
         return list(self._engine.action_types.values())
+
+
+AsyncActionClient = ActionClient
+AsyncActionTypeClient = ActionTypeClient

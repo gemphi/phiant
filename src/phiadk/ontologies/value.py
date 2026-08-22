@@ -33,3 +33,9 @@ class ValueTypeClient:
             ValueType("EmailAddress", "Email Address", "string"),
             ValueType("CurrencyAmount", "Currency Amount", "float"),
         ]
+
+
+# Symmetrical aliases
+AsyncValueTypeClient = ValueTypeClient
+PValueTypeClient = ValueTypeClient
+

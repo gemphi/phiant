@@ -49,3 +49,14 @@ class AttachmentClient:
             filename="file.bin",
             size_bytes=1024,
         )
+
+
+class AsyncAttachmentClient(AttachmentClient):
+    """Async variant of AttachmentClient."""
+    pass
+
+
+# Symmetrical P* aliases
+PAttachment = Attachment
+PAttachmentProperty = AttachmentProperty
+PAttachmentClient = AttachmentClient

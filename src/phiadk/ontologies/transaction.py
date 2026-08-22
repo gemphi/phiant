@@ -1,12 +1,32 @@
-"""Ontology Transaction Module — Atomic transactional batches."""
+"""Ontology Transaction Module — Atomic transactional commits."""
 
 from __future__ import annotations
 
 import uuid
+from dataclasses import dataclass
 from typing import Any, Dict, Optional
-
 from .engine import GLOBAL_ONTOLOGY, OntologyEngine
-from .models import OntologyTransaction, POntologyTransaction
+
+
+@dataclass
+class OntologyTransaction:
+    """An atomic transactional commit over ontology mutations."""
+    transaction_id: str
+    status: str = "COMMITTED"
+    mutations_count: int = 0
+    commit_sha1: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "transaction_id": self.transaction_id,
+            "status": self.status,
+            "mutations_count": self.mutations_count,
+            "commit_sha1": self.commit_sha1,
+        }
+
+
+# Short alias
+Transaction = OntologyTransaction
 
 
 class TransactionClient:
@@ -24,8 +44,4 @@ class TransactionClient:
         )
 
 
-# Backward compatibility and P* aliases
-OntologyTransactionClient = TransactionClient
-ToposTransactionClient = TransactionClient
-POntologyTransactionClient = TransactionClient
-ToposTransaction = OntologyTransaction
+AsyncTransactionClient = TransactionClient

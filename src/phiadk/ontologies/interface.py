@@ -2,10 +2,39 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
-
 from .engine import GLOBAL_ONTOLOGY, OntologyEngine
-from .models import OntologyInterface, POntologyInterface
+
+
+@dataclass
+class InterfaceProperty:
+    """A shared property declared on an Ontology Interface."""
+    api_name: str
+    display_name: str
+    data_type: str = "string"
+    description: str = ""
+
+
+@dataclass
+class OntologyInterface:
+    """A polymorphic ontology interface contract across multiple Object Types."""
+    api_name: str
+    display_name: str
+    description: str = ""
+    implemented_by: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "api_name": self.api_name,
+            "display_name": self.display_name,
+            "description": self.description,
+            "implemented_by": self.implemented_by,
+        }
+
+
+# Short alias
+Interface = OntologyInterface
 
 
 class InterfaceClient:
@@ -29,9 +58,4 @@ class InterfaceClient:
         ]
 
 
-# Backward compatibility and P* aliases
-OntologyInterfaceClient = InterfaceClient
-ToposInterfaceClient = InterfaceClient
-POntologyInterfaceClient = InterfaceClient
-ToposInterface = OntologyInterface
-
+AsyncInterfaceClient = InterfaceClient

@@ -6,21 +6,19 @@ from src.phiadk import (
     AsyncPhiClient,
     PClient,
     PAsyncClient,
-    POntology,
-    POntologyType,
-    PObjectType,
-    PPropertyType,
-    PLinkType,
-    PActionType,
-    PActionParameter,
-    POntologyObject,
-    POntologyObjectSet,
-    POntologyInterface,
-    POntologyTransaction,
-    POntologyScenario,
-    PValueType,
-    PQueryType,
-    POntologyEngine,
+    ObjectType,
+    PropertyType,
+    LinkType,
+    ActionType,
+    ActionParameter,
+    OntologyObject,
+    OntologyObjectSet,
+    OntologyInterface,
+    OntologyTransaction,
+    OntologyScenario,
+    ValueType,
+    QueryType,
+    OntologyEngine,
     PAgent,
     PNode,
     PSpace,
@@ -49,14 +47,13 @@ def test_pclient_and_phiclient_initialization():
     assert isinstance(pclient, PhiClient)
 
 
-
-def test_pontology_type_and_pobject_type():
-    """Verify POntologyType and PObjectType creation and serialization."""
-    prop_id = PPropertyType("emp_id", "Employee ID", "string", is_primary_key=True)
-    prop_name = PPropertyType("name", "Full Name", "string")
+def test_ontology_type_and_object_type():
+    """Verify ObjectType and PropertyType creation and serialization."""
+    prop_id = PropertyType("emp_id", "Employee ID", "string", is_primary_key=True)
+    prop_name = PropertyType("name", "Full Name", "string")
 
     obj_type = (
-        PObjectType("Employee", "Employee Record", "Staff record in ontology")
+        ObjectType("Employee", "Employee Record", "Staff record in ontology")
         .add_property(prop_id)
         .add_property(prop_name)
     )
@@ -65,20 +62,10 @@ def test_pontology_type_and_pobject_type():
     assert "emp_id" in obj_type.properties
     assert obj_type.properties["emp_id"].is_primary_key is True
 
-    ontology_spec = POntologyType(
-        api_name="enterprise_core",
-        display_name="Enterprise Core Ontology",
-        description="Master operational ontology",
-        object_types={"Employee": obj_type.to_dict()},
-    )
-    data = ontology_spec.to_dict()
-    assert data["api_name"] == "enterprise_core"
-    assert "Employee" in data["object_types"]
 
-
-def test_plink_type_and_paction_type():
-    """Verify PLinkType and PActionType with PActionParameter."""
-    link = PLinkType(
+def test_link_type_and_action_type():
+    """Verify LinkType and ActionType with ActionParameter."""
+    link = LinkType(
         api_name="employee_device",
         display_name="Assigned Device",
         source_object_type="Employee",
@@ -88,18 +75,18 @@ def test_plink_type_and_paction_type():
     assert link.source_object_type == "Employee"
     assert link.target_object_type == "Device"
 
-    param = PActionParameter("new_department", "New Department", "string", required=True)
+    param = ActionParameter("new_department", "New Department", "string", required=True)
     action = (
-        PActionType("transfer_department", "Transfer Department", "Move employee to another team")
+        ActionType("transfer_department", "Transfer Department", "Move employee to another team")
         .add_parameter(param)
     )
     assert "new_department" in action.parameters
     assert action.parameters["new_department"].required is True
 
 
-def test_pontology_engine_and_global_registry():
-    """Verify POntologyEngine registers and holds default enterprise ontology."""
-    engine = POntologyEngine()
+def test_ontology_engine_and_global_registry():
+    """Verify OntologyEngine registers and holds default enterprise ontology."""
+    engine = OntologyEngine()
     assert "Employee" in engine.object_types
     assert "UserIdentity" in engine.object_types
     assert "DocumentPage" in engine.object_types
@@ -110,7 +97,7 @@ def test_pontology_engine_and_global_registry():
     assert "Employee" in mermaid
 
 
-def test_pontology_client_via_pclient():
+def test_ontology_client_via_pclient():
     """Verify ontology queries through PClient.ontologies."""
     client = PClient()
     emp_ot = client.ontologies.Ontology.ObjectType.get("Employee")
@@ -119,10 +106,10 @@ def test_pontology_client_via_pclient():
 
     objs = client.ontologies.Ontology.Object.list("Employee")
     assert len(objs) > 0
-    assert isinstance(objs[0], POntologyObject)
+    assert isinstance(objs[0], OntologyObject)
 
     obj_set = client.ontologies.Ontology.ObjectSet.of_type("Employee")
-    assert isinstance(obj_set, POntologyObjectSet)
+    assert isinstance(obj_set, OntologyObjectSet)
     assert len(obj_set) > 0
 
 
@@ -137,4 +124,5 @@ def test_pcore_mathematical_abstractions():
     assert morphism.source_space == "DocSpace"
     assert morphism.target_space == "EmbeddingSpace"
     assert morphism.morphism_type == "vectorize"
+
 

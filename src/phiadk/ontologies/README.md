@@ -3,13 +3,13 @@
 > _1:1 Palantir Foundry Symmetrical Ontology Substrate & Topological State Machine._
 
 [![Palantir Parity](https://img.shields.io/badge/Palantir%20Ontologies-100%25%20Symmetrical-purple.svg)](../../../look.md)
-[![Submodules](https://img.shields.io/badge/Submodules-25%20Modules-blue.svg)](./)
+[![Submodules](https://img.shields.io/badge/Architecture-Clean%20Singular%20Modules-blue.svg)](./)
 
 ---
 
 ## 1. Architectural Overview & Category Theory Foundation
 
-The **POntologyEngine** treats the entire enterprise state as a category of sheaves over a simplicial manifold:
+The **OntologyEngine** treats the entire enterprise state as a category of sheaves over a simplicial manifold:
 - **0-Simplices (Vertices)**: `ObjectType` entities (e.g. `Employee`, `UserIdentity`, `DocumentPage`, `GitCommit`).
 - **1-Simplices (Edges / Fiber Bundles)**: `LinkType` relationships (e.g. `employee_identity`, `authored_documents`).
 - **State-Mutating Morphisms**: `ActionType` operations (e.g. `promote_employee`, `provision_identity`).
@@ -18,7 +18,6 @@ The **POntologyEngine** treats the entire enterprise state as a category of shea
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
-%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph TD
     subgraph "0-Simplices (Object Types)"
         Emp["Employee (0-Simplex)"]
@@ -45,20 +44,26 @@ graph TD
 
 ---
 
-## 2. Module Symmetrical Mapping
+## 2. Concise Singular Module Mapping
+
+All redundant repeating names have been simplified into clean, self-contained single-topic modules:
 
 | Module File | Exported Classes & Models | Palantir Foundry Reference |
 |:---|:---|:---|
-| [`engine.py`](./engine.py) | `POntologyEngine`, `OntologyEngine`, `GLOBAL_ONTOLOGY` | `foundry_sdk/v2/ontologies/ontology.py` |
-| [`object.py`](./object.py) & [`ontology_object.py`](./ontology_object.py) | `ObjectType`, `ObjectProperty`, `POntologyObject` | `foundry_sdk/v2/ontologies/object_type.py` |
-| [`link.py`](./link.py) & [`linked_object.py`](./linked_object.py) | `LinkType`, `PLinkType`, `LinkedObjectClient` | `foundry_sdk/v2/ontologies/linked_object.py` |
-| [`action.py`](./action.py) & [`action_type.py`](./action_type.py) | `ActionType`, `PActionType`, `ActionExecutionEngine` | `foundry_sdk/v2/ontologies/action.py` |
-| [`interface.py`](./interface.py) & [`ontology_interface.py`](./ontology_interface.py) | `Interface`, `POntologyInterface`, `InterfaceClient` | `foundry_sdk/v2/ontologies/ontology_interface.py` |
-| [`scenario.py`](./scenario.py) & [`ontology_scenario.py`](./ontology_scenario.py) | `Scenario`, `POntologyScenario`, `ScenarioClient` | `foundry_sdk/v2/ontologies/ontology_scenario.py` |
-| [`transaction.py`](./transaction.py) & [`ontology_transaction.py`](./ontology_transaction.py) | `Transaction`, `POntologyTransaction`, `TransactionClient` | `foundry_sdk/v2/ontologies/ontology_transaction.py` |
-| [`geo.py`](./geo.py) & [`geotemporal_series_property.py`](./geotemporal_series_property.py) | `GeoPoint`, `GeoShape`, `GeotemporalClient` | `foundry_sdk/v2/ontologies/geotemporal_series_property.py` |
-| [`timeseries.py`](./timeseries.py) & [`time_series_property_v2.py`](./time_series_property_v2.py) | `TimeSeriesProperty`, `TimeSeriesPoint`, `TimeSeriesClient`| `foundry_sdk/v2/ontologies/time_series_property_v2.py` |
-| [`cipher.py`](./cipher.py) & [`cipher_text_property.py`](./cipher_text_property.py) | `CipherTextProperty`, `CipherClient` (AES-256 Vault) | `foundry_sdk/v2/ontologies/cipher_text_property.py` |
+| [`engine.py`](./engine.py) | `OntologyEngine`, `POntologyEngine`, `GLOBAL_ONTOLOGY` | `foundry_sdk/v2/ontologies/ontology.py` |
+| [`object.py`](./object.py) | `ObjectType`, `PropertyType`, `ObjectProperty`, `OntologyObject`, `OntologyObjectSet`, `ObjectClient` | `foundry_sdk/v2/ontologies/object_type.py` |
+| [`link.py`](./link.py) | `LinkType`, `LinkedObjectClient`, `LinkClient` | `foundry_sdk/v2/ontologies/linked_object.py` |
+| [`action.py`](./action.py) | `ActionType`, `ActionParameter`, `ActionTypeMetadata`, `ActionClient` | `foundry_sdk/v2/ontologies/action.py` |
+| [`interface.py`](./interface.py) | `Interface`, `InterfaceProperty`, `OntologyInterface`, `InterfaceClient` | `foundry_sdk/v2/ontologies/ontology_interface.py` |
+| [`scenario.py`](./scenario.py) | `Scenario`, `OntologyScenario`, `ScenarioClient` | `foundry_sdk/v2/ontologies/ontology_scenario.py` |
+| [`transaction.py`](./transaction.py) | `Transaction`, `OntologyTransaction`, `TransactionClient` | `foundry_sdk/v2/ontologies/ontology_transaction.py` |
+| [`geo.py`](./geo.py) | `GeoProperty`, `GeoPoint`, `GeoShape`, `GeoClient` | `foundry_sdk/v2/ontologies/geotemporal_series_property.py` |
+| [`time.py`](./time.py) | `TimeProperty`, `TimeSeriesPoint`, `TimeSeriesClient` | `foundry_sdk/v2/ontologies/time_series_property_v2.py` |
+| [`media.py`](./media.py) | `MediaProperty`, `MediaReference`, `MediaClient` | `foundry_sdk/v2/ontologies/media_reference_property.py` |
+| [`attachment.py`](./attachment.py) | `Attachment`, `AttachmentProperty`, `AttachmentClient` | `foundry_sdk/v2/ontologies/attachment_property.py` |
+| [`cipher.py`](./cipher.py) | `CipherProperty`, `CipherTextProperty`, `CipherClient` (AES-256 Vault) | `foundry_sdk/v2/ontologies/cipher_text_property.py` |
+| [`query.py`](./query.py) | `Query`, `QueryType`, `QueryParameter`, `QueryClient` | `foundry_sdk/v2/ontologies/query_type.py` |
+| [`value.py`](./value.py) | `ValueType`, `ValueTypeClient` | `foundry_sdk/v2/ontologies/ontology_value_type.py` |
 
 ---
 

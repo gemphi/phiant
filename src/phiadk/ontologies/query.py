@@ -25,8 +25,13 @@ class QueryType:
         }
 
 
-# Short standard alias
-PQueryType = QueryType
+@dataclass
+class QueryParameter:
+    api_name: str
+    data_type: str
+    required: bool = True
+    description: str = ""
+
 
 
 class QueryClient:
@@ -58,3 +63,11 @@ class QueryTypeClient:
             QueryType("count_active_employees", "Count Active Employees", output_type="integer"),
             QueryType("find_documents_by_tag", "Find Documents By Tag", output_type="object_set"),
         ]
+
+
+# Symmetrical aliases
+Query = QueryType
+AsyncQueryClient = QueryClient
+AsyncQueryTypeClient = QueryTypeClient
+PQueryClient = QueryClient
+

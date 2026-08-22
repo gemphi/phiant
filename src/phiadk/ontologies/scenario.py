@@ -8,11 +8,16 @@ from .engine import GLOBAL_ONTOLOGY, OntologyEngine
 
 
 @dataclass
-class OntologyScenario:
+class Scenario:
+    """A what-if simulation branch in Ontology."""
     scenario_id: str
     name: str
     base_commit: str
     status: str = "ACTIVE"
+
+
+# Compatibility alias
+OntologyScenario = Scenario
 
 
 class ScenarioClient:
@@ -28,9 +33,9 @@ class ScenarioClient:
         base_commit: str = "HEAD",
         base_branch: str = "main",
         **kwargs: Any,
-    ) -> OntologyScenario:
+    ) -> Scenario:
         sid = scenario_id or (f"scenario_{name.lower().replace(' ', '_')}" if name else "scenario_branch")
-        return OntologyScenario(
+        return Scenario(
             scenario_id=sid,
             name=name or sid,
             base_commit=base_commit,
@@ -38,10 +43,4 @@ class ScenarioClient:
         )
 
 
-
-# Backward compatibility and P* aliases
-OntologyScenarioClient = ScenarioClient
-ToposScenarioClient = ScenarioClient
-POntologyScenario = OntologyScenario
-POntologyScenarioClient = ScenarioClient
-ToposScenario = OntologyScenario
+AsyncScenarioClient = ScenarioClient
