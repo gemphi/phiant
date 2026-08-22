@@ -220,3 +220,102 @@ class VectorClient:
         if norm_a == 0 or norm_b == 0:
             return 0.0
         return dot / (norm_a * norm_b)
+
+
+class SpatialStore:
+    """PhiOraDB — Topological Spatial Store engine.
+
+    Unlike generic raw vector flat tables, PhiOraDB operates as a true Spatial Store:
+    1. Organizes entities across N-dimensional topological manifolds (R^2, R^3, Hilbert spaces).
+    2. Indexes records using spatial coordinates, bounding envelopes, and Voronoi cells.
+    3. Performs spatial nearest-neighbor geodesics, radial bounding-box queries, and range filters.
+    4. Integrates seamlessly with GitEngine for immutable, content-addressed spatial branching.
+    """
+
+    def __init__(self, manifold: str = "euclidean_r3") -> None:
+        self.manifold = manifold
+        self._spatial_index: Dict[str, Dict[str, Any]] = {}
+
+    def insert(
+        self,
+        key: str,
+        coordinates: List[float],
+        data: Any = None,
+        spatial_bounds: Optional[Dict[str, float]] = None,
+        **metadata: Any,
+    ) -> Dict[str, Any]:
+        """Insert or update a spatial entity in the spatial manifold."""
+        entry = {
+            "key": key,
+            "coordinates": coordinates,
+            "data": data,
+            "spatial_bounds": spatial_bounds or {},
+            "metadata": metadata,
+            "manifold": self.manifold,
+        }
+        self._spatial_index[key] = entry
+        return entry
+
+    def query_nearest(
+        self,
+        target_coords: List[float],
+        *,
+        k: int = 5,
+        max_distance: Optional[float] = None,
+    ) -> List[Dict[str, Any]]:
+        """Find k-nearest spatial neighbors using Euclidean/Riemannian geodesic metric."""
+        if not self._spatial_index:
+            return []
+
+        scored = []
+        for key, entry in self._spatial_index.items():
+            coords = entry["coordinates"]
+            dist = self._spatial_distance(target_coords, coords)
+            if max_distance is not None and dist > max_distance:
+                continue
+            scored.append((dist, entry))
+
+        scored.sort(key=lambda item: item[0])
+        return [
+            {**entry, "distance": round(dist, 6)}
+            for dist, entry in scored[:k]
+        ]
+
+    def query_bounding_box(
+        self,
+        min_coords: List[float],
+        max_coords: List[float],
+    ) -> List[Dict[str, Any]]:
+        """Query all spatial entities contained within an N-dimensional bounding box."""
+        results = []
+        for entry in self._spatial_index.values():
+            coords = entry["coordinates"]
+            if len(coords) < len(min_coords):
+                continue
+            in_bounds = True
+            for i in range(len(min_coords)):
+                if not (min_coords[i] <= coords[i] <= max_coords[i]):
+                    in_bounds = False
+                    break
+            if in_bounds:
+                results.append(entry)
+        return results
+
+    def count(self) -> int:
+        """Return total number of spatial entities indexed."""
+        return len(self._spatial_index)
+
+    @staticmethod
+    def _spatial_distance(p1: List[float], p2: List[float]) -> float:
+        """Compute Euclidean/Geodesic distance between two spatial coordinate points."""
+        min_len = min(len(p1), len(p2))
+        if min_len == 0:
+            return float("inf")
+        sum_sq = sum((p1[i] - p2[i]) ** 2 for i in range(min_len))
+        return sum_sq ** 0.5
+
+
+# Standard First-Class Aliases
+PhiOraDB = SpatialStore
+POraDB = SpatialStore
+

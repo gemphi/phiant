@@ -4,18 +4,54 @@ Welcome to the **Phient SDK v2 Documentation**. Version 2 extends the platform i
 
 ---
 
-## 1. Complete 20-Module Ontologylogical Matrix
+## 1. System Architecture & Component Diagram
+
+```mermaid
+graph TD
+    subgraph "AIP Presentation Layer"
+        UI["Blueprint Console & Studio"]
+        CLI["PhiCLI Toolchain"]
+        MCP["Model Context Protocol (Claude)"]
+    end
+
+    subgraph "Ontology & Orchestration Substrate"
+        Orch["20-Namespace Orchestrator"]
+        Onto["POntologyEngine (Object/Link/Action/Interface)"]
+        Scen["Scenario Branching & Transactions"]
+    end
+
+    subgraph "Domain Agent Fleet"
+        Fleet["15 Canonical Domain Agents: phibot, phibrd, phibus, phical, phidoc, phigen, phigit, phigov, phillm, philog, phimen, phione, phiora, phirag, phisec"]
+    end
+
+    subgraph "Storage & Streaming Layer"
+        OraDB["PhiOraDB (Topological Spatial Store & CAS)"]
+        Bus["PhiBus (Pub/Sub Event Bus Manager)"]
+        Git["PhiGit Engine (SHA-1 Tree DAGs)"]
+        Log["PhiLog Structured Audit Ring Buffer"]
+    end
+
+    UI & CLI & MCP --> Orch
+    Orch --> Onto & Scen
+    Onto --> Fleet
+    Fleet --> OraDB & Bus & Git & Log
+```
+
+---
+
+## 2. Complete 20-Module Ontologylogical Matrix
 
 | Module | Description | Docs & Models | Phient Implementation |
 | :--- | :--- | :--- | :--- |
 | [`Admin/`](./Admin/User.md) | User identities, groups, organizations, and workforce enrollments. | 22 docs, 116 models ([`models/`](./Admin/models/README.md)) | `phiadk.phione`, `phiadk.admin` |
-| [`AipAgents/`](./AipAgents/Agent.md) | AIP Agent execution sessions, context windows, and tool registries. | 5 docs, 60 models ([`models/`](./AipAgents/models/README.md)) | `phiadk.phibot`, `phiadk._core.topology` |
+| [`AipAgents/`](./AipAgents/Agent.md) | AIP Agent execution sessions, context windows, and tool registries. | 5 docs, 60 models ([`models/`](./AipAgents/models/README.md)) | `phiadk.phimen`, `phiadk.aip_agents` |
 | [`Audit/`](./Audit/AuditTrail.md) | Immutable audit trails bound to Git SHA-1 commit hashes. | 2 docs, 3 models ([`models/`](./Audit/models/README.md)) | `phiadk.philog`, `phiadk.audit` |
-| [`Checkpoints/`](./Checkpoints/Checkpoint.md) | Cryptographic commit DAGs, parent lineage, and tree diffs. | 1 doc, 90 models ([`models/`](./Checkpoints/models/README.md)) | `phiadk.phigit`, `phiadk.checkpoints` |
-| [`Connectivity/`](./Connectivity/Connection.md) | Bi-directional streaming sync with identity providers and external tables. | 4 docs, 155 models ([`models/`](./Connectivity/models/README.md)) | `phiadk.phione`, `phiadk.connectivity` |
+| [`Checkpoints/`](./Checkpoints/Checkpoint.md) | Cryptographic commit DAGs, parent lineage, and tree diffs. | 1 doc, 90 models ([`models/`](./Checkpoints/models/README.md)) | `phiadk.phigov`, `phiadk.checkpoints` |
+| [`Connectivity/`](./Connectivity/Connection.md) | Bi-directional streaming sync with identity providers and external tables. | 4 docs, 155 models ([`models/`](./Connectivity/models/README.md)) | `phiadk.phibus`, `phiadk.connectivity` |
 | [`Core/`](./Core/Core.md) | Mathematical Sheaf Theory, Manifolds, and Fiber Bundles. | 1 doc, 136 models ([`models/`](./Core/models/README.md)) | `phiadk._core.topology`, `phiadk.core` |
-| [`DataHealth/`](./DataHealth/Check.md) | Real-time agent latency distributions and health status metrics. | 2 docs, 89 models ([`models/`](./DataHealth/models/README.md)) | `phiadk.philog`, `phiadk.data_health` |
-| [`Datasets/`](./Datasets/Dataset.md) | Content-addressed storage with immutable SHA-1 hashing and dataset branches. | 5 docs, 52 models ([`models/`](./Datasets/models/README.md)) | `phiadk.phiora`, `phiadk.datasets` |
+| [`DataHealth/`](./DataHealth/Check.md) | Real-time agent latency distributions and health status metrics. | 2 docs, 89 models ([`models/`](./DataHealth/models/README.md)) | `phiadk.phisec`, `phiadk.data_health` |
+| [`Datasets/`](./Datasets/Dataset.md) | **PhiOraDB** Spatial Store, content-addressed CAS, and dataset branches. | 6 docs, 52 models ([`PhiOraDB.md`](./Datasets/PhiOraDB.md)) | `phiadk.phiora`, `phiadk.datasets` |
+
 | [`Filesystem/`](./Filesystem/Folder.md) | Git-style directory trees, blobs, and content-addressed reference management. | 7 docs, 75 models ([`models/`](./Filesystem/models/README.md)) | `phiadk.phigit.engine`, `phiadk.filesystem` |
 | [`Functions/`](./Functions/Function.md) | Multi-domain fiber bundle orchestration with atomic query rollbacks. | 4 docs, 88 models ([`models/`](./Functions/models/README.md)) | `phiadk.phibrd`, `phiadk.functions` |
 | [`Geo/`](./Geo/Geo.md) | High-dimensional geometric vector space searches and manifold clustering. | 1 doc, 17 models ([`models/`](./Geo/models/README.md)) | `phiadk.phical`, `phiadk.geo` |

@@ -122,6 +122,28 @@ class VectorRecord(Record):
         self.node_type = "vector_record"
 
 
+# ── SpatialRecord — topological spatial entity ───────────────────────
+
+@dataclass
+class SpatialRecord(Record):
+    """A spatial record situated on an N-dimensional geometric/topological manifold.
+
+    Unlike plain vector rows, SpatialRecords possess topological coordinates,
+    simplex dimensions, bounding boxes, and metric distance geodesics.
+    """
+
+    _model_type: str = "spatial_record"
+    coordinates: List[float] = field(default_factory=list)
+    spatial_bounds: Dict[str, float] = field(default_factory=dict)
+    manifold: str = "euclidean_r3"
+    simplex_dimension: int = 0
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.node_type = "spatial_record"
+        self.simplex = SimplexType.POINT
+
+
 # ── Store — the root data space ──────────────────────────────────────
 
 @dataclass
@@ -145,3 +167,4 @@ class Store(Space):
 
     def list_collections(self) -> List[str]:
         return list(self.collections.keys())
+
