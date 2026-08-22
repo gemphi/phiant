@@ -25,39 +25,40 @@ This document provides a comprehensive mapping and structural comparison between
 
 ---
 
-## 2. File-by-File Symmetrical Mapping: Palantir Ontologies vs. Phient POntology
+## 2. File-by-File Symmetrical Mapping: Palantir Ontologies vs. Phient Ontologies
 
-Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontologies/` and `src/phiegg/topos/`:
+Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontologies/` and `src/phiegg/ontologies/`:
 
-| Palantir Foundry SDK File (`foundry_sdk/v2/ontologies/`) | Palantir Docs File (`docs/v2/Ontologies/`) | Phient Symmetrical Doc (`docs/v2/POntology/`) | Phient Code File (`src/phiegg/topos/`) | Role & Standard P* Type |
+| Palantir Foundry SDK File (`foundry_sdk/v2/ontologies/`) | Palantir Docs File (`docs/v2/Ontologies/`) | Phient Symmetrical Doc (`docs/v2/Ontologies/`) | Phient Code File (`src/phiegg/ontologies/`) | Role & Standard P* Type |
 | :--- | :--- | :--- | :--- | :--- |
-| `__init__.py` | — | [`POntologyEngine.md`](./docs/v2/POntology/POntologyEngine.md) | [`__init__.py`](./src/phiegg/topos/__init__.py) | Package entrypoint re-exporting POntology & P* primitives. |
-| `_client.py` | `Ontology.md` | [`Ontology.md`](./docs/v2/POntology/Ontology.md) | [`_client.py`](./src/phiegg/topos/_client.py) | `POntologyClient` / `OntologiesClient` unified router. |
-| `action.py` | `Action.md` | [`Action.md`](./docs/v2/POntology/Action.md) | [`action.py`](./src/phiegg/topos/action.py) | `ActionClient` executing validated state mutations. |
-| `action_type.py` | `ActionType.md` | [`ActionType.md`](./docs/v2/POntology/ActionType.md) | [`action_type.py`](./src/phiegg/topos/action_type.py) | `ActionType` & `PActionType` morphism schemas. |
-| `action_type_full_metadata.py`| `ActionTypeFullMetadata.md`| [`ActionTypeFullMetadata.md`](./docs/v2/POntology/ActionTypeFullMetadata.md)| [`action_type_full_metadata.py`](./src/phiegg/topos/action_type_full_metadata.py)| Schema introspection & parameter validation models. |
-| `attachment.py` | `Attachment.md` | [`Attachment.md`](./docs/v2/POntology/Attachment.md) | [`attachment.py`](./src/phiegg/topos/attachment.py) | `AttachmentClient` (binary assets, uploads, streams). |
-| `attachment_property.py` | `AttachmentProperty.md` | [`AttachmentProperty.md`](./docs/v2/POntology/AttachmentProperty.md) | [`attachment_property.py`](./src/phiegg/topos/attachment_property.py) | `AttachmentProperty` reference on 0-simplices. |
-| `cipher_text_property.py` | `CipherTextProperty.md` | [`CipherTextProperty.md`](./docs/v2/POntology/CipherTextProperty.md) | [`cipher_text_property.py`](./src/phiegg/topos/cipher_text_property.py) | `CipherTextProperty` (AES-256-GCM vault properties). |
-| `errors.py` | — | [`POntologyEngine.md`](./docs/v2/POntology/POntologyEngine.md) | [`errors.py`](./src/phiegg/topos/errors.py) | `POntologyError` error hierarchy. |
-| `geotemporal_series_property.py`| `GeotemporalSeriesProperty.md`| [`GeotemporalSeriesProperty.md`](./docs/v2/POntology/GeotemporalSeriesProperty.md)| [`geotemporal_series_property.py`](./src/phiegg/topos/geotemporal_series_property.py)| Spatial-temporal trajectories & coordinate curves. |
-| `linked_object.py` | `LinkedObject.md` | [`LinkedObject.md`](./docs/v2/POntology/LinkedObject.md) | [`linked_object.py`](./src/phiegg/topos/linked_object.py) | `LinkedObjectClient` traversing 1-simplex fiber relations. |
-| `link_type.py` | — | [`LinkType.md`](./docs/v2/POntology/LinkType.md) | [`link_type.py`](./src/phiegg/topos/link_type.py) | `LinkType` & `PLinkType` (1-simplex fiber definitions). |
-| `media_reference_property.py` | `MediaReferenceProperty.md` | [`MediaReferenceProperty.md`](./docs/v2/POntology/MediaReferenceProperty.md) | [`media_reference_property.py`](./src/phiegg/topos/media_reference_property.py) | `MediaReferenceProperty` Flow Capture UI media references. |
-| `models.py` | `models/` | [`Object.md`](./docs/v2/POntology/Object.md) | [`models.py`](./src/phiegg/topos/models.py) | `POntologyObject`, `POntologyObjectSet`, `POntologyInterface`. |
-| `object_type.py` | `ObjectType.md` | [`ObjectType.md`](./docs/v2/POntology/ObjectType.md) | [`object_type.py`](./src/phiegg/topos/object_type.py) | `ObjectType` & `PObjectType` 0-simplex schemas. |
-| `ontology.py` | `Ontology.md` | [`Ontology.md`](./docs/v2/POntology/Ontology.md) | [`topo.py`](./src/phiegg/topos/topo.py) | `OntologyClient` / `POntologyEngine` namespace client. |
-| `ontology_interface.py` | `OntologyInterface.md` | [`OntologyInterface.md`](./docs/v2/POntology/OntologyInterface.md) | [`interface.py`](./src/phiegg/topos/interface.py) | `InterfaceClient` & `POntologyInterface` contracts. |
-| `ontology_object.py` | `OntologyObject.md` | [`OntologyObject.md`](./docs/v2/POntology/OntologyObject.md) | [`object.py`](./src/phiegg/topos/object.py) | `ObjectClient` runtime vertex instances. |
-| `ontology_object_set.py` | `OntologyObjectSet.md` | [`OntologyObjectSet.md`](./docs/v2/POntology/OntologyObjectSet.md) | [`object_set.py`](./src/phiegg/topos/object_set.py) | `ObjectSetClient` submanifold filtering & aggregations. |
-| `ontology_scenario.py` | `OntologyScenario.md` | [`OntologyScenario.md`](./docs/v2/POntology/OntologyScenario.md) | [`scenario.py`](./src/phiegg/topos/scenario.py) | `ScenarioClient` & `POntologyScenario` what-if simulations. |
-| `ontology_transaction.py` | `OntologyTransaction.md` | [`OntologyTransaction.md`](./docs/v2/POntology/OntologyTransaction.md) | [`transaction.py`](./src/phiegg/topos/transaction.py) | `TransactionClient` & `POntologyTransaction` commit blocks. |
-| `ontology_value_type.py` | `OntologyValueType.md` | [`OntologyValueType.md`](./docs/v2/POntology/OntologyValueType.md) | [`value_type.py`](./src/phiegg/topos/value_type.py) | `ValueTypeClient` custom scalar constraints & regex. |
-| `query.py` | `Query.md` | [`Query.md`](./docs/v2/POntology/Query.md) | [`query.py`](./src/phiegg/topos/query.py) | `QueryClient` deterministic topological queries. |
-| `query_type.py` | `QueryType.md` | [`QueryType.md`](./docs/v2/POntology/QueryType.md) | [`query_type.py`](./src/phiegg/topos/query_type.py) | `QueryTypeClient` parameterized query definitions. |
-| `time_series_property_v2.py` | `TimeSeriesPropertyV2.md` | [`TimeSeriesPropertyV2.md`](./docs/v2/POntology/TimeSeriesPropertyV2.md)| [`time_series_property_v2.py`](./src/phiegg/topos/time_series_property_v2.py)| Continuous temporal metric curves and streams. |
-| `time_series_value_bank_property.py`| `TimeSeriesValueBankProperty.md`| [`TimeSeriesValueBankProperty.md`](./docs/v2/POntology/TimeSeriesValueBankProperty.md)| [`time_series_property_v2.py`](./src/phiegg/topos/time_series_property_v2.py)| High-throughput value bank streaming properties. |
-| — | — | [`POntologyEngine.md`](./docs/v2/POntology/POntologyEngine.md) | [`engine.py`](./src/phiegg/topos/engine.py) | `POntologyEngine` (`GLOBAL_TOPOS`) simplicial complex registry. |
+| `__init__.py` | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`__init__.py`](./src/phiegg/ontologies/__init__.py) | Package entrypoint re-exporting Ontology & P* primitives. |
+| `_client.py` | `Ontology.md` | [`Ontology.md`](./docs/v2/Ontologies/Ontology.md) | [`_client.py`](./src/phiegg/ontologies/_client.py) | `POntologyClient` / `OntologyClient` unified router. |
+| `action.py` | `Action.md` | [`Action.md`](./docs/v2/Ontologies/Action.md) | [`action.py`](./src/phiegg/ontologies/action.py) | `ActionClient` executing validated state mutations. |
+| `action_type.py` | `ActionType.md` | [`ActionType.md`](./docs/v2/Ontologies/ActionType.md) | [`action_type.py`](./src/phiegg/ontologies/action_type.py) | `ActionType` & `PActionType` morphism schemas. |
+| `action_type_full_metadata.py`| `ActionTypeFullMetadata.md`| [`ActionTypeFullMetadata.md`](./docs/v2/Ontologies/ActionTypeFullMetadata.md)| [`action_type_full_metadata.py`](./src/phiegg/ontologies/action_type_full_metadata.py)| Schema introspection & parameter validation models. |
+| `attachment.py` | `Attachment.md` | [`Attachment.md`](./docs/v2/Ontologies/Attachment.md) | [`attachment.py`](./src/phiegg/ontologies/attachment.py) | `AttachmentClient` (binary assets, uploads, streams). |
+| `attachment_property.py` | `AttachmentProperty.md` | [`AttachmentProperty.md`](./docs/v2/Ontologies/AttachmentProperty.md) | [`attachment_property.py`](./src/phiegg/ontologies/attachment_property.py) | `AttachmentProperty` reference on 0-simplices. |
+| `cipher_text_property.py` | `CipherTextProperty.md` | [`CipherTextProperty.md`](./docs/v2/Ontologies/CipherTextProperty.md) | [`cipher_text_property.py`](./src/phiegg/ontologies/cipher_text_property.py) | `CipherTextProperty` (AES-256-GCM vault properties). |
+| `errors.py` | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`errors.py`](./src/phiegg/ontologies/errors.py) | `OntologyError` error hierarchy. |
+| `geotemporal_series_property.py`| `GeotemporalSeriesProperty.md`| [`GeotemporalSeriesProperty.md`](./docs/v2/Ontologies/GeotemporalSeriesProperty.md)| [`geotemporal_series_property.py`](./src/phiegg/ontologies/geotemporal_series_property.py)| Spatial-temporal trajectories & coordinate curves. |
+| `linked_object.py` | `LinkedObject.md` | [`LinkedObject.md`](./docs/v2/Ontologies/LinkedObject.md) | [`linked_object.py`](./src/phiegg/ontologies/linked_object.py) | `LinkedObjectClient` traversing 1-simplex fiber relations. |
+| `link_type.py` | — | [`LinkType.md`](./docs/v2/Ontologies/LinkType.md) | [`link_type.py`](./src/phiegg/ontologies/link_type.py) | `LinkType` & `PLinkType` (1-simplex fiber definitions). |
+| `media_reference_property.py` | `MediaReferenceProperty.md` | [`MediaReferenceProperty.md`](./docs/v2/Ontologies/MediaReferenceProperty.md) | [`media_reference_property.py`](./src/phiegg/ontologies/media_reference_property.py) | `MediaReferenceProperty` Flow Capture UI media references. |
+| `models.py` | `models/` | [`Object.md`](./docs/v2/Ontologies/Object.md) | [`models.py`](./src/phiegg/ontologies/models.py) | `POntologyObject`, `POntologyObjectSet`, `POntologyInterface`. |
+| `object_type.py` | `ObjectType.md` | [`ObjectType.md`](./docs/v2/Ontologies/ObjectType.md) | [`object_type.py`](./src/phiegg/ontologies/object_type.py) | `ObjectType` & `PObjectType` 0-simplex schemas. |
+| `ontology.py` | `Ontology.md` | [`Ontology.md`](./docs/v2/Ontologies/Ontology.md) | [`ontology.py`](./src/phiegg/ontologies/ontology.py) | `OntologyClient` / `POntologyEngine` namespace client. |
+| `ontology_interface.py` | `OntologyInterface.md` | [`OntologyInterface.md`](./docs/v2/Ontologies/OntologyInterface.md) | [`interface.py`](./src/phiegg/ontologies/interface.py) | `InterfaceClient` & `POntologyInterface` contracts. |
+| `ontology_object.py` | `OntologyObject.md` | [`OntologyObject.md`](./docs/v2/Ontologies/OntologyObject.md) | [`object.py`](./src/phiegg/ontologies/object.py) | `ObjectClient` runtime vertex instances. |
+| `ontology_object_set.py` | `OntologyObjectSet.md` | [`OntologyObjectSet.md`](./docs/v2/Ontologies/OntologyObjectSet.md) | [`object_set.py`](./src/phiegg/ontologies/object_set.py) | `ObjectSetClient` submanifold filtering & aggregations. |
+| `ontology_scenario.py` | `OntologyScenario.md` | [`OntologyScenario.md`](./docs/v2/Ontologies/OntologyScenario.md) | [`scenario.py`](./src/phiegg/ontologies/scenario.py) | `ScenarioClient` & `POntologyScenario` what-if simulations. |
+| `ontology_transaction.py` | `OntologyTransaction.md` | [`OntologyTransaction.md`](./docs/v2/Ontologies/OntologyTransaction.md) | [`transaction.py`](./src/phiegg/ontologies/transaction.py) | `TransactionClient` & `POntologyTransaction` commit blocks. |
+| `ontology_value_type.py` | `OntologyValueType.md` | [`OntologyValueType.md`](./docs/v2/Ontologies/OntologyValueType.md) | [`value_type.py`](./src/phiegg/ontologies/value_type.py) | `ValueTypeClient` custom scalar constraints & regex. |
+| `query.py` | `Query.md` | [`Query.md`](./docs/v2/Ontologies/Query.md) | [`query.py`](./src/phiegg/ontologies/query.py) | `QueryClient` deterministic topological queries. |
+| `query_type.py` | `QueryType.md` | [`QueryType.md`](./docs/v2/Ontologies/QueryType.md) | [`query_type.py`](./src/phiegg/ontologies/query_type.py) | `QueryTypeClient` parameterized query definitions. |
+| `time_series_property_v2.py` | `TimeSeriesPropertyV2.md` | [`TimeSeriesPropertyV2.md`](./docs/v2/Ontologies/TimeSeriesPropertyV2.md)| [`time_series.py`](./src/phiegg/ontologies/time_series.py)| Continuous temporal metric curves and streams. |
+| `time_series_value_bank_property.py`| `TimeSeriesValueBankProperty.md`| [`TimeSeriesValueBankProperty.md`](./docs/v2/Ontologies/TimeSeriesValueBankProperty.md)| [`time_series.py`](./src/phiegg/ontologies/time_series.py)| High-throughput value bank streaming properties. |
+| — | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`engine.py`](./src/phiegg/ontologies/engine.py) | `POntologyEngine` (`GLOBAL_ONTOLOGY`) simplicial complex registry. |
+
 
 ---
 
@@ -78,9 +79,8 @@ Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontolog
 | 11 | `Geo` | [`docs/v2/Geo/`](./docs/v2/Geo/Geo.md) | 1 Doc | 17 Models | `client.v2.geo` / `client.phical` |
 | 12 | `LanguageModels` | [`docs/v2/LanguageModels/`](./docs/v2/LanguageModels/LanguageModel.md) | 2 Docs | 54 Models | `client.v2.language_models` / `client.phillm` |
 | 13 | `MediaSets` | [`docs/v2/MediaSets/`](./docs/v2/MediaSets/MediaSet.md) | 1 Doc | 228 Models | `client.v2.media_sets` / `client.phiora` |
-| 14 | `Models` | [`docs/v2/Models/`](./docs/v2/Models/Model.md) | 11 Docs | 168 Models | `client.v2.models` / `client.phical` |
-| 15 | `Ontologies` -> **`POntology`** | [`docs/v2/POntology/`](./docs/v2/POntology/Ontology.md) | 26 Docs | 670 Models | `client.v2.topos` / `client.topos` |
-| 16 | `Orchestration` | [`docs/v2/Orchestration/`](./docs/v2/Orchestration/Schedule.md) | 5 Docs | 89 Models | `client.v2.orchestration` / `client.phimen` |
+| 15 | `Ontologies` | [`docs/v2/Ontologies/`](./docs/v2/Ontologies/Ontology.md) | 26 Docs | 670 Models | `client.v2.ontologies` / `client.ontology` |
+
 | 17 | `SqlQueries` | [`docs/v2/SqlQueries/`](./docs/v2/SqlQueries/Query.md) | 2 Docs | 44 Models | `client.v2.sql_queries` / `client.query` |
 | 18 | `Streams` | [`docs/v2/Streams/`](./docs/v2/Streams/Stream.md) | 3 Docs | 30 Models | `client.v2.streams` / `client.phibus` |
 | 19 | `ThirdPartyApplications` | [`docs/v2/ThirdPartyApplications/`](./docs/v2/ThirdPartyApplications/ThirdPartyApplication.md) | 3 Docs | 8 Models | `client.v2.third_party_applications` / `client.phibot` |

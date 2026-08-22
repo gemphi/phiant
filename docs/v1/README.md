@@ -21,8 +21,8 @@ Welcome to the **Phient SDK v1 Documentation**. Version 1 represents our foundat
 | [`Geo/`](./phient/docs/v1/Geo/VectorSearch.md) | Semantic vector embeddings and cosine nearest neighbor searches. | `phiegg.phical.semantic_search` |
 | [`LanguageModels/`](./phient/docs/v1/LanguageModels/PhiLLMProvider.md) | Multi-provider LLM gateway (OpenAI, Anthropic, Gemini). | `phiegg.phillm` |
 | [`MediaSets/`](./phient/docs/v1/MediaSets/MediaAssets.md) | Binary media and documentation page attachments. | `phiegg.phidoc` |
-| [`Models/`](./phient/docs/v1/Models/ModelTraining.md) | Model parameter spaces and gradient descent optimization. | `phiegg.phical.training` |
-| [`POntology/`](./phient/docs/v1/POntology/ObjectType.md) | 0-simplex Object Types, 1-simplex Link Types, and Action Types. | `phiegg.ontologies` |
+| [`Ontologies/`](./phient/docs/v1/Ontologies/ObjectType.md) | 0-simplex Object Types, 1-simplex Link Types, and Action Types. | `phiegg.ontologies` |
+
 
 | [`Orchestration/`](./phient/docs/v1/Orchestration/IntentRouter.md) | LangGraph priority scoring and domain agent router. | `src.orchestrator` |
 | [`SqlQueries/`](./phient/docs/v1/SqlQueries/ORM.md) | ORM Repository, Relational Query Language (RQL), Vector Query Language (VQL). | `phiegg.query` |
