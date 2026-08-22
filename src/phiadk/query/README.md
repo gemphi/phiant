@@ -1,46 +1,58 @@
-# Multi-Model Query Paradigms: ORM, RQL, VQL, OQL, QML
+# Multi-Dialect Query Engine (`src/phiadk/query/`)
 
-The `query` package implements 5 distinct query paradigms sitting over `PhiOra` and `PhiGit` content-addressed storage.
+> _Multi-Language Unified Query Runtime: RQL, OQL, QML, VQL & ORM._
 
 ---
 
-## 1. Query Paradigm Architecture
+## 1. Supported Query Dialects
+
+The `phiadk.query` runtime provides unified query builders across four distinct computational models:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#334155', 'lineColor': '#94a3b8', 'textColor': '#f1f5f9'}}}%%
 graph TD
-    subgraph StorageLayer["Storage Engine"]
-        Store["PhiOra / PhiGit (SHA-1 KV & Vectors)"]
+    subgraph "Query Runtime (QueryEngine)"
+        RQL["RQL: Relational SQL Engine (SELECT, JOIN, WHERE)"]
+        OQL["OQL: Ontological Graph Traversal Engine (MATCH, LINK)"]
+        QML["QML: Quantum Model Language (CIRCUITS, MEASURE)"]
+        VQL["VQL: Vector & Spatial Distance Query (k-NN, COSINE)"]
     end
 
-    subgraph QueryEngines["Query Paradigms"]
-        ORM["1. ORM: Repository & Typed Models"]
-        RQL["2. RQL: Relational Query Language"]
-        VQL["3. VQL: Vector Query Language"]
-        OQL["4. OQL: Object / Graph Query Language"]
-        QML["5. QML: Quantum Model Language"]
+    subgraph "Target Substrates"
+        Onto["POntologyEngine (0/1-Simplices)"]
+        Spatial["PhiOraDB (Spatial Store)"]
+        CAS["PhiGit (Content-Addressed CAS)"]
     end
 
-    ORM & RQL & VQL & OQL & QML --> Store
-```
-
-### Flow Diagram
-```
-[ Query Execution ]
-        │
-        ├─► client.rql("employees").select("name").where("status == 'active'").execute()
-        ├─► client.vql("knowledge").near_vector([0.1, 0.9]).top_k(5).execute()
-        ├─► client.oql("jane@phient.com").traverse("reports_to").execute()
-        ├─► client.qml("circuit").superposition(["|00⟩", "|11⟩"]).born_measurement().execute()
-        └─► repo = Repository(EmployeeModel, store); repo.filter(status="active")
+    RQL & OQL --> Onto
+    VQL & QML --> Spatial & CAS
 ```
 
 ---
 
-## 2. Key Components
+## 2. Dialect Overview
 
-- **`orm.py`**: `Repository`, `Field`, `StringField`, `IntegerField`.
-- **`rql.py`**: `RQL` fluent relational filter and projection builder.
-- **`vql.py`**: `VQL` cosine vector distance solver.
-- **`oql.py`**: `OQL` topological simplicial graph traverser.
-- **`qml.py`**: `QML` quantum circuit simulation and Born-rule collapse.
-- **`spec.md`**: Formal specification contract.
+| Dialect | Class | Target Paradigm | Example Usage |
+|:---|:---|:---|:---|
+| **RQL** | `RQLQueryBuilder` | Relational SQL queries | `RQL.select("name", "title").from_table("employees").where("dept", "=", "Engineering")` |
+| **OQL** | `OQLQueryBuilder` | Category-theoretic ontology graph traversals | `OQL.match("Employee").traverse("employee_identity").where("status", "ACTIVE")` |
+| **QML** | `QMLQueryBuilder` | Quantum circuits & state vector transformations | `QML.from_space("quantum_space").hadamard(0).measure()` |
+| **VQL** | `VQLQueryBuilder` | Spatial & vector similarity search | `VQL.nearest(coords=[10.0, 20.0, 5.0], k=5)` |
+
+---
+
+## 3. Usage Example
+
+```python
+from phiadk.query.rql import RQL
+from phiadk.query.oql import OQL
+
+# 1. Build an RQL Relational Query
+query = RQL.select("display_name", "title").from_table("Employee").where("department", "=", "Engineering")
+sql_str = query.to_sql()
+print("Generated SQL:", sql_str)
+
+# 2. Build an OQL Ontological Traversal
+traversal = OQL.match("Employee").traverse("employee_identity")
+print("OQL AST:", traversal.to_ast())
+```
