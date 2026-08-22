@@ -232,10 +232,12 @@ from phiadk.phiapi import create_app as create_app
 
 # SDK Client
 from phiadk.client import (
-    AsyncPhiADKClient as AsyncPhiADKClient,
-    PhiADKClient as PhiADKClient,
+    PhiClient as PhiClient,
+    AsyncPhiClient as AsyncPhiClient,
     PClient as PClient,
     PAsyncClient as PAsyncClient,
+    PhiADKClient as PhiADKClient,
+    AsyncPhiADKClient as AsyncPhiADKClient,
 )
 
 
@@ -245,10 +247,13 @@ from phiadk._version import __version__ as __version__
 __all__ = [
     "__version__",
     # Client
-    "PhiADKClient",
-    "AsyncPhiADKClient",
+    "PhiClient",
+    "AsyncPhiClient",
     "PClient",
     "PAsyncClient",
+    "PhiADKClient",
+    "AsyncPhiADKClient",
+
     # Ontologies
     "Ontology",
     "POntology",

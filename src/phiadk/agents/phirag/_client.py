@@ -61,3 +61,8 @@ class AsyncPhiRAGClient:
     def Generation(self):
         from phiadk.agents.phirag.retrieval import GenerationClient
         return GenerationClient()
+
+
+PhiRagClient = PhiRAGClient
+AsyncPhiRagClient = AsyncPhiRAGClient
+

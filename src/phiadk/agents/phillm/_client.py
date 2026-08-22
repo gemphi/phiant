@@ -58,3 +58,8 @@ class AsyncPhiLLMClient:
     def OpenAi(self):
         from phiadk.agents.phillm.open_ai_model import AsyncOpenAiModelClient
         return AsyncOpenAiModelClient(auth=self._auth, hostname=str(self._hostname), config=self._config)
+
+
+PhiLlmClient = PhiLLMClient
+AsyncPhiLlmClient = AsyncPhiLLMClient
+

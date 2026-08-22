@@ -115,3 +115,7 @@ class PhiLLMAgent(PhiAgent):
     async def iterate(self, ctx: AgentContext) -> AgentContext:
         """Phase 4: Conclude or scale."""
         return ctx
+
+
+PhiLlmAgent = PhiLLMAgent
+

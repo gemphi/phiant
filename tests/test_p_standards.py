@@ -2,6 +2,8 @@
 
 import pytest
 from src.phiadk import (
+    PhiClient,
+    AsyncPhiClient,
     PClient,
     PAsyncClient,
     POntology,
@@ -19,7 +21,6 @@ from src.phiadk import (
     PValueType,
     PQueryType,
     POntologyEngine,
-    POntologyEngine,
     PAgent,
     PNode,
     PSpace,
@@ -31,18 +32,22 @@ from src.phiadk import (
 )
 
 
-def test_pclient_initialization():
-    """Verify PClient can be instantiated and exposes domain clients."""
-    client = PClient()
+def test_pclient_and_phiclient_initialization():
+    """Verify PhiClient / PClient can be instantiated and exposes domain clients."""
+    client = PhiClient()
     assert client is not None
     assert client.phione is not None
     assert client.phibot is not None
     assert client.phirag is not None
     assert client.phidoc is not None
-    assert client.topos is not None
     assert client.ontologies is not None
     assert hasattr(client, "admin")
     assert hasattr(client, "datasets")
+
+    # Verify PClient parity alias
+    pclient = PClient()
+    assert isinstance(pclient, PhiClient)
+
 
 
 def test_pontology_type_and_pobject_type():

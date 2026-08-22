@@ -99,3 +99,7 @@ class PhiRAGAgent(PhiAgent):
             child = await self.run(child)
             ctx.results["fallback_sources"] = child.results.get("output")
         return ctx
+
+
+PhiRagAgent = PhiRAGAgent
+

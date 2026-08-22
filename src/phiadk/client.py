@@ -1,7 +1,8 @@
-"""PhiADK SDK Client — the unified entry point.
+"""Phient / PhiADK Client — Unified Master SDK Entrypoint.
 
-Wires all domain agents, Git-core storage (PhiGit), distributed telemetry (PhiLog),
-and multi-model query builders (ORM, VQL, RQL, OQL) into a single client instance.
+Structured consistently after Palantir Foundry SDK (`FoundryClient` / `AsyncFoundryClient`),
+exposing all 15 canonical domain agents, Palantir 20 namespaces, POntologyEngine,
+PhiBus event stream, and PhiOraDB Spatial Store.
 """
 
 from __future__ import annotations
@@ -18,13 +19,13 @@ def _default_data_dir() -> Path:
     return Path(__file__).resolve().parents[2] / "data"
 
 
-class PhiADKClient:
-    """The unified PhiADK SDK client.
+class PhiClient:
+    """The master Phient SDK client (Palantir Foundry-symmetrical).
 
-    :param auth: Required. Authentication provider.
+    :param auth: Required. Authentication provider (e.g. EnvAuth, TokenAuth, ApiKeyAuth).
     :param hostname: Target API hostname.
     :param config: Optionally configure HTTP session behaviour.
-    :param data_dir: Path to data directory for file resolution.
+    :param data_dir: Path to data directory for dataset resolution.
     """
 
     def __init__(
@@ -50,7 +51,7 @@ class PhiADKClient:
         self._git_engine = GitEngine()
         self._logger = StructuredLogger()
 
-        # Infrastructure clients
+        # Storage & Telemetry Subclients
         from phiadk.agents.phiora._client import PhiOraClient
         from phiadk.agents.phigit._client import PhiGitClient
         from phiadk.agents.philog._client import PhiLogClient
@@ -60,7 +61,7 @@ class PhiADKClient:
         self.phiora = PhiOraClient(auth=auth, hostname=self._hostname, config=config, data_dir=self._data_dir)
         self._resolver = self.phiora.Resolver
 
-        # Domain clients
+        # Domain Agent Subclients (15 Canonical Agents)
         from phiadk.agents.phione._client import PhiOneClient
         from phiadk.agents.phical._client import PhiCalClient
         from phiadk.agents.phirag._client import PhiRAGClient
@@ -88,10 +89,11 @@ class PhiADKClient:
         self.phigen = PhiGenClient(auth=auth, hostname=self._hostname, config=config)
         self.ontology = OntologyClient(auth=auth, hostname=self._hostname, config=config)
         self.ontologies = self.ontology
-        self.topos = self.ontology
 
         self.phimen = PhiMenClient(
-            auth=auth, hostname=self._hostname, config=config,
+            auth=auth,
+            hostname=self._hostname,
+            config=config,
             domain_clients={
                 "phione": self.phione, "phical": self.phical,
                 "phirag": self.phirag, "phidoc": self.phidoc,
@@ -104,7 +106,7 @@ class PhiADKClient:
             data_resolver=self._resolver,
         )
 
-        # Agent instances dictionary (15 Domain Agents)
+        # Domain Agent Executable Instances (15 Domain Agents)
         from phiadk.agents.phione.agent import PhiOneAgent
         from phiadk.agents.phical.agent import PhiCalAgent
         from phiadk.agents.phirag.agent import PhiRAGAgent
@@ -120,7 +122,6 @@ class PhiADKClient:
         from phiadk.agents.phibus.agent import PhiBusAgent
         from phiadk.agents.phimen.executive import PhiMenAgent
         from phiadk.agents.phigen.agent import PhiGenAgent
-
 
         self.agents = {
             "phione": PhiOneAgent(data_resolver=self._resolver),
@@ -140,33 +141,32 @@ class PhiADKClient:
             "phigen": PhiGenAgent(),
         }
 
-        # Palantir module clients (1:1 naming)
+        # Palantir 20 Namespace Routing (1:1 Symmetrical)
         self.admin = self.phione
-        self.aip_agents = self.phibot
+        self.aip_agents = self.phimen
         self.audit = self.philog
-        self.checkpoints = self.phigit
-        self.connectivity = self.phione
-        self.core = self.topos
-        self.data_health = self.philog
+        self.checkpoints = self.phigov
+        self.connectivity = self.phibus
+        self.core = self.ontology
+        self.data_health = self.phisec
         self.datasets = self.phiora
         self.filesystem = self.phigit
-        self.functions = self.phibrd
+        self.functions = self.phical
         self.geo = self.phical
         self.language_models = self.phillm
-        self.media_sets = self.phiora
-        self.models = self.phical
-        self.ontologies = self.topos
-        self.orchestration = self.phimen
+        self.media_sets = self.phirag
+        self.models = self.phigen
+        self.orchestration = self.phibot
         self.sql_queries = self.rql
         self.streams = self.phibus
-        self.third_party_applications = self.phibot
-        self.widgets = self.topos
+        self.third_party_applications = self.phibrd
+        self.widgets = self.ontology
 
-        # v1 (default) and v2 namespaces
+        # API Version Namespaces
         self.v1 = V1Namespace(self)
         self.v2 = V2Namespace(self)
 
-    # ── Query Engine accessors ───────────────────────────────────────
+    # ── Query Engine Accessors ───────────────────────────────────────
 
     def vql(self, space: str = "default"):
         """Spawn a Vector Query Language builder."""
@@ -179,7 +179,7 @@ class PhiADKClient:
         return RQL.from_table(table, store_client=self.phiora.Store)
 
     def oql(self, node_id: str):
-        """Spawn an Object / Ontologylogy Query Language builder."""
+        """Spawn an Ontological Graph Query Language builder."""
         from phiadk.query.oql import OQL
         return OQL.from_node(node_id)
 
@@ -189,8 +189,8 @@ class PhiADKClient:
         return QML.from_space(space_name)
 
 
-class AsyncPhiADKClient:
-    """Async variant of ``PhiADKClient``."""
+class AsyncPhiClient:
+    """Async variant of ``PhiClient``."""
 
     def __init__(
         self,
@@ -271,7 +271,7 @@ class AsyncPhiADKClient:
 class V1Namespace:
     """Phient v1 API Namespace (Default stable core)."""
 
-    def __init__(self, client: PhiADKClient) -> None:
+    def __init__(self, client: PhiClient) -> None:
         self._client = client
         self.phione = client.phione
         self.phical = client.phical
@@ -287,35 +287,34 @@ class V1Namespace:
         self.phigov = client.phigov
         self.phibus = client.phibus
         self.phimen = client.phimen
-        self.topos = client.topos
+        self.ontologies = client.ontology
 
         # Palantir module aliases
         self.admin = client.phione
-        self.aip_agents = client.phibot
+        self.aip_agents = client.phimen
         self.audit = client.philog
-        self.checkpoints = client.phigit
-        self.connectivity = client.phione
-        self.core = client.topos
-        self.data_health = client.philog
+        self.checkpoints = client.phigov
+        self.connectivity = client.phibus
+        self.core = client.ontology
+        self.data_health = client.phisec
         self.datasets = client.phiora
         self.filesystem = client.phigit
-        self.functions = client.phibrd
+        self.functions = client.phical
         self.geo = client.phical
         self.language_models = client.phillm
-        self.media_sets = client.phiora
-        self.models = client.phical
-        self.ontologies = client.topos
-        self.orchestration = client.phimen
+        self.media_sets = client.phirag
+        self.models = client.phigen
+        self.orchestration = client.phibot
         self.sql_queries = client.rql
         self.streams = client.phibus
-        self.third_party_applications = client.phibot
-        self.widgets = client.topos
+        self.third_party_applications = client.phibrd
+        self.widgets = client.ontology
 
 
 class V2Namespace:
-    """Phient v2 API Namespace (Ontologylogical Manifolds & Quantum QML)."""
+    """Phient v2 API Namespace (Ontologies & Quantum QML)."""
 
-    def __init__(self, client: PhiADKClient) -> None:
+    def __init__(self, client: PhiClient) -> None:
         self._client = client
         self.phione = client.phione
         self.phical = client.phical
@@ -331,29 +330,28 @@ class V2Namespace:
         self.phigov = client.phigov
         self.phibus = client.phibus
         self.phimen = client.phimen
-        self.topos = client.topos
+        self.ontologies = client.ontology
 
         # Palantir module aliases
         self.admin = client.phione
-        self.aip_agents = client.phibot
+        self.aip_agents = client.phimen
         self.audit = client.philog
-        self.checkpoints = client.phigit
-        self.connectivity = client.phione
-        self.core = client.topos
-        self.data_health = client.philog
+        self.checkpoints = client.phigov
+        self.connectivity = client.phibus
+        self.core = client.ontology
+        self.data_health = client.phisec
         self.datasets = client.phiora
         self.filesystem = client.phigit
-        self.functions = client.phibrd
+        self.functions = client.phical
         self.geo = client.phical
         self.language_models = client.phillm
-        self.media_sets = client.phiora
-        self.models = client.phical
-        self.ontologies = client.topos
-        self.orchestration = client.phimen
+        self.media_sets = client.phirag
+        self.models = client.phigen
+        self.orchestration = client.phibot
         self.sql_queries = client.rql
         self.streams = client.phibus
-        self.third_party_applications = client.phibot
-        self.widgets = client.topos
+        self.third_party_applications = client.phibrd
+        self.widgets = client.ontology
 
     def qml(self, space_name: str = "quantum_space"):
         return self._client.qml(space_name)
@@ -368,10 +366,8 @@ class V2Namespace:
         return self._client.oql(node_id)
 
 
-# Standard P* class aliases
-PClient = PhiADKClient
-PAsyncClient = AsyncPhiADKClient
-PPhiADKClient = PhiADKClient
-
-
-
+# Palantir Symmetrical Master Client Aliases
+PClient = PhiClient
+PAsyncClient = AsyncPhiClient
+PhiADKClient = PhiClient
+AsyncPhiADKClient = AsyncPhiClient
