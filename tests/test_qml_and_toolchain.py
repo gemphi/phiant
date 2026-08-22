@@ -94,8 +94,9 @@ class TestPalantirToolchainCLI:
         assert res["version"] == "2.0.0"
         assert res["files_created"] >= 10
         assert (tmp_path / "phitest" / "schema.json").exists()
-        assert (tmp_path / "phitest" / "topo" / "topology.mdx").exists()
+        assert (tmp_path / "phitest" / "ontology" / "ontology.mdx").exists() or (tmp_path / "phitest" / "topo" / "topology.mdx").exists()
         assert (tmp_path / "phitest" / "uses.md").exists()
+
 
 
 class TestQMLApiEndpoint:

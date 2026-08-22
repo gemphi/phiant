@@ -74,13 +74,16 @@ class OntologylogyExplorerClient:
         self._src_root = Path(__file__).resolve().parents[1]
 
     def list_agent_topologies(self) -> List[str]:
-        """List all agents having a topo.md or topo/topology.mdx file."""
+        """List all agents having an ontology.md or ontology/ontology.mdx / topology.mdx file."""
         agents = []
         if not self._src_root.exists():
             return agents
         for child in self._src_root.iterdir():
             if child.is_dir() and (
-                (child / "topo.md").exists()
+                (child / "ontology.md").exists()
+                or (child / "ontology" / "ontology.mdx").exists()
+                or (child / "ontology" / "topology.mdx").exists()
+                or (child / "topo.md").exists()
                 or (child / "topo" / "topology.mdx").exists()
                 or (child / "topo" / "topo.md").exists()
             ):
@@ -90,8 +93,11 @@ class OntologylogyExplorerClient:
     list_topologies = list_agent_topologies
 
     def get_topology_mdx(self, agent_id: str) -> Optional[str]:
-        """Fetch raw MD / MDX content for an agent's topology."""
+        """Fetch raw MD / MDX content for an agent's topology/ontology."""
         candidates = [
+            self._src_root / agent_id / "ontology.md",
+            self._src_root / agent_id / "ontology" / "ontology.mdx",
+            self._src_root / agent_id / "ontology" / "topology.mdx",
             self._src_root / agent_id / "topo.md",
             self._src_root / agent_id / "topo" / "topology.mdx",
             self._src_root / agent_id / "topo" / "topo.md",
@@ -101,6 +107,7 @@ class OntologylogyExplorerClient:
                 with open(p, "r", encoding="utf-8") as f:
                     return f.read()
         return None
+
 
     def render_topology_card(self, agent_id: str) -> Dict[str, Any]:
         """Parse and structure topology MDX for browser presentation."""
