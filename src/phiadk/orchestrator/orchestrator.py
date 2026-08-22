@@ -1,4 +1,4 @@
-"""Agent Orchestrator - Multi-agent execution coordinator."""
+"""Agent Orchestrator - Multi-agent execution coordinator using PhiADK domain agents."""
 
 from __future__ import annotations
 
@@ -8,29 +8,17 @@ import time
 import uuid
 from typing import Any
 
-from ..agents.automation_agent import AutomationAgent
-from ..agents.base_agent import AgentResult, AgentTask, BaseAgent, Priority
-from ..agents.docs_agent import DocsAgent
-from ..agents.hr_agent import HRAgent
-from ..agents.identity_agent import IdentityAgent
-from ..agents.knowledge_agent import KnowledgeAgent
-from ..agents.onboarding_agent import OnboardingAgent
-from ..agents.philog_agent import TelemetryAgent
-from ..phiadk.client import PhiADKClient
-from .priority import calculate_priority
+from phiadk.client import PhiADKClient
+from .priority import calculate_priority, Priority
 from .router import IntentRouter
-from .state import OrchestratorState
+from .state import AgentResult, AgentTask, OrchestratorState
 
 logger = logging.getLogger(__name__)
 
 
 class Orchestrator:
-    """Multi-agent orchestrator that routes, executes, and aggregates agent results.
+    """Multi-agent orchestrator that routes, executes, and aggregates agent results via PhiADK."""
 
-    Supports both legacy agent adapters and the modern PhiADK topology SDK client.
-    """
-
-    # Mapping from legacy agent names to modern phi* 3-letter names
     AGENT_ALIASES: dict[str, str] = {
         "hr": "phione",
         "identity": "phione",
@@ -43,33 +31,19 @@ class Orchestrator:
         "executive": "phimen",
         "telemetry": "philog",
         "logging": "philog",
+        "security": "phisec",
+        "governance": "phigov",
+        "bus": "phibus",
+        "codegen": "phigen",
+        "git": "phigit",
+        "llm": "phillm",
     }
 
-    def __init__(self, use_phiadk: bool = True) -> None:
+    def __init__(self, client: PhiADKClient | None = None) -> None:
         self.router = IntentRouter()
-        self._agents: dict[str, BaseAgent] = {}
+        self.client = client or PhiADKClient()
         self._history: list[OrchestratorState] = []
-        self._use_phiadk = use_phiadk
-        self.phiadk_client: PhiADKClient | None = None
-        if use_phiadk:
-            try:
-                self.phiadk_client = PhiADKClient()
-            except Exception as exc:
-                logger.warning("PhiADKClient initialization skipped: %s", exc)
-        self._initialize_agents()
-
-    def _initialize_agents(self) -> None:
-        self._agents = {
-            "knowledge": KnowledgeAgent(),
-            "automation": AutomationAgent(),
-            "identity": IdentityAgent(),
-            "hr": HRAgent(),
-            "docs": DocsAgent(),
-            "onboarding": OnboardingAgent(agent_registry=self._agents),
-            "telemetry": TelemetryAgent(),
-        }
-        logger.info("Initialized %d agents (PhiADK SDK active: %s)", len(self._agents), self.phiadk_client is not None)
-
+        logger.info("Initialized Orchestrator with %d PhiADK domain agents", len(self.client.agents))
 
     async def process(
         self,
@@ -127,29 +101,55 @@ class Orchestrator:
         return result
 
     async def _execute_single(self, agent_name: str, task: AgentTask) -> AgentResult:
-        agent = self._agents.get(agent_name)
+        resolved_name = self.AGENT_ALIASES.get(agent_name, agent_name)
+        agent = self.client.agents.get(resolved_name)
         if not agent:
             return AgentResult(
                 task_id=task.task_id,
-                agent_name="orchestrator",
+                agent_name=agent_name,
                 status="error",
-                output=f"Unknown agent: {agent_name}",
+                output=f"Unknown agent: {agent_name} (resolved to {resolved_name})",
             )
-        return await agent.run(task)
+
+        verb = task.intent or "default"
+        params = dict(task.parameters)
+        if "query" not in params and task.query:
+            params["query"] = task.query
+
+        try:
+            ctx = await agent.execute_verb(verb, params)
+            out = ctx.results.get("output", {})
+            output_str = out.get("answer") if isinstance(out, dict) and "answer" in out else str(out)
+            sources = out.get("sources", []) if isinstance(out, dict) else []
+
+            return AgentResult(
+                task_id=task.task_id,
+                agent_name=agent_name,
+                status="success",
+                output=output_str,
+                data=out if isinstance(out, dict) else {"result": out},
+                actions_taken=[f"executed_verb_{verb}"],
+                confidence=ctx.confidence or 0.9,
+                sources=sources,
+            )
+        except Exception as e:
+            return AgentResult(
+                task_id=task.task_id,
+                agent_name=agent_name,
+                status="error",
+                output=f"Execution error on {resolved_name}: {e}",
+            )
 
     async def _execute_sequential(self, agent_names: list[str], task: AgentTask) -> AgentResult:
         results: list[AgentResult] = []
-        for agent_name in agent_names:
-            agent = self._agents.get(agent_name)
-            if not agent:
-                continue
+        for name in agent_names:
             if results:
                 task.context["previous_results"] = [r.to_dict() for r in results]
-            results.append(await agent.run(task))
+            results.append(await self._execute_single(name, task))
         return self._aggregate_results(results, task)
 
     async def _execute_parallel(self, agent_names: list[str], task: AgentTask) -> AgentResult:
-        tasks = [self._agents[name].run(task) for name in agent_names if name in self._agents]
+        tasks = [self._execute_single(name, task) for name in agent_names]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         valid = [r for r in results if isinstance(r, AgentResult)]
         return self._aggregate_results(valid, task)
@@ -186,7 +186,16 @@ class Orchestrator:
         )
 
     def get_agents_status(self) -> dict[str, Any]:
-        return {name: agent.health for name, agent in self._agents.items()}
+        return {
+            name: {
+                "name": name,
+                "domain": agent.domain,
+                "layer": str(agent.layer),
+                "version": agent.version,
+                "status": "healthy",
+            }
+            for name, agent in self.client.agents.items()
+        }
 
     def get_metrics(self) -> dict[str, Any]:
         total = len(self._history)

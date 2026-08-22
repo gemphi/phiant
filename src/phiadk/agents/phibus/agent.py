@@ -41,7 +41,7 @@ class PhiBusAgent(PhiAgent):
         verb = ctx.verb
         params = ctx.parameters
 
-        if verb == PhiBusVerb.PUB or verb == PhiBusVerb.PUB.value:
+        if verb in (PhiBusVerb.PUB, PhiBusVerb.PUB.value, "publish_event", "publish"):
             topic = params.get("topic", "default")
             payload = params.get("payload", {})
             evt = PBusEvent(
@@ -54,10 +54,11 @@ class PhiBusAgent(PhiAgent):
             ctx.results["output"] = {"status": "PUBLISHED", "event": published.to_dict()}
             ctx.confidence = 1.0
 
-        elif verb == PhiBusVerb.SUB or verb == PhiBusVerb.SUB.value:
+        elif verb in (PhiBusVerb.SUB, PhiBusVerb.SUB.value, "subscribe"):
             topic = params.get("topic", "*")
             ctx.results["output"] = {"status": "SUBSCRIBED", "topic": topic}
             ctx.confidence = 1.0
+
 
         elif verb == PhiBusVerb.LIST_TOPICS or verb == PhiBusVerb.LIST_TOPICS.value:
             topics = self.bus.list_topics()

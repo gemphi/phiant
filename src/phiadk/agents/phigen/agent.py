@@ -48,11 +48,6 @@ class PhiGenAgent(PhiAgent):
     async def iterate(self, ctx: AgentContext) -> AgentContext:
         return ctx
 
-    async def execute_verb(self, verb: str, parameters: Dict[str, Any]) -> Dict[str, Any]:
-        handler = VERB_REGISTRY.get(verb)
-        if not handler:
-            raise ValueError(f"Verb '{verb}' not found in PhiGen agent.")
-        return await handler(parameters)
-
     def to_dict(self) -> Dict[str, Any]:
+
         return self.card.to_dict()

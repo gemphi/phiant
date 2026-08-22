@@ -1,1 +1,0 @@
-"""Phient MCP Server package."""

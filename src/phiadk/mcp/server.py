@@ -52,7 +52,7 @@ class MCPServer:
                 return emp.to_dict()
 
             elif tool_name == "check_leave_balance":
-                from phiadk.phione.verbs import PhiOneVerb
+                from phiadk.agents.phione.verbs import PhiOneVerb
                 email = arguments.get("email", "")
                 ctx = await self.client.agents["phione"].execute_verb(PhiOneVerb.GET_LEAVE_BALANCE, {"email": email})
                 out = ctx.results.get("output", [])
@@ -62,22 +62,23 @@ class MCPServer:
                 return out if isinstance(out, dict) else {"annual_leave_balance": 21, "leave_type": "Annual Leave", "remaining": 21}
 
             elif tool_name == "list_team_members":
-                from phiadk.phione.verbs import PhiOneVerb
+                from phiadk.agents.phione.verbs import PhiOneVerb
                 dept = arguments.get("department", "Engineering")
                 ctx = await self.client.agents["phione"].execute_verb(PhiOneVerb.TRAVERSE_TEAM, {"department": dept})
                 return ctx.results.get("output", {})
 
             elif tool_name == "search_docs":
-                from phiadk.phidoc.verbs import PhiDocVerb
+                from phiadk.agents.phidoc.verbs import PhiDocVerb
                 query = arguments.get("query", "")
                 ctx = await self.client.agents["phidoc"].execute_verb(PhiDocVerb.SEARCH_PAGES, {"query": query})
                 return ctx.results.get("output", {})
 
             elif tool_name == "onboard_employee":
-                from phiadk.phibrd.verbs import PhiBrdVerb
+                from phiadk.agents.phibrd.verbs import PhiBrdVerb
                 emp_data = arguments.get("employee_data", arguments)
                 ctx = await self.client.agents["phibrd"].execute_verb(PhiBrdVerb.ONBOARD_EMPLOYEE, emp_data)
                 return ctx.results.get("output", {})
+
 
             elif tool_name == "run_qml":
                 circuit = arguments.get("circuit", "bell_state")

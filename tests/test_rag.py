@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.rag.chunker import ChunkingConfig, DocumentChunker
+from phiadk.agents.phirag.chunker import ChunkingConfig, DocumentChunker
+
 
 
 class TestDocumentChunker:

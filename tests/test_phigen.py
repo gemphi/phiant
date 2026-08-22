@@ -43,14 +43,17 @@ class TestPhiGen:
 
         # generate_types verb
         gen_res = await agent.execute_verb("generate_types", {})
-        assert gen_res["status"] == "SUCCESS"
-        assert gen_res["generated_classes_count"] >= 4
-        assert "Employee" in gen_res["classes"]
+        gen_out = gen_res.results.get("output", {}) if hasattr(gen_res, "results") else gen_res
+        assert gen_out["status"] == "SUCCESS"
+        assert gen_out["generated_classes_count"] >= 4
+        assert "Employee" in gen_out["classes"]
 
         # audit_parity verb
         audit_res = await agent.execute_verb("audit_parity", {})
-        assert audit_res["parity_percentage"] >= 80.0
-        assert audit_res["total_domain_agents"] >= 15
+        audit_out = audit_res.results.get("output", {}) if hasattr(audit_res, "results") else audit_res
+        assert audit_out["parity_percentage"] >= 80.0
+        assert audit_out["total_domain_agents"] >= 15
+
 
     def test_client_phigen_subclient(self):
         client = PhiADKClient()

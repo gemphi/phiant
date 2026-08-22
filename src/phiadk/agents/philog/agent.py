@@ -98,3 +98,12 @@ class PhiLogAgent(PhiAgent):
     async def iterate(self, ctx: AgentContext) -> AgentContext:
         """Phase 4: Conclude or scale."""
         return ctx
+
+    def tail(self, n: int = 10):
+        """Retrieve the last N telemetry records."""
+        return self.logger.tail(n=n)
+
+    def emit(self, event: str, actor: str = "system", details: Optional[Dict[str, Any]] = None):
+        """Emit an audit event record."""
+        return self.logger.record_audit(action=event, agent_id=actor, target=str(details or {}))
+

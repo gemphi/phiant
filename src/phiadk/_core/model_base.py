@@ -52,3 +52,15 @@ class ModelBase:
             "_updated_at": self._updated_at.isoformat() if self._updated_at else None,
             "_provenance": self._provenance,
         }
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Return full dictionary representation of model."""
+        import dataclasses
+        if dataclasses.is_dataclass(self):
+            d = dataclasses.asdict(self)
+        else:
+            d = dict(self.__dict__)
+        d.update(self.base_dict())
+        return d
+
+

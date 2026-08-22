@@ -2,7 +2,17 @@
 
 from __future__ import annotations
 
-from ..agents.base_agent import Priority
+from enum import Enum
+
+
+class Priority(str, Enum):
+    """Request priority levels."""
+
+    P1_CRITICAL = "P1"
+    P2_HIGH = "P2"
+    P3_STANDARD = "P3"
+    P4_LOW = "P4"
+
 
 
 # Keywords that signal urgency

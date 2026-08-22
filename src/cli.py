@@ -10,7 +10,8 @@ from rich.panel import Panel
 from rich.prompt import Prompt
 
 from .cli_demo import print_agents_status, print_result, run_demo
-from .orchestrator.orchestrator import Orchestrator
+from .phiadk.orchestrator.orchestrator import Orchestrator
+
 
 console = Console()
 

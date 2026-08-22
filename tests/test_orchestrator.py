@@ -2,9 +2,9 @@
 
 import pytest
 
-from src.agents.base_agent import Priority
-from src.orchestrator.priority import calculate_priority
-from src.orchestrator.router import IntentRouter
+from phiadk.orchestrator.priority import Priority, calculate_priority
+from phiadk.orchestrator.router import IntentRouter
+
 
 
 class TestPriority:
