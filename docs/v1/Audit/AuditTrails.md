@@ -10,6 +10,7 @@
 All telemetry and actions performed by agents or Topos mutations are logged into structured JSON records linked to immutable SHA-1 Git commit hashes.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Morphism["Action Type Morphism"] --> Logger["StructuredLogger (PhiLog)"]
     Logger --> RingBuffer["Telemetry Ring Buffer (1000 items)"]

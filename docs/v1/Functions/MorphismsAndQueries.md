@@ -10,6 +10,7 @@
 In topological systems, business functions are represented as **Morphisms** ($f: A \rightarrow B$) that map an input space $A$ to an output space $B$ while preserving algebraic and state invariants.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     SourceSpace["Source Space (A)"] -->|Morphism f(x)| TargetSpace["Target Space (B)"]
 ```

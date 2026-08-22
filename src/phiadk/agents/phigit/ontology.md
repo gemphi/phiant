@@ -5,6 +5,7 @@ PhiGit implements a content-addressable object store. Every piece of state is st
 ## 1. Cryptographic DAG & Object Tree
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Commit2["Commit 2 (sha1: 8f2c... parent: a1b2...)"] --> Commit1["Commit 1 (sha1: a1b2...)"]
     Commit2 --> Tree2["Tree Node (sha1: 3e4f...)"]

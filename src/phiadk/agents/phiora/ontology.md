@@ -5,6 +5,7 @@ PhiOra is the single point of data I/O for the entire ecosystem. It enforces str
 ## 1. Storage Ontologylogy & DataSet Resolution
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph ClientLayer["Calling Domain Agents"]
         A1["PhiOne (HR/Identity)"]

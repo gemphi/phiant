@@ -10,6 +10,7 @@
 Every domain agent in Phient extends `PhiAgent` / `PAgent` and executes through a strict 4-phase recursive lifecycle loop:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     P1["1. Envision<br/>(Formulate Plan)"] --> P2["2. Apply<br/>(Execute Morphism)"]
     P2 --> P3["3. Eval<br/>(Measure & Score)"]

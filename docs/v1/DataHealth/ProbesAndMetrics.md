@@ -10,6 +10,7 @@
 Phient continuously monitors agent health, API request latencies, and topological integrity.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Probe["Diagnostic Health Probe"] --> AgentCheck["14 Agents Active Check"]
     Probe --> POntologyCheck["POntology Complex Consistency Check"]

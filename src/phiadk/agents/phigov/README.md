@@ -7,6 +7,7 @@
 ## 1. Architectural & Governance Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Regulation["Regulations (GDPR, SOC2)"] --> ComplianceChecker["1. Compliance Checker (PhiGov)"]
     ComplianceChecker --> LineageAuditor["2. Lineage Provenance Audit (PhiGov)"]

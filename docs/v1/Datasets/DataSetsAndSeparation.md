@@ -10,6 +10,7 @@
 In Phient, agents and morphisms **never inline raw data in memory**. Instead, they pass `DataSet` references that are resolved on demand via `phiora`:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     Agent["PhiAgent Code"] -->|references| SetRef["DataSet(set_id='telemetry_q4')"]
     SetRef --> Resolver["PhiOra.Resolver"]

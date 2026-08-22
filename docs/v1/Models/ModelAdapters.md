@@ -12,6 +12,7 @@ Every Model Adapter defines three core capabilities:
 3. **`predict()`**: Synchronous or streaming prediction logic.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     InputData["Input Features (DataFrame / Dict)"] --> Adapter["ModelAdapter"]
     Adapter --> Preprocess["Feature Preprocessing"]

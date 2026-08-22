@@ -5,6 +5,7 @@ PhiBot manages the topological graph of executable automation playbooks, validat
 ## 1. Playbook Directed Acyclic Graph (DAG)
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     subgraph PlaybookSpace["Playbook Space"]
         PB1["Playbook: IT Provisioning"]

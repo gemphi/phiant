@@ -10,6 +10,7 @@
 Phient abstracts LLM providers (OpenAI, Anthropic Claude, Google Gemini) into a unified interface supporting streaming, structured JSON schemas, and fallback routing.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     UserApp["Agent / SDK Client"] --> Gateway["PhiLLM Gateway"]
     Gateway --> OpenAI["OpenAI (GPT-4o)"]

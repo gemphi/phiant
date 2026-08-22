@@ -5,6 +5,7 @@ PhiDoc maintains the hierarchical documentation topology connecting Notion works
 ## 1. Documentation Space Ontologylogy
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph DocSpace["Documentation Space (Tree Simplex)"]
         Root["Root Workspace"]
@@ -37,6 +38,7 @@ graph TD
 ## 2. Dynamic MDX Auto-Presentation Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#ffffff', 'signalColor': '#60a5fa', 'signalTextColor': '#ffffff', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#475569'}}}%%
 sequenceDiagram
     autonumber
     actor Browser

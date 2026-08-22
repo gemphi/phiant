@@ -30,6 +30,7 @@ Quantum logic gates are unitary operators ($U^\dagger U = I$) transforming state
 ## 2. Architectural & Quantum Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph CircuitSimulation["1. Quantum Circuit Simplex"]
         Q0["Qubit 0: |0⟩"] --> H["Hadamard Gate (H)"]

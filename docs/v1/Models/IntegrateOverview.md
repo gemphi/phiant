@@ -9,6 +9,7 @@ Phient provides a unified, structure-preserving interface to integrate, train, e
 Phient supports 5 primary model integration pathways:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph Sources["Model Sources"]
         S1["1. Models trained in Phient (PhiCal / Code Workspace)"]

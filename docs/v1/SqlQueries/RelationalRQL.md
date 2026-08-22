@@ -10,6 +10,7 @@
 RQL allows executing structured SQL-like relational filters, column projections, sorting, and pagination across POntology datasets.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     RQL["client.rql('employees')"] --> Filter[".filter('vacation_days > 5')"]
     Filter --> Select[".select(['email', 'title'])"]

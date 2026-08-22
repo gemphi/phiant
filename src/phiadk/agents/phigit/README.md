@@ -7,6 +7,7 @@
 ## 1. Cryptographic DAG Architecture & Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Commit2["Commit 2 (sha1: 8f2c... parent: a1b2...)"] --> Commit1["Commit 1 (sha1: a1b2...)"]
     Commit2 --> Tree2["Tree 2 (sha1: 3e4f...)"]

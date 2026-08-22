@@ -21,6 +21,7 @@ print(mermaid_code)
 ## 2. Mermaid Diagram Example
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     Employee["Employee (0-simplex)"] -->|employee_identity| UserIdentity["UserIdentity (0-simplex)"]
     Employee -->|author_documents| DocumentPage["DocumentPage (0-simplex)"]

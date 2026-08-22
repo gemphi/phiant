@@ -5,6 +5,7 @@
 ## 1. Simplicial Complex & Event Routing
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph Emitters["Event Emitters (PBusEvent)"]
         PhiOne["PhiOne (Identity created)"]
@@ -31,6 +32,7 @@ graph TD
 ## 2. PBusEvent Sequence Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#ffffff', 'signalColor': '#60a5fa', 'signalTextColor': '#ffffff', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#475569'}}}%%
 sequenceDiagram
     autonumber
     actor Emitter as Emitter Agent (e.g. PhiOne)

@@ -7,6 +7,7 @@ In Phient v2, models are treated as **Continuous State Manifolds and Morphism Bu
 ## 1. Topological Model Integration Architecture
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph InputSpace["Input Simplex: X (0-simplex Nodes)"]
         Obj["Topos Object: EmployeeNode / DocumentNode"]

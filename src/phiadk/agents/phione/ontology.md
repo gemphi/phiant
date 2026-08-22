@@ -5,6 +5,7 @@ PhiOne manages the connected topological spaces of enterprise identity, Microsof
 ## 1. Simplicial Structure & Spaces
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     subgraph EmployeeSpace["Employee Space (0-simplex Nodes)"]
         E1["EmployeeNode (Jane Muthoni)"]
@@ -40,6 +41,7 @@ graph TD
 ## 2. Morphisms & Morphic Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#ffffff', 'signalColor': '#60a5fa', 'signalTextColor': '#ffffff', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#475569'}}}%%
 sequenceDiagram
     autonumber
     actor Caller

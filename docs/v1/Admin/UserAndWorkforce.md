@@ -10,6 +10,7 @@
 Phient provides workforce administration, Microsoft Entra SSO identity resolution, and role-based permissions modeled as **0-simplex vertices** (`UserIdentity`, `Employee`, `OrganizationGroup`) within the enterprise Topos.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph TD
     User["UserIdentity (0-Simplex)"] -->|has_role| Role["Role / Permission Simplex"]
     User -->|member_of| Group["OrganizationGroup"]

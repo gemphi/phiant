@@ -5,6 +5,7 @@ PhiCal models semantic retrieval and quantum circuits as topological vector spac
 ## 1. Quantum Simplicial Circuit & Semantic Space
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     subgraph CircuitSpace["Circuit Space (Gate Chain Simplex)"]
         Q0["Qubit |0⟩"] --> H["Hadamard Gate (H)"]
@@ -35,6 +36,7 @@ graph LR
 ## 2. Gradient Descent Training Morphism
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'actorBkg': 'transparent', 'actorBorder': '#3b82f6', 'actorTextColor': '#ffffff', 'signalColor': '#60a5fa', 'signalTextColor': '#ffffff', 'labelBoxBkgColor': 'transparent', 'labelBoxBorderColor': '#475569'}}}%%
 sequenceDiagram
     autonumber
     actor Engine

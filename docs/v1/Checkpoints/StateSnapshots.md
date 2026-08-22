@@ -10,6 +10,7 @@
 State in Phient is checkpointed as SHA-1 Directed Acyclic Graph (DAG) commit objects. Every mutation creates an immutable tree snapshot that can be branched, audited, and rolled back.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
 graph LR
     Commit0["Commit 0<br/>(Genesis Root)"] --> Commit1["Commit 1<br/>(Topos v1 Schema)"]
     Commit1 --> Commit2["Commit 2<br/>(Data Ingestion)"]

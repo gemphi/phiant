@@ -1,40 +1,20 @@
-# Phient Agentic Ecosystem — Specifications
+# Technical Specifications & Multi-Cloud Deployment (`specs/`)
 
-> Technical specifications for every component of the Phient AI Ops Agent platform.
+> _Engineering Specifications, Architecture Blueprints & Enterprise Cloud Integration Guides._
 
-## Document Index
+---
 
-| Spec | Description | Status |
-|------|-------------|--------|
-| [architecture.md](./architecture.md) | System architecture, data flow, deployment topology | Done |
-| [agents.md](./agents.md) | All 6 agent specifications: capabilities, tools, prompts | Done |
-| [orchestrator.md](./orchestrator.md) | LangGraph orchestrator, routing, priority framework | Done |
-| [rag-pipeline.md](./rag-pipeline.md) | RAG pipeline: chunking, embedding, retrieval, re-ranking | Done |
-| [connectors.md](./connectors.md) | Enterprise connectors: Entra ID, Notion, Enterprise HRIS | Done |
-| [mcp-server.md](./mcp-server.md) | MCP server specification for Claude integration | Done |
-| [api.md](./api.md) | FastAPI REST + WebSocket API specification | Done |
-| [dashboard.md](./dashboard.md) | Web dashboard UI/UX specification | Done |
-| [monitoring.md](./monitoring.md) | Metrics, audit logging, alerting | Done |
-| [security.md](./security.md) | Security model, RBAC, data handling | Done |
-| [mlops-azure.md](./mlops-azure.md) | Azure MLOps: ML workspace, model registry, endpoints, cost mgmt | Done |
-| [github-actions.md](./github-actions.md) | GitHub repo structure, CI/CD pipelines, deployment workflows | Done |
+## 1. Specifications Index
 
-## Architecture Overview
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Web Dashboard / CLI                    │
-├─────────────────────────────────────────────────────────┤
-│                  FastAPI Gateway + MCP                    │
-├─────────────────────────────────────────────────────────┤
-│              LangGraph Agent Orchestrator                │
-├────────┬────────┬────────┬────────┬────────┬────────────┤
-│Knowledge│Automate│Identity│   HR   │  Docs  │ Onboarding │
-│ Agent   │ Agent  │ Agent  │ Agent  │ Agent  │   Agent    │
-├────────┴────────┴────────┴────────┴────────┴────────────┤
-│         RAG Pipeline  │  Enterprise Connectors           │
-│  ChromaDB · Embeddings│  Entra · Notion · Enterprise HRIS          │
-├─────────────────────────────────────────────────────────┤
-│           Monitoring · Audit · Metrics                   │
-└─────────────────────────────────────────────────────────┘
-```
+| Specification Document | Scope & Focus |
+|:---|:---|
+| [`architecture.md`](./architecture.md) | Full 5-layer system architecture, request sequence lifecycle, and PhiOraDB spatial storage. |
+| [`MULTI_CLOUD_INTEGRATION_GUIDE.md`](./MULTI_CLOUD_INTEGRATION_GUIDE.md) | Deployment blueprints across Microsoft Azure, AWS, GCP, Snowflake, Databricks, and Palantir Foundry. |
+| [`agents.md`](./agents.md) | Detailed requirements and interface contracts for the 15 canonical domain agents. |
+| [`orchestrator.md`](./orchestrator.md) | Palantir 20-namespace routing logic and priority scoring engine specification. |
+| [`rag-pipeline.md`](./rag-pipeline.md) | Semantic chunking, vector indexing, and hybrid retrieval engine specification. |
+| [`api.md`](./api.md) | OpenAPI REST schema and Server-Sent Events (SSE) streaming specifications. |
+| [`connectors.md`](./connectors.md) | Microsoft Entra ID and Notion enterprise connector specifications. |
+| [`mcp-server.md`](./mcp-server.md) | Model Context Protocol JSON-RPC specification for LLM tool integration. |
+| [`monitoring.md`](./monitoring.md) | Observability, latency distributions, and Prometheus metrics format. |
+| [`security.md`](./security.md) | PII redaction, cryptographic SHA-1 audit trails, and zero-trust security. |
