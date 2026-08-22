@@ -321,10 +321,11 @@ __all__ = [
 # Alias all agent modules on phiadk.<agent> for direct access and backwards compatibility
 import sys as _sys
 for _agent_name in [
-    "phibot", "phibrd", "phibus", "phical", "phidemo", "phidoc", "phigen",
+    "phibot", "phibrd", "phibus", "phical", "phidoc", "phigen",
     "phigit", "phigov", "phillm", "philog", "phimen", "phione", "phiora",
-    "phirag", "phisec", "phisecf"
+    "phirag", "phisec"
 ]:
+
     try:
         _mod = __import__(f"phiadk.agents.{_agent_name}", fromlist=[_agent_name])
         _sys.modules[f"phiadk.{_agent_name}"] = _mod
