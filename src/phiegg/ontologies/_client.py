@@ -1,13 +1,13 @@
-"""Ontologies Domain Namespace Client (matching Palantir SDK client.ontologies / client.Ontology)."""
+"""Ontology Domain Client (Singular Class Names avoiding plural OntologiesClient)."""
 
 from __future__ import annotations
 
 import typing
-from .ontology import OntologyClient
+from .engine import GLOBAL_ONTOLOGY, OntologyEngine
 
 
-class OntologiesClient:
-    """Namespace client for accessing Ontologies on PhiEggClient."""
+class OntologyClient:
+    """Singular client for accessing the Ontology on PhiEggClient (client.ontology / client.ontologies)."""
 
     def __init__(
         self,
@@ -19,46 +19,75 @@ class OntologiesClient:
         self._auth = auth
         self._hostname = hostname
         self._config = config
-        self._engine = engine
+        self._engine = engine or GLOBAL_ONTOLOGY
 
-        self.Ontology = OntologyClient(engine=self._engine)
-        self.ontology = self.Ontology
-        self.Topo = self.Ontology
-        self.topo = self.Ontology
+        # Subclients matching Palantir client.ontology.Ontology.<SubClient>
+        from .action import ActionClient, ActionTypeClient
+        from .attachment import AttachmentClient
+        from .cipher import CipherClient
+        from .geo import GeotemporalClient
+        from .interface import InterfaceClient
+        from .link import LinkClient, LinkedObjectClient
+        from .media import MediaClient
+        from .object import ObjectClient, ObjectSetClient, ObjectTypeClient
+        from .query import QueryClient, QueryTypeClient
+        from .scenario import ScenarioClient
+        from .timeseries import TimeSeriesClient
+        from .transaction import TransactionClient
+        from .value import ValueTypeClient
 
-        # Expose subclients directly
-        self.ObjectType = self.Ontology.ObjectType
-        self.ActionType = self.Ontology.ActionType
-        self.LinkType = self.Ontology.LinkType
-        self.LinkedObject = self.Ontology.LinkedObject
-        self.Object = self.Ontology.Object
-        self.ObjectSet = self.Ontology.ObjectSet
-        self.Action = self.Ontology.Action
-        self.Interface = self.Ontology.Interface
-        self.Query = self.Ontology.Query
-        self.QueryType = self.Ontology.QueryType
-        self.Transaction = self.Ontology.Transaction
-        self.Scenario = self.Ontology.Scenario
-        self.ValueType = self.Ontology.ValueType
-        self.Attachment = self.Ontology.Attachment
-        self.Cipher = self.Ontology.Cipher
-        self.Geo = self.Ontology.Geo
-        self.Media = self.Ontology.Media
-        self.TimeSeries = self.Ontology.TimeSeries
+        self.ObjectType = ObjectTypeClient(self._engine)
+        self.ActionType = ActionTypeClient(self._engine)
+        self.LinkType = LinkClient(self._engine)
+        self.LinkedObject = LinkedObjectClient(self._engine)
+        self.Object = ObjectClient(self._engine)
+        self.ObjectSet = ObjectSetClient(self._engine)
+        self.Action = ActionClient(self._engine)
+        self.Interface = InterfaceClient(self._engine)
+        self.Query = QueryClient(self._engine)
+        self.QueryType = QueryTypeClient(self._engine)
+        self.Transaction = TransactionClient(self._engine)
+        self.Scenario = ScenarioClient(self._engine)
+        self.ValueType = ValueTypeClient(self._engine)
+        self.Attachment = AttachmentClient(self._engine)
+        self.Cipher = CipherClient(self._engine)
+        self.Geo = GeotemporalClient(self._engine)
+        self.Media = MediaClient(self._engine)
+        self.TimeSeries = TimeSeriesClient(self._engine)
 
-    def __getattr__(self, name: str) -> typing.Any:
-        return getattr(self.Ontology, name)
+        self.Ontology = self
+        self.ontology = self
+        self.Topo = self
+        self.topo = self
 
     def get(self, ontology: typing.Optional[str] = None) -> typing.Dict[str, typing.Any]:
-        return self.Ontology.get(ontology)
+        return self._engine.to_dict()
 
     def list(self) -> typing.List[typing.Dict[str, typing.Any]]:
-        return self.Ontology.list()
+        return [{"api_name": "default", "rid": "ri.ontology.main.default", "display_name": "Default Ontology"}]
+
+    def get_full_metadata(self, ontology: typing.Optional[str] = None, branch: typing.Optional[str] = None, preview: typing.Optional[bool] = None) -> typing.Dict[str, typing.Any]:
+        return self._engine.to_dict()
+
+    def load_metadata(
+        self,
+        ontology: typing.Optional[str] = None,
+        action_types: typing.Optional[typing.List[str]] = None,
+        interface_types: typing.Optional[typing.List[str]] = None,
+        link_types: typing.Optional[typing.List[str]] = None,
+        object_types: typing.Optional[typing.List[str]] = None,
+        query_types: typing.Optional[typing.List[str]] = None,
+        branch: typing.Optional[str] = None,
+        preview: typing.Optional[bool] = None,
+    ) -> typing.Dict[str, typing.Any]:
+        return self._engine.to_dict()
+
+    def list_objects(self) -> typing.List[str]:
+        return list(self._engine.object_types.keys())
 
 
-
-class AsyncOntologiesClient:
-    """Async variant of OntologiesClient."""
+class AsyncOntologyClient:
+    """Async singular variant of OntologyClient."""
 
     def __init__(
         self,
@@ -70,15 +99,26 @@ class AsyncOntologiesClient:
         self._auth = auth
         self._hostname = hostname
         self._config = config
-        self._engine = engine
-        self.Ontology = OntologyClient(engine=self._engine)
-        self.ontology = self.Ontology
-        self.Topo = self.Ontology
-        self.topo = self.Ontology
+        self._engine = engine or GLOBAL_ONTOLOGY
+        self._sync_client = OntologyClient(auth=auth, hostname=hostname, config=config, engine=self._engine)
+        self.Ontology = self._sync_client
+        self.ontology = self._sync_client
+        self.Topo = self._sync_client
+        self.topo = self._sync_client
+
+    def __getattr__(self, name: str) -> typing.Any:
+        return getattr(self._sync_client, name)
 
 
-# Backward and P* aliases
-ToposClient = OntologiesClient
-AsyncToposClient = AsyncOntologiesClient
-POntologiesClient = OntologiesClient
-PAsyncOntologiesClient = AsyncOntologiesClient
+# Standard P* and Singular Aliases
+POntologyClient = OntologyClient
+PAsyncOntologyClient = AsyncOntologyClient
+POntology = OntologyClient
+POntologiesClient = OntologyClient
+PAsyncOntologiesClient = AsyncOntologyClient
+OntologiesClient = OntologyClient
+AsyncOntologiesClient = AsyncOntologyClient
+ToposClient = OntologyClient
+AsyncToposClient = AsyncOntologyClient
+TopoClient = OntologyClient
+PTopoClient = OntologyClient

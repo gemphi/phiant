@@ -157,8 +157,9 @@ class TestPOntologyApiEndpoints:
         assert "|00⟩" in qres.probabilities
 
     def test_ontologies_endpoints_and_import(self, api_client):
-        from phiegg.ontologies import Ontology, OntologiesClient, OntologyObject
-        assert Ontology is OntologiesClient
+        from phiegg.ontologies import Ontology, OntologyClient, OntologyObject
+        assert Ontology is OntologyClient
+
 
         res_ont = api_client.get("/v2/ontologies")
         assert res_ont.status_code == 200

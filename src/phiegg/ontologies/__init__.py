@@ -120,24 +120,33 @@ from .value import (
     ValueTypeClient,
 )
 from ._client import (
+    AsyncOntologyClient,
     AsyncOntologiesClient,
     AsyncToposClient,
+    OntologyClient,
     OntologiesClient,
+    PAsyncOntologyClient,
     PAsyncOntologiesClient,
+    POntologyClient,
     POntologiesClient,
     ToposClient,
 )
 
-Ontology = OntologiesClient
+Ontology = OntologyClient
 
 __all__ = [
     "Ontology",
     "POntology",
     "POntologyType",
+    "OntologyClient",
+    "AsyncOntologyClient",
+    "POntologyClient",
+    "PAsyncOntologyClient",
     "OntologiesClient",
     "AsyncOntologiesClient",
     "POntologiesClient",
     "PAsyncOntologiesClient",
+
     "ObjectType",
     "PObjectType",
     "PropertyType",

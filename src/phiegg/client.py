@@ -73,7 +73,7 @@ class PhiEggClient:
         from phiegg.phigov._client import PhiGovClient
         from phiegg.phibus._client import PhiBusClient
         from phiegg.phigen._client import PhiGenClient
-        from phiegg.ontologies._client import OntologiesClient
+        from phiegg.ontologies._client import OntologyClient
 
         self.phione = PhiOneClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
         self.phical = PhiCalClient(auth=auth, hostname=self._hostname, config=config)
@@ -86,9 +86,10 @@ class PhiEggClient:
         self.phigov = PhiGovClient(auth=auth, hostname=self._hostname, config=config)
         self.phibus = PhiBusClient(auth=auth, hostname=self._hostname, config=config)
         self.phigen = PhiGenClient(auth=auth, hostname=self._hostname, config=config)
-        self.ontologies = OntologiesClient(auth=auth, hostname=self._hostname, config=config)
-        self.ontology = self.ontologies
-        self.topos = self.ontologies
+        self.ontology = OntologyClient(auth=auth, hostname=self._hostname, config=config)
+        self.ontologies = self.ontology
+        self.topos = self.ontology
+
 
         self.phimen = PhiMenClient(
             auth=auth, hostname=self._hostname, config=config,

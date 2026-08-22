@@ -197,6 +197,7 @@ from phiegg.philog import StructuredLogger as StructuredLogger
 
 # Ontologies Platform & P* Standard Classes
 from phiegg.ontologies import (
+    OntologyClient as OntologyClient,
     OntologiesClient as OntologiesClient,
     Ontology as Ontology,
     OntologyObject as OntologyObject,
@@ -205,6 +206,7 @@ from phiegg.ontologies import (
     OntologyTransaction as OntologyTransaction,
     OntologyScenario as OntologyScenario,
     POntology as POntology,
+    POntologyClient as POntologyClient,
     POntologyType as POntologyType,
     PObjectType as PObjectType,
     PPropertyType as PPropertyType,
@@ -249,10 +251,13 @@ __all__ = [
     # Ontologies
     "Ontology",
     "POntology",
+    "POntologyClient",
     "POntologyType",
+    "OntologyClient",
     "OntologiesClient",
     "OntologyObject",
     "POntologyObject",
+
     "OntologyObjectSet",
     "POntologyObjectSet",
     "OntologyInterface",
