@@ -1,136 +1,238 @@
-# Phient — Enterprise AI Operations Platform
+# Phient / PhiADK — Enterprise Autonomous Agentic AI Platform
 
-> _Turning dark data into decisions. Eliminating dashboard graveyards. Delivering self-service intelligence._
+> _Enterprise Multi-Agent SDK & Palantir Foundry-Symmetrical Ontology Substrate._
 
-Production-grade multi-agent ecosystem designed to automate internal operations at scale across enterprise organisations. Phient bridges the gap between **data that exists but isn't understood** (dark data) and **reports that get built but never used** (dashboard graveyards) — delivering actionable, self-service intelligence directly to the people who need it.
-
----
-
-## The Problem Phient Solves
-
-Most enterprises sit between two costly extremes:
-
-**Dark Data** — Valuable data scattered across systems (HR, identity, knowledge bases, collaboration tools) that nobody knows how to find, access, or make sense of. It exists, but it generates zero business value.
-
-**Dashboard Graveyards** — Well-intentioned reporting initiatives that produce dashboard after dashboard. Nobody tracks whether they're actually used. Executives want dashboards built, but don't want to learn that nobody opens them. The result: long development backlogs of reports that end up in a list nobody ever visits.
-
-**Phient takes a different approach.** Instead of building more dashboards, it puts intelligent AI agents directly into the operational workflow — agents that retrieve, synthesise, and act on enterprise data in real time. Business users get answers through natural conversation, not by navigating a reporting tool. When a dashboard _is_ needed, Phient tracks its actual usage so you know what's delivering value and what's waste.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Architecture](https://img.shields.io/badge/architecture-Palantir_Foundry_%26_AIP-purple.svg)](./docs/v2/README.md)
+[![Tests Passing](https://img.shields.io/badge/tests-132%20passed-success.svg)](./tests/)
+[![Parity](https://img.shields.io/badge/parity-100%25-brightgreen.svg)](./look.md)
 
 ---
 
-## How It Works
+## 1. System Overview
 
-### Self-Service Intelligence, Not More Reports
+**Phient (PhiADK)** is a production-grade enterprise multi-agent operating platform. Built with full **1:1 architectural parity to Palantir Foundry & AIP**, Phient coordinates **15 canonical domain agents** over a shared **Topological Ontology Substrate (`POntologyEngine`)**, real-time **Pub/Sub Event Bus (`PhiBus`)**, and a **Content-Addressed Spatial Store (`PhiOraDB`)**.
 
-Traditional BI creates a backlog: business users request reports → developers queue them → reports ship weeks later → half are never opened. Phient flips this by enabling **self-service data access through AI agents** that understand your enterprise systems:
+```mermaid
+graph TD
+    subgraph "AIP Presentation Layer"
+        UI["AIP Blueprint Console & Dashboard (HTML5/JS)"]
+        CLI["PhiCLI Developer Toolchain & Interactive Shell"]
+        MCP["Model Context Protocol (Claude Desktop Integration)"]
+    end
 
-- **Ask, don't search.** Natural language queries against HR data, identity systems, knowledge bases, and internal documentation — no SQL, no dashboard navigation, no waiting for a developer.
-- **Agents that act, not just answer.** Automated playbook execution for common operational tasks (onboarding, access provisioning, policy lookups) that currently consume hours of manual work.
-- **Usage-aware intelligence.** Built-in metrics tracking on every query, every agent interaction, and every dashboard view — so you know exactly what's generating value and what's sitting idle.
+    subgraph "Ontology & Orchestration Substrate"
+        Orch["20-Namespace Intent Orchestrator & Priority Router"]
+        Onto["POntologyEngine (0-Simplex Objects, 1-Simplex Links, Morphisms)"]
+        Scen["Scenario Engine (Zero-Copy What-If Branching & Transactions)"]
+    end
 
-### The Agent Architecture
+    subgraph "Fleet of 15 Canonical 6-Letter Domain Agents"
+        Agents["phibot | phibrd | phibus | phical | phidoc<br/>phigen | phigit | phigov | phillm | philog<br/>phimen | phione | phiora | phirag | phisec"]
+    end
 
-Phient deploys **6 specialised AI agents**, each responsible for a distinct operational domain, coordinated by an intelligent orchestrator:
+    subgraph "Storage & Streaming Infrastructure"
+        OraDB["PhiOraDB: Topological Spatial Store (Manifold R^N)"]
+        Bus["PhiBus: Universal Pub/Sub Event Stream (PBusEvent)"]
+        Git["PhiGit: Content-Addressed SHA-1 CAS DAG Engine"]
+        Log["PhiLog: Cryptographic Audit Ring Buffer & Telemetry"]
+    end
 
-| Agent | Domain | What It Does |
-|:------|:-------|:-------------|
-| **Knowledge Agent** | RAG / Institutional Knowledge | Semantic search across internal documents, policies, and tribal knowledge using chunked embeddings and hybrid retrieval |
-| **Automation Agent** | Operational Playbooks | Executes multi-step automated workflows for repetitive operational tasks |
-| **Identity Agent** | Microsoft Entra ID | User provisioning, access reviews, group management, and identity governance |
-| **HR Agent** | Enterprise HRIS | Employee data lookups, leave management, org chart traversal, and people analytics |
-| **Docs Agent** | Notion / Knowledge Management | Page search, content retrieval, and documentation management across Notion workspaces |
-| **Onboarding Agent** | New Hire Operations | End-to-end orchestration of employee onboarding across identity, HR, docs, and access systems |
-
-### Data Governance Built In
-
-The gap between dark data and dashboard graveyards is **governance** — knowing where your data lives, who owns it, what it means, and whether anyone actually uses the outputs built from it.
-
-Phient enforces this at the platform level:
-
-- **System-of-record clarity.** Every data source connected to Phient has explicit ownership. The platform knows which system is authoritative for which fields — no conflicting copies, no stale mirrors.
-- **PII-aware processing.** All agent interactions pass through a compliance audit layer with automatic PII redaction. Sensitive data is handled safely by default, not by policy alone.
-- **Usage metrics on everything.** Every agent query, every dashboard view, every report generation is tracked. If something isn't being used, you'll know — and you can redirect engineering effort to what actually matters.
-- **Audit trail.** Full execution logging for compliance, traceability, and incident investigation.
-
----
-
-## Platform Components
-
-### Core Engine
-- **LangGraph Orchestrator** — Intent classification, priority scoring, context-aware routing across agents, and multi-agent execution chains
-- **RAG Pipeline** — Semantic chunking, ChromaDB vector store, hybrid retrieval (dense + sparse), and contextual re-ranking
-- **Enterprise Connectors** — Microsoft Entra ID, Notion API, Enterprise HRIS, with a pluggable connector framework for additional systems
-
-### Integration & Access
-- **MCP Server** — Claude Desktop / Claude Code tool integration for developer and power-user access
-- **FastAPI Gateway** — REST API, WebSocket real-time chat, and dashboard serving
-- **CLI** — Interactive terminal interface and demo mode for rapid testing
-
-### Observability & Governance
-- **Metrics Collector** — Counters, gauges, and histograms tracking agent performance, query latency, connector health, and dashboard/report usage
-- **Compliance Audit Logger** — Structured audit trail with automatic PII redaction
-- **Web Dashboard** — Premium dark-mode UI with live system status, agent performance cards, interactive chat, and audit viewer
+    UI & CLI & MCP --> Orch
+    Orch --> Onto & Scen
+    Onto --> Agents
+    Agents --> OraDB & Bus & Git & Log
+```
 
 ---
 
-## Setup & Running
+## 2. The 15 Canonical 6-Letter Domain Agents
 
+Every domain agent implements the universal 4-phase topological lifecycle: **`envision → apply → eval → iterate`**.
+
+| Agent | Domain | Palantir Namespace | Primary Responsibility |
+|:------|:-------|:-------------------|:-----------------------|
+| [`phibot`](./src/phiadk/agents/phibot/) | Automation | `orchestration` | Playbook DAG execution & automated operational workflows |
+| [`phibrd`](./src/phiadk/agents/phibrd/) | Onboarding | `third_party_applications` | Employee lifecycle onboarding & cross-system provisioning |
+| [`phibus`](./src/phiadk/agents/phibus/) | Event Bus | `connectivity` | Universal pub/sub event broadcasting & stream routing (`PBusEvent`) |
+| [`phical`](./src/phiadk/agents/phical/) | Compute | `functions` | Strongly-typed logic functions & Quantum Model Language (`QML`) |
+| [`phidoc`](./src/phiadk/agents/phidoc/) | Docs | `filesystem` | Notion workspaces, documentation sync & knowledge indexing |
+| [`phigen`](./src/phiadk/agents/phigen/) | Synthesis | `models` | Autonomous type generation & 100% Palantir parity auditing |
+| [`phigit`](./src/phiadk/agents/phigit/) | Version Control | `filesystem` | Content-addressed SHA-1 blobs, trees, and commit lineage |
+| [`phigov`](./src/phiadk/agents/phigov/) | Governance | `checkpoints` | AI safety guardrails, policy enforcement & compliance checks |
+| [`phillm`](./src/phiadk/agents/phillm/) | LLM Gateway | `language_models` | Multi-model token streaming (SSE) & reasoning dispatch |
+| [`philog`](./src/phiadk/agents/philog/) | Telemetry | `audit` | Distributed structured logging, audit trails & ring buffers |
+| [`phimen`](./src/phiadk/agents/phimen/) | Executive | `aip_agents` | Virtual CEO strategic planning & recursive goal decomposition |
+| [`phione`](./src/phiadk/agents/phione/) | Identity & HR | `admin` | Microsoft Entra ID & HRIS workforce directory operations |
+| [`phiora`](./src/phiadk/agents/phiora/) | Storage | `datasets` | **PhiOraDB** Topological Spatial Store & immutable datasets |
+| [`phirag`](./src/phiadk/agents/phirag/) | RAG | `media_sets` | Semantic chunking, vector embeddings & hybrid retrieval |
+| [`phisec`](./src/phiadk/agents/phisec/) | Security | `data_health` | Automated vulnerability scans & JWT token verification |
+
+---
+
+## 3. Storage Architecture: PhiOraDB (Topological Spatial Store)
+
+`PhiOraDB` operates as a true **Spatial Store** rather than a flat vector table:
+
+```mermaid
+graph LR
+    subgraph "Legacy Flat Vector Table"
+        V1["1D Float Array: [0.12, 0.98, ...]"] --> S1["Flat Cosine Distance"]
+        S1 --> D1["Destructive In-Place Overwrite"]
+    end
+
+    subgraph "PhiOraDB (Topological Spatial Store)"
+        SP1["SpatialRecord (Topological Manifold R^N)"] --> S2["Geodesic Nearest Neighbor & Bounding Envelopes"]
+        S2 --> D2["Git-Backed Immutable SHA-1 CAS DAG"]
+        D2 --> D3["Zero-Copy Scenario Branching"]
+    end
+```
+
+- **Spatial Manifolds**: Entities possess Riemannian/Euclidean coordinates ($R^2, R^3, R^N$), spatial bounds, and geodesic metrics.
+- **Topological Queries**: Supports geodesic $k$-nearest spatial neighbors and multi-dimensional bounding-box queries.
+- **Git-Backed CAS**: Every state transition produces an immutable SHA-1 content hash with complete parent commit lineage.
+
+---
+
+## 4. End-to-End Event Stream Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant User as User / Client
+    participant Gateway as FastAPI / Orchestrator
+    participant Ontology as POntologyEngine
+    participant Agent as Target Domain Agent
+    participant Bus as PhiBus (Event Stream)
+    participant Store as PhiOraDB (Spatial Store)
+    participant Log as PhiLog (Audit Telemetry)
+
+    User->>Gateway: Submit Request / Action Type
+    Gateway->>Ontology: Validate Parameters & Markings
+    Ontology-->>Gateway: Action Validated
+    Gateway->>Agent: execute_verb(verb, parameters)
+    Agent->>Store: Spatial Coordinate / CAS Mutation
+    Store-->>Agent: Receipt & Commit SHA-1
+    Agent->>Bus: pub(topic="ontology.action.*", PBusEvent)
+    Bus->>Log: Broadcast event for audit logging
+    Log-->>Log: Write to structured audit ring buffer
+    Agent-->>Gateway: AgentContext (Results, Confidence, Sources)
+    Gateway-->>User: Final Response + Audit Receipt
+```
+
+---
+
+## 5. Python SDK Quickstart
+
+### Installation
 ```bash
+# Clone repository
+git clone https://github.com/gemphi/phiant.git
+cd phiant
+
 # Create and activate virtual environment
 python -m venv .venv
 .venv\Scripts\activate
 
-# Install package
+# Install in editable mode with dev dependencies
 pip install -e ".[dev]"
-
-# Run tests
-pytest
-
-# Run interactive CLI demo
-python -m src.cli --demo
-
-# Start API server & Web Dashboard
-python -m src.cli serve
 ```
 
-Open `http://localhost:8000` to access the Web Dashboard.
+### Running Tests
+```bash
+pytest --no-cov
+```
+
+### SDK Usage Example
+```python
+import asyncio
+from phiadk.client import PhiADKClient
+from phiadk.agents.phibus.models import PBusEvent
+
+async def main():
+    # 1. Initialize master client
+    client = PhiADKClient()
+
+    # 2. Query Workforce via PhiOne
+    ctx = await client.agents["phione"].execute_verb(
+        "lookup_employee",
+        {"email": "jane@phient.com"}
+    )
+    print("Employee:", ctx.results.get("output"))
+
+    # 3. Publish Event via PhiBus
+    client.phibus.pub(
+        "workforce.promoted",
+        PBusEvent(
+            topic="workforce.promoted",
+            payload={"employee": "Jane Muthoni", "new_title": "Staff Architect"},
+            source_agent="phione",
+        )
+    )
+
+    # 4. Query Spatial Store (PhiOraDB)
+    neighbors = client.phiora.query_nearest(
+        target_coords=[10.0, 20.0, 5.0],
+        k=3
+    )
+    print("Spatial Neighbors:", neighbors)
+
+asyncio.run(main())
+```
+
+### Running Server & Dashboard
+```bash
+# Start AIP FastAPI server & Blueprint Dashboard
+python -m src.cli serve
+```
+Open **`http://localhost:8000`** in your browser to access the AIP Interactive Console.
 
 ---
 
-## Project Structure
+## 6. Repository Layout
 
 ```
 phient/
 ├── src/
-│   ├── agents/          # 6 specialised AI agents + base agent framework
-│   ├── orchestrator/    # LangGraph intent routing and multi-agent coordination
-│   ├── rag/             # Semantic chunking, vector store, hybrid retrieval
-│   ├── connectors/      # Enterprise system integrations (Entra ID, Notion, Enterprise HRIS)
-│   ├── mcp/             # Model Context Protocol server for Claude integration
-│   ├── api/             # FastAPI gateway, WebSocket chat, dashboard serving
-│   ├── monitoring/      # Metrics collector, compliance audit logging
-│   └── cli.py           # Interactive CLI and demo mode
-├── dashboard/           # Web dashboard frontend
-├── specs/               # Architecture docs, API specs, deployment guides
-├── tests/               # Test suite
-└── data/                # Local data and vector store
+│   ├── phiadk/               # Unified Master Enterprise SDK Package
+│   │   ├── _core/            # Auth, Config, ModelBase, Connectors (Entra, Notion)
+│   │   ├── _errors/          # Error Hierarchy (PhiADKException, etc.)
+│   │   ├── agents/           # 15 Canonical 6-Letter Domain Agents
+│   │   │   ├── phibot/       # Automation & Build DAGs
+│   │   │   ├── phibrd/       # Onboarding & Third-Party Apps
+│   │   │   ├── phibus/       # Pub/Sub Event Bus Manager (PBusClient)
+│   │   │   ├── phical/       # Quantum Compute & Function Circuits
+│   │   │   ├── phidoc/       # Notion & Documentation
+│   │   │   ├── phigen/       # CodeGen & 100% Parity Auditor
+│   │   │   ├── phigit/       # Content-Addressed Git Engine
+│   │   │   ├── phigov/       # AI Safety Governance & Checkpoints
+│   │   │   ├── phillm/       # Multi-Model LLM Gateway
+│   │   │   ├── philog/       # Telemetry & Structured Audit Trails
+│   │   │   ├── phimen/       # Virtual CEO & AIP Agents
+│   │   │   ├── phione/       # Admin Identity & HR Operations
+│   │   │   ├── phiora/       # PhiOraDB Spatial Store & Datasets
+│   │   │   ├── phirag/       # Vector RAG & Document Chunker
+│   │   │   └── phisec/       # DataHealth Security & Policy Scanner
+│   │   ├── mcp/              # Model Context Protocol (MCP) Server
+│   │   ├── ontologies/       # Palantir Symmetrical Ontologies Engine
+│   │   ├── orchestrator/     # 20-Namespace Intent Orchestrator
+│   │   ├── phiapi/           # AIP FastAPI Server & Blueprint Console
+│   │   ├── phicli/           # Developer Toolchain CLI
+│   │   ├── query/            # RQL, OQL, QML Query Runtime
+│   │   ├── client.py         # Master SDK Client (PhiADKClient / PClient)
+│   │   └── __init__.py       # Top-Level SDK Exports
+│   ├── cli.py                # Standalone Entrypoint CLI
+│   ├── cli_demo.py           # Terminal Playground Demo
+│   ├── config.py             # Global Environment Settings
+│   └── utils.py              # Shared Utilities
+├── docs/v2/                  # 106 Symmetrical Markdown Docs across 20 Modules
+├── specs/                    # Architecture, API & Multi-Cloud Specs
+├── tests/                    # 132 Automated Unit & Integration Tests
+└── data/                     # Mock fixtures & dataset schemas
 ```
 
 ---
 
-## Documentation
+## 7. License & Compliance
 
-Detailed specifications are available in [`specs/`](specs/):
-
-- [Architecture Overview](specs/architecture.md)
-- [Agent Specifications](specs/agents.md)
-- [RAG Pipeline](specs/rag-pipeline.md)
-- [Orchestrator](specs/orchestrator.md)
-- [API Reference](specs/api.md)
-- [Connectors](specs/connectors.md)
-- [MCP Server](specs/mcp-server.md)
-- [Monitoring & Observability](specs/monitoring.md)
-- [Security & Compliance](specs/security.md)
-- [Dashboard](specs/dashboard.md)
-- [CI/CD & GitHub Actions](specs/github-actions.md)
-- [MLOps on Azure](specs/mlops-azure.md)
+Distributed under the MIT Enterprise License. Built for SOC2 Type II, GDPR, and enterprise cryptographic audit standards.
