@@ -22,11 +22,8 @@ class Settings(BaseSettings):
     # Notion
     notion_api_key: str = ""
 
-    # HiBob
-    hibob_api_key: str = ""
-    hibob_service_user: str = ""
-
     # Infrastructure
+
     chroma_persist_dir: str = "./data/chroma"
     audit_db_path: str = "./data/audit.db"
     log_level: str = "INFO"

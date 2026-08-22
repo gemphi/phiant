@@ -1,6 +1,6 @@
 # PhiOne: Workforce & Identity Domain Agent
 
-`PhiOne` is the foundational infrastructure agent responsible for workforce operations, identity provisioning (Microsoft Entra ID), employee hierarchies (HiBob), security groups, and leave balance manifolds.
+`PhiOne` is the foundational infrastructure agent responsible for workforce operations, identity provisioning (Microsoft Entra ID), employee hierarchies (Enterprise HRIS), security groups, and leave balance manifolds.
 
 ---
 
@@ -34,7 +34,7 @@ graph TD
        │
        ▼
 [ PhiOneAgent.apply() ]
-       ├─► (LOOKUP_EMPLOYEE)   ──► Resolve via HiBob DataSet
+       ├─► (LOOKUP_EMPLOYEE)   ──► Resolve via Enterprise HRIS DataSet
        ├─► (PROVISION_IDENTITY) ──► Morphism to Entra ID Space
        ├─► (ASSIGN_LICENSE)    ──► Mutate License Manifold
        └─► (GET_LEAVE_BALANCE)  ──► Query Leave Balance Table

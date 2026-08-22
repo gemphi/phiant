@@ -1,4 +1,4 @@
-"""CLI - Rich-based terminal interface for the M-KOPA Agent Platform."""
+"""CLI - Rich-based terminal interface for the Phient Agent Platform."""
 
 from __future__ import annotations
 

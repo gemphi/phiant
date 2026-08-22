@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-FastAPI-based REST + WebSocket gateway for the M-KOPA Agent Ecosystem. Provides HTTP endpoints for agent interaction, system monitoring, and admin operations, plus WebSocket for real-time streaming.
+FastAPI-based REST + WebSocket gateway for the Phient Agent Ecosystem. Provides HTTP endpoints for agent interaction, system monitoring, and admin operations, plus WebSocket for real-time streaming.
 
 ## 2. Base Configuration
 
@@ -65,7 +65,7 @@ WebSocket:    ws://localhost:8000/ws/chat
 
 ```json
 {
-  "message": "What is M-KOPA's leave policy for Kenya?",
+  "message": "What is Phient's leave policy for Kenya?",
   "session_id": "optional-session-uuid",
   "user_id": "user@phient.com",
   "priority": "standard",
@@ -112,7 +112,7 @@ WebSocket:    ws://localhost:8000/ws/chat
   "connectors": {
     "entra": { "status": "healthy", "latency_ms": 120 },
     "notion": { "status": "healthy", "latency_ms": 89 },
-    "hibob": { "status": "degraded", "latency_ms": 2100 }
+    "hris": { "status": "degraded", "latency_ms": 2100 }
   },
   "rag": {
     "total_documents": 1247,

@@ -37,7 +37,7 @@ Phient deploys **6 specialised AI agents**, each responsible for a distinct oper
 | **Knowledge Agent** | RAG / Institutional Knowledge | Semantic search across internal documents, policies, and tribal knowledge using chunked embeddings and hybrid retrieval |
 | **Automation Agent** | Operational Playbooks | Executes multi-step automated workflows for repetitive operational tasks |
 | **Identity Agent** | Microsoft Entra ID | User provisioning, access reviews, group management, and identity governance |
-| **HR Agent** | HiBob HRIS | Employee data lookups, leave management, org chart traversal, and people analytics |
+| **HR Agent** | Enterprise HRIS | Employee data lookups, leave management, org chart traversal, and people analytics |
 | **Docs Agent** | Notion / Knowledge Management | Page search, content retrieval, and documentation management across Notion workspaces |
 | **Onboarding Agent** | New Hire Operations | End-to-end orchestration of employee onboarding across identity, HR, docs, and access systems |
 
@@ -59,7 +59,7 @@ Phient enforces this at the platform level:
 ### Core Engine
 - **LangGraph Orchestrator** — Intent classification, priority scoring, context-aware routing across agents, and multi-agent execution chains
 - **RAG Pipeline** — Semantic chunking, ChromaDB vector store, hybrid retrieval (dense + sparse), and contextual re-ranking
-- **Enterprise Connectors** — Microsoft Entra ID, Notion API, HiBob HRIS, with a pluggable connector framework for additional systems
+- **Enterprise Connectors** — Microsoft Entra ID, Notion API, Enterprise HRIS, with a pluggable connector framework for additional systems
 
 ### Integration & Access
 - **MCP Server** — Claude Desktop / Claude Code tool integration for developer and power-user access
@@ -105,7 +105,7 @@ phient/
 │   ├── agents/          # 6 specialised AI agents + base agent framework
 │   ├── orchestrator/    # LangGraph intent routing and multi-agent coordination
 │   ├── rag/             # Semantic chunking, vector store, hybrid retrieval
-│   ├── connectors/      # Enterprise system integrations (Entra ID, Notion, HiBob)
+│   ├── connectors/      # Enterprise system integrations (Entra ID, Notion, Enterprise HRIS)
 │   ├── mcp/             # Model Context Protocol server for Claude integration
 │   ├── api/             # FastAPI gateway, WebSocket chat, dashboard serving
 │   ├── monitoring/      # Metrics collector, compliance audit logging

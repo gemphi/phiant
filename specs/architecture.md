@@ -2,7 +2,7 @@
 
 ## 1. System Overview
 
-The M-KOPA Agentic Ecosystem is a multi-agent platform that orchestrates specialized AI agents to automate internal operations across 2,500+ employees in 7 countries. It integrates with enterprise tools (Microsoft Entra ID, Notion, HiBob) and provides RAG-based knowledge retrieval grounded in organisational context.
+The Phient Agentic Ecosystem is a multi-agent platform that orchestrates specialized AI agents to automate internal operations across 2,500+ employees in 7 countries. It integrates with enterprise tools (Microsoft Entra ID, Notion, Enterprise HRIS) and provides RAG-based knowledge retrieval grounded in organisational context.
 
 ### Design Principles
 
@@ -20,7 +20,7 @@ Layer 4: API Gateway     → FastAPI (REST + WebSocket)
 Layer 3: Orchestration   → LangGraph state machine, intent router, priority queue
 Layer 2: Agent Pool      → 6 specialized agents with tool access
 Layer 1: Infrastructure  → RAG pipeline, connectors, monitoring, audit
-Layer 0: External        → Entra ID, Notion, HiBob, Anthropic API
+Layer 0: External        → Entra ID, Notion, Enterprise HRIS, Anthropic API
 ```
 
 ## 3. Data Flow
@@ -117,7 +117,7 @@ Cloud (Railway / Vercel / Azure)
 | API | FastAPI + Uvicorn | REST + WebSocket gateway |
 | MCP | mcp Python SDK | Claude Desktop integration |
 | Auth | Microsoft Entra ID | Identity + access management |
-| HRIS | HiBob API | Employee data |
+| HRIS | HRIS API | Employee data |
 | Docs | Notion API | Knowledge base |
 | Monitoring | Prometheus metrics format | Observability |
 | Audit | SQLite / PostgreSQL | Compliance logging |

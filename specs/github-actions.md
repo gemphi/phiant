@@ -2,12 +2,12 @@
 
 ## 1. Overview
 
-GitHub is the source control and CI/CD backbone for the M-KOPA Agentic Ecosystem. This spec covers repository structure, branching strategy, GitHub Actions workflows for testing, building, deploying agents, and automated quality gates.
+GitHub is the source control and CI/CD backbone for the Phient Agentic Ecosystem. This spec covers repository structure, branching strategy, GitHub Actions workflows for testing, building, deploying agents, and automated quality gates.
 
 ## 2. Repository Structure
 
 ```
-m-kopa-ai-agents/
+phient-ai-agents/
 ├── .github/
 │   ├── workflows/
 │   │   ├── ci.yml                    # Lint, test, type-check on PR

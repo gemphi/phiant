@@ -21,7 +21,7 @@ async def root():
     dashboard_path = Path(__file__).parent.parent.parent / "dashboard" / "index.html"
     if dashboard_path.exists():
         return FileResponse(dashboard_path)
-    return {"message": "M-KOPA AI Ops Agent Platform", "version": "1.0.0"}
+    return {"message": "Phient AI Ops Agent Platform", "version": "1.0.0"}
 
 
 @router.post("/api/v1/chat", response_model=ChatResponse)

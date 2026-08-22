@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Enterprise connectors are the interface between M-KOPA's AI agents and external enterprise systems. Each connector provides a typed, authenticated, rate-limited API wrapper with error handling and caching.
+Enterprise connectors are the interface between Phient's AI agents and external enterprise systems. Each connector provides a typed, authenticated, rate-limited API wrapper with error handling and caching.
 
 ### Connector Architecture
 
@@ -166,7 +166,7 @@ def extract_text_from_blocks(blocks: list[dict]) -> str:
 
 ---
 
-## 4. HiBob Connector
+## 4. Enterprise HRIS Connector
 
 ### Authentication
 
@@ -191,7 +191,7 @@ def extract_text_from_blocks(blocks: list[dict]) -> str:
 
 ```python
 @dataclass
-class HiBobEmployee:
+class Enterprise HRISEmployee:
     id: str
     display_name: str
     first_name: str

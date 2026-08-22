@@ -1,4 +1,4 @@
-"""Base agent contract for all M-KOPA agents."""
+"""Base agent contract for all Phient agents."""
 
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ class AgentResult:
 
 
 class BaseAgent(ABC):
-    """Abstract base class for all M-KOPA agents.
+    """Abstract base class for all Phient agents.
 
     Provides common lifecycle management, error handling, metrics collection,
     and retry logic. All agents must implement the `execute` method.

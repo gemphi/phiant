@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Security model for the M-KOPA Agent Ecosystem. Covers authentication, authorisation (RBAC), data handling, secrets management, and compliance requirements.
+Security model for the Phient Agent Ecosystem. Covers authentication, authorisation (RBAC), data handling, secrets management, and compliance requirements.
 
 ## 2. Authentication
 
@@ -22,7 +22,7 @@ async def validate_token(token: str) -> User:
     """
     1. Verify JWT signature (RS256)
     2. Check token expiry
-    3. Validate audience (M-KOPA Agent Platform)
+    3. Validate audience (Phient Agent Platform)
     4. Extract user claims (email, roles, groups)
     5. Check against revocation list
     """
@@ -62,7 +62,7 @@ async def validate_token(token: str) -> User:
 | Level | Description | Examples |
 |-------|-------------|---------|
 | Public | No restrictions | Company blog, public docs |
-| Internal | M-KOPA employees only | Internal policies, processes |
+| Internal | Phient employees only | Internal policies, processes |
 | Confidential | Role-restricted | HR data, financial data |
 | Restricted | Named individuals only | Salary data, legal docs |
 
@@ -89,8 +89,8 @@ ENTRA_TENANT_ID            # Microsoft Entra tenant
 ENTRA_CLIENT_ID            # Entra app registration
 ENTRA_CLIENT_SECRET        # Entra app secret
 NOTION_API_KEY             # Notion integration token
-HIBOB_API_KEY              # HiBob API token
-HIBOB_SERVICE_USER         # HiBob service account
+HIBOB_API_KEY              # HRIS API token
+HIBOB_SERVICE_USER         # Enterprise HRIS service account
 API_SECRET_KEY             # JWT signing key
 ENCRYPTION_KEY             # Data encryption key
 ```

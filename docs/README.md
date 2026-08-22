@@ -1,6 +1,6 @@
-# M-KOPA Agentic Ecosystem — Dependencies Documentation
+# Phient Agentic Ecosystem — Dependencies Documentation
 
-Documentation explaining the selection, purpose, and usage of every primary dependency in the M-KOPA Agentic Ecosystem.
+Documentation explaining the selection, purpose, and usage of every primary dependency in the Phient Agentic Ecosystem.
 
 ## Dependencies Index
 

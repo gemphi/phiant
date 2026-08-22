@@ -22,7 +22,7 @@ class OnboardingStep(str, Enum):
 
 
 ONBOARDING_STEPS = [
-    {"step": OnboardingStep.VERIFYING_HR, "agent": "hr", "description": "Verify employee record in HiBob"},
+    {"step": OnboardingStep.VERIFYING_HR, "agent": "hr", "description": "Verify employee record in Enterprise HRIS"},
     {"step": OnboardingStep.CREATING_IDENTITY, "agent": "identity", "description": "Create Entra ID account"},
     {"step": OnboardingStep.ASSIGNING_GROUPS, "agent": "identity", "description": "Add to department security groups"},
     {"step": OnboardingStep.ASSIGNING_LICENSES, "agent": "identity", "description": "Assign required licenses (M365, etc.)"},
@@ -84,7 +84,7 @@ class OnboardingAgent(BaseAgent):
             f"  Start Date: {employee_data['start_date']}",
             f"  Status: COMPLETED",
             "  Completed steps:",
-            "    [x] Verify HR Record (HiBob)",
+            "    [x] Verify HR Record (Enterprise HRIS)",
             f"    [x] Create Entra ID ({employee_data['email']})",
             f"    [x] Assign Security Groups ({employee_data['department']})",
             "    [x] Assign Microsoft 365 License",

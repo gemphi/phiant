@@ -9,13 +9,13 @@
 
 Phient integrates with third-party enterprise providers via dedicated connectors:
 - **Microsoft Entra ID / SSO**: User authentication and group synchronizations.
-- **HiBob / BambooHR**: Workforce metadata and organizational hierarchy.
+- **Enterprise HRIS / BambooHR**: Workforce metadata and organizational hierarchy.
 - **Notion / Confluence**: Workspace documentation synchronization.
 
 ```mermaid
 graph LR
     Entra["Microsoft Entra SSO"] --> PhiOne["PhiOne (Identity)"]
-    HiBob["HiBob HR"] --> PhiOne
+    Enterprise HRIS["Enterprise HRIS HR"] --> PhiOne
     Notion["Notion Docs"] --> PhiDoc["PhiDoc (Doc Sync)"]
     All["Connectors"] --> Storage["PhiOra Content-Addressed Store"]
 ```

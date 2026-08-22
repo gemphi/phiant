@@ -10,7 +10,7 @@
 | [agents.md](./agents.md) | All 6 agent specifications: capabilities, tools, prompts | Done |
 | [orchestrator.md](./orchestrator.md) | LangGraph orchestrator, routing, priority framework | Done |
 | [rag-pipeline.md](./rag-pipeline.md) | RAG pipeline: chunking, embedding, retrieval, re-ranking | Done |
-| [connectors.md](./connectors.md) | Enterprise connectors: Entra ID, Notion, HiBob | Done |
+| [connectors.md](./connectors.md) | Enterprise connectors: Entra ID, Notion, Enterprise HRIS | Done |
 | [mcp-server.md](./mcp-server.md) | MCP server specification for Claude integration | Done |
 | [api.md](./api.md) | FastAPI REST + WebSocket API specification | Done |
 | [dashboard.md](./dashboard.md) | Web dashboard UI/UX specification | Done |
@@ -33,7 +33,7 @@
 │ Agent   │ Agent  │ Agent  │ Agent  │ Agent  │   Agent    │
 ├────────┴────────┴────────┴────────┴────────┴────────────┤
 │         RAG Pipeline  │  Enterprise Connectors           │
-│  ChromaDB · Embeddings│  Entra · Notion · HiBob          │
+│  ChromaDB · Embeddings│  Entra · Notion · Enterprise HRIS          │
 ├─────────────────────────────────────────────────────────┤
 │           Monitoring · Audit · Metrics                   │
 └─────────────────────────────────────────────────────────┘

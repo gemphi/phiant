@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-MLOps infrastructure for the M-KOPA Agentic Ecosystem running on Azure. Covers model lifecycle management, experiment tracking, deployment pipelines, and operational monitoring — all integrated with Azure Machine Learning, Azure AI Services, and the existing Entra ID auth layer.
+MLOps infrastructure for the Phient Agentic Ecosystem running on Azure. Covers model lifecycle management, experiment tracking, deployment pipelines, and operational monitoring — all integrated with Azure Machine Learning, Azure AI Services, and the existing Entra ID auth layer.
 
 > **Note**: The AI Ops team doesn't build models (Data Science does). MLOps here focuses on **deploying, serving, versioning, and monitoring** the models and agents that Data Science produces, plus managing the RAG/embedding infrastructure.
 
@@ -85,7 +85,7 @@ model = Model(
     version="1.2.0",
     path="models/knowledge-embedder/",
     type="custom_model",
-    description="Fine-tuned embedding model for M-KOPA knowledge base",
+    description="Fine-tuned embedding model for Phient knowledge base",
     tags={
         "framework": "sentence-transformers",
         "base_model": "all-MiniLM-L6-v2",
@@ -350,7 +350,7 @@ endpoints:
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────────┐
 │ Notion API  │────►│  Azure Data  │────►│ Azure AI     │
-│ HiBob API   │     │  Factory     │     │ Search Index │
+│ HRIS API   │     │  Factory     │     │ Search Index │
 │ File Upload │     │  Pipeline    │     │              │
 └─────────────┘     └──────┬───────┘     └──────────────┘
                            │
@@ -366,7 +366,7 @@ endpoints:
 | Pipeline | Schedule | Source | Destination |
 |----------|----------|--------|------------|
 | `notion-sync` | Every 15 min | Notion API | Blob → AI Search |
-| `hibob-sync` | Daily 02:00 UTC | HiBob API | Blob → SQL |
+| `hris-sync` | Daily 02:00 UTC | HRIS API | Blob → SQL |
 | `entra-audit-sync` | Every 1 hour | MS Graph | Blob → SQL |
 | `metrics-aggregate` | Every 5 min | App Insights | Dashboard cache |
 | `cost-report` | Daily 06:00 UTC | Azure Cost Mgmt | Email + Dashboard |
@@ -398,7 +398,7 @@ infra/
 | `rg-phient-ai-prod` | Production ML + AI resources | South Africa North |
 | `rg-phient-ai-staging` | Staging environment | South Africa North |
 | `rg-phient-ai-shared` | Shared infra (Key Vault, Monitor) | South Africa North |
-| `rg-mkopa-ai-dr` | Disaster recovery replicas | West Europe |
+| `rg-phient-ai-dr` | Disaster recovery replicas | West Europe |
 
 ## 11. Cost Management
 

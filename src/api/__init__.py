@@ -1,1 +1,1 @@
-"""M-KOPA API package."""
+"""Phient API package."""

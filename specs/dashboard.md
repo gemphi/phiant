@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Premium dark-themed web dashboard for real-time monitoring of the M-KOPA Agent Ecosystem. Provides agent status, chat interface, analytics, and audit log viewer.
+Premium dark-themed web dashboard for real-time monitoring of the Phient Agent Ecosystem. Provides agent status, chat interface, analytics, and audit log viewer.
 
 ## 2. Design System
 
@@ -12,7 +12,7 @@ Premium dark-themed web dashboard for real-time monitoring of the M-KOPA Agent E
 --bg-primary:     #0a0a0f          /* Deep dark background */
 --bg-secondary:   #12121a          /* Card backgrounds */
 --bg-tertiary:    #1a1a2e          /* Elevated surfaces */
---accent-primary: #00d4aa          /* M-KOPA teal/green */
+--accent-primary: #00d4aa          /* Phient teal/green */
 --accent-secondary: #6366f1        /* Indigo for secondary actions */
 --accent-warning: #f59e0b          /* Amber warnings */
 --accent-error:   #ef4444          /* Red errors */
@@ -41,7 +41,7 @@ Premium dark-themed web dashboard for real-time monitoring of the M-KOPA Agent E
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  [=] M-KOPA AI Ops      [Status: * Online]  [User] │
+│  [=] Phient AI Ops      [Status: * Online]  [User] │
 ├───────┬─────────────────────────────────────────────┤
 │       │                                             │
 │  NAV  │              MAIN CONTENT                   │
@@ -68,7 +68,7 @@ Premium dark-themed web dashboard for real-time monitoring of the M-KOPA Agent E
 - **Agent Grid**: 6 agent cards showing status, request count, avg latency
 - **Live Activity Feed**: Real-time scrolling log of agent actions
 - **Request Volume Chart**: Hourly request volume (last 24h)
-- **Connector Health**: Status indicators for Entra, Notion, HiBob
+- **Connector Health**: Status indicators for Entra, Notion, Enterprise HRIS
 
 ### 4.2 Chat Interface
 

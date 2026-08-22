@@ -36,7 +36,7 @@ MCP_TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "lookup_employee",
-        "description": "Look up employee details in HiBob HRIS topological space.",
+        "description": "Look up employee details in Enterprise HRIS topological space.",
         "inputSchema": {
             "type": "object",
             "properties": {"email": {"type": "string", "description": "Employee's email address"}},

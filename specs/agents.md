@@ -60,7 +60,7 @@ class AgentResult:
 
 ## 2. Knowledge Agent
 
-**Purpose**: RAG-powered internal knowledge retrieval. Answers questions about M-KOPA policies, processes, technical documentation, and organisational knowledge.
+**Purpose**: RAG-powered internal knowledge retrieval. Answers questions about Phient policies, processes, technical documentation, and organisational knowledge.
 
 ### Capabilities
 
@@ -80,8 +80,8 @@ class AgentResult:
 ### System Prompt
 
 ```
-You are M-KOPA's internal Knowledge Agent. Your role is to answer questions
-about M-KOPA's policies, processes, and organisational knowledge using the
+You are Phient's internal Knowledge Agent. Your role is to answer questions
+about Phient's policies, processes, and organisational knowledge using the
 retrieved context provided to you.
 
 Rules:
@@ -95,7 +95,7 @@ Rules:
 ### Example Interactions
 
 ```
-User: "What is M-KOPA's leave policy for employees in Kenya?"
+User: "What is Phient's leave policy for employees in Kenya?"
 Agent: Based on the Kenya Employee Handbook (Section 4.2), employees are
        entitled to... [cites specific policy text]
 
@@ -171,9 +171,9 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ---
 
-## 5. HR Agent (HiBob)
+## 5. HR Agent (Enterprise HRIS)
 
-**Purpose**: HiBob HRIS integration for employee data queries, leave management, and organisational structure.
+**Purpose**: Enterprise HRIS integration for employee data queries, leave management, and organisational structure.
 
 ### Capabilities
 
@@ -241,7 +241,7 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 ### Workflow Steps
 
 ```
-1. [HR Agent]       → Verify employee record in HiBob
+1. [HR Agent]       → Verify employee record in Enterprise HRIS
 2. [Identity Agent] → Create Entra ID account
 3. [Identity Agent] → Add to department security groups
 4. [Identity Agent] → Assign required licenses (M365, etc.)

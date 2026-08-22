@@ -12,7 +12,7 @@ Welcome to the **Phient SDK v1 Documentation**. Version 1 represents our foundat
 | [`AipAgents/`](./phient/docs/v1/AipAgents/AgentLifecycle.md) | 4-phase universal agent execution lifecycle (`envision` $\to$ `apply` $\to$ `eval` $\to$ `iterate`). | `phiadk._core.agent_base` |
 | [`Audit/`](./phient/docs/v1/Audit/StructuredLogging.md) | Structured logging, log levels, and error telemetry. | `phiadk.philog` |
 | [`Checkpoints/`](./phient/docs/v1/Checkpoints/KVCheckpoints.md) | Key-value state snapshots and historical versions. | `phiadk.phiora` |
-| [`Connectivity/`](./phient/docs/v1/Connectivity/DataResolvers.md) | External system connectors (HiBob, Entra ID, Notion). | `phiadk.phiora.store` |
+| [`Connectivity/`](./phient/docs/v1/Connectivity/DataResolvers.md) | External system connectors (Enterprise HRIS, Entra ID, Notion). | `phiadk.phiora.store` |
 | [`Core/`](./phient/docs/v1/Core/Auth.md) | Authentication (`ApiKeyAuth`, `TokenAuth`), configuration, and client sessions. | `phiadk._core` |
 | [`DataHealth/`](./phient/docs/v1/DataHealth/HealthProbes.md) | Agent endpoint health probes and latency telemetry. | `phiadk.phiapi` |
 | [`Datasets/`](./phient/docs/v1/Datasets/DataSet.md) | Mathematical DataSet separation and path resolution. | `phiadk.phiora` |

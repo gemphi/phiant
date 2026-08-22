@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Model Context Protocol (MCP) server exposes the M-KOPA agent ecosystem as tools accessible from Claude Desktop, Claude Code, and other MCP-compatible clients. This allows M-KOPA engineers to invoke agents directly from their development environment.
+The Model Context Protocol (MCP) server exposes the Phient agent ecosystem as tools accessible from Claude Desktop, Claude Code, and other MCP-compatible clients. This allows Phient engineers to invoke agents directly from their development environment.
 
 ## 2. Server Configuration
 
@@ -10,7 +10,7 @@ The Model Context Protocol (MCP) server exposes the M-KOPA agent ecosystem as to
 server_config = {
     "name": "phient-agents",
     "version": "1.0.0",
-    "description": "M-KOPA AI Ops Agent Platform",
+    "description": "Phient AI Ops Agent Platform",
     "transport": "stdio",              # "stdio" for Claude Desktop, "sse" for web
     "capabilities": {
         "tools": True,
@@ -29,7 +29,7 @@ server_config = {
 | `ask_knowledge` | Query the internal knowledge base | `query: str, collection?: str` |
 | `run_automation` | Execute an automation playbook | `playbook: str, params?: dict` |
 | `lookup_user` | Look up user in Entra ID | `email: str` |
-| `lookup_employee` | Look up employee in HiBob | `email: str` |
+| `lookup_employee` | Look up employee in Enterprise HRIS | `email: str` |
 | `search_docs` | Search Notion documentation | `query: str` |
 | `onboard_employee` | Start onboarding workflow | `employee_data: dict` |
 | `check_leave_balance` | Check leave balance | `email: str` |
@@ -41,7 +41,7 @@ server_config = {
 ```json
 {
   "name": "ask_knowledge",
-  "description": "Search M-KOPA's internal knowledge base for policies, processes, and documentation. Returns relevant information with source citations.",
+  "description": "Search Phient's internal knowledge base for policies, processes, and documentation. Returns relevant information with source citations.",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -137,7 +137,7 @@ Pre-built prompt templates for common workflows:
     "phient-agents": {
       "command": "python",
       "args": ["-m", "src.mcp.server"],
-      "cwd": "/path/to/m-kopa",
+      "cwd": "/path/to/phient",
       "env": {
         "ANTHROPIC_API_KEY": "sk-ant-..."
       }

@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Comprehensive monitoring, metrics collection, and audit logging for the M-KOPA Agent Ecosystem. Provides observability into agent performance, cost tracking, and compliance audit trails.
+Comprehensive monitoring, metrics collection, and audit logging for the Phient Agent Ecosystem. Provides observability into agent performance, cost tracking, and compliance audit trails.
 
 ## 2. Metrics
 
@@ -155,7 +155,7 @@ Response:
     "audit_db": "pass",
     "entra": "pass",
     "notion": "pass",
-    "hibob": "warn"           // degraded but functional
+    "hris": "warn"           // degraded but functional
   },
   "uptime": "3d 14h 22m",
   "version": "1.0.0"

@@ -12,7 +12,7 @@
 
 | Verb Enum | Action String | Parameters | Returns | Morphism Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `LOOKUP_EMPLOYEE` | `"lookup_employee"` | `{"email": str}` | `EmployeeNode` dict | 0-simplex resolution in HiBob dataset. |
+| `LOOKUP_EMPLOYEE` | `"lookup_employee"` | `{"email": str}` | `EmployeeNode` dict | 0-simplex resolution in Enterprise HRIS dataset. |
 | `LOOKUP_IDENTITY` | `"lookup_identity"` | `{"email": str}` | `UserIdentity` dict | 0-simplex resolution in Entra ID space. |
 | `TRAVERSE_TEAM` | `"traverse_team"` | `{"department": str}` | `Traversal` dict | 1-simplex tree traversal of org hierarchy. |
 | `GET_HEADCOUNT` | `"get_headcount"` | `{"department": Optional[str]}` | `{"headcount": int}` | Aggregation over workforce manifold. |

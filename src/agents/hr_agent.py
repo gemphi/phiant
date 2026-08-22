@@ -1,4 +1,4 @@
-"""HR Agent - HiBob HRIS integration (Delegates to PhiOne domain agent)."""
+"""HR Agent - Enterprise HRIS integration (Delegates to PhiOne domain agent)."""
 
 from __future__ import annotations
 
@@ -9,15 +9,15 @@ from .base_agent import AgentResult, AgentTask, BaseAgent
 
 
 class HRAgent(BaseAgent):
-    """HiBob HRIS integration agent (Legacy Adapter over PhiOne)."""
+    """Enterprise HRIS integration agent (Legacy Adapter over PhiOne)."""
 
     name = "hr"
-    description = "Query employee data, leave balances, and org structure from HiBob"
+    description = "Query employee data, leave balances, and org structure from Enterprise HRIS"
     capabilities = ["employee_lookup", "org_structure", "leave_balance", "team_report", "headcount_report"]
 
-    def __init__(self, hibob_connector: Any = None) -> None:
+    def __init__(self, hris_connector: Any = None) -> None:
         super().__init__()
-        self.hibob = hibob_connector
+        self.hris = hris_connector
         self._phione = PhiOneAgent()
 
     async def execute(self, task: AgentTask) -> AgentResult:
@@ -114,7 +114,7 @@ class HRAgent(BaseAgent):
         ctx = await self._phione.execute_verb("get_headcount", {"group_by": group_by})
         headcount = ctx.results.get("output", {"total": 2534, "by_country": {}})
         total = headcount.get("total", 2534)
-        lines = [f"M-KOPA Global Headcount: {total}\n  By {group_by.title()}:"]
+        lines = [f"Phient Global Headcount: {total}\n  By {group_by.title()}:"]
         lines.extend([f"    {k}: {v} ({round(v / total * 100, 1)}%)" for k, v in headcount.get("by_country", {}).items()])
         return AgentResult(
             task_id=task.task_id,

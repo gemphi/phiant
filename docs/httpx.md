@@ -4,13 +4,13 @@
 - **Package**: `httpx`
 - **Version Constraint**: `>=0.28.0`
 - **Category**: Asynchronous HTTP Client
-- **Primary Modules**: `src/connectors/entra.py`, `src/connectors/notion_connector.py`, `src/connectors/hibob.py`
+- **Primary Modules**: `src/connectors/entra.py`, `src/connectors/notion_connector.py`, `src/connectors/hris.py`
 
 ## 2. What It Does
 `httpx` is an async HTTP client for Python supporting HTTP/1.1 and HTTP/2, connection pooling, request retries, and clean async/await API integration.
 
 ## 3. Why It Was Chosen
-1. **Enterprise Connectors**: Powers async requests across Microsoft Entra ID (MS Graph API), Notion API, and HiBob API.
+1. **Enterprise Connectors**: Powers async requests across Microsoft Entra ID (MS Graph API), Notion API, and HRIS API.
 2. **Modern Standards**: Replaces legacy `requests` with async capabilities to prevent event-loop blocking.
 
 ## 4. Architectural Flow
@@ -20,7 +20,7 @@ graph LR
     A[Enterprise Connectors] -->|Async HTTP/2| B[httpx AsyncClient]
     B -->|OAuth Bearer| C[Entra MS Graph API]
     B -->|Integration Token| D[Notion API]
-    B -->|Basic Auth| E[HiBob API]
+    B -->|Basic Auth| E[HRIS API]
 ```
 
 ## 5. Alternatives Comparison

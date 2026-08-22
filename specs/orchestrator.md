@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The orchestrator is the brain of the M-KOPA Agentic Ecosystem. Built on **LangGraph**, it manages the lifecycle of every request — from intent classification through agent execution to response delivery. It supports single-agent, multi-agent sequential, and multi-agent parallel execution patterns.
+The orchestrator is the brain of the Phient Agentic Ecosystem. Built on **LangGraph**, it manages the lifecycle of every request — from intent classification through agent execution to response delivery. It supports single-agent, multi-agent sequential, and multi-agent parallel execution patterns.
 
 ## 2. LangGraph State Machine
 
@@ -97,7 +97,7 @@ Available agents and their capabilities:
 - knowledge: Internal knowledge, policies, FAQs, documentation search
 - automation: Workflow automation, reports, scheduled tasks
 - identity: Entra ID operations - user accounts, groups, licenses
-- hr: HiBob operations - employee data, leave, org structure
+- hr: Enterprise HRIS operations - employee data, leave, org structure
 - docs: Notion operations - documentation, pages, knowledge base
 - onboarding: New employee onboarding (coordinates identity + hr + docs)
 

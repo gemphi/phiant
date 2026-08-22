@@ -1,4 +1,4 @@
-"""FastAPI application - M-KOPA Agent Platform API."""
+"""FastAPI application - Phient Agent Platform API."""
 
 from __future__ import annotations
 
@@ -24,21 +24,21 @@ audit_logger: AuditLogger | None = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global orchestrator, rag_pipeline, audit_logger
-    logger.info("Starting M-KOPA Agent Platform...")
+    logger.info("Starting Phient Agent Platform...")
 
     orchestrator = Orchestrator()
     rag_pipeline = RAGPipeline()
     audit_logger = AuditLogger()
 
     await rag_pipeline.ingest_sample_data()
-    logger.info("M-KOPA Agent Platform started successfully")
+    logger.info("Phient Agent Platform started successfully")
     yield
 
-    logger.info("Shutting down M-KOPA Agent Platform...")
+    logger.info("Shutting down Phient Agent Platform...")
 
 
 app = FastAPI(
-    title="M-KOPA AI Ops Agent Platform",
+    title="Phient AI Ops Agent Platform",
     description="Multi-agent ecosystem for internal operations automation",
     version="1.0.0",
     lifespan=lifespan,

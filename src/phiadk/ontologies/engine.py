@@ -24,7 +24,7 @@ class OntologyEngine:
         """Register standard enterprise ontology entities."""
         # 1. Employee Object Type
         emp = (
-            ObjectType("Employee", "Employee", "HR personnel record in HiBob space.")
+            ObjectType("Employee", "Employee", "HR personnel record in Enterprise HRIS space.")
             .add_property(PropertyType("email", "Email Address", "string", is_primary_key=True))
             .add_property(PropertyType("display_name", "Full Name", "string"))
             .add_property(PropertyType("department", "Department", "string"))

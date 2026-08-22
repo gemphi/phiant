@@ -10,7 +10,7 @@
 `pydantic-settings` provides configuration management by parsing environment variables, secrets, and `.env` files into type-safe Pydantic settings models.
 
 ## 3. Why It Was Chosen
-1. **Type-Safe Application Config**: Validates required credentials (API keys for Anthropic, Entra, Notion, HiBob) at application boot time.
+1. **Type-Safe Application Config**: Validates required credentials (API keys for Anthropic, Entra, Notion, Enterprise HRIS) at application boot time.
 2. **Fail-Fast Validation**: Prevents starting the service with missing configuration keys.
 
 ## 4. Architectural Flow
