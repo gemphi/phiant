@@ -122,10 +122,10 @@ class EmbeddingConfig:
 
 | Collection | Contents | Embedding Model |
 |-----------|----------|----------------|
-| `phiant_policies` | HR, IT, Security policies | text-embedding-3-small |
-| `phiant_technical` | Technical documentation, runbooks | text-embedding-3-small |
-| `phiant_processes` | Business processes, SOPs | text-embedding-3-small |
-| `phiant_general` | General knowledge, FAQs | text-embedding-3-small |
+| `phient_policies` | HR, IT, Security policies | text-embedding-3-small |
+| `phient_technical` | Technical documentation, runbooks | text-embedding-3-small |
+| `phient_processes` | Business processes, SOPs | text-embedding-3-small |
+| `phient_general` | General knowledge, FAQs | text-embedding-3-small |
 
 ### Metadata Fields
 

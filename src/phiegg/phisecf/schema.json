@@ -1,0 +1,40 @@
+{
+  "agent_id": "phisecf",
+  "agent_name": "Phisecf",
+  "domain": "security",
+  "layer": "infrastructure",
+  "version": "1.0.0",
+  "description": "Custom generated domain agent",
+  "specs": [
+    {
+        "spec_idx": "PHISECF_STANDARD_SPEC",
+        "spec_id": "PHISECF_STANDARD_SPEC",
+        "version": "1.0.0",
+        "description": "Specification claim PHISECF_STANDARD_SPEC"
+    }
+],
+  "tasks": [
+    {
+        "task_id": "main_operations",
+        "name": "Main Operations",
+        "description": "Task chapter main_operations"
+    }
+],
+  "verbs": [
+    {
+        "verb_id": "scan_vulnerability",
+        "name": "Scan Vulnerability",
+        "description": "Verb action scan_vulnerability"
+    },
+    {
+        "verb_id": "audit_trail",
+        "name": "Audit Trail",
+        "description": "Verb action audit_trail"
+    },
+    {
+        "verb_id": "status",
+        "name": "Status",
+        "description": "Verb action status"
+    }
+]
+}

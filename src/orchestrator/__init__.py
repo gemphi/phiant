@@ -1,1 +1,1 @@
-"""Phiant Orchestrator package."""
+"""Phient Orchestrator package."""

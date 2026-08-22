@@ -71,7 +71,7 @@ sequenceDiagram
 from fastapi import FastAPI, HTTPException
 from src.api.models import ChatRequest, ChatResponse
 
-app = FastAPI(title="Phiant AI Ops Gateway")
+app = FastAPI(title="Phient AI Ops Gateway")
 
 @app.post("/api/v1/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):

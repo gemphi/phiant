@@ -1,0 +1,71 @@
+{
+  "agent_id": "phimen",
+  "agent_name": "PhiMen",
+  "layer": "Executive",
+  "description": "Virtual CEO \u2014 cross-domain strategic orchestration, recursive evaluation, and enterprise decision routing.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "EXECUTIVE_STRATEGY_ORCHESTRATION_V1",
+      "spec_id": "EXECUTIVE_STRATEGY_ORCHESTRATION_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Cross-domain situation assessment, strategic delegation via fiber bundles, and recursive evaluation.",
+      "required_tasks": [
+        "strategic_assessment",
+        "domain_delegation"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "strategic_assessment",
+      "name": "Strategic Assessment",
+      "description": "Assess enterprise state across all domain topologies.",
+      "verbs": [
+        {
+          "verb": "assess_objective",
+          "description": "Run full envision\u2192apply\u2192eval\u2192iterate cycle on a strategic goal",
+          "parameters": {
+            "objective": "str",
+            "domains": "list"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "domain_delegation",
+      "name": "Domain Delegation",
+      "description": "Delegate strategic sub-goals to specific domain agents.",
+      "verbs": [
+        {
+          "verb": "delegate_task",
+          "description": "Delegate task to a domain space with tracking",
+          "parameters": {
+            "objective": "str",
+            "domain": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phione",
+    "phical",
+    "phirag",
+    "phidoc",
+    "phibot",
+    "phibrd",
+    "phiora"
+  ],
+  "external_services": [
+    "All ecosystem domain agents"
+  ],
+  "verbs": [
+    "assess_objective",
+    "delegate_task"
+  ]
+}

@@ -1,0 +1,22 @@
+# Build
+
+Build
+
+## Properties
+| Name | Type | Required | Description |
+| ------------ | ------------- | ------------- | ------------- |
+**rid** | BuildRid | Yes | The RID of a Build. |
+**branch_name** | BranchName | Yes | The branch that the build is running on. |
+**created_time** | CreatedTime | Yes | The timestamp that the build was created. |
+**created_by** | CreatedBy | Yes | The user who created the build. |
+**fallback_branches** | FallbackBranches | Yes |  |
+**job_rids** | List[JobRid] | Yes |  |
+**retry_count** | RetryCount | Yes |  |
+**retry_backoff_duration** | RetryBackoffDuration | Yes |  |
+**abort_on_failure** | AbortOnFailure | Yes |  |
+**status** | BuildStatus | Yes |  |
+**finished_time** | Optional[datetime] | No | The time the build finished processing. Will be empty while the build is still running. |
+**schedule_rid** | Optional[ScheduleRid] | No | Schedule RID of the Schedule that triggered this build. If a user triggered the build, Schedule RID will be empty. |
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

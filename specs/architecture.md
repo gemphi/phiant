@@ -167,3 +167,15 @@ LOG_LEVEL=INFO
 - **RAG**: ChromaDB supports sharding; can migrate to Pinecone/Weaviate at scale
 - **Queue**: Redis-backed job queue for async operations at scale
 - **Caching**: LLM response caching for repeated queries (TTL-based)
+
+## 9. Phient Ontologies & Multi-Cloud Architecture (P* Standards)
+
+Phient adheres to the enterprise `P*` naming convention and 1:1 Palantir Foundry API parity:
+- **`PClient` / `PAsyncClient`**: Central unified client entry point with modular domain accessors.
+- **`POntology` & `POntologyEngine`**: Central graph ontology schema management.
+- **`PObjectType`, `PPropertyType`, `PLinkType`, `PActionType`**: Schema definition classes.
+- **`POntologyObject`, `POntologyObjectSet`**: Runtime object and collection manipulation.
+- **`PAgent`, `PNode`, `PSpace`, `PMorphism`**: Universal foundation abstractions.
+
+For complete deployment specifications across Microsoft Azure, AWS, GCP, Snowflake, Databricks, and Palantir Foundry, refer to [specs/MULTI_CLOUD_INTEGRATION_GUIDE.md](file:///c:/Users/phiac/Workspace/gemphi/phient/specs/MULTI_CLOUD_INTEGRATION_GUIDE.md).
+

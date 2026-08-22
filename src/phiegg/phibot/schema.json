@@ -1,0 +1,64 @@
+{
+  "agent_id": "phibot",
+  "agent_name": "PhiBot",
+  "layer": "Application",
+  "description": "Automation engine, playbook orchestration, and repeatable workflow execution.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "AUTOMATION_PLAYBOOK_EXEC_V1",
+      "spec_id": "AUTOMATION_PLAYBOOK_EXEC_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Playbook lifecycle management, listing, filtering, and deterministic execution.",
+      "required_tasks": [
+        "playbook_management",
+        "workflow_execution"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "playbook_management",
+      "name": "Playbook Management",
+      "description": "List and discover automation playbooks.",
+      "verbs": [
+        {
+          "verb": "list_playbooks",
+          "description": "List available automation playbooks",
+          "parameters": {
+            "category": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "workflow_execution",
+      "name": "Workflow Execution",
+      "description": "Execute automated playbooks with status tracking.",
+      "verbs": [
+        {
+          "verb": "execute_playbook",
+          "description": "Execute a named playbook by ID",
+          "parameters": {
+            "playbook_id": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phiora"
+  ],
+  "external_services": [
+    "Webhook runners",
+    "CI/CD pipelines"
+  ],
+  "verbs": [
+    "list_playbooks",
+    "execute_playbook"
+  ]
+}

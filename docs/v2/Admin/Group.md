@@ -1,0 +1,448 @@
+# Group
+
+Method | HTTP request | Release Stage |
+------------- | ------------- | ----- |
+[**create**](#create) | **POST** /v2/admin/groups | Stable |
+[**delete**](#delete) | **DELETE** /v2/admin/groups/{groupId} | Stable |
+[**get**](#get) | **GET** /v2/admin/groups/{groupId} | Stable |
+[**get_batch**](#get_batch) | **POST** /v2/admin/groups/getBatch | Stable |
+[**list**](#list) | **GET** /v2/admin/groups | Stable |
+[**list_current**](#list_current) | **GET** /v2/admin/groups/listCurrent | Public Beta |
+[**replace**](#replace) | **PUT** /v2/admin/groups/{groupId} | Stable |
+[**search**](#search) | **POST** /v2/admin/groups/search | Stable |
+
+# **create**
+Creates a new Group.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**attributes** | Dict[AttributeName, AttributeValues] | A map of the Group's attributes. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are subject to change. |  |
+**name** | GroupName | The name of the Group. |  |
+**organizations** | List[OrganizationRid] | The RIDs of the Organizations whose members can see this group. At least one Organization RID must be listed.  |  |
+**description** | Optional[str] | A description of the Group. | [optional] |
+
+### Return type
+**Group**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# Dict[AttributeName, AttributeValues] | A map of the Group's attributes. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are subject to change.
+attributes = {
+    "multipass:realm": ["eab0a251-ca1a-4a84-a482-200edfb8026f"],
+    "multipass:organization-rid": [
+        "ri.multipass..organization.c30ee6ad-b5e4-4afe-a74f-fe4a289f2faa"
+    ],
+}
+# GroupName | The name of the Group.
+name = "Data Source Admins"
+# List[OrganizationRid] | The RIDs of the Organizations whose members can see this group. At least one Organization RID must be listed.
+organizations = ["ri.multipass..organization.c30ee6ad-b5e4-4afe-a74f-fe4a289f2faa"]
+# Optional[str] | A description of the Group.
+description = "Create and modify data sources in the platform"
+
+
+try:
+    api_response = client.admin.Group.create(
+        attributes=attributes, name=name, organizations=organizations, description=description
+    )
+    print("The create response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.create: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Group  | The created Group | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **delete**
+Delete the Group with the specified id.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**group_id** | GroupId |  |  |
+
+### Return type
+**None**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# GroupId
+group_id = None
+
+
+try:
+    api_response = client.admin.Group.delete(group_id)
+    print("The delete response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.delete: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**204** | None  |  | None |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **get**
+Get the Group with the specified id.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**group_id** | GroupId |  |  |
+
+### Return type
+**Group**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# GroupId
+group_id = None
+
+
+try:
+    api_response = client.admin.Group.get(group_id)
+    print("The get response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.get: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Group  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **get_batch**
+Execute multiple get requests on Group.
+
+The maximum batch size for this endpoint is 500.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**body** | List[GetGroupsBatchRequestElement] | Body of the request |  |
+
+### Return type
+**GetGroupsBatchResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# List[GetGroupsBatchRequestElement] | Body of the request
+body = [{"groupId": "0d1fe74e-2b70-4a93-9b1a-80070637788b"}]
+
+
+try:
+    api_response = client.admin.Group.get_batch(body)
+    print("The get_batch response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.get_batch: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | GetGroupsBatchResponse  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **list**
+Lists all Groups.
+
+This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**page_size** | Optional[PageSize] | The page size to use for the endpoint. | [optional] |
+**page_token** | Optional[PageToken] | The page token indicates where to start paging. This should be omitted from the first page's request. To fetch the next page, clients should take the value from the `nextPageToken` field of the previous response and use it to populate the `pageToken` field of the next request. | [optional] |
+
+### Return type
+**ListGroupsResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# Optional[PageSize] | The page size to use for the endpoint.
+page_size = None
+# Optional[PageToken] | The page token indicates where to start paging. This should be omitted from the first page's request. To fetch the next page, clients should take the value from the `nextPageToken` field of the previous response and use it to populate the `pageToken` field of the next request.
+page_token = None
+
+
+try:
+    for group in client.admin.Group.list(page_size=page_size, page_token=page_token):
+        pprint(group)
+except Exception as e:
+    print("HTTP error when calling Group.list: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | ListGroupsResponse  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **list_current**
+Returns all Groups which contain the current user as a direct or transitive member. For example if the current user is a member of Group A and Group A is a member of Group B, this endpoint will return Group A and Group B.
+
+Unlike the list Group Memberships endpoint which requires the `api:admin-read` scope, this endpoint
+does not require any particular scopes and can be used by any authenticated user to retrieve their own
+group memberships.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**ListCurrentGroupsResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.admin.Group.list_current(preview=preview)
+    print("The list_current response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.list_current: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | ListCurrentGroupsResponse  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **replace**
+When replacing groups, you must send all attributes that begin with `multipass:` exactly as they appear when calling the Get Group endpoint.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**group_id** | GroupId |  |  |
+**attributes** | Dict[AttributeName, AttributeValues] | A map of the Group's attributes. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are subject to change. |  |
+**name** | GroupName | The name of the Group. |  |
+**organizations** | List[OrganizationRid] | The RIDs of the Organizations whose members can see this group. At least one Organization RID must be listed.  |  |
+**description** | Optional[str] | A description of the Group. | [optional] |
+
+### Return type
+**Group**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# GroupId
+group_id = None
+# Dict[AttributeName, AttributeValues] | A map of the Group's attributes. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are subject to change.
+attributes = {
+    "multipass:realm": ["eab0a251-ca1a-4a84-a482-200edfb8026f"],
+    "multipass:organization-rid": [
+        "ri.multipass..organization.c30ee6ad-b5e4-4afe-a74f-fe4a289f2faa"
+    ],
+}
+# GroupName | The name of the Group.
+name = "Data Source Admins"
+# List[OrganizationRid] | The RIDs of the Organizations whose members can see this group. At least one Organization RID must be listed.
+organizations = ["ri.multipass..organization.c30ee6ad-b5e4-4afe-a74f-fe4a289f2faa"]
+# Optional[str] | A description of the Group.
+description = "Create and modify data sources in the platform"
+
+
+try:
+    api_response = client.admin.Group.replace(
+        group_id,
+        attributes=attributes,
+        name=name,
+        organizations=organizations,
+        description=description,
+    )
+    print("The replace response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.replace: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Group  | The replaced Group | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **search**
+Perform a case-insensitive prefix search for groups based on group name.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**where** | GroupSearchFilter |  |  |
+**page_size** | Optional[PageSize] |  | [optional] |
+**page_token** | Optional[PageToken] |  | [optional] |
+
+### Return type
+**SearchGroupsResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# GroupSearchFilter
+where = {"type": "queryString", "value": "jsmith"}
+# Optional[PageSize]
+page_size = 100
+# Optional[PageToken]
+page_token = "v1.QnVpbGQgdGhlIEZ1dHVyZTogaHR0cHM6Ly93d3cucGFsYW50aXIuY29tL2NhcmVlcnMvP2xldmVyLXNvdXJjZSU1YiU1ZD1BUElEb2NzI29wZW4tcG9zaXRpb25z"
+
+
+try:
+    api_response = client.admin.Group.search(
+        where=where, page_size=page_size, page_token=page_token
+    )
+    print("The search response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Group.search: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | SearchGroupsResponse  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+

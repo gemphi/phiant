@@ -1,0 +1,155 @@
+{
+  "agent_id": "phigit",
+  "agent_name": "PhiGit",
+  "layer": "Data",
+  "description": "Internal git-core engine \u2014 content-addressable storage, SHA-1 object store, refs, trees, commits, and diffing.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "CONTENT_ADDRESSABLE_STORAGE_V1",
+      "spec_id": "CONTENT_ADDRESSABLE_STORAGE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Immutable SHA-1 content-addressable object store with BLOB, TREE, COMMIT, REF types and branch diffing.",
+      "required_tasks": [
+        "object_operations",
+        "ref_operations",
+        "commit_operations"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "object_operations",
+      "name": "Object Operations",
+      "description": "Content-addressed blob and tree storage.",
+      "verbs": [
+        {
+          "verb": "store_blob",
+          "description": "Store raw content and return SHA-1 hash",
+          "parameters": {
+            "content": "any"
+          },
+          "returns": "Blob"
+        },
+        {
+          "verb": "get_blob",
+          "description": "Retrieve blob content by SHA-1 hash",
+          "parameters": {
+            "sha1": "str"
+          },
+          "returns": "Blob"
+        },
+        {
+          "verb": "store_tree",
+          "description": "Create and store tree object from named entries",
+          "parameters": {
+            "entries": "list"
+          },
+          "returns": "Tree"
+        },
+        {
+          "verb": "get_tree",
+          "description": "Retrieve tree object by SHA-1 hash",
+          "parameters": {
+            "sha1": "str"
+          },
+          "returns": "Tree"
+        }
+      ]
+    },
+    {
+      "task_id": "ref_operations",
+      "name": "Reference Operations",
+      "description": "Branch and tag reference management.",
+      "verbs": [
+        {
+          "verb": "set_ref",
+          "description": "Point a named ref to a commit hash",
+          "parameters": {
+            "name": "str",
+            "commit_sha1": "str"
+          },
+          "returns": "None"
+        },
+        {
+          "verb": "get_ref",
+          "description": "Resolve a named ref to its commit SHA-1",
+          "parameters": {
+            "name": "str"
+          },
+          "returns": "str"
+        },
+        {
+          "verb": "list_refs",
+          "description": "List all active references in the store",
+          "parameters": {},
+          "returns": "dict"
+        }
+      ]
+    },
+    {
+      "task_id": "commit_operations",
+      "name": "Commit Operations",
+      "description": "Create snapshots, traverse commit history, and compute deltas.",
+      "verbs": [
+        {
+          "verb": "commit",
+          "description": "Create a commit snapshot from a tree SHA-1",
+          "parameters": {
+            "tree_sha1": "str",
+            "message": "str",
+            "agent_id": "str",
+            "version": "str"
+          },
+          "returns": "Commit"
+        },
+        {
+          "verb": "get_commit",
+          "description": "Retrieve commit metadata by SHA-1 hash",
+          "parameters": {
+            "sha1": "str"
+          },
+          "returns": "Commit"
+        },
+        {
+          "verb": "log",
+          "description": "Walk commit lineage backwards from a ref",
+          "parameters": {
+            "ref": "str",
+            "max_count": "int"
+          },
+          "returns": "list"
+        },
+        {
+          "verb": "diff",
+          "description": "Compute added, modified, and deleted keys between two commits",
+          "parameters": {
+            "ref_a": "str",
+            "ref_b": "str"
+          },
+          "returns": "DiffResult"
+        }
+      ]
+    }
+  ],
+  "dependencies": [],
+  "external_services": [
+    "In-memory object store",
+    "Disk snapshot repository"
+  ],
+  "verbs": [
+    "store_blob",
+    "get_blob",
+    "store_tree",
+    "get_tree",
+    "set_ref",
+    "get_ref",
+    "list_refs",
+    "commit",
+    "get_commit",
+    "log",
+    "diff"
+  ]
+}

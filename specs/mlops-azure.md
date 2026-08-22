@@ -52,14 +52,14 @@ MLOps infrastructure for the M-KOPA Agentic Ecosystem running on Azure. Covers m
 ```yaml
 # infra/azure-ml-workspace.yaml
 workspace:
-  name: phiant-ai-ops
-  resource_group: rg-phiant-ai
+  name: phient-ai-ops
+  resource_group: rg-phient-ai
   location: southafricanorth        # Primary: South Africa North
   sku: Basic
-  storage_account: stphiantaiops
-  key_vault: kv-phiant-ai
-  application_insights: ai-phiant-ai
-  container_registry: crphiantai
+  storage_account: stphientaiops
+  key_vault: kv-phient-ai
+  application_insights: ai-phient-ai
+  container_registry: crphientai
 ```
 
 ### Compute Resources
@@ -81,7 +81,7 @@ from azure.ai.ml.entities import Model
 
 # Register a model version
 model = Model(
-    name="phiant-knowledge-embedder",
+    name="phient-knowledge-embedder",
     version="1.2.0",
     path="models/knowledge-embedder/",
     type="custom_model",
@@ -89,7 +89,7 @@ model = Model(
     tags={
         "framework": "sentence-transformers",
         "base_model": "all-MiniLM-L6-v2",
-        "dataset": "phiant-internal-docs-v3",
+        "dataset": "phient-internal-docs-v3",
         "metrics.recall": "0.92",
         "metrics.ndcg": "0.88",
     },
@@ -108,9 +108,9 @@ ml_client.models.create_or_update(model)
 |-------|------|----------|---------|
 | `claude-sonnet-4` | External API | Anthropic | Agent reasoning |
 | `text-embedding-3-small` | External API | OpenAI/Azure | Document embeddings |
-| `phiant-intent-classifier` | Custom | Azure ML | Intent routing |
-| `phiant-reranker` | Custom | Azure ML | RAG re-ranking |
-| `phiant-pii-detector` | Custom | Azure ML | PII detection in logs |
+| `phient-intent-classifier` | Custom | Azure ML | Intent routing |
+| `phient-reranker` | Custom | Azure ML | RAG re-ranking |
+| `phient-pii-detector` | Custom | Azure ML | PII detection in logs |
 
 ### Model Promotion Pipeline
 
@@ -185,7 +185,7 @@ with mlflow.start_run(run_name="chunking-strategy-v3"):
 
 ```json
 {
-  "name": "phiant-knowledge-index",
+  "name": "phient-knowledge-index",
   "fields": [
     { "name": "chunk_id", "type": "Edm.String", "key": true },
     { "name": "doc_id", "type": "Edm.String", "filterable": true },
@@ -201,7 +201,7 @@ with mlflow.start_run(run_name="chunking-strategy-v3"):
       "name": "content_vector",
       "type": "Collection(Edm.Single)",
       "dimensions": 1536,
-      "vectorSearchProfile": "phiant-vector-profile"
+      "vectorSearchProfile": "phient-vector-profile"
     }
   ],
   "vectorSearch": {
@@ -209,13 +209,13 @@ with mlflow.start_run(run_name="chunking-strategy-v3"):
       { "name": "hnsw-config", "kind": "hnsw", "hnswParameters": { "m": 4, "efConstruction": 400, "efSearch": 500 } }
     ],
     "profiles": [
-      { "name": "phiant-vector-profile", "algorithmConfigurationName": "hnsw-config" }
+      { "name": "phient-vector-profile", "algorithmConfigurationName": "hnsw-config" }
     ]
   },
   "semantic": {
     "configurations": [
       {
-        "name": "phiant-semantic-config",
+        "name": "phient-semantic-config",
         "prioritizedFields": {
           "titleField": { "fieldName": "title" },
           "contentFields": [{ "fieldName": "content" }]
@@ -244,12 +244,12 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 
 configure_azure_monitor(
     connection_string="InstrumentationKey=...",
-    logger_name="phiant-agents",
+    logger_name="phient-agents",
 )
 
 # Custom metrics
 from opentelemetry import metrics
-meter = metrics.get_meter("phiant-agents")
+meter = metrics.get_meter("phient-agents")
 
 agent_request_counter = meter.create_counter(
     "agent.requests",
@@ -312,7 +312,7 @@ alerts:
 ```yaml
 # infra/endpoint-config.yaml
 endpoints:
-  - name: phiant-agent-api
+  - name: phient-agent-api
     type: managed_online
     auth_mode: key
     instance_type: Standard_DS3_v2
@@ -395,9 +395,9 @@ infra/
 
 | Resource Group | Contents | Region |
 |---------------|----------|--------|
-| `rg-phiant-ai-prod` | Production ML + AI resources | South Africa North |
-| `rg-phiant-ai-staging` | Staging environment | South Africa North |
-| `rg-phiant-ai-shared` | Shared infra (Key Vault, Monitor) | South Africa North |
+| `rg-phient-ai-prod` | Production ML + AI resources | South Africa North |
+| `rg-phient-ai-staging` | Staging environment | South Africa North |
+| `rg-phient-ai-shared` | Shared infra (Key Vault, Monitor) | South Africa North |
 | `rg-mkopa-ai-dr` | Disaster recovery replicas | West Europe |
 
 ## 11. Cost Management

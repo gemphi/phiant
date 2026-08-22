@@ -1,0 +1,165 @@
+{
+  "agent_id": "phione",
+  "agent_name": "PhiOne",
+  "layer": "Infrastructure",
+  "description": "User identity, SSO, and HR employee space management authority.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "USER_IDENTITY_SSO_V1",
+      "spec_id": "USER_IDENTITY_SSO_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "User authentication, SSO, and cross-agent identity resolution.",
+      "required_tasks": [
+        "authentication",
+        "identity_management"
+      ],
+      "tasks": []
+    },
+    {
+      "spec_idx": "HR_EMPLOYEE_DIRECTORY_V1",
+      "spec_id": "HR_EMPLOYEE_DIRECTORY_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Employee directory lookup, headcount, team structure, and leave balances.",
+      "required_tasks": [
+        "employee_operations",
+        "leave_operations"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "employee_operations",
+      "name": "Employee Operations",
+      "description": "Directory lookup, org traversal, and headcount analytics.",
+      "verbs": [
+        {
+          "verb": "lookup_employee",
+          "description": "Look up employee details by email",
+          "parameters": {
+            "email": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "traverse_team",
+          "description": "Traverse department team nodes",
+          "parameters": {
+            "department": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "headcount_report",
+          "description": "Generate aggregated headcount traversal",
+          "parameters": {
+            "group_by": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "org_structure",
+          "description": "Traverse reporting hierarchy for an employee",
+          "parameters": {},
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "identity_management",
+      "name": "Identity Management",
+      "description": "User provisioning, group membership, and license assignment.",
+      "verbs": [
+        {
+          "verb": "lookup_identity",
+          "description": "Look up Entra ID identity node",
+          "parameters": {
+            "email": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "provision_identity",
+          "description": "Provision new user account (approval required)",
+          "parameters": {
+            "user_data": "dict"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "disable_identity",
+          "description": "Disable user account (approval required)",
+          "parameters": {
+            "email": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "add_to_group",
+          "description": "Add identity to security group",
+          "parameters": {
+            "email": "str",
+            "group_name": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "remove_from_group",
+          "description": "Remove identity from security group",
+          "parameters": {
+            "email": "str",
+            "group_name": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "assign_license",
+          "description": "Assign license to identity (approval required)",
+          "parameters": {
+            "email": "str",
+            "license_name": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "leave_operations",
+      "name": "Leave Operations",
+      "description": "Leave balance lookups and policy traversals.",
+      "verbs": [
+        {
+          "verb": "get_leave_balance",
+          "description": "Look up leave balances for an employee",
+          "parameters": {
+            "email": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phiora"
+  ],
+  "external_services": [
+    "Microsoft Entra ID",
+    "Workday/BambooHR"
+  ],
+  "verbs": [
+    "lookup_employee",
+    "traverse_team",
+    "headcount_report",
+    "org_structure",
+    "lookup_identity",
+    "provision_identity",
+    "disable_identity",
+    "add_to_group",
+    "remove_from_group",
+    "assign_license",
+    "get_leave_balance"
+  ]
+}

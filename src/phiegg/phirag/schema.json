@@ -1,0 +1,86 @@
+{
+  "agent_id": "phirag",
+  "agent_name": "PhiRAG",
+  "layer": "Data",
+  "description": "Knowledge retrieval, semantic vector search, document indexing, and context augmentation.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "RAG_VECTOR_STORE_V1",
+      "spec_id": "RAG_VECTOR_STORE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Semantic vector search with document chunking, embedding, and context augmentation.",
+      "required_tasks": [
+        "vector_search",
+        "context_augmentation"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "vector_search",
+      "name": "Vector Search",
+      "description": "Semantic similarity search over knowledge stores.",
+      "verbs": [
+        {
+          "verb": "retrieve",
+          "description": "Find documents by semantic similarity",
+          "parameters": {
+            "query": "str",
+            "top_k": "int"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "search",
+          "description": "Search specific collection for relevant chunks",
+          "parameters": {
+            "query": "str",
+            "collection": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "context_augmentation",
+      "name": "Context Augmentation",
+      "description": "Enrich LLM prompts with retrieved knowledge context.",
+      "verbs": [
+        {
+          "verb": "generate_answer",
+          "description": "Generate grounded answer from retrieved context",
+          "parameters": {
+            "query": "str",
+            "context": "list"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "answer_query",
+          "description": "Retrieve context and generate answer in one cycle",
+          "parameters": {
+            "query": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phiora"
+  ],
+  "external_services": [
+    "Azure AI Search",
+    "Pinecone",
+    "ChromaDB"
+  ],
+  "verbs": [
+    "retrieve",
+    "search",
+    "generate_answer",
+    "answer_query"
+  ]
+}

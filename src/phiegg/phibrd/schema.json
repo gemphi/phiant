@@ -1,0 +1,58 @@
+{
+  "agent_id": "phibrd",
+  "agent_name": "PhiBrd",
+  "layer": "Application",
+  "description": "Cross-domain onboarding orchestrator \u2014 executes onboarding workflows as unified fiber bundles.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "EMPLOYEE_ONBOARDING_LIFECYCLE_V1",
+      "spec_id": "EMPLOYEE_ONBOARDING_LIFECYCLE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Multi-domain onboarding orchestration across HR, Identity, Docs, and Automation.",
+      "required_tasks": [
+        "onboarding_orchestration"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "onboarding_orchestration",
+      "name": "Onboarding Orchestration",
+      "description": "End-to-end employee onboarding workflow.",
+      "verbs": [
+        {
+          "verb": "onboard_employee",
+          "description": "Run complete multi-agent onboarding flow",
+          "parameters": {
+            "employee_data": "dict"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "get_checklist",
+          "description": "Retrieve onboarding checklist definition",
+          "parameters": {},
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phione",
+    "phidoc",
+    "phibot",
+    "phiora"
+  ],
+  "external_services": [
+    "Microsoft Entra ID",
+    "Notion",
+    "Email Gateway"
+  ],
+  "verbs": [
+    "onboard_employee",
+    "get_checklist"
+  ]
+}

@@ -8,7 +8,7 @@ The Model Context Protocol (MCP) server exposes the M-KOPA agent ecosystem as to
 
 ```python
 server_config = {
-    "name": "phiant-agents",
+    "name": "phient-agents",
     "version": "1.0.0",
     "description": "M-KOPA AI Ops Agent Platform",
     "transport": "stdio",              # "stdio" for Claude Desktop, "sse" for web
@@ -111,10 +111,10 @@ Resources expose read-only data from the ecosystem:
 
 | Resource URI | Description |
 |-------------|-------------|
-| `phiant://agents/status` | Current status of all agents |
-| `phiant://metrics/summary` | System metrics summary |
-| `phiant://knowledge/collections` | Available knowledge collections |
-| `phiant://automations/playbooks` | Available automation playbooks |
+| `phient://agents/status` | Current status of all agents |
+| `phient://metrics/summary` | System metrics summary |
+| `phient://knowledge/collections` | Available knowledge collections |
+| `phient://automations/playbooks` | Available automation playbooks |
 
 ## 5. MCP Prompts
 
@@ -134,7 +134,7 @@ Pre-built prompt templates for common workflows:
 ```json
 {
   "mcpServers": {
-    "phiant-agents": {
+    "phient-agents": {
       "command": "python",
       "args": ["-m", "src.mcp.server"],
       "cwd": "/path/to/m-kopa",

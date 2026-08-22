@@ -10,7 +10,7 @@
 `langchain` provides foundational abstractions for building LLM applications. It standardizes message representations (`HumanMessage`, `AIMessage`, `SystemMessage`), prompt templates, memory abstractions, and tool interfaces across multi-agent pipelines.
 
 ## 3. Why It Was Chosen
-1. **Industry Standard Schema**: Establishes uniform data contracts across all 6 specialized agents in the Phiant ecosystem.
+1. **Industry Standard Schema**: Establishes uniform data contracts across all 6 specialized agents in the Phient ecosystem.
 2. **Ecosystem Interoperability**: Pairs directly with LangGraph for agentic state machine graph construction.
 3. **Decoupled Architecture**: Version 0.3+ decouples core abstractions (`langchain-core`) from integrations (`langchain-community`), ensuring a lightweight base footprint.
 
@@ -41,7 +41,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are Phiant's AI Ops assistant."),
+    ("system", "You are Phient's AI Ops assistant."),
     ("human", "{user_query}")
 ])
 

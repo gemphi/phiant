@@ -1,6 +1,6 @@
-# Phiant Agentic Ecosystem — Specifications
+# Phient Agentic Ecosystem — Specifications
 
-> Technical specifications for every component of the Phiant AI Ops Agent platform.
+> Technical specifications for every component of the Phient AI Ops Agent platform.
 
 ## Document Index
 

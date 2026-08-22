@@ -1,0 +1,34 @@
+export const meta = {
+  agent: "phibus",
+  domain: "event_bus",
+  layer: "infrastructure",
+  version: "1.0.0"
+};
+
+# PhiBus: Event Bus & Pub/Sub Simplicial Complex
+
+PhiBus manages asynchronous message dispatch and real-time event broadcasting using `PBusEvent` and pure `pub`/`sub` semantics.
+
+```mermaid
+graph TD
+    subgraph Emitters["Event Emitters (PBusEvent)"]
+        PhiOne["PhiOne (Identity created)"]
+        PhiGit["PhiGit (Commit staged)"]
+        POntologyAction["POntology (Action applied)"]
+    end
+
+    subgraph PhiBusCore["PhiBus Event Space"]
+        Bus["PBusClient.pub(topic, PBusEvent)"]
+        Topics["Topic Index (identity.*, git.*, topos.*)"]
+    end
+
+    subgraph Subscribers["Event Consumers"]
+        PhiSec["PhiSec (Scan user token)"]
+        PhiLog["PhiLog (Append telemetry)"]
+        PhiGov["PhiGov (Audit compliance)"]
+    end
+
+    Emitters --> Bus
+    Bus --> Topics
+    Topics --> Subscribers
+```

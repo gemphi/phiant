@@ -1,1 +1,1 @@
-"""Phiant Enterprise Connectors package."""
+"""Phient Enterprise Connectors package."""

@@ -1,0 +1,44 @@
+{
+  "agent_id": "phigen",
+  "agent_name": "PhiGen",
+  "layer": "Infrastructure",
+  "description": "Code generation, typed schema synthesis, and Palantir parity verification engine",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "PHIGEN_CODEGEN_SPEC",
+      "spec_id": "PHIGEN_CODEGEN_SPEC",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Typed SDK synthesis and dataclass generation from POntology complexes",
+      "required_tasks": [],
+      "tasks": []
+    },
+    {
+      "spec_idx": "PHIGEN_PARITY_SPEC",
+      "spec_id": "PHIGEN_PARITY_SPEC",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Exhaustive parity auditing across Palantir reference models, schemas, and docs",
+      "required_tasks": [],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "codegen_operations",
+      "name": "Code Generation & Synthesis",
+      "description": "Synthesizes strongly-typed Python classes and client bindings",
+      "verbs": []
+    },
+    {
+      "task_id": "parity_operations",
+      "name": "Parity & Health Audit",
+      "description": "Audits full parity between schemas, documentation, and SDK implementations",
+      "verbs": []
+    }
+  ],
+  "dependencies": [],
+  "external_services": [],
+  "verbs": []
+}

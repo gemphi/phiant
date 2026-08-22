@@ -1,0 +1,33 @@
+# ReplaceCheckConfig
+
+Configuration of a check.
+
+
+This is a discriminator type and does not contain any fields. Instead, it is a union
+of of the models listed below.
+
+This discriminator class uses the `type` field to differentiate between classes.
+
+| Class | Value
+| ------------ | -------------
+ReplaceNumericColumnRangeCheckConfig | numericColumnRange
+ReplaceJobStatusCheckConfig | jobStatus
+ReplaceNumericColumnMeanCheckConfig | numericColumnMean
+ReplaceDateColumnRangeCheckConfig | dateColumnRange
+ReplaceJobDurationCheckConfig | jobDuration
+ReplaceApproximateUniquePercentageCheckConfig | approximateUniquePercentage
+ReplaceBuildStatusCheckConfig | buildStatus
+ReplaceColumnTypeCheckConfig | columnType
+ReplaceAllowedColumnValuesCheckConfig | allowedColumnValues
+ReplaceTimeSinceLastUpdatedCheckConfig | timeSinceLastUpdated
+ReplaceScheduleStatusCheckConfig | scheduleStatus
+ReplaceNullPercentageCheckConfig | nullPercentage
+ReplaceScheduleDurationCheckConfig | scheduleDuration
+ReplaceTotalColumnCountCheckConfig | totalColumnCount
+ReplaceNumericColumnMedianCheckConfig | numericColumnMedian
+ReplaceBuildDurationCheckConfig | buildDuration
+ReplaceSchemaComparisonCheckConfig | schemaComparison
+ReplacePrimaryKeyCheckConfig | primaryKey
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

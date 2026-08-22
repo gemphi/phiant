@@ -1,1 +1,1 @@
-"""Phiant RAG Pipeline package."""
+"""Phient RAG Pipeline package."""

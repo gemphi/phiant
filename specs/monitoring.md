@@ -97,7 +97,7 @@ CREATE INDEX idx_audit_request ON audit_log(request_id);
 
 | Field | Redaction | Example |
 |-------|-----------|---------|
-| Email | Partial mask | `j***@phiant.com` |
+| Email | Partial mask | `j***@phient.com` |
 | Phone | Full mask | `***-***-****` |
 | ID numbers | Full mask | `****` |
 | Names in params | Preserved (not PII in context) | "Jane Doe" |

@@ -75,14 +75,14 @@ protection_rules:
 
 ```
 # .github/CODEOWNERS
-*                           @phiant/ai-ops-team
-src/agents/                 @phiant/ai-ops-engineers
-src/connectors/             @phiant/ai-ops-engineers @phiant/security
-src/rag/                    @phiant/ai-ops-engineers
-infra/                      @phiant/ai-ops-lead @phiant/platform-team
-specs/                      @phiant/ai-ops-lead
-.github/workflows/          @phiant/ai-ops-lead @phiant/platform-team
-specs/security.md           @phiant/security
+*                           @phient/ai-ops-team
+src/agents/                 @phient/ai-ops-engineers
+src/connectors/             @phient/ai-ops-engineers @phient/security
+src/rag/                    @phient/ai-ops-engineers
+infra/                      @phient/ai-ops-lead @phient/platform-team
+specs/                      @phient/ai-ops-lead
+.github/workflows/          @phient/ai-ops-lead @phient/platform-team
+specs/security.md           @phient/security
 ```
 
 ## 4. GitHub Actions Workflows
@@ -247,8 +247,8 @@ jobs:
       - name: Deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v1
         with:
-          containerAppName: phiant-agents-staging
-          resourceGroup: rg-phiant-ai-staging
+          containerAppName: phient-agents-staging
+          resourceGroup: rg-phient-ai-staging
           imageToDeploy: ghcr.io/${{ github.repository }}:staging-latest
           environmentVariables: |
             ANTHROPIC_API_KEY=secretref:anthropic-api-key
@@ -318,8 +318,8 @@ jobs:
       - name: Blue-Green Deploy (10% canary)
         uses: azure/container-apps-deploy-action@v1
         with:
-          containerAppName: phiant-agents-prod
-          resourceGroup: rg-phiant-ai-prod
+          containerAppName: phient-agents-prod
+          resourceGroup: rg-phient-ai-prod
           imageToDeploy: ghcr.io/${{ github.repository }}:${{ inputs.image_tag }}
           trafficWeight: 10
           revisionSuffix: canary
@@ -335,8 +335,8 @@ jobs:
         if: success()
         run: |
           az containerapp ingress traffic set \
-            --name phiant-agents-prod \
-            --resource-group rg-phiant-ai-prod \
+            --name phient-agents-prod \
+            --resource-group rg-phient-ai-prod \
             --revision-weight latest=100
       
       - name: Create GitHub Release
@@ -359,12 +359,12 @@ jobs:
       - name: Rollback to previous revision
         run: |
           az containerapp revision list \
-            --name phiant-agents-prod \
-            --resource-group rg-phiant-ai-prod \
+            --name phient-agents-prod \
+            --resource-group rg-phient-ai-prod \
             --query "[?properties.active].name" -o tsv | head -2 | tail -1 | \
           xargs -I {} az containerapp ingress traffic set \
-            --name phiant-agents-prod \
-            --resource-group rg-phiant-ai-prod \
+            --name phient-agents-prod \
+            --resource-group rg-phient-ai-prod \
             --revision-weight {}=100
 ```
 
@@ -598,9 +598,9 @@ jobs:
 
 | Variable | Environment | Value |
 |----------|------------|-------|
-| `STAGING_URL` | staging | `https://phiant-agents-staging.azurecontainerapps.io` |
-| `PROD_URL` | production | `https://phiant-agents.azurecontainerapps.io` |
-| `AZURE_AI_SEARCH_ENDPOINT` | all | `https://phiant-ai-search.search.windows.net` |
+| `STAGING_URL` | staging | `https://phient-agents-staging.azurecontainerapps.io` |
+| `PROD_URL` | production | `https://phient-agents.azurecontainerapps.io` |
+| `AZURE_AI_SEARCH_ENDPOINT` | all | `https://phient-ai-search.search.windows.net` |
 
 ## 7. Issue & PR Templates
 
@@ -689,7 +689,7 @@ updates:
     schedule:
       interval: "weekly"
     reviewers:
-      - "phiant/ai-ops-team"
+      - "phient/ai-ops-team"
     labels:
       - "dependencies"
     open-pull-requests-limit: 10
@@ -699,7 +699,7 @@ updates:
     schedule:
       interval: "weekly"
     reviewers:
-      - "phiant/ai-ops-lead"
+      - "phient/ai-ops-lead"
     labels:
       - "ci-cd"
 ```

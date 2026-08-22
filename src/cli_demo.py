@@ -63,9 +63,9 @@ def run_demo(orchestrator: Any) -> None:
     console.print("\n[bold bright_cyan]Running Demo Mode[/bold bright_cyan]\n")
 
     demo_queries = [
-        ("Knowledge Agent", "What is Phiant's leave policy for employees in Kenya?"),
-        ("HR Agent", "Check leave balance for jane@phiant.com"),
-        ("Identity Agent", "Look up user peter@phiant.com in Entra ID"),
+        ("Knowledge Agent", "What is Phient's leave policy for employees in Kenya?"),
+        ("HR Agent", "Check leave balance for jane@phient.com"),
+        ("Identity Agent", "Look up user peter@phient.com in Entra ID"),
         ("Docs Agent", "Search documentation for deployment runbook"),
         ("Automation Agent", "List available automation playbooks"),
         ("Onboarding Agent", "Show onboarding checklist"),

@@ -1,0 +1,8 @@
+"""PhiDoc Spec enumeration."""
+
+from enum import Enum
+
+
+class PhiDocSpec(str, Enum):
+    DOCUMENTATION_WORKSPACE_SYNC_V1 = "DOCUMENTATION_WORKSPACE_SYNC_V1"
+    TOPOLOGY_BROWSER_EXPLORER_V1 = "TOPOLOGY_BROWSER_EXPLORER_V1"

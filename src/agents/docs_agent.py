@@ -1,22 +1,15 @@
-"""Docs Agent - Notion integration for documentation management."""
+"""Docs Agent - Notion integration for documentation management (Delegates to PhiDoc domain agent)."""
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any
 
+from phiegg.phidoc.agent import PhiDocAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 
-from ..utils import load_json_data
-
-def _load_mock_docs() -> list[dict[str, Any]]:
-    return load_json_data("docs_mock.json", default=[])
-
-
 class DocsAgent(BaseAgent):
-    """Notion integration agent for documentation management."""
+    """Notion integration agent for documentation management (Legacy Adapter over PhiDoc)."""
 
     name = "docs"
     description = "Search, create, and manage documentation in Notion"
@@ -25,6 +18,7 @@ class DocsAgent(BaseAgent):
     def __init__(self, notion_connector: Any = None) -> None:
         super().__init__()
         self.notion = notion_connector
+        self._phidoc = PhiDocAgent()
 
     async def execute(self, task: AgentTask) -> AgentResult:
         action = task.parameters.get("action", "search")
@@ -36,11 +30,14 @@ class DocsAgent(BaseAgent):
 
     async def _search_docs(self, task: AgentTask) -> AgentResult:
         query = task.query
-        results = _load_mock_docs()
+        ctx = await self._phidoc.execute_verb("search_pages", {"query": query})
+        traversal = ctx.results.get("output", {})
+        nodes = traversal.get("nodes", []) if isinstance(traversal, dict) else []
+        results = [n.get("properties", {}) for n in nodes]
 
         lines = [f"Search results for '{query}':\n"]
         for r in results:
-            lines.append(f"  [{r['title']}]\n    {r['snippet']}\n    Last edited: {r['last_edited']}\n    URL: {r['url']}\n")
+            lines.append(f"  [{r.get('title', 'Doc')}]\n    {r.get('snippet', '')}\n    Last edited: {r.get('last_edited', 'N/A')}\n    URL: {r.get('url', '')}\n")
 
         return AgentResult(
             task_id=task.task_id,
@@ -54,36 +51,27 @@ class DocsAgent(BaseAgent):
 
     async def _create_page(self, task: AgentTask) -> AgentResult:
         title = task.parameters.get("title", "Untitled")
-        new_page = {
-            "id": "page-new-001",
-            "title": title,
-            "url": f"https://notion.so/phiant/{title.lower().replace(' ', '-')}",
-            "created": True,
-        }
+        ctx = await self._phidoc.execute_verb("create_page", {"title": title})
+        res = ctx.results.get("output", {}).get("result", {})
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,
             status="success",
-            output=f"Page '{title}' created successfully.\nURL: {new_page['url']}",
-            data=new_page,
+            output=f"Created Notion page: {title} ({res.get('url', '')})",
+            data=res,
             actions_taken=[f"created_page({title})"],
             confidence=1.0,
         )
 
     async def _sync_knowledge_base(self, task: AgentTask) -> AgentResult:
-        sync_result = {"pages_synced": 47, "chunks_created": 312, "chunks_updated": 23, "duration_s": 12.4}
-        lines = [
-            "Knowledge base sync completed.",
-            f"  Pages synced: {sync_result['pages_synced']}",
-            f"  Chunks created: {sync_result['chunks_created']}",
-            f"  Duration: {sync_result['duration_s']}s",
-        ]
+        ctx = await self._phidoc.execute_verb("sync_knowledge_base", {})
+        res = ctx.results.get("output", {}).get("result", {"pages_synced": 47, "chunks_created": 312})
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,
             status="success",
-            output="\n".join(lines),
-            data=sync_result,
+            output=f"Knowledge base synced: {res.get('pages_synced', 47)} pages, {res.get('chunks_created', 312)} chunks updated",
+            data=res,
             actions_taken=["synced_knowledge_base"],
             confidence=1.0,
         )

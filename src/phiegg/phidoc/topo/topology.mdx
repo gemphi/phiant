@@ -1,0 +1,61 @@
+import { AgentOntologylogy, Mermaid, SimplexBadge } from '@phiegg/components'
+
+# PhiDoc: Documentation & Workspace Knowledge Ontologylogy
+
+<SimplexBadge layer="Application" simplex="Hierarchical Document Trees & MDX Charts" version="1.0.0" />
+
+PhiDoc maintains the hierarchical documentation topology connecting Notion workspaces, Markdown repositories, and agent `.mdx` architecture cards for automated web documentation rendering.
+
+## 1. Documentation Space Ontologylogy
+
+```mermaid
+graph TD
+    subgraph DocSpace["Documentation Space (Tree Simplex)"]
+        Root["Root Workspace"]
+        Handbooks["Engineering Handbook"]
+        Runbooks["Operations Runbooks"]
+        AgentDocs["Agent Ontologylogy (.mdx)"]
+    end
+
+    Root --> Handbooks
+    Root --> Runbooks
+    Root --> AgentDocs
+
+    AgentDocs -->|Morphism: sync_knowledge_base| KnowledgeSpace["Knowledge Space (PhiRAG/PhiOra)"]
+    DocSpace -->|Browser Render Morphism| DocSite["PhiDoc Browser Documentation Explorer"]
+```
+
+### ASCII Document Tree
+```
+[ Workspace Root ]
+       │
+       ├─► [ Engineering Handbook ]
+       ├─► [ Operations Runbooks ]
+       └─► [ Agent Ontologylogy Hub ]
+                 ├─► phione/topo/topology.mdx
+                 ├─► phical/topo/topology.mdx
+                 ├─► phigit/topo/topology.mdx
+                 └─► phimen/topo/topology.mdx
+```
+
+## 2. Dynamic MDX Auto-Presentation Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Browser
+    participant PhiDoc as PhiDocAgent / Browser Server
+    participant AgentPackages as Agent `topo/*.mdx` Files
+    participant Knowledge as Knowledge Base
+
+    Browser->>PhiDoc: GET /docs/agents/phical
+    PhiDoc->>AgentPackages: Read phical/topo/topology.mdx
+    PhiDoc->>PhiDoc: Parse frontmatter, Mermaid, and JSX badges
+    PhiDoc-->>Browser: Render Interactive Palantir-Style Ontologylogy Card
+```
+
+## 3. Inter-Agent Dependencies & Inheritance
+
+- **Extends**: `PhiAgent`
+- **Depends on**: `phiora` (Document datasets), `phigit` (Doc history)
+- **Feeds into**: `phirag` (Indexed doc chunks), `phibrd` (Onboarding doc pages)

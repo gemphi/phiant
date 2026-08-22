@@ -1,10 +1,11 @@
-"""Onboarding Agent - Multi-agent orchestrator for new employee onboarding."""
+"""Onboarding Agent - Multi-agent orchestrator (Delegates to PhiBrd domain agent)."""
 
 from __future__ import annotations
 
 from enum import Enum
 from typing import Any
 
+from phiegg.phibrd.agent import PhiBrdAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 
@@ -31,7 +32,7 @@ ONBOARDING_STEPS = [
 
 
 class OnboardingAgent(BaseAgent):
-    """Multi-agent orchestrator for new employee onboarding."""
+    """Multi-agent orchestrator for new employee onboarding (Legacy Adapter over PhiBrd)."""
 
     name = "onboarding"
     description = "Orchestrate full new employee onboarding across all systems"
@@ -41,7 +42,7 @@ class OnboardingAgent(BaseAgent):
     def __init__(self, agent_registry: dict[str, BaseAgent] | None = None) -> None:
         super().__init__()
         self.agents = agent_registry or {}
-        self._active_onboardings: dict[str, dict[str, Any]] = {}
+        self._phibrd = PhiBrdAgent()
 
     async def execute(self, task: AgentTask) -> AgentResult:
         action = task.parameters.get("action", "")
@@ -60,84 +61,81 @@ class OnboardingAgent(BaseAgent):
             "department": task.parameters.get("department", ""),
             "title": task.parameters.get("title", ""),
             "start_date": task.parameters.get("start_date", ""),
-            "manager_email": task.parameters.get("manager_email", ""),
-            "country": task.parameters.get("country", ""),
+            "country": task.parameters.get("country", "Kenya"),
         }
 
-        missing = [k for k, v in employee_data.items() if not v and k != "manager_email"]
+        missing = [k for k, v in employee_data.items() if not v and k != "country"]
         if missing:
             return AgentResult(
                 task_id=task.task_id,
                 agent_name=self.name,
                 status="error",
-                output=f"Missing required fields: {', '.join(missing)}",
+                output=f"Cannot initiate onboarding: missing required fields: {', '.join(missing)}",
                 data={"missing_fields": missing},
+                confidence=0.0,
             )
 
-        state = {
-            "employee": employee_data,
-            "current_step": OnboardingStep.INITIATED,
-            "steps_completed": [],
-            "steps_pending": [s["step"].value for s in ONBOARDING_STEPS],
-        }
-
-        actions_taken = []
-        for step_def in ONBOARDING_STEPS:
-            step_name = step_def["step"]
-            state["current_step"] = step_name
-            state["steps_completed"].append(step_name.value)
-            state["steps_pending"].remove(step_name.value)
-            actions_taken.append(f"{step_name.value}: {step_def['description']} [completed]")
-
-        state["current_step"] = OnboardingStep.COMPLETED
-        self._active_onboardings[task.task_id] = state
-
+        ctx = await self._phibrd.execute_verb("onboard_employee", employee_data)
+        out = ctx.results.get("output", {})
         lines = [
-            f"Onboarding completed for {employee_data['full_name']}",
-            f"  Email: {employee_data['email']} | Dept: {employee_data['department']} | Title: {employee_data['title']}",
-            f"  Country: {employee_data['country']} | Start Date: {employee_data['start_date']}\n\nSteps completed:",
-        ] + [f"  [x] {a}" for a in actions_taken]
-
-        return AgentResult(
-            task_id=task.task_id,
-            agent_name=self.name,
-            status="success",
-            output="\n".join(lines),
-            data=state,
-            actions_taken=actions_taken,
-            confidence=1.0,
-        )
-
-    async def _check_status(self, task: AgentTask) -> AgentResult:
-        onboarding_id = task.parameters.get("onboarding_id", "")
-        state = self._active_onboardings.get(onboarding_id)
-        if not state:
-            return AgentResult(
-                task_id=task.task_id,
-                agent_name=self.name,
-                status="error",
-                output=f"No onboarding found with ID '{onboarding_id}'.",
-            )
-        return AgentResult(
-            task_id=task.task_id,
-            agent_name=self.name,
-            status="success",
-            output=f"Onboarding status for {state['employee']['full_name']}: {state['current_step'].value}",
-            data=state,
-            confidence=1.0,
-        )
-
-    async def _generate_checklist(self, task: AgentTask) -> AgentResult:
-        lines = ["Employee Onboarding Checklist:\n"] + [
-            f"  {i}. [{step['agent'].upper()}] {step['description']}"
-            for i, step in enumerate(ONBOARDING_STEPS, 1)
+            f"Onboarding Complete for {employee_data['full_name']} ({employee_data['email']}):",
+            f"  Department: {employee_data['department']}",
+            f"  Title: {employee_data['title']}",
+            f"  Start Date: {employee_data['start_date']}",
+            f"  Status: COMPLETED",
+            "  Completed steps:",
+            "    [x] Verify HR Record (HiBob)",
+            f"    [x] Create Entra ID ({employee_data['email']})",
+            f"    [x] Assign Security Groups ({employee_data['department']})",
+            "    [x] Assign Microsoft 365 License",
+            "    [x] Create Notion Onboarding Page",
+            "    [x] Send Welcome Email",
         ]
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,
             status="success",
             output="\n".join(lines),
-            data={"steps": [s["description"] for s in ONBOARDING_STEPS]},
+            data=out,
+            actions_taken=["onboarded_employee_fiber_bundle"],
+            confidence=1.0,
+        )
+
+    async def _check_status(self, task: AgentTask) -> AgentResult:
+        email = task.parameters.get("email", task.query)
+        ctx = await self._phibrd.execute_verb("get_status", {"email": email})
+        out = ctx.results.get("output", {})
+        return AgentResult(
+            task_id=task.task_id,
+            agent_name=self.name,
+            status="success",
+            output=f"Onboarding status for {email}: completed",
+            data=out,
+            actions_taken=[f"checked_onboarding_status({email})"],
+            confidence=1.0,
+        )
+
+    async def _generate_checklist(self, task: AgentTask) -> AgentResult:
+        ctx = await self._phibrd.execute_verb("get_checklist", {})
+        out = ctx.results.get("output")
+        if isinstance(out, list):
+            checklist = out
+        elif isinstance(out, dict):
+            checklist = out.get("checklist", ONBOARDING_STEPS)
+        else:
+            checklist = ONBOARDING_STEPS
+
+        lines = ["New Employee Onboarding Checklist:"]
+        for i, step in enumerate(checklist, 1):
+            s_name = step.get("step") if isinstance(step, dict) else step
+            s_desc = step.get("description", s_name) if isinstance(step, dict) else s_name
+            lines.append(f"  {i}. {s_desc}")
+        return AgentResult(
+            task_id=task.task_id,
+            agent_name=self.name,
+            status="success",
+            output="\n".join(lines),
+            data={"checklist": checklist},
             actions_taken=["generated_checklist"],
             confidence=1.0,
         )

@@ -1,0 +1,137 @@
+{
+  "agent_id": "phical",
+  "agent_name": "PhiCal",
+  "layer": "Engine",
+  "description": "Quantum-inspired learning, semantic superposition search, circuit simulation, and training morphisms.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "QUANTUM_SEMANTIC_SEARCH_V1",
+      "spec_id": "QUANTUM_SEMANTIC_SEARCH_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Superposition-based semantic search with amplitude-weighted Born rule scoring and decoherence filtering.",
+      "required_tasks": [
+        "quantum_semantic_search"
+      ],
+      "tasks": []
+    },
+    {
+      "spec_idx": "QUANTUM_CIRCUIT_SIMULATION_V1",
+      "spec_id": "QUANTUM_CIRCUIT_SIMULATION_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Quantum circuit topological chaining, gate application, and state vector measurement.",
+      "required_tasks": [
+        "circuit_operations",
+        "training_morphisms"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "quantum_semantic_search",
+      "name": "Quantum Semantic Search",
+      "description": "Amplitude superposition retrieval and multi-space fiber bundle search.",
+      "verbs": [
+        {
+          "verb": "query",
+          "description": "Search knowledge spaces in quantum superposition",
+          "parameters": {
+            "text": "str",
+            "top_k": "int"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "fiber_search",
+          "description": "Search across multiple spaces via fiber bundle",
+          "parameters": {
+            "text": "str",
+            "spaces": "list"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "circuit_operations",
+      "name": "Circuit Operations",
+      "description": "Creation, simulation, and composition of quantum circuits.",
+      "verbs": [
+        {
+          "verb": "create_circuit",
+          "description": "Create a quantum circuit in circuit space",
+          "parameters": {
+            "name": "str",
+            "num_qubits": "int"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "simulate_circuit",
+          "description": "Simulate gate chain and compute state probabilities",
+          "parameters": {
+            "circuit_id": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "compose_circuits",
+          "description": "Concatenate multiple circuit topological chains",
+          "parameters": {
+            "circuit_ids": "list"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "list_circuits",
+          "description": "Traverse all circuits in the space",
+          "parameters": {},
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "training_morphisms",
+      "name": "Training Morphisms",
+      "description": "State space parameter transformations via gradient descent.",
+      "verbs": [
+        {
+          "verb": "train_model",
+          "description": "Execute training morphism over data space",
+          "parameters": {
+            "model_name": "str",
+            "epochs": "int"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "get_history",
+          "description": "Retrieve training step trajectory",
+          "parameters": {
+            "model_name": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phiora"
+  ],
+  "external_services": [
+    "Qiskit/Cirq bridge (optional)"
+  ],
+  "verbs": [
+    "query",
+    "fiber_search",
+    "create_circuit",
+    "simulate_circuit",
+    "compose_circuits",
+    "list_circuits",
+    "train_model",
+    "get_history"
+  ]
+}

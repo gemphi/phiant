@@ -1,0 +1,22 @@
+{
+  "agent_id": "phisec",
+  "agent_name": "PhiSec",
+  "layer": "Infrastructure",
+  "description": "Security & Vulnerability Scanner, Token Verifier, and Policy Enforcer",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "SECURITY_GOVERNANCE_V1",
+      "spec_id": "SECURITY_GOVERNANCE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "",
+      "required_tasks": [],
+      "tasks": []
+    }
+  ],
+  "tasks": [],
+  "dependencies": [],
+  "external_services": [],
+  "verbs": []
+}

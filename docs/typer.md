@@ -10,7 +10,7 @@
 `typer` builds CLI interfaces using Python type hints, wrapping Click.
 
 ## 3. Why It Was Chosen
-1. **Command Line Suite**: Exposes CLI commands (`phiant cli`, `phiant serve`).
+1. **Command Line Suite**: Exposes CLI commands (`phient cli`, `phient serve`).
 2. **Type-Driven Syntax**: Same developer experience as FastAPI.
 
 ## 4. Architectural Flow

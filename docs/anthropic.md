@@ -10,7 +10,7 @@
 The `anthropic` Python SDK is the official client library provided by Anthropic to interact with Claude models via the Anthropic Messages API. It handles request formatting, authentication headers (`x-api-key`), non-blocking asynchronous invocation (`AsyncAnthropic`), streaming completions, prompt caching, and structured token usage metrics.
 
 ## 3. Why It Was Chosen
-1. **Core AI Backbone**: Phiant's AI Ops ecosystem uses Claude 3.5 Sonnet / 4 as its foundational LLM for knowledge synthesis, intent routing, and multi-agent coordination.
+1. **Core AI Backbone**: Phient's AI Ops ecosystem uses Claude 3.5 Sonnet / 4 as its foundational LLM for knowledge synthesis, intent routing, and multi-agent coordination.
 2. **Native Async Support**: Non-blocking `AsyncAnthropic` prevents event-loop starvation in FastAPI, allowing high-throughput concurrent agent requests.
 3. **Enterprise Reliability**: Provides explicit exception classes (`RateLimitError`, `APIStatusError`, `APIConnectionError`) enabling precise retry and backoff handlers.
 
@@ -19,7 +19,7 @@ The `anthropic` Python SDK is the official client library provided by Anthropic 
 ### System Component Structure
 ```mermaid
 graph TD
-    subgraph Phiant Platform
+    subgraph Phient Platform
         Router[Intent Router]
         KnowledgeAgent[Knowledge Agent]
         Config[Pydantic Settings]
@@ -89,7 +89,7 @@ class KnowledgeAgent:
         response = await self.client.messages.create(
             model=settings.anthropic_model,
             max_tokens=1024,
-            system="You are Phiant's internal Knowledge Agent.",
+            system="You are Phient's internal Knowledge Agent.",
             messages=[{"role": "user", "content": user_message}],
         )
         

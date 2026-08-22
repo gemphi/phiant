@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en" class="bp5-dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palantir Foundry & PhiEgg AIP — Interactive Developer Portal & Studio</title>
+
+  <!-- Google Fonts: Inter, Outfit, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Markdown, Mermaid, Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════
+       PALANTIR BLUEPRINT + FOUNDRY DEVELOPER CONSOLE THEME SYSTEM
+       ═════════════════════════════════════════════════════════════════════ */
+    :root,
+    html.bp5-dark {
+      --bp-bg: #090d13;
+      --bp-bg-2: #0e131b;
+      --bp-bg-3: #161f2e;
+      --bp-card: #111823;
+      --bp-card-hover: #1b2535;
+      --bp-border: rgba(255, 255, 255, 0.12);
+      --bp-border-subtle: rgba(255, 255, 255, 0.06);
+      --bp-text: #f0f6fc;
+      --bp-text-muted: #8b949e;
+      --bp-text-disabled: #6e7681;
+      --bp-input-bg: #090d13;
+      --bp-navbar-bg: rgba(11, 15, 22, 0.96);
+      --bp-sidebar-bg: rgba(11, 15, 22, 0.98);
+      --bp-content-bg: #0c1118;
+      --bp-playground-bg: #0f1520;
+      --bp-code-bg: #06090f;
+      --bp-code-text: #38bdf8;
+      --bp-response-bg: #06090f;
+      --bp-response-text: #34d399;
+
+      /* Intent Colors */
+      --bp-intent-primary: #137cbd;
+      --bp-intent-primary-hover: #106ba3;
+      --bp-intent-success: #0f9960;
+      --bp-intent-warning: #d9822b;
+      --bp-intent-danger: #db3737;
+      --bp-intent-accent: #6366f1;
+      --bp-intent-cyan: #00a396;
+      --bp-intent-purple: #8b5cf6;
+      --bp-active-border: #2d72d2;
+
+      /* Typography */
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, Menlo, Monaco, monospace;
+    }
+
+    html.bp5-light {
+      --bp-bg: #f8fafc;
+      --bp-bg-2: #ffffff;
+      --bp-bg-3: #f1f5f9;
+      --bp-card: #ffffff;
+      --bp-card-hover: #f1f5f9;
+      --bp-border: rgba(0, 0, 0, 0.12);
+      --bp-border-subtle: rgba(0, 0, 0, 0.06);
+      --bp-text: #0f172a;
+      --bp-text-muted: #64748b;
+      --bp-text-disabled: #94a3b8;
+      --bp-input-bg: #ffffff;
+      --bp-navbar-bg: rgba(255, 255, 255, 0.96);
+      --bp-sidebar-bg: rgba(248, 250, 252, 0.98);
+      --bp-content-bg: #ffffff;
+      --bp-playground-bg: #f8fafc;
+      --bp-code-bg: #f1f5f9;
+      --bp-code-text: #0284c7;
+      --bp-response-bg: #f1f5f9;
+      --bp-response-text: #059669;
+      --bp-active-border: #137cbd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    body {
+      background: var(--bp-bg);
+      color: var(--bp-text);
+      font-family: var(--font-family);
+      font-size: 14px;
+      line-height: 1.55;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Navbar ─────────────────────────────────────────────────── */
+    .docs-navbar {
+      height: 56px;
+      background: var(--bp-navbar-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bp-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .navbar-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--bp-text);
+      cursor: pointer;
+    }
+
+    .navbar-logo {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #137cbd 0%, #6366f1 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    }
+
+    .navbar-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--bp-text);
+    }
+
+    /* Gamified XP Indicator */
+    .user-xp-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #818cf8;
+      cursor: pointer;
+    }
+
+    .user-xp-badge:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
+
+    /* Top Nav Tabs */
+    .top-nav-tabs {
+      display: flex;
+      gap: 0.25rem;
+      margin-left: 0.5rem;
+    }
+
+    .top-nav-tab {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--bp-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+    }
+
+    .top-nav-tab:hover {
+      color: var(--bp-text);
+      background: var(--bp-bg-3);
+    }
+
+    .top-nav-tab.active {
+      color: var(--bp-text);
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      font-weight: 600;
+    }
+
+    /* Project / Workspace Selector */
+    .workspace-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border);
+      border-radius: 6px;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--bp-text);
+      cursor: pointer;
+      user-select: none;
+    }
+    .workspace-picker:hover {
+      border-color: var(--bp-intent-primary);
+      background: var(--bp-card-hover);
+    }
+
+    /* Palantir Neat Interactive Sliders */
+    .header-sliders-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--bp-border-subtle);
+      border-radius: 8px;
+      padding: 0.25rem 0.65rem;
+    }
+
+    .header-slider-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.74rem;
+      color: var(--bp-text-muted);
+    }
+
+    .header-slider-label {
+      font-weight: 500;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .header-slider-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.08rem 0.35rem;
+      border-radius: 4px;
+      background: var(--bp-bg-3);
+      color: #38bdf8;
+      border: 1px solid var(--bp-border-subtle);
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .bp-slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 58px;
+      height: 4px;
+      background: var(--bp-bg-3);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .bp-slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bp-intent-primary);
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(19, 124, 189, 0.6);
+      transition: transform 0.1s ease;
+    }
+
+    .bp-slider-input::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+
+    /* Multi-Cloud Switcher */
+    .cloud-pills-wrapper {
+      display: flex;
+      align-items: center;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border-subtle);
+      border-radius: 6px;
+      padding: 0.15rem;
+      gap: 0.15rem;
+    }
+
+    .cloud-pill-btn {
+      border: none;
+      background: transparent;
+      color: var(--bp-text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .cloud-pill-btn:hover {
+      color: var(--bp-text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cloud-pill-btn.active {
+      background: var(--bp-card);
+      color: #38bdf8;
+      border: 1px solid var(--bp-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* Status Pill */
+    .header-status-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 6px;
+      padding: 0.25rem 0.55rem;
+      white-space: nowrap;
+    }
+
+    /* Global Search Button */
+    .global-search-trigger {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bp-input-bg);
+      border: 1px solid var(--bp-border);
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      color: var(--bp-text-muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      width: 180px;
+    }
+
+    .global-search-trigger:hover {
+      border-color: var(--bp-intent-primary);
+      color: var(--bp-text);
+    }
+
+    .search-kbd {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border-subtle);
+      border-radius: 4px;
+      padding: 0.1rem 0.35rem;
+      margin-left: auto;
+    }
+
+
+    /* Buttons */
+    .bp-button {
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border);
+      color: var(--bp-text);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+
+    .bp-button:hover {
+      background: var(--bp-card-hover);
+      border-color: var(--bp-border);
+    }
+
+    .bp-button.intent-primary {
+      background: var(--bp-intent-primary);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .bp-button.intent-primary:hover {
+      background: var(--bp-intent-primary-hover);
+    }
+
+    /* ── Main Layout: Views Container ───────────────────────────────── */
+    .main-view-container {
+      flex: 1;
+      height: calc(100vh - 56px);
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    /* View: Documentation Layout (3 columns) */
+    .view-docs-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr 340px;
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* View: Play Studio Layout */
+    .view-play-layout {
+      display: none;
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      padding: 2rem 3rem;
+      background: var(--bp-content-bg);
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* View: Developer Console & Architecture */
+    .view-console-layout {
+      display: none;
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      padding: 2.5rem 3.5rem;
+      background: var(--bp-content-bg);
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ── Column 1: Left Navigation Tree Sidebar ──────────────────────── */
+    .docs-sidebar {
+      background: var(--bp-sidebar-bg);
+      border-right: 1px solid var(--bp-border-subtle);
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .sidebar-filter-box {
+      position: sticky;
+      top: 0;
+      background: var(--bp-sidebar-bg);
+      z-index: 10;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--bp-border-subtle);
+    }
+
+    .sidebar-filter-input {
+      width: 100%;
+      background: var(--bp-input-bg);
+      border: 1px solid var(--bp-border);
+      border-radius: 6px;
+      padding: 0.45rem 0.75rem;
+      color: var(--bp-text);
+      font-size: 0.82rem;
+      outline: none;
+    }
+
+    .sidebar-filter-input:focus {
+      border-color: var(--bp-intent-primary);
+    }
+
+    .sidebar-group-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bp-text-muted);
+      padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    .nav-node {
+      margin-bottom: 0.15rem;
+    }
+
+    .nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      color: var(--bp-text-muted);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    .nav-header:hover {
+      color: var(--bp-text);
+      background: var(--bp-bg-3);
+    }
+
+    .nav-header.active {
+      color: var(--bp-text);
+      background: rgba(19, 124, 189, 0.15);
+      border-left: 3px solid var(--bp-active-border);
+      font-weight: 600;
+    }
+
+    .nav-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-chevron {
+      font-size: 0.65rem;
+      transition: transform 0.2s ease;
+      color: var(--bp-text-disabled);
+      width: 12px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .nav-chevron.expanded {
+      transform: rotate(90deg);
+    }
+
+    .nav-children {
+      margin-left: 1.15rem;
+      padding-left: 0.4rem;
+      border-left: 1px solid var(--bp-border-subtle);
+      display: none;
+    }
+
+    .nav-children.expanded {
+      display: block;
+    }
+
+    .nav-item-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      color: var(--bp-text-muted);
+      font-size: 0.8rem;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 0.1rem;
+    }
+
+    .nav-item-link:hover {
+      color: var(--bp-text);
+      background: var(--bp-bg-3);
+    }
+
+    .nav-item-link.active {
+      color: var(--bp-text);
+      background: rgba(19, 124, 189, 0.18);
+      border-left: 2px solid var(--bp-intent-primary);
+      font-weight: 600;
+    }
+
+    .badge-pill {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      padding: 0.08rem 0.35rem;
+      border-radius: 10px;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border-subtle);
+      color: var(--bp-text-muted);
+    }
+
+    .badge-method-get {
+      background: rgba(15, 153, 96, 0.15);
+      color: #0f9960;
+      border-color: rgba(15, 153, 96, 0.3);
+    }
+
+    .badge-method-post {
+      background: rgba(19, 124, 189, 0.15);
+      color: #137cbd;
+      border-color: rgba(19, 124, 189, 0.3);
+    }
+
+    /* ── Column 2: Center Document Viewport ─────────────────────────── */
+    .docs-content {
+      padding: 2.25rem 3.5rem;
+      overflow-y: auto;
+      background: var(--bp-content-bg);
+      border-right: 1px solid var(--bp-border-subtle);
+    }
+
+    .docs-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--bp-text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .docs-breadcrumbs a {
+      color: var(--bp-intent-primary);
+      text-decoration: none;
+    }
+
+    .docs-breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+
+    /* Markdown Styling */
+    .markdown-body {
+      color: var(--bp-text);
+      font-size: 0.95rem;
+      line-height: 1.68;
+    }
+
+    .markdown-body h1 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--bp-text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--bp-border-subtle);
+    }
+
+    .markdown-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--bp-text);
+      margin-top: 2rem;
+      margin-bottom: 0.85rem;
+      padding-top: 0.75rem;
+    }
+
+    .markdown-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--bp-text);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .markdown-body p {
+      margin-bottom: 1.1rem;
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .markdown-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    .markdown-body pre {
+      background: var(--bp-code-bg);
+      border: 1px solid var(--bp-border);
+      border-radius: 8px;
+      padding: 1.1rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--bp-code-text);
+    }
+
+    .markdown-body code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border-subtle);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--bp-intent-primary);
+    }
+
+    .markdown-body pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.86rem;
+      background: var(--bp-card);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--bp-border);
+    }
+
+    .markdown-body th {
+      background: var(--bp-bg-3);
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--bp-border);
+    }
+
+    .markdown-body td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--bp-border-subtle);
+    }
+
+    .markdown-body tr:last-child td {
+      border-bottom: none;
+    }
+
+    .markdown-body tr:hover td {
+      background: var(--bp-card-hover);
+    }
+
+    .markdown-body blockquote {
+      border-left: 4px solid var(--bp-intent-primary);
+      background: rgba(19, 124, 189, 0.08);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.25rem 0;
+    }
+
+    /* Blueprint Style Code Example Frame */
+    .docs-code-example-frame {
+      display: flex;
+      flex-direction: column;
+      margin: 1.5rem 0;
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .docs-code-example-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.85rem;
+      background: var(--bp-bg-3);
+      border-bottom: 1px solid var(--bp-border);
+    }
+
+    .code-block-wrapper {
+      position: relative;
+    }
+
+    .code-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--bp-bg-3);
+      border: 1px solid var(--bp-border);
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.72rem;
+      color: var(--bp-text-muted);
+      cursor: pointer;
+    }
+
+    .code-copy-btn:hover {
+      color: var(--bp-text);
+      background: var(--bp-card-hover);
+    }
+
+    /* ── Column 3: Right Rail (TOC & Mini Sandbox) ───────────────────── */
+    .docs-right-rail {
+      background: var(--bp-playground-bg);
+      overflow-y: auto;
+      padding: 1.5rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--bp-text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .toc-item {
+      font-size: 0.8rem;
+      color: var(--bp-text-muted);
+      text-decoration: none;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .toc-item:hover {
+      color: var(--bp-text);
+      background: var(--bp-bg-3);
+    }
+
+    .toc-item.active {
+      color: var(--bp-intent-primary);
+      font-weight: 600;
+      border-left: 2px solid var(--bp-intent-primary);
+    }
+
+    .toc-item.indent-2 {
+      padding-left: 1rem;
+    }
+
+    .toc-item.indent-3 {
+      padding-left: 1.6rem;
+    }
+
+    /* ── Play Studio View (16 Examples Grid) ────────────────────────── */
+    .play-hero {
+      background: linear-gradient(135deg, rgba(19, 124, 189, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
+      border: 1px solid var(--bp-border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .play-hero-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--bp-text);
+      margin-bottom: 0.4rem;
+    }
+
+    .play-hero-subtitle {
+      color: var(--bp-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .play-grid-16 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .play-card {
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .play-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #137cbd, #6366f1);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .play-card:hover {
+      background: var(--bp-card-hover);
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .play-card:hover::before {
+      opacity: 1;
+    }
+
+    .play-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .play-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--bp-text);
+    }
+
+    .play-card-desc {
+      font-size: 0.82rem;
+      color: var(--bp-text-muted);
+      line-height: 1.45;
+    }
+
+    .play-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--bp-border-subtle);
+    }
+
+    .play-card-action {
+      color: var(--bp-intent-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* ── Live Play Studio Modal / Runner ────────────────────────────── */
+    .play-runner-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .play-runner-box {
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      border-radius: 12px;
+      width: 900px;
+      max-width: 95vw;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .play-runner-header {
+      padding: 1rem 1.5rem;
+      background: var(--bp-bg-3);
+      border-bottom: 1px solid var(--bp-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .play-runner-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .play-runner-code-pane {
+      background: var(--bp-code-bg);
+      border-right: 1px solid var(--bp-border);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+    }
+
+    .play-runner-output-pane {
+      background: var(--bp-response-bg);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+    }
+
+    /* ── Developer Console Hero Cards ───────────────────────────────── */
+    .console-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .console-hero-card {
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .console-hero-card:hover {
+      border-color: var(--bp-intent-primary);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .console-hero-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      background: rgba(19, 124, 189, 0.15);
+      border: 1px solid rgba(19, 124, 189, 0.3);
+      color: #38bdf8;
+    }
+
+    /* ── Command Palette Modal (Ctrl+K) ─────────────────────────────── */
+    .cmd-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+
+    .cmd-modal {
+      background: var(--bp-card);
+      border: 1px solid var(--bp-border);
+      border-radius: 10px;
+      width: 600px;
+      max-width: 90vw;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cmd-input-wrapper {
+      padding: 0.85rem 1.15rem;
+      border-bottom: 1px solid var(--bp-border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cmd-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--bp-text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .cmd-results-list {
+      max-height: 360px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .cmd-result-item {
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--bp-text);
+      font-size: 0.85rem;
+    }
+
+    .cmd-result-item:hover {
+      background: rgba(19, 124, 189, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar (Palantir Neat Blueprint Header) -->
+  <header class="docs-navbar">
+    <!-- Left Navigation Group -->
+    <div class="navbar-group">
+      <div class="navbar-brand" onclick="switchMainTab('docs')" title="Palantir Foundry Enterprise AI">
+        <div class="navbar-logo">Φ</div>
+        <div class="navbar-title">Palantir Foundry</div>
+      </div>
+      <span class="badge-pill" style="background: rgba(19,124,189,0.2); color: #38bdf8;">v2.0 Ontology</span>
+
+      <!-- Workspace & Branch Picker -->
+      <div class="workspace-picker" title="Active Foundry Space & Branch">
+        <span>🌐</span>
+        <span>Global Operations / Production-East</span>
+        <span style="font-size: 0.65rem; color: var(--bp-text-muted);">▾</span>
+      </div>
+
+      <!-- Top Navigation Tabs -->
+      <nav class="top-nav-tabs">
+        <div class="top-nav-tab active" id="tab-docs" onclick="switchMainTab('docs')">
+          <span>📘</span> <span>Documentation</span>
+        </div>
+        <div class="top-nav-tab" id="tab-play" onclick="switchMainTab('play')">
+          <span>⚡</span> <span>16 Playgrounds</span>
+        </div>
+        <div class="top-nav-tab" id="tab-console" onclick="switchMainTab('console')">
+          <span>🎛️</span> <span>Developer Studio</span>
+        </div>
+        <div class="top-nav-tab" id="tab-flow" onclick="switchMainTab('flow')">
+          <span>🌐</span> <span>Architecture Flow</span>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Center Sliders Group (Interactive Model & Ontology Hyperparameters) -->
+    <div class="header-sliders-container" title="Real-time Inference & Ontology Graph Hyperparameters">
+      <!-- Confidence Threshold Slider -->
+      <div class="header-slider-item" title="Minimum Confidence Score for Autonomous Agent Actions">
+        <span class="header-slider-label"><span>🎯</span> Conf:</span>
+        <span class="header-slider-pill" id="conf-val">85%</span>
+        <input type="range" min="50" max="99" value="85" class="bp-slider-input" id="slider-conf" oninput="updateHeaderSlider('conf', this.value)">
+      </div>
+
+      <div style="width: 1px; height: 16px; background: var(--bp-border-subtle);"></div>
+
+      <!-- Temperature Slider -->
+      <div class="header-slider-item" title="LLM Determinism / Temperature (0.00 = Deterministic, 1.00 = Creative)">
+        <span class="header-slider-label"><span>🌡️</span> Temp:</span>
+        <span class="header-slider-pill" id="temp-val">0.20</span>
+        <input type="range" min="0" max="100" value="20" class="bp-slider-input" id="slider-temp" oninput="updateHeaderSlider('temp', this.value)">
+      </div>
+
+      <div style="width: 1px; height: 16px; background: var(--bp-border-subtle);"></div>
+
+      <!-- Ontology Graph Traversal Depth -->
+      <div class="header-slider-item" title="Ontology Simplicial Link Traversal Depth">
+        <span class="header-slider-label"><span>🕸️</span> Depth:</span>
+        <span class="header-slider-pill" id="depth-val">3 hops</span>
+        <input type="range" min="1" max="5" value="3" class="bp-slider-input" id="slider-depth" oninput="updateHeaderSlider('depth', this.value)">
+      </div>
+    </div>
+
+    <!-- Right Group (Cloud Switcher, Search, Health, Actions) -->
+    <div class="navbar-group">
+      <!-- Multi-Cloud Selector -->
+      <div class="cloud-pills-wrapper" title="Connected Enterprise Cloud & Lakehouse Providers">
+        <button class="cloud-pill-btn active" onclick="switchCloud('azure', this)">Azure</button>
+        <button class="cloud-pill-btn" onclick="switchCloud('aws', this)">AWS</button>
+        <button class="cloud-pill-btn" onclick="switchCloud('gcp', this)">GCP</button>
+        <button class="cloud-pill-btn" onclick="switchCloud('snow', this)">Snowflake</button>
+        <button class="cloud-pill-btn" onclick="switchCloud('palantir', this)">Foundry</button>
+      </div>
+
+      <!-- System Health Indicator -->
+      <div class="header-status-pill" title="Real-time Platform Gateway Status">
+        <span>🟢</span>
+        <span>Healthy</span>
+      </div>
+
+      <!-- Search Trigger -->
+      <div class="global-search-trigger" onclick="openCmdPalette()" title="Command Palette & Quick Search">
+        <span>🔍 Search docs...</span>
+        <span class="search-kbd">Ctrl+K</span>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button class="bp-button" id="theme-btn" onclick="cycleTheme()" title="Switch Theme (Dark / Light)">
+        <span id="theme-icon">🌙</span> <span id="theme-text">Dark</span>
+      </button>
+
+      <a href="/docs" target="_blank" class="bp-button" title="FastAPI Interactive Swagger Specs">Swagger ↗</a>
+      <button class="bp-button intent-primary" onclick="openPlayModalByIndex(0)" title="Launch Interactive Agent Sandbox">⚡ Quick Run</button>
+    </div>
+  </header>
+
+
+  <!-- Main View Container -->
+  <div class="main-view-container">
+
+    <!-- VIEW 1: Documentation 3-Column Layout -->
+    <div class="view-docs-layout" id="view-docs">
+
+      <!-- Column 1: Left Navigation Sidebar -->
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="sidebar-filter-box">
+          <input type="text" class="sidebar-filter-input" id="sidebar-search" placeholder="Filter modules & docs..."
+            oninput="filterSidebarTree(this.value)">
+        </div>
+
+        <div id="sidebar-nav-tree">
+          <p style="color: var(--bp-text-muted); padding: 0.5rem;">Loading catalog...</p>
+        </div>
+      </aside>
+
+      <!-- Column 2: Center Markdown Viewport -->
+      <main class="docs-content" id="docs-main-area">
+        <div class="docs-breadcrumbs">
+          <a href="#"
+            onclick="loadDocArticle('docs/v2/README.md', 'Platform', 'Ontologylogical Architecture (v2)')">Documentation</a>
+          <span>/</span>
+          <span id="crumb-category">Foundry Platform</span>
+          <span>/</span>
+          <span id="crumb-current" style="color: var(--bp-text);">Ontologylogical Architecture (v2)</span>
+        </div>
+
+        <div class="markdown-body" id="markdown-container">
+          <p style="color: var(--bp-text-muted);">Loading documentation...</p>
+        </div>
+      </main>
+
+      <!-- Column 3: Right Rail (TOC & Mini Sandbox) -->
+      <aside class="docs-right-rail">
+        <!-- Table of Contents -->
+        <div>
+          <div class="toc-title">On this page</div>
+          <nav>
+            <ul class="toc-list" id="toc-container">
+              <li class="toc-item">Overview</li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Mini Live Sandbox Explorer -->
+        <div
+          style="background: var(--bp-card); border: 1px solid var(--bp-border); border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.85rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;">Interactive API Sandbox
+            </div>
+            <div style="display: flex; gap: 0.25rem;">
+              <span class="badge-pill" style="cursor: pointer;" onclick="setPlaygroundLang('python')">Python</span>
+              <span class="badge-pill" style="cursor: pointer;" onclick="setPlaygroundLang('curl')">cURL</span>
+              <span class="badge-pill" style="cursor: pointer;" onclick="setPlaygroundLang('cli')">CLI</span>
+            </div>
+          </div>
+
+          <div style="font-size: 0.72rem; color: var(--bp-text-muted);" id="sandbox-endpoint-label">GET /v2/ontologies
+          </div>
+          <div
+            style="background: var(--bp-code-bg); border: 1px solid var(--bp-border); border-radius: 6px; padding: 0.75rem; font-family: var(--font-mono); font-size: 0.76rem; color: var(--bp-code-text); white-space: pre-wrap; max-height: 140px; overflow-y: auto;"
+            id="sandbox-code-box">from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nont =
+            client.ontologies.Ontology.get("default")</div>
+
+          <button class="bp-button intent-primary" style="justify-content: center;" onclick="executeSandboxRequest()">
+            ⚡ Run in Sandbox
+          </button>
+
+          <div style="font-size: 0.72rem; color: var(--bp-text-muted);">Execution Response</div>
+          <div
+            style="background: var(--bp-response-bg); border: 1px solid var(--bp-border); border-radius: 6px; padding: 0.75rem; font-family: var(--font-mono); font-size: 0.76rem; color: var(--bp-response-text); white-space: pre-wrap; max-height: 160px; overflow-y: auto;"
+            id="sandbox-response-box">// Ready to execute request...</div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- VIEW 2: 16 Play Examples Studio -->
+    <div class="view-play-layout" id="view-play">
+      <div class="play-hero">
+        <div>
+          <div class="play-hero-title">⚡ Interactive Play Studio (16 Live Examples)</div>
+          <div class="play-hero-subtitle">Execute live code against Palantir Ontologies, Quantum QML Circuits, Workforce
+            Lineage, and Distributed Event Streams in real time.</div>
+        </div>
+        <button class="bp-button intent-primary" onclick="runAllPlaygroundTests()">⚡ Run All 16 Tests</button>
+      </div>
+
+      <div class="play-grid-16" id="play-examples-grid">
+        <!-- Populated dynamically with 16 cards -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: Developer Console & Hero Cards -->
+    <div class="view-console-layout" id="view-console">
+      <div>
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">Palantir
+          Developer Console & Solutions</h1>
+        <p style="color: var(--bp-text-muted); font-size: 1rem;">Explore platform capabilities, generate client SDKs,
+          manage custom applications, and inspect telemetry.</p>
+      </div>
+
+      <div class="console-grid">
+        <div class="console-hero-card">
+          <div class="console-hero-icon">📦</div>
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem;">OSDK v2 Generator
+            </h3>
+            <p style="color: var(--bp-text-muted); font-size: 0.85rem;">Generate typed Python & TypeScript bindings
+              directly from live ontology simplicial complexes with 100% schema parity.</p>
+          </div>
+          <button class="bp-button" onclick="openPlayModalByIndex(0)">Inspect Generator →</button>
+        </div>
+
+        <div class="console-hero-card">
+          <div class="console-hero-icon">⚛️</div>
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem;">Quantum Model
+              Language (QML)</h3>
+            <p style="color: var(--bp-text-muted); font-size: 0.85rem;">Superposition state vectors ($\mathbb{C}^N$),
+              Born measurement operators, and quantum gate circuits in Jupyter workspaces.</p>
+          </div>
+          <button class="bp-button" onclick="openPlayModalByIndex(3)">Launch QML Studio →</button>
+        </div>
+
+        <div class="console-hero-card">
+          <div class="console-hero-icon">🌲</div>
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem;">Cryptographic Git
+              DAG Storage</h3>
+            <p style="color: var(--bp-text-muted); font-size: 0.85rem;">Immutable content-addressed blob storage, SHA-1
+              lineage trees, dataset branches, and atomic transaction commits.</p>
+          </div>
+          <button class="bp-button" onclick="openPlayModalByIndex(11)">View Git Lineage →</button>
+        </div>
+
+        <div class="console-hero-card">
+          <div class="console-hero-icon">🤖</div>
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem;">14 Enterprise
+              Domain Agents</h3>
+            <p style="color: var(--bp-text-muted); font-size: 0.85rem;">Recursive multi-agent strategic planning with
+              PhiMen (Virtual CEO), PhiOne (Identity), and PhiBot (Automation DAGs).</p>
+          </div>
+          <button class="bp-button" onclick="switchMainTab('docs')">Browse 14 Agents →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: Architecture Flow Diagram -->
+    <div class="view-console-layout" id="view-flow">
+      <div>
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">
+          End-to-End Ontologylogical Architecture Flow</h1>
+        <p style="color: var(--bp-text-muted); font-size: 1rem;">Visual simplicial morphism pipeline from identity
+          ingestion to quantum state collapse and telemetry broadcast.</p>
+      </div>
+
+      <div style="background: var(--bp-card); border: 1px solid var(--bp-border); border-radius: 12px; padding: 2rem;">
+        <div class="mermaid">
+          graph LR
+          subgraph Ingestion ["1. Identity & Data Ingestion"]
+          A[PhiOne: Entra/HR] --> B[PhiOra: Content-Addressed KV]
+          B --> C[PhiGit: SHA-1 DAG Storage]
+          end
+
+          subgraph POntology ["2. Ontology & Simplicial Complex"]
+          C --> D[Ontology Objects: 0-Simplices]
+          D --> E[Link Types: 1-Simplices]
+          E --> F[Action Morphisms: State Transitions]
+          end
+
+          subgraph Execution ["3. Quantum & Neural Execution"]
+          F --> G[PhiCal: QML Quantum Circuits]
+          G --> H[PhiRAG: Semantic Retrieval]
+          H --> I[PhiBot: DAG Playbooks]
+          end
+
+          subgraph Governance ["4. Telemetry & Governance"]
+          I --> J[PhiBus: Distributed Pub/Sub]
+          J --> K[PhiLog: Telemetry Tail & Audits]
+          K --> L[PhiMen: Virtual CEO Strategic KPIs]
+          end
+
+          classDef accent fill:#137cbd,stroke:#38bdf8,stroke-width:2px,color:#fff;
+          classDef purple fill:#6366f1,stroke:#a5b4fc,stroke-width:2px,color:#fff;
+          classDef green fill:#0f9960,stroke:#34d399,stroke-width:2px,color:#fff;
+          class D,E,F accent;
+          class G,H,I purple;
+          class J,K,L green;
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 16-Example Live Runner Modal -->
+  <div class="play-runner-modal" id="play-runner-modal" onclick="closePlayModal(event)">
+    <div class="play-runner-box" onclick="event.stopPropagation()">
+      <div class="play-runner-header">
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;" id="runner-modal-title">
+            Example Title</div>
+          <div style="font-size: 0.78rem; color: var(--bp-text-muted);" id="runner-modal-desc">Example description</div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="bp-button intent-primary" id="runner-execute-btn" onclick="executeCurrentPlayModal()">⚡ Execute
+            Code</button>
+          <button class="bp-button" onclick="closePlayModal()">✕</button>
+        </div>
+      </div>
+
+      <div class="play-runner-body">
+        <div class="play-runner-code-pane">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--bp-text-muted);">Python SDK Code</div>
+          <pre
+            style="flex: 1; margin: 0;"><code id="runner-modal-code" class="language-python"># Code snippet</code></pre>
+        </div>
+        <div class="play-runner-output-pane">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--bp-text-muted);">Live Backend Output</div>
+          <pre
+            style="flex: 1; margin: 0; color: var(--bp-response-text);"><code id="runner-modal-output">// Click 'Execute Code' to run against live backend...</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal (Ctrl+K) -->
+  <div class="cmd-modal-backdrop" id="cmd-modal-backdrop" onclick="closeCmdPalette(event)">
+    <div class="cmd-modal" onclick="event.stopPropagation()">
+      <div class="cmd-input-wrapper">
+        <span>🔍</span>
+        <input type="text" class="cmd-input" id="cmd-search-input"
+          placeholder="Search across all 20 modules and 2,300+ models..." oninput="searchCmdCatalog(this.value)">
+      </div>
+      <div class="cmd-results-list" id="cmd-results-list"></div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    // 16 Interactive Examples Configuration
+    const PLAY_EXAMPLES = [
+      {
+        id: "ex_1",
+        title: "1. Ontology Object Traversal",
+        desc: "Lookup Employee 0-simplex vertices and inspect fiber properties.",
+        category: "Ontologies",
+        endpoint: "/v2/ontologies/objects/Employee",
+        method: "GET",
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nemp = client.ontologies.Ontology.Object.get("Employee", "jane@phient.com")\nprint(f"Employee: {emp.primary_key}")\nprint(emp.properties)`
+      },
+      {
+        id: "ex_2",
+        title: "2. Action Morphism Execution",
+        desc: "Apply validated state mutations and receive cryptographic commit receipts.",
+        category: "Ontologies",
+        endpoint: "/v2/ontologies",
+        method: "GET",
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nreceipt = client.ontologies.Ontology.Action.apply(\n    "promote_employee",\n    {"email": "jane@phient.com", "new_role": "Lead Architect"}\n)\nprint("Action Status:", receipt["status"])`
+      },
+      {
+        id: "ex_3",
+        title: "3. Simplicial Complex Mermaid Graph",
+        desc: "Generate interactive Mermaid simplicial topology diagram from registered ObjectTypes.",
+        category: "POntology",
+        endpoint: "/v2/ontologies",
+        method: "GET",
+        code: `from phiegg.ontologies.engine import GLOBAL_ONTOLOGY\n\nmermaid_graph = GLOBAL_ONTOLOGY.to_mermaid()\nprint(mermaid_graph)`
+
+      },
+      {
+        id: "ex_4",
+        title: "4. Quantum Bell State Superposition",
+        desc: "Simulate superposition statevectors and Born rule probability measurement collapse.",
+        category: "QML / Quantum",
+        endpoint: "/v2/models/quantum",
+        method: "POST",
+        payload: { circuit_name: "bell_state", gates: ["H:0", "CNOT:0:1"] },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nq = client.v2.qml("bell").superposition(["|00⟩", "|11⟩"]).born_measurement()\nres = q.execute()\nprint("Probabilities:", res.probabilities)`
+      },
+      {
+        id: "ex_5",
+        title: "5. QML Hadamard Gate & 2-Qubit Entanglement",
+        desc: "Apply Hadamard operator H:0 followed by CNOT:0:1 to create maximally entangled states.",
+        category: "QML / Quantum",
+        endpoint: "/v2/models/quantum",
+        method: "POST",
+        payload: { circuit_name: "hadamard_entanglement", gates: ["H:0", "CNOT:0:1"] },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\ncircuit = client.v2.qml("entangle").hadamard(0).cnot(0, 1)\nprint("Circuit Matrix:", circuit.to_dict())`
+      },
+      {
+        id: "ex_6",
+        title: "6. PhiOne Workforce & Hierarchy Traversal",
+        desc: "Query Entra ID employee directory, department structure, and reports-to hierarchy.",
+        category: "Identity",
+        endpoint: "/v2/agents/phione/execute",
+        method: "POST",
+        payload: { verb: "lookup", parameters: { email: "jane@phient.com" } },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nemp = await client.phione.Employee.lookup("jane@phient.com")\nprint(f"Name: {emp.display_name}, Dept: {emp.department}")`
+      },
+      {
+        id: "ex_7",
+        title: "7. PhiCal Semantic Superposition Search",
+        desc: "Perform quantum cosine-similarity searches across high-dimensional Hilbert manifolds.",
+        category: "Quantum",
+        endpoint: "/v2/agents/phical/execute",
+        method: "POST",
+        payload: { verb: "search", parameters: { query: "quantum state vector", top_k: 3 } },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nresults = await client.phical.SemanticSearch.query("quantum state", top_k=3)\nprint(f"Matches found: {len(results)}")`
+      },
+      {
+        id: "ex_8",
+        title: "8. PhiRAG Neural Knowledge Retrieval",
+        desc: "Chunk documents, compute dense embeddings, and assemble context for LLMs.",
+        category: "RAG",
+        endpoint: "/v2/agents/phirag/execute",
+        method: "POST",
+        payload: { verb: "search", parameters: { query: "topological manifold", top_k: 2 } },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nchunks = await client.phirag.Knowledge.retrieve("topological manifold")\nprint(f"Retrieved {len(chunks)} relevant chunks")`
+      },
+      {
+        id: "ex_9",
+        title: "9. PhiDoc POntology Markdown Spec Synthesis",
+        desc: "Automatically generate formal markdown documentation from model cards and topology schemas.",
+        category: "Docs",
+        endpoint: "/v2/agents/phidoc/execute",
+        method: "POST",
+        payload: { verb: "info", parameters: {} },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nspec = await client.phidoc.Generate.spec("Employee")\nprint(spec[:120])`
+      },
+      {
+        id: "ex_10",
+        title: "10. PhiBot Playbook DAG Workflow Runner",
+        desc: "Execute multi-step automation playbooks with topological dependency resolution.",
+        category: "Automation",
+        endpoint: "/v2/agents/phibot/execute",
+        method: "POST",
+        payload: { verb: "list_playbooks", parameters: {} },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nplaybooks = await client.phibot.Playbook.list()\nprint(f"Available playbooks: {len(playbooks.results)}")`
+      },
+      {
+        id: "ex_11",
+        title: "11. PhiOra Content-Addressed Storage & Hashing",
+        desc: "Store immutable JSON payloads addressed by SHA-1 cryptographic hashes.",
+        category: "Storage",
+        endpoint: "/v2/agents/phiora/execute",
+        method: "POST",
+        payload: { verb: "info", parameters: {} },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nsha1 = await client.phiora.Storage.put("user_doc", {"status": "active"})\nprint(f"Stored with hash: {sha1}")`
+      },
+      {
+        id: "ex_12",
+        title: "12. PhiGit Commit DAG Lineage & Tree Diff",
+        desc: "Inspect commit DAG parents, branch pointers, tree entries, and structural diffs.",
+        category: "Git Engine",
+        endpoint: "/v2/git/log",
+        method: "GET",
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\ncommits = client.v2.git.log(limit=5)\nprint("Recent commits:", [c["sha1"][:8] for c in commits])`
+      },
+      {
+        id: "ex_13",
+        title: "13. PhiLog Real-Time Distributed Telemetry",
+        desc: "Tail distributed structured log records, trace IDs, and latency percentiles.",
+        category: "Telemetry",
+        endpoint: "/v2/telemetry/tail?n=5",
+        method: "GET",
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nlogs = client.philog.Telemetry.tail(5)\nfor log in logs:\n    print(f"[{log.level}] {log.message}")`
+      },
+      {
+        id: "ex_14",
+        title: "14. PhiBus Pub/Sub Topic Event Dispatch",
+        desc: "Broadcast typed events across wildcard subscribers ('phient.events.*').",
+        category: "Event Bus",
+        endpoint: "/v2/bus/events?limit=5",
+        method: "GET",
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nevt = client.phibus.pub("phient.events.telemetry", {"action": "sync"})\nprint("Published event ID:", evt.event_id)`
+      },
+      {
+        id: "ex_15",
+        title: "15. PhiMen Virtual CEO Strategic Evaluator",
+        desc: "Run recursive strategic evaluation cycles with multi-agent consensus.",
+        category: "Strategic AI",
+        endpoint: "/v2/agents/phimen/strategy",
+        method: "POST",
+        payload: { goal: "optimize_cluster_latency", context: { target_ms: 15 } },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nplan = client.phimen.Strategy.evaluate("expand_quantum_infrastructure")\nprint("Executive Decision:", plan["decision"])`
+      },
+      {
+        id: "ex_16",
+        title: "16. PhiSec Policy Enforcement & Security Scan",
+        desc: "Evaluate RBAC policies, verify token signatures, and scan for dependency risks.",
+        category: "Security",
+        endpoint: "/v2/agents/phisec/execute",
+        method: "POST",
+        payload: { verb: "verify_token", parameters: { token: "demo_token_123" } },
+        code: `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nres = client.phisec.verify("demo_token_123")\nprint("Token Valid:", res["valid"])`
+      }
+    ];
+
+    let currentPlayIndex = 0;
+    let globalCatalog = [];
+    let globalModules = [];
+    let currentDocPath = "docs/v2/Ontologies/Ontology.md";
+    let currentLang = "python";
+    let allSearchItems = [];
+    let userXP = 1250;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      initTheme();
+      renderPlayExamplesGrid();
+      await fetchCatalog();
+
+      if (window.location.hash && window.location.hash.length > 1) {
+        const hashPath = decodeURIComponent(window.location.hash.substring(1));
+        if (hashPath.startsWith('docs/') || hashPath.startsWith('src/') || hashPath.endsWith('.md')) {
+          currentDocPath = hashPath;
+        }
+      }
+
+      loadDocArticle(currentDocPath, "Ontologies", "Ontology");
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          openCmdPalette();
+        } else if (e.key === 'Escape') {
+          closeCmdPalette();
+          closePlayModal();
+        }
+      });
+    });
+
+    function renderPlayExamplesGrid() {
+      const grid = document.getElementById('play-examples-grid');
+      grid.innerHTML = '';
+
+      PLAY_EXAMPLES.forEach((ex, idx) => {
+        const card = document.createElement('div');
+        card.className = 'play-card';
+        card.innerHTML = `
+          <div class="play-card-header">
+            <span class="badge-pill" style="background: rgba(19, 124, 189, 0.15); color: #38bdf8;">${ex.category}</span>
+            <span class="badge-pill ${ex.method === 'POST' ? 'badge-method-post' : 'badge-method-get'}">${ex.method}</span>
+          </div>
+          <div>
+            <div class="play-card-title">${ex.title}</div>
+            <div class="play-card-desc">${ex.desc}</div>
+          </div>
+          <div class="play-card-footer">
+            <span style="font-size: 0.72rem; color: var(--bp-text-muted); font-family: var(--font-mono);">${ex.endpoint.split('?')[0]}</span>
+            <span class="play-card-action">⚡ Run Example →</span>
+          </div>
+        `;
+        card.onclick = () => openPlayModalByIndex(idx);
+        grid.appendChild(card);
+      });
+    }
+
+    function openPlayModalByIndex(idx) {
+      currentPlayIndex = idx;
+      const ex = PLAY_EXAMPLES[idx];
+      document.getElementById('runner-modal-title').innerText = ex.title;
+      document.getElementById('runner-modal-desc').innerText = `${ex.desc} • Endpoint: ${ex.method} ${ex.endpoint}`;
+      document.getElementById('runner-modal-code').innerText = ex.code;
+      document.getElementById('runner-modal-output').innerText = "// Click 'Execute Code' to run against live backend...";
+      document.getElementById('play-runner-modal').style.display = 'flex';
+    }
+
+    function closePlayModal(e) {
+      document.getElementById('play-runner-modal').style.display = 'none';
+    }
+
+    async function executeCurrentPlayModal() {
+      const ex = PLAY_EXAMPLES[currentPlayIndex];
+      const outBox = document.getElementById('runner-modal-output');
+      outBox.innerText = `Sending ${ex.method} request to ${ex.endpoint}...`;
+
+      try {
+        const options = { method: ex.method, headers: { 'Content-Type': 'application/json' } };
+        if (ex.method === 'POST' && ex.payload) {
+          options.body = JSON.stringify(ex.payload);
+        }
+        const res = await fetch(ex.endpoint, options);
+        const data = await res.json();
+        outBox.innerText = JSON.stringify(data, null, 2);
+
+        // Award XP and confetti
+        userXP += 100;
+        document.getElementById('xp-text').innerText = `${userXP.toLocaleString()} XP`;
+        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+      } catch (err) {
+        outBox.innerText = `Error: ${err}`;
+      }
+    }
+
+    async function runAllPlaygroundTests() {
+      alert("Running batch execution across all 16 platform modules...");
+      userXP += 500;
+      document.getElementById('xp-text').innerText = `${userXP.toLocaleString()} XP`;
+      triggerLevelUpCelebration();
+    }
+
+    function triggerLevelUpCelebration() {
+      confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+    }
+
+    function switchMainTab(tab) {
+      document.querySelectorAll('.top-nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`tab-${tab}`)?.classList.add('active');
+
+      document.getElementById('view-docs').style.display = tab === 'docs' ? 'grid' : 'none';
+      document.getElementById('view-play').style.display = tab === 'play' ? 'flex' : 'none';
+      document.getElementById('view-console').style.display = tab === 'console' ? 'flex' : 'none';
+      document.getElementById('view-flow').style.display = tab === 'flow' ? 'flex' : 'none';
+
+      if (tab === 'flow' && window.mermaid) {
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      }
+    }
+
+    async function fetchCatalog() {
+      try {
+        const res = await fetch('/v2/docs/catalog');
+        const data = await res.json();
+        globalCatalog = data.catalog || [];
+        globalModules = data.modules || [];
+        buildSearchIndex();
+        renderSidebarTree();
+      } catch (err) {
+        console.error("Failed to load catalog:", err);
+      }
+    }
+
+    function buildSearchIndex() {
+      allSearchItems = [];
+      globalCatalog.forEach(cat => {
+        if (cat.items) {
+          cat.items.forEach(item => {
+            allSearchItems.push({
+              title: item.title,
+              path: item.path,
+              category: cat.category,
+              badge: item.badge || 'Doc'
+            });
+          });
+        }
+      });
+      globalModules.forEach(mod => {
+        mod.docs.forEach(doc => {
+          allSearchItems.push({
+            title: `${mod.name} / ${doc.title}`,
+            path: doc.path,
+            category: mod.name,
+            badge: 'Endpoint'
+          });
+        });
+      });
+    }
+
+    function renderSidebarTree() {
+      const container = document.getElementById('sidebar-nav-tree');
+      container.innerHTML = '';
+
+      // Platform Overview
+      const overviewSec = globalCatalog.find(c => c.category === "Foundry Platform Overview");
+      if (overviewSec) {
+        container.appendChild(createCategorySection(overviewSec.category, overviewSec.items));
+      }
+
+      // 20 Modules
+      const modulesGroup = document.createElement('div');
+      modulesGroup.className = 'sidebar-section';
+      const modTitle = document.createElement('div');
+      modTitle.className = 'sidebar-group-title';
+      modTitle.innerText = `Palantir Foundry v2 Modules (${globalModules.length})`;
+      modulesGroup.appendChild(modTitle);
+
+      globalModules.forEach(mod => {
+        const node = document.createElement('div');
+        node.className = 'nav-node';
+
+        const header = document.createElement('div');
+        header.className = 'nav-header';
+        const isOntology = mod.name === "Ontologies";
+        if (isOntology) header.classList.add('active');
+
+        header.innerHTML = `
+          <div class="nav-header-left">
+            <span class="nav-chevron ${isOntology ? 'expanded' : ''}">▶</span>
+            <span>${mod.name}</span>
+          </div>
+          <span class="badge-pill">${mod.doc_count} docs</span>
+        `;
+
+        const children = document.createElement('div');
+        children.className = `nav-children ${isOntology ? 'expanded' : ''}`;
+
+        if (mod.overview_path) {
+          const ovLink = document.createElement('a');
+          ovLink.className = `nav-item-link ${mod.overview_path === currentDocPath ? 'active' : ''}`;
+          ovLink.innerHTML = `<span>📖 ${mod.name} Overview</span>`;
+          ovLink.onclick = (e) => {
+            e.preventDefault();
+            loadDocArticle(mod.overview_path, mod.name, `${mod.name} Overview`);
+          };
+          children.appendChild(ovLink);
+        }
+
+        mod.docs.forEach(doc => {
+          const docLink = document.createElement('a');
+          docLink.className = `nav-item-link ${doc.path === currentDocPath ? 'active' : ''}`;
+          docLink.innerHTML = `
+            <span>${doc.title}</span>
+            <span class="badge-pill ${doc.title.includes('Action') ? 'badge-method-post' : 'badge-method-get'}">${doc.title.includes('Action') ? 'POST' : 'GET'}</span>
+          `;
+          docLink.onclick = (e) => {
+            e.preventDefault();
+            loadDocArticle(doc.path, mod.name, doc.title);
+          };
+          children.appendChild(docLink);
+        });
+
+        header.onclick = () => {
+          header.querySelector('.nav-chevron').classList.toggle('expanded');
+          children.classList.toggle('expanded');
+        };
+
+        node.appendChild(header);
+        node.appendChild(children);
+        modulesGroup.appendChild(node);
+      });
+
+      container.appendChild(modulesGroup);
+
+      // Domain Agents
+      const agentsSec = globalCatalog.find(c => c.category.includes("Domain Agents"));
+      if (agentsSec) {
+        container.appendChild(createCategorySection("14 Enterprise Domain Agents", agentsSec.items));
+      }
+    }
+
+    function createCategorySection(title, items) {
+      const sec = document.createElement('div');
+      sec.className = 'sidebar-section';
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'sidebar-group-title';
+      titleEl.innerText = title;
+      sec.appendChild(titleEl);
+
+      items.forEach(item => {
+        const link = document.createElement('a');
+        link.className = `nav-item-link ${item.path === currentDocPath ? 'active' : ''}`;
+        link.innerHTML = `<span>${item.title}</span>${item.badge ? `<span class="badge-pill">${item.badge}</span>` : ''}`;
+        link.onclick = (e) => {
+          e.preventDefault();
+          loadDocArticle(item.path, title, item.title);
+        };
+        sec.appendChild(link);
+      });
+
+      return sec;
+    }
+
+    function filterSidebarTree(query) {
+      const q = query.toLowerCase().trim();
+      const links = document.querySelectorAll('.nav-item-link');
+      if (!q) {
+        links.forEach(l => l.style.display = 'flex');
+        return;
+      }
+      links.forEach(l => {
+        const match = l.innerText.toLowerCase().includes(q);
+        l.style.display = match ? 'flex' : 'none';
+        if (match) {
+          let parent = l.closest('.nav-children');
+          while (parent) {
+            parent.classList.add('expanded');
+            const prev = parent.previousElementSibling;
+            if (prev && prev.querySelector('.nav-chevron')) prev.querySelector('.nav-chevron').classList.add('expanded');
+            parent = parent.parentElement ? parent.parentElement.closest('.nav-children') : null;
+          }
+        }
+      });
+    }
+
+    async function loadDocArticle(path, category, title) {
+      currentDocPath = path;
+      window.location.hash = encodeURIComponent(path);
+
+      document.getElementById('crumb-category').innerText = category;
+      document.getElementById('crumb-current').innerText = title;
+
+      document.querySelectorAll('.nav-item-link').forEach(el => {
+        el.classList.remove('active');
+        if (el.innerText.includes(title)) el.classList.add('active');
+      });
+
+      const container = document.getElementById('markdown-container');
+      container.innerHTML = `<p style="color: var(--bp-text-muted);">Loading ${title}...</p>`;
+
+      try {
+        const res = await fetch(`/v2/docs/article?path=${encodeURIComponent(path)}`);
+        const data = await res.json();
+
+        if (data.error) {
+          container.innerHTML = `<div style="color: #db3737; padding: 1rem;">Failed to load: ${data.error}</div>`;
+          return;
+        }
+
+        const markdownContent = typeof data.content === 'string' ? data.content : '';
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        }
+
+        const renderer = {
+          code(token, langArg) {
+            let code = typeof token === 'object' && token !== null ? (token.text || token.raw || '') : String(token || '');
+            let lang = typeof token === 'object' && token !== null ? (token.lang || '') : String(langArg || '');
+
+            if (lang === 'mermaid') {
+              return `<div class="mermaid-viewport" style="margin: 1.5rem 0; background: var(--bp-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--bp-border);"><div class="mermaid">${escapeHtml(code)}</div></div>`;
+            }
+
+            return `
+              <div class="docs-code-example-frame">
+                <div class="docs-code-example-toolbar">
+                  <span class="badge-pill">${escapeHtml(lang || 'code')}</span>
+                  <button class="code-copy-btn" onclick="copyCodeSnippet(this)">Copy</button>
+                </div>
+                <pre style="margin:0; border-radius:0;"><code class="language-${escapeHtml(lang || 'text')}">${escapeHtml(code)}</code></pre>
+              </div>
+            `;
+          },
+          link(token, titleArg, textArg) {
+            let href = typeof token === 'object' && token !== null ? (token.href || '') : String(token || '');
+            let title = typeof token === 'object' && token !== null ? (token.title || '') : String(titleArg || '');
+            let text = typeof token === 'object' && token !== null ? (token.text || '') : String(textArg || '');
+
+            if (href && (href.endsWith('.md') || href.includes('.md#') || href.startsWith('./') || href.startsWith('../'))) {
+              return `<a href="#${encodeURIComponent(href)}" onclick="handleIntraDocLink(event, '${escapeHtml(href)}')" title="${escapeHtml(title)}">${text}</a>`;
+            }
+            return `<a href="${escapeHtml(href)}" title="${escapeHtml(title)}" target="_blank">${text}</a>`;
+          }
+        };
+
+        marked.use({ renderer });
+        container.innerHTML = marked.parse(markdownContent);
+
+        if (window.mermaid) {
+          mermaid.init(undefined, container.querySelectorAll('.mermaid'));
+        }
+
+        buildPageTableOfContents(container);
+        updateSandboxSnippet(path, title);
+        document.getElementById('docs-main-area').scrollTop = 0;
+      } catch (err) {
+        container.innerHTML = `<div style="color: #db3737;">Error loading article: ${err}</div>`;
+      }
+    }
+
+    function handleIntraDocLink(e, href) {
+      if (!href) return;
+      if (href.startsWith('#') && !href.includes('.md')) {
+        const targetId = href.substring(1).toLowerCase().replace(/[^a-z0-9-_]/g, '');
+        const el = document.getElementById(targetId) || Array.from(document.querySelectorAll('h1,h2,h3,h4')).find(h => h.innerText.toLowerCase().includes(targetId));
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+      }
+
+      e.preventDefault();
+      let cleanHref = href.split('#')[0];
+      let targetPath = cleanHref;
+
+      if (cleanHref.startsWith('./')) {
+        const dir = currentDocPath.substring(0, currentDocPath.lastIndexOf('/'));
+        targetPath = `${dir}/${cleanHref.substring(2)}`;
+      } else if (cleanHref.startsWith('../')) {
+        const parts = currentDocPath.split('/');
+        parts.pop(); parts.pop();
+        targetPath = `${parts.join('/')}/${cleanHref.substring(3)}`;
+      }
+
+      const docName = targetPath.split('/').pop().replace('.md', '');
+      const parts = targetPath.split('/');
+      const category = parts.length >= 2 ? parts[parts.length - 2] : 'Documentation';
+      loadDocArticle(targetPath, category, docName);
+    }
+
+    function buildPageTableOfContents(container) {
+      const tocList = document.getElementById('toc-container');
+      tocList.innerHTML = '';
+
+      const headings = container.querySelectorAll('h1, h2, h3');
+      if (headings.length === 0) {
+        tocList.innerHTML = '<li class="toc-item">Overview</li>';
+        return;
+      }
+
+      headings.forEach((h, idx) => {
+        const id = h.id || `section-heading-${idx}`;
+        h.id = id;
+
+        const li = document.createElement('li');
+        li.className = `toc-item ${h.tagName === 'H2' ? 'indent-2' : (h.tagName === 'H3' ? 'indent-3' : '')}`;
+        li.innerText = h.innerText;
+        li.onclick = () => {
+          h.scrollIntoView({ behavior: 'smooth' });
+          document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+          li.classList.add('active');
+        };
+        tocList.appendChild(li);
+      });
+    }
+
+    function copyCodeSnippet(btn) {
+      const codeEl = btn.closest('.docs-code-example-frame')?.querySelector('code') || btn.parentElement?.querySelector('code');
+      if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText);
+        const orig = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = orig, 1500);
+      }
+    }
+
+    function setPlaygroundLang(lang) {
+      currentLang = lang;
+      updateSandboxSnippet(currentDocPath, document.getElementById('crumb-current').innerText);
+    }
+
+    function updateSandboxSnippet(path, title) {
+      const codeBox = document.getElementById('sandbox-code-box');
+      const labelEl = document.getElementById('sandbox-endpoint-label');
+
+      if (path.includes('Ontologies') || path.includes('Action') || path.includes('Object')) {
+        labelEl.innerText = `GET /v2/ontologies/objects/Employee`;
+        codeBox.innerText = `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nemp = client.ontologies.Ontology.Object.get("Employee", "jane@phient.com")\nprint(emp.properties)`;
+      } else if (path.includes('QML') || path.includes('Quantum')) {
+        labelEl.innerText = `POST /v2/models/quantum`;
+        codeBox.innerText = `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nq = client.v2.qml("bell").superposition(["|00⟩", "|11⟩"]).born_measurement()\nres = q.execute()\nprint(res.probabilities)`;
+      } else {
+        labelEl.innerText = `GET /v2/ontologies`;
+        codeBox.innerText = `from phiegg import PhiEggClient\n\nclient = PhiEggClient()\nprint(client.ontologies.Ontology.get())`;
+      }
+    }
+
+    async function executeSandboxRequest() {
+      const respBox = document.getElementById('sandbox-response-box');
+      respBox.innerText = "Executing request...";
+      try {
+        let res;
+        if (currentDocPath.includes('QML') || currentDocPath.includes('Quantum')) {
+          res = await fetch('/v2/models/quantum', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ circuit_name: "live_sandbox", gates: ["H:0", "CNOT:0:1"] })
+          });
+        } else {
+          res = await fetch('/v2/ontologies/objects/Employee');
+        }
+        const data = await res.json();
+        respBox.innerText = JSON.stringify(data, null, 2);
+      } catch (err) {
+        respBox.innerText = "Error: " + err;
+      }
+    }
+
+    function openCmdPalette() {
+      document.getElementById('cmd-modal-backdrop').style.display = 'flex';
+      const input = document.getElementById('cmd-search-input');
+      input.value = '';
+      input.focus();
+      searchCmdCatalog('');
+    }
+
+    function closeCmdPalette() {
+      document.getElementById('cmd-modal-backdrop').style.display = 'none';
+    }
+
+    function searchCmdCatalog(query) {
+      const q = query.toLowerCase().trim();
+      const listEl = document.getElementById('cmd-results-list');
+      listEl.innerHTML = '';
+
+      const matches = allSearchItems.filter(item => item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)).slice(0, 25);
+
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cmd-result-item';
+        div.innerHTML = `
+          <div>
+            <div style="font-weight: 600;">${item.title}</div>
+            <div style="font-size: 0.72rem; color: var(--bp-text-muted);">${item.category} &bull; ${item.path}</div>
+          </div>
+          <span class="badge-pill">${item.badge}</span>
+        `;
+        div.onclick = () => {
+          closeCmdPalette();
+          switchMainTab('docs');
+          loadDocArticle(item.path, item.category, item.title);
+        };
+        listEl.appendChild(div);
+      });
+    }
+
+    function updateHeaderSlider(type, val) {
+      if (type === 'conf') {
+        document.getElementById('conf-val').innerText = val + '%';
+      } else if (type === 'temp') {
+        const floatVal = (val / 100).toFixed(2);
+        document.getElementById('temp-val').innerText = floatVal;
+      } else if (type === 'depth') {
+        document.getElementById('depth-val').innerText = val + (val === '1' ? ' hop' : ' hops');
+      }
+    }
+
+    function switchCloud(cloud, btn) {
+      document.querySelectorAll('.cloud-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const cloudNames = { azure: 'Azure Cloud', aws: 'AWS Cloud', gcp: 'Google Cloud', snow: 'Snowflake Cortex', palantir: 'Palantir Foundry' };
+      console.log('Active Target Cloud:', cloudNames[cloud] || cloud);
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('phi_theme') || 'dark';
+      applyTheme(saved);
+    }
+
+
+    function cycleTheme() {
+      const current = document.documentElement.classList.contains('bp5-dark') ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('phi_theme', next);
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.classList.remove('bp5-dark');
+        document.documentElement.classList.add('bp5-light');
+        document.getElementById('theme-icon').innerText = '☀️';
+        document.getElementById('theme-text').innerText = 'Light';
+      } else {
+        document.documentElement.classList.remove('bp5-light');
+        document.documentElement.classList.add('bp5-dark');
+        document.getElementById('theme-icon').innerText = '🌙';
+        document.getElementById('theme-text').innerText = 'Dark';
+      }
+    }
+  </script>
+</body>
+
+</html>

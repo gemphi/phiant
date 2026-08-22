@@ -10,7 +10,7 @@
 `langgraph` provides a graph-based state machine framework for orchestrating multi-agent systems. It models agent interactions as nodes and edges in a graph, managing state transitions, parallel branch execution, conditional routing, cyclic execution, and approval pause points.
 
 ## 3. Why It Was Chosen
-1. **Multi-Agent Coordination**: Phiant requires orchestrating 6 agents across single, sequential, and parallel modes.
+1. **Multi-Agent Coordination**: Phient requires orchestrating 6 agents across single, sequential, and parallel modes.
 2. **State Machine Persistence**: Ensures complete state tracking across multi-step processes like employee onboarding.
 3. **Approval Gates**: Supports human-in-the-loop approval workflows for destructive identity operations.
 

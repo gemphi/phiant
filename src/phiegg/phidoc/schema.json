@@ -1,0 +1,72 @@
+{
+  "agent_id": "phidoc",
+  "agent_name": "PhiDoc",
+  "layer": "Application",
+  "description": "Documentation management, Notion workspace sync, and knowledge base page generation.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "DOCS_WORKSPACE_SYNC_V1",
+      "spec_id": "DOCS_WORKSPACE_SYNC_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Documentation search, page creation/updating, and knowledge base sync.",
+      "required_tasks": [
+        "doc_search",
+        "page_management"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "doc_search",
+      "name": "Documentation Search",
+      "description": "Search documentation pages and workspace knowledge.",
+      "verbs": [
+        {
+          "verb": "search_docs",
+          "description": "Search documentation pages by query",
+          "parameters": {
+            "query": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "page_management",
+      "name": "Page Management",
+      "description": "Create, update, and synchronize documentation pages.",
+      "verbs": [
+        {
+          "verb": "create_page",
+          "description": "Create a new documentation page in workspace",
+          "parameters": {
+            "title": "str",
+            "content": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "sync_knowledge_base",
+          "description": "Sync documentation pages to knowledge space",
+          "parameters": {},
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    "phiora"
+  ],
+  "external_services": [
+    "Notion API",
+    "Confluence API"
+  ],
+  "verbs": [
+    "search_docs",
+    "create_page",
+    "sync_knowledge_base"
+  ]
+}

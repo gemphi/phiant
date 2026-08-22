@@ -1,12 +1,12 @@
-# Phiant — Enterprise AI Operations Platform
+# Phient — Enterprise AI Operations Platform
 
 > _Turning dark data into decisions. Eliminating dashboard graveyards. Delivering self-service intelligence._
 
-Production-grade multi-agent ecosystem designed to automate internal operations at scale across enterprise organisations. Phiant bridges the gap between **data that exists but isn't understood** (dark data) and **reports that get built but never used** (dashboard graveyards) — delivering actionable, self-service intelligence directly to the people who need it.
+Production-grade multi-agent ecosystem designed to automate internal operations at scale across enterprise organisations. Phient bridges the gap between **data that exists but isn't understood** (dark data) and **reports that get built but never used** (dashboard graveyards) — delivering actionable, self-service intelligence directly to the people who need it.
 
 ---
 
-## The Problem Phiant Solves
+## The Problem Phient Solves
 
 Most enterprises sit between two costly extremes:
 
@@ -14,7 +14,7 @@ Most enterprises sit between two costly extremes:
 
 **Dashboard Graveyards** — Well-intentioned reporting initiatives that produce dashboard after dashboard. Nobody tracks whether they're actually used. Executives want dashboards built, but don't want to learn that nobody opens them. The result: long development backlogs of reports that end up in a list nobody ever visits.
 
-**Phiant takes a different approach.** Instead of building more dashboards, it puts intelligent AI agents directly into the operational workflow — agents that retrieve, synthesise, and act on enterprise data in real time. Business users get answers through natural conversation, not by navigating a reporting tool. When a dashboard _is_ needed, Phiant tracks its actual usage so you know what's delivering value and what's waste.
+**Phient takes a different approach.** Instead of building more dashboards, it puts intelligent AI agents directly into the operational workflow — agents that retrieve, synthesise, and act on enterprise data in real time. Business users get answers through natural conversation, not by navigating a reporting tool. When a dashboard _is_ needed, Phient tracks its actual usage so you know what's delivering value and what's waste.
 
 ---
 
@@ -22,7 +22,7 @@ Most enterprises sit between two costly extremes:
 
 ### Self-Service Intelligence, Not More Reports
 
-Traditional BI creates a backlog: business users request reports → developers queue them → reports ship weeks later → half are never opened. Phiant flips this by enabling **self-service data access through AI agents** that understand your enterprise systems:
+Traditional BI creates a backlog: business users request reports → developers queue them → reports ship weeks later → half are never opened. Phient flips this by enabling **self-service data access through AI agents** that understand your enterprise systems:
 
 - **Ask, don't search.** Natural language queries against HR data, identity systems, knowledge bases, and internal documentation — no SQL, no dashboard navigation, no waiting for a developer.
 - **Agents that act, not just answer.** Automated playbook execution for common operational tasks (onboarding, access provisioning, policy lookups) that currently consume hours of manual work.
@@ -30,7 +30,7 @@ Traditional BI creates a backlog: business users request reports → developers 
 
 ### The Agent Architecture
 
-Phiant deploys **6 specialised AI agents**, each responsible for a distinct operational domain, coordinated by an intelligent orchestrator:
+Phient deploys **6 specialised AI agents**, each responsible for a distinct operational domain, coordinated by an intelligent orchestrator:
 
 | Agent | Domain | What It Does |
 |:------|:-------|:-------------|
@@ -45,9 +45,9 @@ Phiant deploys **6 specialised AI agents**, each responsible for a distinct oper
 
 The gap between dark data and dashboard graveyards is **governance** — knowing where your data lives, who owns it, what it means, and whether anyone actually uses the outputs built from it.
 
-Phiant enforces this at the platform level:
+Phient enforces this at the platform level:
 
-- **System-of-record clarity.** Every data source connected to Phiant has explicit ownership. The platform knows which system is authoritative for which fields — no conflicting copies, no stale mirrors.
+- **System-of-record clarity.** Every data source connected to Phient has explicit ownership. The platform knows which system is authoritative for which fields — no conflicting copies, no stale mirrors.
 - **PII-aware processing.** All agent interactions pass through a compliance audit layer with automatic PII redaction. Sensitive data is handled safely by default, not by policy alone.
 - **Usage metrics on everything.** Every agent query, every dashboard view, every report generation is tracked. If something isn't being used, you'll know — and you can redirect engineering effort to what actually matters.
 - **Audit trail.** Full execution logging for compliance, traceability, and incident investigation.
@@ -100,7 +100,7 @@ Open `http://localhost:8000` to access the Web Dashboard.
 ## Project Structure
 
 ```
-phiant/
+phient/
 ├── src/
 │   ├── agents/          # 6 specialised AI agents + base agent framework
 │   ├── orchestrator/    # LangGraph intent routing and multi-agent coordination

@@ -1,0 +1,22 @@
+# Project
+
+Project
+
+## Properties
+| Name | Type | Required | Description |
+| ------------ | ------------- | ------------- | ------------- |
+**rid** | ProjectRid | Yes |  |
+**display_name** | ResourceDisplayName | Yes | The display name of the Project. Must be unique and cannot contain a / |
+**description** | Optional[str] | No | The description associated with the Project. |
+**documentation** | Optional[str] | No | The documentation associated with the Project. |
+**path** | ResourcePath | Yes |  |
+**created_by** | CreatedBy | Yes |  |
+**updated_by** | UpdatedBy | Yes |  |
+**created_time** | CreatedTime | Yes |  |
+**updated_time** | UpdatedTime | Yes |  |
+**trash_status** | TrashStatus | Yes | The trash status of the Project. |
+**space_rid** | SpaceRid | Yes | The Space Resource Identifier (RID) that the Project lives in. |
+**resource_level_role_grants_allowed** | ProjectResourceLevelRoleGrantsAllowed | Yes | Whether role grants are allowed on individual resources within the Project. |
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

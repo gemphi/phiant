@@ -1,0 +1,32 @@
+export const meta = {
+  agent: "phisec",
+  domain: "security",
+  layer: "infrastructure",
+  version: "1.0.0"
+};
+
+# PhiSec: Security & Vulnerability Simplicial Complex
+
+PhiSec provides enterprise security governance, token authorization, vulnerability scanning, and threat isolation across topological spaces.
+
+```mermaid
+graph TD
+    subgraph ResourceSpace["Resource Simplex (POntology Vertices)"]
+        POntologyObj["POntology Object / DataSet"]
+        Endpoint["API Endpoint / Action"]
+    end
+
+    subgraph SecuritySpace["Security & Policy Space"]
+        Token["TokenVerifier (PTokenVerification)"]
+        Policy["PolicyEnforcer (RBAC / ABAC)"]
+        Scanner["VulnerabilityScanner (PSecurityScan)"]
+    end
+
+    subgraph Threats["Threat Isolation Manifold"]
+        Quarantine["Quarantine Container"]
+    end
+
+    Token --> Policy
+    Policy --> POntologyObj & Endpoint
+    Scanner -->|Threat detected| Quarantine
+```

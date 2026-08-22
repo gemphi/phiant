@@ -36,7 +36,7 @@ graph LR
 from langchain_community.vectorstores import Chroma
 
 vectorstore = Chroma(
-    collection_name="phiant_policies",
+    collection_name="phient_policies",
     persist_directory="./data/chroma",
 )
 ```

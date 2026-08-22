@@ -1,0 +1,172 @@
+# Model
+
+Method | HTTP request | Release Stage |
+------------- | ------------- | ----- |
+[**create**](#create) | **POST** /v2/models | Public Beta |
+[**get**](#get) | **GET** /v2/models/{modelRid} | Public Beta |
+[**promote_version**](#promote_version) | **POST** /v2/models/{modelRid}/promoteVersion | Public Beta |
+
+# **create**
+Creates a new Model with no versions.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**name** | ModelName |  |  |
+**parent_folder_rid** | FolderRid |  |  |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**Model**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# ModelName
+name = "House Pricing Model"
+# FolderRid
+parent_folder_rid = "ri.compass.main.folder.c410f510-2937-420e-8ea3-8c9bcb3c1791"
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.models.Model.create(
+        name=name, parent_folder_rid=parent_folder_rid, preview=preview
+    )
+    print("The create response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Model.create: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Model  | The created Model | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **get**
+Retrieves a Model by its Resource Identifier (RID).
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**model_rid** | ModelRid |  |  |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**Model**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# ModelRid
+model_rid = None
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.models.Model.get(model_rid, preview=preview)
+    print("The get response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Model.get: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Model  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **promote_version**
+Promotes an existing Model Version to the target Model. The promoted Model Version will be copied to the target Model as the latest version on the specified branch, but will have a new Model Version RID.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**model_rid** | ModelRid |  |  |
+**source_model_version_rid** | ModelVersionRid |  |  |
+**branch** | Optional[BranchName] | The branch to promote the version to. Defaults to master on most enrollments.  | [optional] |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**ModelVersion**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# ModelRid
+model_rid = None
+# ModelVersionRid
+source_model_version_rid = "ri.models.main.model-version.adf94926-c3ac-41ea-beb2-4946699d08ee"
+# Optional[BranchName] | The branch to promote the version to. Defaults to master on most enrollments.
+branch = "master"
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.models.Model.promote_version(
+        model_rid, source_model_version_rid=source_model_version_rid, branch=branch, preview=preview
+    )
+    print("The promote_version response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Model.promote_version: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | ModelVersion  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+

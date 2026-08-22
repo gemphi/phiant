@@ -10,7 +10,7 @@
 `chromadb` is an open-source vector database for storing document embeddings, performing similarity searches (using cosine or HNSW metrics), managing semantic document collections, and executing metadata-filtered queries.
 
 ## 3. Why It Was Chosen
-1. **RAG Storage**: Core vector database backing Phiant's knowledge retrieval agent.
+1. **RAG Storage**: Core vector database backing Phient's knowledge retrieval agent.
 2. **Zero-Setup Embedded Database**: Runs in-process with zero external server infrastructure during development while supporting cloud deployment.
 3. **Metadata Filtering**: Supports exact metadata matching (by department, country, access level).
 
@@ -41,7 +41,7 @@ graph TD
 import chromadb
 
 client = chromadb.PersistentClient(path="./data/chroma")
-collection = client.get_or_create_collection("phiant_policies")
+collection = client.get_or_create_collection("phient_policies")
 
 collection.add(
     documents=["Employees receive 21 days annual leave in Kenya."],

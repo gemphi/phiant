@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "phiant-agents"
+name = "phient-agents"
 version = "1.0.0"
-description = "Phiant AI Ops Agent Platform - Multi-agent ecosystem for internal operations"
+description = "Phient AI Ops Agent Platform - Multi-agent ecosystem for internal operations"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Phiant AI Ops Team" }]
+authors = [{ name = "Phient AI Ops Team" }]
 
 dependencies = [
     "anthropic>=0.42.0",
@@ -51,7 +51,7 @@ azure = [
 ]
 
 [project.scripts]
-phiant = "src.cli:app"
+phient = "src.cli:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]

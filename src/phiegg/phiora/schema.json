@@ -1,0 +1,132 @@
+{
+  "agent_id": "phiora",
+  "agent_name": "PhiOra",
+  "layer": "Data",
+  "description": "Content-addressed key-value storage (git-style SHA-1), vector embeddings, and DataSet resolution authority.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "CONTENT_ADDRESSED_KV_V1",
+      "spec_id": "CONTENT_ADDRESSED_KV_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Immutable content-addressed key-value storage with git-style SHA-1 hashing, parent linkage, and versioning.",
+      "required_tasks": [
+        "store_operations",
+        "dataset_resolution"
+      ],
+      "tasks": []
+    },
+    {
+      "spec_idx": "VECTOR_EMBEDDING_STORE_V1",
+      "spec_id": "VECTOR_EMBEDDING_STORE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Vector embedding indexing and cosine similarity nearest neighbor search.",
+      "required_tasks": [
+        "vector_operations"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "store_operations",
+      "name": "Store Operations",
+      "description": "Key-value operations over named collections.",
+      "verbs": [
+        {
+          "verb": "put_record",
+          "description": "Store a key-value record with automatic SHA-1 hash",
+          "parameters": {
+            "collection": "str",
+            "key": "str",
+            "value": "any"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "get_record",
+          "description": "Retrieve record by key with version lineage",
+          "parameters": {
+            "collection": "str",
+            "key": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "list_keys",
+          "description": "List all keys in a collection",
+          "parameters": {
+            "collection": "str"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "snapshot_collection",
+          "description": "Create an immutable DataSet snapshot of a collection",
+          "parameters": {
+            "collection": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "dataset_resolution",
+      "name": "DataSet Resolution",
+      "description": "Resolve DataSet references from storage or disk for all agents.",
+      "verbs": [
+        {
+          "verb": "resolve_dataset",
+          "description": "Resolve a DataSet reference to actual structured data",
+          "parameters": {
+            "source": "str"
+          },
+          "returns": "Any"
+        }
+      ]
+    },
+    {
+      "task_id": "vector_operations",
+      "name": "Vector Operations",
+      "description": "Vector indexing and similarity search.",
+      "verbs": [
+        {
+          "verb": "index_vector",
+          "description": "Index content with vector embedding",
+          "parameters": {
+            "key": "str",
+            "content": "str",
+            "embedding": "list"
+          },
+          "returns": "Any"
+        },
+        {
+          "verb": "search_vector",
+          "description": "Cosine similarity search over indexed embeddings",
+          "parameters": {
+            "query_embedding": "list",
+            "top_k": "int"
+          },
+          "returns": "Any"
+        }
+      ]
+    }
+  ],
+  "dependencies": [],
+  "external_services": [
+    "Local filesystem",
+    "Memory cache",
+    "ChromaDB/Pinecone (optional)"
+  ],
+  "verbs": [
+    "put_record",
+    "get_record",
+    "list_keys",
+    "snapshot_collection",
+    "resolve_dataset",
+    "index_vector",
+    "search_vector"
+  ]
+}

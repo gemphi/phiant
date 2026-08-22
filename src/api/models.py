@@ -37,4 +37,4 @@ class IngestRequest(BaseModel):
     doc_id: str
     title: str = ""
     source: str = "manual"
-    collection: str = "phiant_general"
+    collection: str = "phient_general"

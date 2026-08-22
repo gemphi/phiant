@@ -67,7 +67,7 @@ WebSocket:    ws://localhost:8000/ws/chat
 {
   "message": "What is M-KOPA's leave policy for Kenya?",
   "session_id": "optional-session-uuid",
-  "user_id": "user@phiant.com",
+  "user_id": "user@phient.com",
   "priority": "standard",
   "metadata": {}
 }

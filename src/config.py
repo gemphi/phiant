@@ -1,4 +1,4 @@
-"""Phiant AI Ops Agent Platform - Configuration."""
+"""Phient AI Ops Agent Platform - Configuration."""
 
 from __future__ import annotations
 

@@ -32,12 +32,12 @@ class VectorStore:
     operations for the RAG pipeline.
     """
 
-    # Default collections for Phiant knowledge domains
+    # Default collections for Phient knowledge domains
     DEFAULT_COLLECTIONS = [
-        "phiant_policies",
-        "phiant_technical",
-        "phiant_processes",
-        "phiant_general",
+        "phient_policies",
+        "phient_technical",
+        "phient_processes",
+        "phient_general",
     ]
 
     def __init__(self, persist_dir: str | None = None) -> None:

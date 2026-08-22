@@ -1,4 +1,4 @@
-"""Phiant AI Ops Agent Platform - Entry point."""
+"""Phient AI Ops Agent Platform - Entry point."""
 
 import sys
 

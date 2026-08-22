@@ -1,0 +1,22 @@
+{
+  "agent_id": "phibus",
+  "agent_name": "PhiBus",
+  "layer": "Infrastructure",
+  "description": "Universal Ontologylogical Pub/Sub Event Bus Manager with PBusEvent routing",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "EVENT_BUS_PUBSUB_V1",
+      "spec_id": "EVENT_BUS_PUBSUB_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "",
+      "required_tasks": [],
+      "tasks": []
+    }
+  ],
+  "tasks": [],
+  "dependencies": [],
+  "external_services": [],
+  "verbs": []
+}

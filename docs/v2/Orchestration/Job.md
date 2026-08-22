@@ -1,0 +1,115 @@
+# Job
+
+Method | HTTP request | Release Stage |
+------------- | ------------- | ----- |
+[**get**](#get) | **GET** /v2/orchestration/jobs/{jobRid} | Public Beta |
+[**get_batch**](#get_batch) | **POST** /v2/orchestration/jobs/getBatch | Public Beta |
+
+# **get**
+Get the Job with the specified rid.
+
+Users are allowed to make a maximum of **4 requests per second** and **25 concurrent requests**.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**job_rid** | JobRid | The RID of a Job. |  |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**Job**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# JobRid | The RID of a Job.
+job_rid = "ri.foundry.main.job.aaf94076-d773-4732-a1df-3b638eb50448"
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.orchestration.Job.get(job_rid, preview=preview)
+    print("The get response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Job.get: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Job  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **get_batch**
+Execute multiple get requests on Job.
+
+Users are allowed to make a maximum of **4 requests per second** and **25 concurrent requests**.
+
+
+The maximum batch size for this endpoint is 500.
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**body** | List[GetJobsBatchRequestElement] | Body of the request |  |
+**preview** | Optional[PreviewMode] | Enables the use of preview functionality. | [optional] |
+
+### Return type
+**GetJobsBatchResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# List[GetJobsBatchRequestElement] | Body of the request
+body = [{"jobRid": "ri.foundry.main.job.aaf94076-d773-4732-a1df-3b638eb50448"}]
+# Optional[PreviewMode] | Enables the use of preview functionality.
+preview = None
+
+
+try:
+    api_response = client.orchestration.Job.get_batch(body, preview=preview)
+    print("The get_batch response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Job.get_batch: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | GetJobsBatchResponse  |  | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+

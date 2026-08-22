@@ -1,0 +1,376 @@
+"""PhiEgg SDK Client — the unified entry point.
+
+Wires all domain agents, Git-core storage (PhiGit), distributed telemetry (PhiLog),
+and multi-model query builders (ORM, VQL, RQL, OQL) into a single client instance.
+"""
+
+from __future__ import annotations
+
+import typing
+from pathlib import Path
+
+from phiegg._core.auth import Auth
+from phiegg._core.config import Config
+
+
+def _default_data_dir() -> Path:
+    """Resolve the default data directory (phient/data)."""
+    return Path(__file__).resolve().parents[2] / "data"
+
+
+class PhiEggClient:
+    """The unified PhiEgg SDK client.
+
+    :param auth: Required. Authentication provider.
+    :param hostname: Target API hostname.
+    :param config: Optionally configure HTTP session behaviour.
+    :param data_dir: Path to data directory for file resolution.
+    """
+
+    def __init__(
+        self,
+        auth: typing.Optional[Auth] = None,
+        hostname: typing.Optional[str] = None,
+        config: typing.Optional[Config] = None,
+        data_dir: typing.Optional[typing.Union[str, Path]] = None,
+    ) -> None:
+        if auth is None:
+            from phiegg._core.auth import EnvAuth
+            auth = EnvAuth()
+
+        self._auth = auth
+        self._hostname = hostname or ""
+        self._config = config
+        self._data_dir = Path(data_dir) if data_dir else _default_data_dir()
+
+        # Shared Git engine and structured logger
+        from phiegg.phigit.engine import GitEngine
+        from phiegg.philog.logger import StructuredLogger
+
+        self._git_engine = GitEngine()
+        self._logger = StructuredLogger()
+
+        # Infrastructure clients
+        from phiegg.phiora._client import PhiOraClient
+        from phiegg.phigit._client import PhiGitClient
+        from phiegg.philog._client import PhiLogClient
+
+        self.phigit = PhiGitClient(auth=auth, hostname=self._hostname, config=config, engine=self._git_engine)
+        self.philog = PhiLogClient(auth=auth, hostname=self._hostname, config=config, logger=self._logger)
+        self.phiora = PhiOraClient(auth=auth, hostname=self._hostname, config=config, data_dir=self._data_dir)
+        self._resolver = self.phiora.Resolver
+
+        # Domain clients
+        from phiegg.phione._client import PhiOneClient
+        from phiegg.phical._client import PhiCalClient
+        from phiegg.phirag._client import PhiRAGClient
+        from phiegg.phidoc._client import PhiDocClient
+        from phiegg.phibot._client import PhiBotClient
+        from phiegg.phibrd._client import PhiBrdClient
+        from phiegg.phillm._client import PhiLLMClient
+        from phiegg.phimen._client import PhiMenClient
+        from phiegg.phisec._client import PhiSecClient
+        from phiegg.phigov._client import PhiGovClient
+        from phiegg.phibus._client import PhiBusClient
+        from phiegg.phigen._client import PhiGenClient
+        from phiegg.ontologies._client import OntologiesClient
+
+        self.phione = PhiOneClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phical = PhiCalClient(auth=auth, hostname=self._hostname, config=config)
+        self.phirag = PhiRAGClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phidoc = PhiDocClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phibot = PhiBotClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phibrd = PhiBrdClient(auth=auth, hostname=self._hostname, config=config)
+        self.phillm = PhiLLMClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phisec = PhiSecClient(auth=auth, hostname=self._hostname, config=config)
+        self.phigov = PhiGovClient(auth=auth, hostname=self._hostname, config=config)
+        self.phibus = PhiBusClient(auth=auth, hostname=self._hostname, config=config)
+        self.phigen = PhiGenClient(auth=auth, hostname=self._hostname, config=config)
+        self.ontologies = OntologiesClient(auth=auth, hostname=self._hostname, config=config)
+        self.ontology = self.ontologies
+        self.topos = self.ontologies
+
+        self.phimen = PhiMenClient(
+            auth=auth, hostname=self._hostname, config=config,
+            domain_clients={
+                "phione": self.phione, "phical": self.phical,
+                "phirag": self.phirag, "phidoc": self.phidoc,
+                "phibot": self.phibot, "phibrd": self.phibrd,
+                "phiora": self.phiora, "phigit": self.phigit,
+                "philog": self.philog, "phillm": self.phillm,
+                "phisec": self.phisec, "phigov": self.phigov,
+                "phibus": self.phibus, "phigen": self.phigen,
+            },
+            data_resolver=self._resolver,
+        )
+
+        # Agent instances dictionary (15 Domain Agents)
+        from phiegg.phione.agent import PhiOneAgent
+        from phiegg.phical.agent import PhiCalAgent
+        from phiegg.phirag.agent import PhiRAGAgent
+        from phiegg.phidoc.agent import PhiDocAgent
+        from phiegg.phibot.agent import PhiBotAgent
+        from phiegg.phibrd.agent import PhiBrdAgent
+        from phiegg.phiora.agent import PhiOraAgent
+        from phiegg.phigit.agent import PhiGitAgent
+        from phiegg.philog.agent import PhiLogAgent
+        from phiegg.phillm.agent import PhiLLMAgent
+        from phiegg.phisec.agent import PhiSecAgent
+        from phiegg.phigov.agent import PhiGovAgent
+        from phiegg.phibus.agent import PhiBusAgent
+        from phiegg.phimen.executive import PhiMenAgent
+        from phiegg.phigen.agent import PhiGenAgent
+
+        self.agents = {
+            "phione": PhiOneAgent(data_resolver=self._resolver),
+            "phical": PhiCalAgent(data_resolver=self._resolver),
+            "phirag": PhiRAGAgent(data_resolver=self._resolver),
+            "phidoc": PhiDocAgent(data_resolver=self._resolver),
+            "phibot": PhiBotAgent(data_resolver=self._resolver),
+            "phibrd": PhiBrdAgent(data_resolver=self._resolver),
+            "phiora": PhiOraAgent(data_dir=self._data_dir, data_resolver=self._resolver),
+            "phigit": PhiGitAgent(engine=self._git_engine),
+            "philog": PhiLogAgent(logger=self._logger),
+            "phillm": PhiLLMAgent(data_resolver=self._resolver),
+            "phisec": PhiSecAgent(),
+            "phigov": PhiGovAgent(),
+            "phibus": PhiBusAgent(),
+            "phimen": PhiMenAgent(domain_clients=self.phimen._domain_clients, data_resolver=self._resolver),
+            "phigen": PhiGenAgent(),
+        }
+
+        # Palantir module clients (1:1 naming)
+        self.admin = self.phione
+        self.aip_agents = self.phibot
+        self.audit = self.philog
+        self.checkpoints = self.phigit
+        self.connectivity = self.phione
+        self.core = self.topos
+        self.data_health = self.philog
+        self.datasets = self.phiora
+        self.filesystem = self.phigit
+        self.functions = self.phibrd
+        self.geo = self.phical
+        self.language_models = self.phillm
+        self.media_sets = self.phiora
+        self.models = self.phical
+        self.ontologies = self.topos
+        self.orchestration = self.phimen
+        self.sql_queries = self.rql
+        self.streams = self.phibus
+        self.third_party_applications = self.phibot
+        self.widgets = self.topos
+
+        # v1 (default) and v2 namespaces
+        self.v1 = V1Namespace(self)
+        self.v2 = V2Namespace(self)
+
+    # ── Query Engine accessors ───────────────────────────────────────
+
+    def vql(self, space: str = "default"):
+        """Spawn a Vector Query Language builder."""
+        from phiegg.query.vql import VQL
+        return VQL.from_space(space, vector_client=self.phiora.Vector)
+
+    def rql(self, table: str):
+        """Spawn a Relational Query Language builder."""
+        from phiegg.query.rql import RQL
+        return RQL.from_table(table, store_client=self.phiora.Store)
+
+    def oql(self, node_id: str):
+        """Spawn an Object / Ontologylogy Query Language builder."""
+        from phiegg.query.oql import OQL
+        return OQL.from_node(node_id)
+
+    def qml(self, space_name: str = "quantum_space"):
+        """Spawn a Quantum Model Language builder."""
+        from phiegg.query.qml import QML
+        return QML.from_space(space_name)
+
+
+class AsyncPhiEggClient:
+    """Async variant of ``PhiEggClient``."""
+
+    def __init__(
+        self,
+        auth: typing.Optional[Auth] = None,
+        hostname: typing.Optional[str] = None,
+        config: typing.Optional[Config] = None,
+        data_dir: typing.Optional[typing.Union[str, Path]] = None,
+    ) -> None:
+        if auth is None:
+            from phiegg._core.auth import EnvAuth
+            auth = EnvAuth()
+
+        self._auth = auth
+        self._hostname = hostname or ""
+        self._config = config
+        self._data_dir = Path(data_dir) if data_dir else _default_data_dir()
+
+        from phiegg.phigit.engine import GitEngine
+        from phiegg.philog.logger import StructuredLogger
+
+        self._git_engine = GitEngine()
+        self._logger = StructuredLogger()
+
+        from phiegg.phiora._client import AsyncPhiOraClient
+        from phiegg.phigit._client import AsyncPhiGitClient
+        from phiegg.philog._client import AsyncPhiLogClient
+
+        self.phigit = AsyncPhiGitClient(auth=auth, hostname=self._hostname, config=config, engine=self._git_engine)
+        self.philog = AsyncPhiLogClient(auth=auth, hostname=self._hostname, config=config, logger=self._logger)
+        self.phiora = AsyncPhiOraClient(auth=auth, hostname=self._hostname, config=config, data_dir=self._data_dir)
+        self._resolver = self.phiora.Resolver
+
+        from phiegg.phione._client import AsyncPhiOneClient
+        from phiegg.phical._client import AsyncPhiCalClient
+        from phiegg.phirag._client import AsyncPhiRAGClient
+        from phiegg.phidoc._client import AsyncPhiDocClient
+        from phiegg.phibot._client import AsyncPhiBotClient
+        from phiegg.phibrd._client import AsyncPhiBrdClient
+        from phiegg.phillm._client import AsyncPhiLLMClient
+        from phiegg.phimen._client import AsyncPhiMenClient
+
+        self.phione = AsyncPhiOneClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phical = AsyncPhiCalClient(auth=auth, hostname=self._hostname, config=config)
+        self.phirag = AsyncPhiRAGClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phidoc = AsyncPhiDocClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phibot = AsyncPhiBotClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phibrd = AsyncPhiBrdClient(auth=auth, hostname=self._hostname, config=config)
+        self.phillm = AsyncPhiLLMClient(auth=auth, hostname=self._hostname, config=config, data_resolver=self._resolver)
+        self.phimen = AsyncPhiMenClient(
+            auth=auth, hostname=self._hostname, config=config,
+            domain_clients={
+                "phione": self.phione, "phical": self.phical,
+                "phirag": self.phirag, "phidoc": self.phidoc,
+                "phibot": self.phibot, "phibrd": self.phibrd,
+                "phiora": self.phiora, "phigit": self.phigit,
+                "philog": self.philog, "phillm": self.phillm,
+            },
+            data_resolver=self._resolver,
+        )
+
+    def vql(self, space: str = "default_space"):
+        from phiegg.query.vql import VQL
+        return VQL.from_space(space, store_client=self.phiora.Store)
+
+    def rql(self, table: str):
+        from phiegg.query.rql import RQL
+        return RQL.from_table(table, store_client=self.phiora.Store)
+
+    def oql(self, node_id: str):
+        from phiegg.query.oql import OQL
+        return OQL.from_node(node_id)
+
+    def qml(self, space_name: str = "quantum_space"):
+        from phiegg.query.qml import QML
+        return QML.from_space(space_name)
+
+
+class V1Namespace:
+    """Phient v1 API Namespace (Default stable core)."""
+
+    def __init__(self, client: PhiEggClient) -> None:
+        self._client = client
+        self.phione = client.phione
+        self.phical = client.phical
+        self.phirag = client.phirag
+        self.phidoc = client.phidoc
+        self.phibot = client.phibot
+        self.phibrd = client.phibrd
+        self.phiora = client.phiora
+        self.phigit = client.phigit
+        self.philog = client.philog
+        self.phillm = client.phillm
+        self.phisec = client.phisec
+        self.phigov = client.phigov
+        self.phibus = client.phibus
+        self.phimen = client.phimen
+        self.topos = client.topos
+
+        # Palantir module aliases
+        self.admin = client.phione
+        self.aip_agents = client.phibot
+        self.audit = client.philog
+        self.checkpoints = client.phigit
+        self.connectivity = client.phione
+        self.core = client.topos
+        self.data_health = client.philog
+        self.datasets = client.phiora
+        self.filesystem = client.phigit
+        self.functions = client.phibrd
+        self.geo = client.phical
+        self.language_models = client.phillm
+        self.media_sets = client.phiora
+        self.models = client.phical
+        self.ontologies = client.topos
+        self.orchestration = client.phimen
+        self.sql_queries = client.rql
+        self.streams = client.phibus
+        self.third_party_applications = client.phibot
+        self.widgets = client.topos
+
+
+class V2Namespace:
+    """Phient v2 API Namespace (Ontologylogical Manifolds & Quantum QML)."""
+
+    def __init__(self, client: PhiEggClient) -> None:
+        self._client = client
+        self.phione = client.phione
+        self.phical = client.phical
+        self.phirag = client.phirag
+        self.phidoc = client.phidoc
+        self.phibot = client.phibot
+        self.phibrd = client.phibrd
+        self.phiora = client.phiora
+        self.phigit = client.phigit
+        self.philog = client.philog
+        self.phillm = client.phillm
+        self.phisec = client.phisec
+        self.phigov = client.phigov
+        self.phibus = client.phibus
+        self.phimen = client.phimen
+        self.topos = client.topos
+
+        # Palantir module aliases
+        self.admin = client.phione
+        self.aip_agents = client.phibot
+        self.audit = client.philog
+        self.checkpoints = client.phigit
+        self.connectivity = client.phione
+        self.core = client.topos
+        self.data_health = client.philog
+        self.datasets = client.phiora
+        self.filesystem = client.phigit
+        self.functions = client.phibrd
+        self.geo = client.phical
+        self.language_models = client.phillm
+        self.media_sets = client.phiora
+        self.models = client.phical
+        self.ontologies = client.topos
+        self.orchestration = client.phimen
+        self.sql_queries = client.rql
+        self.streams = client.phibus
+        self.third_party_applications = client.phibot
+        self.widgets = client.topos
+
+    def qml(self, space_name: str = "quantum_space"):
+        return self._client.qml(space_name)
+
+    def vql(self, space: str = "default"):
+        return self._client.vql(space)
+
+    def rql(self, table: str):
+        return self._client.rql(table)
+
+    def oql(self, node_id: str):
+        return self._client.oql(node_id)
+
+
+# Standard P* class aliases
+PClient = PhiEggClient
+PAsyncClient = AsyncPhiEggClient
+PPhiEggClient = PhiEggClient
+
+
+

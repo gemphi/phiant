@@ -1,1 +1,1 @@
-"""Phiant MCP Server package."""
+"""Phient MCP Server package."""

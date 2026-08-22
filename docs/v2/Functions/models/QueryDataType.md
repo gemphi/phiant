@@ -1,0 +1,36 @@
+# QueryDataType
+
+A union of all the types supported by Query parameters or outputs.
+
+
+This is a discriminator type and does not contain any fields. Instead, it is a union
+of of the models listed below.
+
+This discriminator class uses the `type` field to differentiate between classes.
+
+| Class | Value
+| ------------ | -------------
+DateType | date
+QueryStructType | struct
+QuerySetType | set
+VoidType | void
+StringType | string
+DoubleType | double
+IntegerType | integer
+ThreeDimensionalAggregation | threeDimensionalAggregation
+QueryUnionType | union
+FloatType | float
+LongType | long
+BooleanType | boolean
+UnsupportedType | unsupported
+AttachmentType | attachment
+MediaReferenceType | mediaReference
+NullType | null
+QueryArrayType | array
+TwoDimensionalAggregation | twoDimensionalAggregation
+ValueTypeReference | valueTypeReference
+QueryTypeReferenceType | typeReference
+TimestampType | timestamp
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

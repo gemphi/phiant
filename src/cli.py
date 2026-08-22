@@ -54,7 +54,7 @@ async def interactive_loop(orchestrator: Orchestrator) -> None:
             elif cmd == "/help":
                 console.print(Panel(
                     "Commands: /status, /agents, /help, /quit\n"
-                    'Examples: "What is leave policy?", "Look up user jane@phiant.com"',
+                    'Examples: "What is leave policy?", "Look up user jane@phient.com"',
                     title="Help", border_style="bright_cyan",
                 ))
                 continue

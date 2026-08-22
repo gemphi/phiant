@@ -1,4 +1,4 @@
-"""Phiant Platform Utilities."""
+"""Phient Platform Utilities."""
 
 from __future__ import annotations
 

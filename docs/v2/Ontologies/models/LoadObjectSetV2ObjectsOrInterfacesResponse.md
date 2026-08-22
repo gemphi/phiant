@@ -1,0 +1,16 @@
+# LoadObjectSetV2ObjectsOrInterfacesResponse
+
+Represents the API response when loading an `ObjectSet`. Objects in the returned set can either have properties
+defined by an interface that the objects belong to or properties defined by the object type of the object.
+
+
+## Properties
+| Name | Type | Required | Description |
+| ------------ | ------------- | ------------- | ------------- |
+**data** | List[OntologyObjectV2] | Yes | The list of objects in the current page. |
+**next_page_token** | Optional[PageToken] | No |  |
+**total_count** | TotalCount | Yes |  |
+**transaction_id** | Optional[OntologyTransactionId] | No |  |
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

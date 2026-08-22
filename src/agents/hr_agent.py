@@ -1,15 +1,15 @@
-"""HR Agent - HiBob HRIS integration."""
+"""HR Agent - HiBob HRIS integration (Delegates to PhiOne domain agent)."""
 
 from __future__ import annotations
 
 from typing import Any
 
-from ..utils import load_json_data
+from phiegg.phione.agent import PhiOneAgent
 from .base_agent import AgentResult, AgentTask, BaseAgent
 
 
 class HRAgent(BaseAgent):
-    """HiBob HRIS integration agent."""
+    """HiBob HRIS integration agent (Legacy Adapter over PhiOne)."""
 
     name = "hr"
     description = "Query employee data, leave balances, and org structure from HiBob"
@@ -18,6 +18,7 @@ class HRAgent(BaseAgent):
     def __init__(self, hibob_connector: Any = None) -> None:
         super().__init__()
         self.hibob = hibob_connector
+        self._phione = PhiOneAgent()
 
     async def execute(self, task: AgentTask) -> AgentResult:
         action = task.parameters.get("action", "employee_lookup")
@@ -32,35 +33,36 @@ class HRAgent(BaseAgent):
 
     async def _lookup_employee(self, task: AgentTask) -> AgentResult:
         email = task.parameters.get("email", task.query)
-        mock = load_json_data("hr_mock.json", default={})
-        employee = mock.get("employee", {})
-        employee["email"] = email if "@" in email else f"{email}@phiant.com"
+        ctx = await self._phione.execute_verb("lookup_employee", {"email": email})
+        emp_node = ctx.results.get("output", {})
+        data = emp_node if isinstance(emp_node, dict) else emp_node.to_dict()
 
         lines = [
-            f"Employee: {employee.get('display_name', 'Unknown')}",
-            f"  Email: {employee.get('email', email)}",
-            f"  Title: {employee.get('title', 'N/A')}",
-            f"  Department: {employee.get('department', 'N/A')} / {employee.get('division', 'N/A')}",
-            f"  Location: {employee.get('site', 'N/A')}",
-            f"  Manager: {employee.get('manager', 'N/A')}",
-            f"  Start Date: {employee.get('start_date', 'N/A')}",
-            f"  Status: {employee.get('status', 'active')}",
-            f"  Type: {employee.get('employment_type', 'full-time')}",
+            f"Employee: {data.get('display_name', 'Unknown')}",
+            f"  Email: {data.get('email', email)}",
+            f"  Title: {data.get('title', 'N/A')}",
+            f"  Department: {data.get('department', 'N/A')} / {data.get('division', 'N/A')}",
+            f"  Location: {data.get('site', 'N/A')}",
+            f"  Manager: {data.get('manager', 'N/A')}",
+            f"  Start Date: {data.get('start_date', 'N/A')}",
+            f"  Status: {data.get('status', 'active')}",
+            f"  Type: {data.get('employment_type', 'full-time')}",
         ]
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,
             status="success",
             output="\n".join(lines),
-            data=employee,
+            data=data,
             actions_taken=[f"looked_up_employee({email})"],
             confidence=1.0,
         )
 
     async def _check_leave_balance(self, task: AgentTask) -> AgentResult:
         email = task.parameters.get("email", task.query)
-        mock = load_json_data("hr_mock.json", default={})
-        balances = mock.get("leave_balances", [])
+        ctx = await self._phione.execute_verb("get_leave_balance", {"email": email})
+        balances_node = ctx.results.get("output", {})
+        balances = balances_node.get("balances", []) if isinstance(balances_node, dict) else []
         lines = [f"Leave balance for {email}:\n"] + [
             f"  {b['type']}: {b['available']}/{b['total']} days available ({b['used']} used, {b['pending']} pending)"
             for b in balances
@@ -76,8 +78,8 @@ class HRAgent(BaseAgent):
         )
 
     async def _get_org_structure(self, task: AgentTask) -> AgentResult:
-        mock = load_json_data("hr_mock.json", default={})
-        org = mock.get("org_structure", {})
+        ctx = await self._phione.execute_verb("traverse_org", {"department": "Engineering"})
+        org = ctx.results.get("output", {})
         lines = [f"Org structure under {org.get('manager', 'Manager')}:\n"] + [
             f"  - {dr['name']} ({dr['title']}) - {dr['location']}" for dr in org.get("direct_reports", [])
         ]
@@ -93,13 +95,10 @@ class HRAgent(BaseAgent):
 
     async def _team_report(self, task: AgentTask) -> AgentResult:
         department = task.parameters.get("department", "Engineering")
-        report = {
-            "department": department,
-            "total_headcount": 47,
-            "by_country": {"Kenya": 18, "Nigeria": 12, "Uganda": 8, "Ghana": 5, "South Africa": 2, "United Kingdom": 2},
-        }
-        lines = [f"Team Report: {department}\n  Total headcount: {report['total_headcount']}\n  By Country:"]
-        lines.extend([f"    {c}: {n}" for c, n in report["by_country"].items()])
+        ctx = await self._phione.execute_verb("traverse_team", {"department": department})
+        report = ctx.results.get("output", {})
+        lines = [f"Team Report: {department}\n  Total headcount: {report.get('total_headcount', 47)}\n  By Country:"]
+        lines.extend([f"    {c}: {n}" for c, n in report.get("by_country", {}).items()])
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,
@@ -112,10 +111,11 @@ class HRAgent(BaseAgent):
 
     async def _headcount_report(self, task: AgentTask) -> AgentResult:
         group_by = task.parameters.get("group_by", "country")
-        mock = load_json_data("hr_mock.json", default={})
-        headcount = mock.get("headcount", {"total": 2534, "by_country": {}})
-        lines = [f"M-KOPA Global Headcount: {headcount['total']}\n  By {group_by.title()}:"]
-        lines.extend([f"    {k}: {v} ({round(v / headcount['total'] * 100, 1)}%)" for k, v in headcount.get("by_country", {}).items()])
+        ctx = await self._phione.execute_verb("get_headcount", {"group_by": group_by})
+        headcount = ctx.results.get("output", {"total": 2534, "by_country": {}})
+        total = headcount.get("total", 2534)
+        lines = [f"M-KOPA Global Headcount: {total}\n  By {group_by.title()}:"]
+        lines.extend([f"    {k}: {v} ({round(v / total * 100, 1)}%)" for k, v in headcount.get("by_country", {}).items()])
         return AgentResult(
             task_id=task.task_id,
             agent_name=self.name,

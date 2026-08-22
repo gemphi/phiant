@@ -1,0 +1,41 @@
+import { AgentOntologylogy, Mermaid, SimplexBadge } from '@phiegg/components'
+
+# PhiLog: Distributed Telemetry & Observability Ontologylogy
+
+<SimplexBadge layer="Infrastructure" simplex="Ordered Event Stream Simplex" version="1.0.0" />
+
+PhiLog is the observability backbone of the ecosystem. It records structured events, audits state mutations, and provides queryable filters and real-time log streaming.
+
+## 1. Telemetry Space & Ingestion Flow
+
+```mermaid
+graph TD
+    subgraph EmittingAgents["Emitting Agents"]
+        A1["PhiOne"]
+        A2["PhiGit"]
+        A3["PhiMen"]
+    end
+
+    subgraph LoggerEngine["Structured Logger Engine"]
+        Buffer["Ring Buffer (1000 records)"]
+        AuditLog["Immutable Audit Trail"]
+        Sink["Standard / Prometheus Sink"]
+    end
+
+    EmittingAgents -->|log(level, msg)| Buffer
+    EmittingAgents -->|record_audit(action, sha1)| AuditLog
+    Buffer --> Sink
+```
+
+### ASCII Telemetry Pipeline
+```
+[ Agents ] ──► (LogRecord) ──► [ In-Memory Buffer ] ──► [ Query / Tail / Count ]
+     │                              │
+     └───────► (AuditEntry) ───────►┴─► [ Immutable Commit Audit Trail ]
+```
+
+## 2. Inter-Agent Dependencies & Inheritance
+
+- **Extends**: `PhiAgent`
+- **Depends on**: None (Foundational primitive)
+- **Feeds into**: All agents for telemetry, CLI for live monitoring

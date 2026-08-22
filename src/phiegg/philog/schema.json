@@ -1,0 +1,101 @@
+{
+  "agent_id": "philog",
+  "agent_name": "PhiLog",
+  "layer": "Infrastructure",
+  "description": "Distributed telemetry \u2014 structured logging, audit trails, query filtering, and real-time log streaming.",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "TELEMETRY_ARCHIVAL_V1",
+      "spec_id": "TELEMETRY_ARCHIVAL_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "Distributed structured logging with query, aggregation, and export.",
+      "required_tasks": [
+        "logging_operations",
+        "query_operations",
+        "audit_operations"
+      ],
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "logging_operations",
+      "name": "Logging Operations",
+      "description": "Emit structured log events at multiple severity levels.",
+      "verbs": [
+        {
+          "verb": "log",
+          "description": "Emit a structured log record",
+          "parameters": {
+            "level": "str",
+            "message": "str"
+          },
+          "returns": "LogRecord"
+        },
+        {
+          "verb": "tail",
+          "description": "Stream the most recent log entries",
+          "parameters": {
+            "n": "int"
+          },
+          "returns": "list"
+        }
+      ]
+    },
+    {
+      "task_id": "query_operations",
+      "name": "Query Operations",
+      "description": "Filter and count log entries by agent or level.",
+      "verbs": [
+        {
+          "verb": "query",
+          "description": "Filter logs by criteria",
+          "parameters": {
+            "agent_id": "str",
+            "level": "str"
+          },
+          "returns": "list"
+        },
+        {
+          "verb": "count",
+          "description": "Count matching log entries",
+          "parameters": {},
+          "returns": "int"
+        }
+      ]
+    },
+    {
+      "task_id": "audit_operations",
+      "name": "Audit Operations",
+      "description": "Record and inspect immutable audit trail entries.",
+      "verbs": [
+        {
+          "verb": "record_audit",
+          "description": "Record state mutation audit entry",
+          "parameters": {
+            "action": "str",
+            "agent_id": "str",
+            "target": "str",
+            "commit_sha1": "str"
+          },
+          "returns": "AuditEntry"
+        }
+      ]
+    }
+  ],
+  "dependencies": [],
+  "external_services": [
+    "Prometheus",
+    "Grafana",
+    "Standard Output"
+  ],
+  "verbs": [
+    "log",
+    "tail",
+    "query",
+    "count",
+    "record_audit"
+  ]
+}

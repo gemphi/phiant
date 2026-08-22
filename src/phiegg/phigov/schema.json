@@ -1,0 +1,22 @@
+{
+  "agent_id": "phigov",
+  "agent_name": "PhiGov",
+  "layer": "Infrastructure",
+  "description": "Enterprise Regulatory Compliance, Lineage Auditing, and Policy Registry",
+  "version": "1.0.0",
+  "specs": [
+    {
+      "spec_idx": "ENTERPRISE_GOVERNANCE_V1",
+      "spec_id": "ENTERPRISE_GOVERNANCE_V1",
+      "version": "1.0.0",
+      "name": "",
+      "description": "",
+      "required_tasks": [],
+      "tasks": []
+    }
+  ],
+  "tasks": [],
+  "dependencies": [],
+  "external_services": [],
+  "verbs": []
+}

@@ -1,4 +1,4 @@
-"""Tests for Phiant agents."""
+"""Tests for Phient agents."""
 
 import pytest
 
@@ -59,15 +59,15 @@ class TestIdentityAgent:
         return IdentityAgent()
 
     async def test_user_lookup(self, agent):
-        result = await agent.run(AgentTask(query="Look up user", parameters={"action": "lookup", "email": "jane@phiant.com"}))
+        result = await agent.run(AgentTask(query="Look up user", parameters={"action": "lookup", "email": "jane@phient.com"}))
         assert result.status == "success"
 
     async def test_create_user_requires_approval(self, agent):
-        result = await agent.run(AgentTask(query="Create user", parameters={"action": "create_user", "email": "test@phiant.com"}))
+        result = await agent.run(AgentTask(query="Create user", parameters={"action": "create_user", "email": "test@phient.com"}))
         assert result.status == "needs_approval"
 
     async def test_disable_user_requires_approval(self, agent):
-        result = await agent.run(AgentTask(query="Disable user", parameters={"action": "disable_user", "email": "test@phiant.com"}))
+        result = await agent.run(AgentTask(query="Disable user", parameters={"action": "disable_user", "email": "test@phient.com"}))
         assert result.status == "needs_approval"
 
 
@@ -77,11 +77,11 @@ class TestHRAgent:
         return HRAgent()
 
     async def test_employee_lookup(self, agent):
-        result = await agent.run(AgentTask(query="Look up employee", parameters={"action": "employee_lookup", "email": "jane@phiant.com"}))
+        result = await agent.run(AgentTask(query="Look up employee", parameters={"action": "employee_lookup", "email": "jane@phient.com"}))
         assert result.status == "success"
 
     async def test_leave_balance(self, agent):
-        result = await agent.run(AgentTask(query="Check leave balance", parameters={"action": "leave_balance", "email": "jane@phiant.com"}))
+        result = await agent.run(AgentTask(query="Check leave balance", parameters={"action": "leave_balance", "email": "jane@phient.com"}))
         assert result.status == "success"
 
     async def test_headcount(self, agent):
@@ -114,7 +114,7 @@ class TestOnboardingAgent:
             parameters={
                 "action": "onboard",
                 "full_name": "Jane Muthoni",
-                "email": "jane.m@phiant.com",
+                "email": "jane.m@phient.com",
                 "department": "Engineering",
                 "title": "Software Engineer",
                 "start_date": "2026-08-01",

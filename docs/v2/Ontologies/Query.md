@@ -1,0 +1,103 @@
+# Query
+
+Method | HTTP request | Release Stage |
+------------- | ------------- | ----- |
+[**execute**](#execute) | **POST** /v2/ontologies/{ontology}/queries/{queryApiName}/execute | Stable |
+
+# **execute**
+Executes a Query using the given parameters. By default, the latest version of the Query is executed. 
+The latest version is the one that was most recently published, which may be a pre-release version.
+
+Optional parameters do not need to be supplied.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**ontology** | OntologyIdentifier |  |  |
+**query_api_name** | QueryApiName | The API name of the Query to execute.  |  |
+**parameters** | Dict[ParameterId, Optional[DataValue]] |  |  |
+**attribution** | Optional[Attribution] | The Attribution to be used when executing this request.  | [optional] |
+**branch** | Optional[FoundryBranch] | The Foundry branch to execute the query from. If not specified, the default branch is used. Branches are an experimental feature and not all workflows are supported. When provided without `version`, the latest version on this branch is used, including pre-release versions. When provided with `version`, the specified version must exist on the branch.  | [optional] |
+**scenario_rid** | Optional[OntologyScenarioRid] | The resource identifier of an ontology scenario to execute the query on.  | [optional] |
+**sdk_package_rid** | Optional[SdkPackageRid] | The package rid of the generated SDK.  | [optional] |
+**sdk_version** | Optional[SdkVersion] | The version of the generated SDK.  | [optional] |
+**trace_parent** | Optional[TraceParent] | The W3C trace parent header included in the request.  | [optional] |
+**trace_state** | Optional[TraceState] | The W3C trace state header included in the request.  | [optional] |
+**transaction_id** | Optional[OntologyTransactionId] | The ID of an Ontology transaction to read from. Transactions are an experimental feature and all workflows may not be supported.  | [optional] |
+**version** | Optional[FunctionVersion] | The version of the Query to execute. If not specified, the latest version is used. The latest version is the one that was most recently published, including pre-release versions. When used with `branch`, the specified version must exist on the branch.  | [optional] |
+
+### Return type
+**ExecuteQueryResponse**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# OntologyIdentifier
+ontology = "palantir"
+# QueryApiName | The API name of the Query to execute.
+query_api_name = "getEmployeesInCity"
+# Dict[ParameterId, Optional[DataValue]]
+parameters = {"city": "New York"}
+# Optional[Attribution] | The Attribution to be used when executing this request.
+attribution = None
+# Optional[FoundryBranch] | The Foundry branch to execute the query from. If not specified, the default branch is used. Branches are an experimental feature and not all workflows are supported. When provided without `version`, the latest version on this branch is used, including pre-release versions. When provided with `version`, the specified version must exist on the branch.
+branch = None
+# Optional[OntologyScenarioRid] | The resource identifier of an ontology scenario to execute the query on.
+scenario_rid = None
+# Optional[SdkPackageRid] | The package rid of the generated SDK.
+sdk_package_rid = None
+# Optional[SdkVersion] | The version of the generated SDK.
+sdk_version = None
+# Optional[TraceParent] | The W3C trace parent header included in the request.
+trace_parent = None
+# Optional[TraceState] | The W3C trace state header included in the request.
+trace_state = None
+# Optional[OntologyTransactionId] | The ID of an Ontology transaction to read from. Transactions are an experimental feature and all workflows may not be supported.
+transaction_id = None
+# Optional[FunctionVersion] | The version of the Query to execute. If not specified, the latest version is used. The latest version is the one that was most recently published, including pre-release versions. When used with `branch`, the specified version must exist on the branch.
+version = None
+
+
+try:
+    api_response = client.ontologies.Query.execute(
+        ontology,
+        query_api_name,
+        parameters=parameters,
+        attribution=attribution,
+        branch=branch,
+        scenario_rid=scenario_rid,
+        sdk_package_rid=sdk_package_rid,
+        sdk_version=sdk_version,
+        trace_parent=trace_parent,
+        trace_state=trace_state,
+        transaction_id=transaction_id,
+        version=version,
+    )
+    print("The execute response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling Query.execute: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | ExecuteQueryResponse  | Success response. | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+

@@ -1,0 +1,163 @@
+# TimeSeriesValueBankProperty
+
+Method | HTTP request | Release Stage |
+------------- | ------------- | ----- |
+[**get_latest_value**](#get_latest_value) | **GET** /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{propertyName}/latestValue | Stable |
+[**stream_values**](#stream_values) | **POST** /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{property}/streamValues | Stable |
+
+# **get_latest_value**
+Get the latest value of a property backed by a timeseries. If a specific geotime series integration has both a history and a live integration, we will give precedence to the live integration.
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**ontology** | OntologyIdentifier |  |  |
+**object_type** | ObjectTypeApiName | The API name of the object type. To find the API name, use the **List object types** endpoint or check the **Ontology Manager**.  |  |
+**primary_key** | PropertyValueEscapedString | The primary key of the object with the timeseries property.  |  |
+**property_name** | PropertyApiName | The API name of the timeseries property. To find the API name for your property value bank property, check the **Ontology Manager** or use the **Get object type** endpoint.  |  |
+**branch** | Optional[FoundryBranch] | The Foundry branch to read from. If not specified, the default branch will be used.  | [optional] |
+**sdk_package_rid** | Optional[SdkPackageRid] | The package rid of the generated SDK.  | [optional] |
+**sdk_version** | Optional[SdkVersion] | The version of the generated SDK.  | [optional] |
+
+### Return type
+**Optional[TimeseriesEntry]**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# OntologyIdentifier
+ontology = "palantir"
+# ObjectTypeApiName | The API name of the object type. To find the API name, use the **List object types** endpoint or check the **Ontology Manager**.
+object_type = "employee"
+# PropertyValueEscapedString | The primary key of the object with the timeseries property.
+primary_key = 50030
+# PropertyApiName | The API name of the timeseries property. To find the API name for your property value bank property, check the **Ontology Manager** or use the **Get object type** endpoint.
+property_name = "performance"
+# Optional[FoundryBranch] | The Foundry branch to read from. If not specified, the default branch will be used.
+branch = None
+# Optional[SdkPackageRid] | The package rid of the generated SDK.
+sdk_package_rid = None
+# Optional[SdkVersion] | The version of the generated SDK.
+sdk_version = None
+
+
+try:
+    api_response = client.ontologies.TimeSeriesValueBankProperty.get_latest_value(
+        ontology,
+        object_type,
+        primary_key,
+        property_name,
+        branch=branch,
+        sdk_package_rid=sdk_package_rid,
+        sdk_version=sdk_version,
+    )
+    print("The get_latest_value response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling TimeSeriesValueBankProperty.get_latest_value: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | Optional[TimeseriesEntry]  | Success response. | application/json |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+
+# **stream_values**
+Stream all of the points of a time series property (this includes geotime series references).
+
+
+### Parameters
+
+Name | Type | Description  | Notes |
+------------- | ------------- | ------------- | ------------- |
+**ontology** | OntologyIdentifier |  |  |
+**object_type** | ObjectTypeApiName | The API name of the object type. To find the API name, use the **List object types** endpoint or check the **Ontology Manager**.  |  |
+**primary_key** | PropertyValueEscapedString | The primary key of the object with the time series property.  |  |
+**property** | PropertyApiName | The API name of the time series backed property. To find the API name, check the **Ontology Manager** or use the **Get object type** endpoint.  |  |
+**branch** | Optional[FoundryBranch] | The Foundry branch to read from. If not specified, the default branch will be used.  | [optional] |
+**range** | Optional[TimeRange] |  | [optional] |
+**sdk_package_rid** | Optional[SdkPackageRid] | The package rid of the generated SDK.  | [optional] |
+**sdk_version** | Optional[SdkVersion] | The version of the generated SDK.  | [optional] |
+
+### Return type
+**bytes**
+
+### Example
+
+```python
+from phiegg import PhiEggClient
+import phiegg
+from pprint import pprint
+
+client = PhiEggClient()
+
+# OntologyIdentifier
+ontology = "palantir"
+# ObjectTypeApiName | The API name of the object type. To find the API name, use the **List object types** endpoint or check the **Ontology Manager**.
+object_type = "employee"
+# PropertyValueEscapedString | The primary key of the object with the time series property.
+primary_key = 50030
+# PropertyApiName | The API name of the time series backed property. To find the API name, check the **Ontology Manager** or use the **Get object type** endpoint.
+property = None
+# Optional[FoundryBranch] | The Foundry branch to read from. If not specified, the default branch will be used.
+branch = None
+# Optional[TimeRange]
+range = {
+    "type": "relative",
+    "startTime": {"when": "BEFORE", "value": 5, "unit": "MONTHS"},
+    "endTime": {"when": "BEFORE", "value": 1, "unit": "MONTHS"},
+}
+# Optional[SdkPackageRid] | The package rid of the generated SDK.
+sdk_package_rid = None
+# Optional[SdkVersion] | The version of the generated SDK.
+sdk_version = None
+
+
+try:
+    api_response = client.ontologies.TimeSeriesValueBankProperty.stream_values(
+        ontology,
+        object_type,
+        primary_key,
+        property,
+        branch=branch,
+        range=range,
+        sdk_package_rid=sdk_package_rid,
+        sdk_version=sdk_version,
+    )
+    print("The stream_values response:\n")
+    pprint(api_response)
+except Exception as e:
+    print("HTTP error when calling TimeSeriesValueBankProperty.stream_values: %s\n" % e)
+
+```
+
+
+
+### Authorization
+
+See [README](../../../README.md#authorization)
+
+### HTTP response details
+| Status Code | Type        | Description | Content Type |
+|-------------|-------------|-------------|------------------|
+**200** | bytes  | Success response. | */* |
+
+[[Back to top]](#) [[Back to API list]](../README.md) [[Back to Model list]](./models/README.md) [[Back to README]](../../README.md)
+

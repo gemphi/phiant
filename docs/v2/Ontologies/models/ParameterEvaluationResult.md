@@ -1,0 +1,14 @@
+# ParameterEvaluationResult
+
+Represents the validity of a parameter against the configured constraints.
+
+## Properties
+| Name | Type | Required | Description |
+| ------------ | ------------- | ------------- | ------------- |
+**result** | ValidationResult | Yes |  |
+**evaluated_constraints** | List[ParameterEvaluatedConstraint] | Yes |  |
+**required** | bool | Yes | Represents whether the parameter is a required input to the action. |
+**default_value** | Optional[DataValue] | No |  |
+
+
+[[Back to Model list]](./models/README.md) [[Back to API list]](../README.md) [[Back to README]](../../README.md)

@@ -43,7 +43,7 @@ class RAGPipeline:
         doc_id: str,
         title: str = "",
         source: str = "manual",
-        collection: str = "phiant_general",
+        collection: str = "phient_general",
         metadata: dict[str, Any] | None = None,
     ) -> IngestedDocument:
         """Ingest a document into the RAG pipeline."""
@@ -94,7 +94,7 @@ class RAGPipeline:
         )
 
     async def ingest_sample_data(self) -> int:
-        """Ingest sample Phiant knowledge base documents from JSON file."""
+        """Ingest sample Phient knowledge base documents from JSON file."""
         sample_path = Path(__file__).parent.parent.parent / "data" / "sample_documents.json"
         if not sample_path.exists():
             logger.warning("Sample documents file not found at %s", sample_path)

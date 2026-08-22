@@ -1,0 +1,67 @@
+import { AgentOntologylogy, Mermaid, SimplexBadge } from '@phiegg/components'
+
+# PhiOne: Identity & Workforce Ontologylogy
+
+<SimplexBadge layer="Infrastructure" simplex="0-simplex, 1-simplex" version="1.0.0" />
+
+PhiOne manages the connected topological spaces of enterprise identity, Microsoft Entra ID accounts, employee hierarchy simplexes, and leave balance manifolds.
+
+## 1. Simplicial Structure & Spaces
+
+```mermaid
+graph TD
+    subgraph EmployeeSpace["Employee Space (0-simplex Nodes)"]
+        E1["EmployeeNode (Jane Muthoni)"]
+        E2["EmployeeNode (Alice Smith)"]
+        E3["EmployeeNode (Bob Jones)"]
+    end
+
+    subgraph IdentitySpace["Identity Space (Entra ID)"]
+        I1["IdentityNode (UPN/SSO)"]
+        I2["GroupNode (Security Group)"]
+        I3["LicenseNode (M365 E5)"]
+    end
+
+    E1 -->|1-simplex Edge: member_of| I2
+    E1 -->|1-simplex Edge: assigned_license| I3
+    E1 -->|1-simplex Edge: reports_to| E2
+    E2 -->|2-simplex Face: manages_team| EmployeeSpace
+```
+
+### ASCII Space Representation
+```
+[ Global Ontologylogy ]
+       │
+       ├─► [ Employee Space ] ──(reports_to)──► [ Org Tree 2-Simplex ]
+       │         │
+       │         └─► (account_link) ──► [ Identity Space ]
+       │                                       │
+       │                                       ├─► [ Security Groups ]
+       │                                       └─► [ License Manifolds ]
+       └─► [ Leave Balance Space ]
+```
+
+## 2. Morphisms & Morphic Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Caller
+    participant PhiOne as PhiOneAgent
+    participant HR as Employee Space
+    participant Entra as Identity Space
+    participant PhiOra as PhiOra (Data Resolver)
+
+    Caller->>PhiOne: execute_verb('lookup_employee', email)
+    PhiOne->>PhiOra: resolve_dataset('hr_mock.json')
+    PhiOra-->>PhiOne: Employee Dataset (Jane Muthoni)
+    PhiOne->>HR: Traversal(origin='employee_space')
+    HR-->>PhiOne: EmployeeNode(Jane)
+    PhiOne->>Caller: AgentContext(results=Node)
+```
+
+## 3. Inter-Agent Dependencies & Inheritance
+
+- **Extends**: `PhiAgent`
+- **Depends on**: `phiora` (Dataset resolution), `phigit` (Lineage commits)
+- **Feeds into**: `phibrd` (Onboarding fiber bundles), `phimen` (Executive headcount analysis)

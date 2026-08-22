@@ -1,1 +1,1 @@
-"""Phiant Monitoring package."""
+"""Phient Monitoring package."""

@@ -10,7 +10,7 @@
 `mcp` implements the Model Context Protocol standard by Anthropic, enabling applications to expose tools, resources, and prompts to Claude Desktop and Claude Code.
 
 ## 3. Why It Was Chosen
-1. **Claude Ecosystem Integration**: Allows Phiant engineers to invoke agents directly inside Claude Desktop and IDE tool extensions.
+1. **Claude Ecosystem Integration**: Allows Phient engineers to invoke agents directly inside Claude Desktop and IDE tool extensions.
 2. **Standard Protocol**: Open protocol implementation.
 
 ## 4. Architectural & System Flow Diagrams
@@ -23,12 +23,12 @@ graph TD
         MCPClient[MCP Client Manager]
     end
 
-    subgraph Phiant MCP Server Layer
+    subgraph Phient MCP Server Layer
         MCPEngine[MCPServer Protocol Engine]
         ToolRegistry[MCP_TOOLS Registry]
     end
 
-    subgraph Phiant Agent Ecosystem
+    subgraph Phient Agent Ecosystem
         Orchestrator[Orchestrator Router]
         Knowledge[Knowledge Agent]
         Identity[Identity Agent]

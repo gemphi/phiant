@@ -15,7 +15,7 @@
 
 ## 4. Architectural & System Flow Diagrams
 
-### Topology & Channel Architecture
+### Ontologylogy & Channel Architecture
 ```mermaid
 graph LR
     subgraph Frontend Client

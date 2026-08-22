@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phiant AI Ops Agent Platform</title>
-    <meta name="description" content="Phiant AI Ops Agent Platform - Real-time monitoring and chat interface for the multi-agent ecosystem">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Phient AI Ops Agent Platform</title>
+    <meta name="description"
+        content="Phient AI Ops Agent Platform - Real-time monitoring and chat interface for the multi-agent ecosystem">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-primary: #08080c;
@@ -29,7 +33,11 @@
             --glass-active: rgba(99, 102, 241, 0.12);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -141,8 +149,117 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* Palantir Neat Sliders */
+        .header-sliders-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px 10px;
+        }
+
+        .header-slider-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .header-slider-label {
+            font-weight: 600;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-slider-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-primary);
+            border: 1px solid var(--border);
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .bp-slider-input {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 54px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .bp-slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+            box-shadow: 0 0 8px var(--glow);
+            transition: transform 0.1s ease;
+        }
+
+        .bp-slider-input::-webkit-slider-thumb:hover {
+            transform: scale(1.25);
+        }
+
+        /* Multi-Cloud Selector */
+        .cloud-pills-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .cloud-pill-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .cloud-pill-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cloud-pill-btn.active {
+            background: var(--bg-card);
+            color: var(--accent-primary);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
         }
 
         /* Central Toolbar Buttons & Icon Dual-Mode */
@@ -155,6 +272,7 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
 
         .icon-btn {
             position: relative;
@@ -192,7 +310,10 @@
         }
 
         /* Floating Tooltips for Icon-Only Mode */
-        .tooltip-target { position: relative; }
+        .tooltip-target {
+            position: relative;
+        }
+
         .tooltip-target::after {
             content: attr(data-tooltip);
             position: absolute;
@@ -210,7 +331,7 @@
             opacity: 0;
             pointer-events: none;
             transition: all 0.15s ease;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
             z-index: 200;
         }
 
@@ -263,7 +384,8 @@
         .host-switcher-dropdown {
             position: absolute;
             top: calc(100% + 10px);
-            right: 0; /* Opens to left! */
+            right: 0;
+            /* Opens to left! */
             left: auto;
             width: 520px;
             background: #12121e;
@@ -283,8 +405,15 @@
         }
 
         @keyframes dropdownSlideLeft {
-            from { opacity: 0; transform: translateY(-8px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* 2-Column Layout in Dropdown */
@@ -378,12 +507,19 @@
             height: 20px;
         }
 
-        .switch input { opacity: 0; width: 0; height: 0; }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
         .slider {
             position: absolute;
             cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-color: var(--border);
             transition: .2s;
             border-radius: 20px;
@@ -392,15 +528,22 @@
         .slider:before {
             position: absolute;
             content: "";
-            height: 14px; width: 14px;
-            left: 3px; bottom: 3px;
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
             transition: .2s;
             border-radius: 50%;
         }
 
-        input:checked + .slider { background-color: var(--accent-primary); }
-        input:checked + .slider:before { transform: translateX(16px); }
+        input:checked+.slider {
+            background-color: var(--accent-primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(16px);
+        }
 
         /* Sidebar Item Hover Matches Content Container */
         .nav-item {
@@ -427,7 +570,11 @@
             font-weight: 600;
         }
 
-        .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+        .nav-icon {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
 
         .nav-divider {
             height: 1px;
@@ -461,7 +608,9 @@
             transition: all 0.2s ease;
         }
 
-        .card:hover { border-color: rgba(99, 102, 241, 0.4); }
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
 
         .card-title {
             font-size: 12px;
@@ -479,9 +628,18 @@
             color: var(--text-primary);
         }
 
-        .card-change { font-size: 12px; margin-top: 4px; }
-        .card-change.positive { color: var(--accent-success); }
-        .card-change.negative { color: var(--accent-error); }
+        .card-change {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .card-change.positive {
+            color: var(--accent-success);
+        }
+
+        .card-change.negative {
+            color: var(--accent-error);
+        }
 
         /* Stats Grid */
         .stats-grid {
@@ -499,24 +657,33 @@
             margin-bottom: 24px;
         }
 
-        .agent-card { position: relative; }
+        .agent-card {
+            position: relative;
+        }
+
         .agent-card .agent-name {
             font-size: 15px;
             font-weight: 600;
             margin-bottom: 4px;
         }
+
         .agent-card .agent-desc {
             font-size: 12px;
             color: var(--text-muted);
             margin-bottom: 12px;
         }
+
         .agent-card .agent-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
 
-        .agent-stat-label { font-size: 11px; color: var(--text-muted); }
+        .agent-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
         .agent-stat-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 14px;
@@ -557,7 +724,9 @@
             height: calc(100vh - 120px);
         }
 
-        .chat-container.active { display: flex; }
+        .chat-container.active {
+            display: flex;
+        }
 
         .chat-messages {
             flex: 1;
@@ -573,8 +742,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .chat-avatar {
@@ -644,7 +820,9 @@
             transition: border-color 0.2s;
         }
 
-        .chat-input:focus { border-color: var(--accent-primary); }
+        .chat-input:focus {
+            border-color: var(--accent-primary);
+        }
 
         .chat-send {
             background: linear-gradient(135deg, var(--accent-primary), #34d399);
@@ -658,11 +836,21 @@
             transition: transform 0.15s, opacity 0.15s;
         }
 
-        .chat-send:hover { transform: scale(1.02); }
-        .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+        .chat-send:hover {
+            transform: scale(1.02);
+        }
+
+        .chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
         /* Activity Feed */
-        .activity-feed { max-height: 380px; overflow-y: auto; }
+        .activity-feed {
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
         .activity-item {
             display: flex;
             align-items: flex-start;
@@ -673,7 +861,8 @@
         }
 
         .activity-dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             margin-top: 6px;
             flex-shrink: 0;
@@ -700,14 +889,31 @@
         }
 
         /* View Management */
-        .view { display: none; }
-        .view.active { display: block; }
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
 
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
 
         /* Mode Badges */
         .mode-badge {
@@ -720,18 +926,35 @@
         }
 
         @media (max-width: 1200px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .agent-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .agent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
-            .app { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .agent-grid { grid-template-columns: 1fr; }
+            .app {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="app">
         <!-- Header with 3-Pane Alignment Architecture -->
@@ -740,7 +963,7 @@
             <div class="pane-left">
                 <div class="header-brand">
                     <div class="logo">MK</div>
-                    <span>Phiant AI Ops</span>
+                    <span>Phient AI Ops</span>
                 </div>
                 <div class="status-badge">
                     <div class="status-dot"></div>
@@ -748,10 +971,11 @@
                 </div>
             </div>
 
-            <!-- Center Pane: Toolbar Items (Centered, Starts Icon-Only) -->
+            <!-- Center Pane: Toolbar Items + Palantir Neat Sliders -->
             <div class="pane-center">
                 <div class="toolbar-group" id="toolbar-group">
-                    <button class="icon-btn tooltip-target" data-tooltip="Dashboard View" onclick="switchView('dashboard')">
+                    <button class="icon-btn tooltip-target" data-tooltip="Dashboard View"
+                        onclick="switchView('dashboard')">
                         <span class="icon-symbol">📊</span>
                         <span class="btn-label" style="display: none;">Dashboard</span>
                     </button>
@@ -763,21 +987,53 @@
                         <span class="icon-symbol">🤖</span>
                         <span class="btn-label" style="display: none;">Agents</span>
                     </button>
-                    <button class="icon-btn tooltip-target" data-tooltip="Knowledge RAG" onclick="switchView('knowledge')">
+                    <button class="icon-btn tooltip-target" data-tooltip="Knowledge RAG"
+                        onclick="switchView('knowledge')">
                         <span class="icon-symbol">📚</span>
                         <span class="btn-label" style="display: none;">Knowledge</span>
                     </button>
-                    <button class="icon-btn tooltip-target" data-tooltip="Toggle Mode (Host Localized)" onclick="AppStore.toggleToolbarExpand()">
+                    <button class="icon-btn tooltip-target" data-tooltip="Toggle Mode (Host Localized)"
+                        onclick="AppStore.toggleToolbarExpand()">
                         <span class="icon-symbol" id="toolbar-expand-icon">➡️</span>
                         <span class="btn-label" style="display: none;">Expand</span>
                     </button>
                 </div>
+
+                <!-- Palantir Neat Sliders Container -->
+                <div class="header-sliders-container" title="Real-time Inference & Ontology Graph Hyperparameters">
+                    <div class="header-slider-item" title="Minimum Confidence Score">
+                        <span class="header-slider-label"><span>🎯</span> Conf:</span>
+                        <span class="header-slider-pill" id="index-conf-val">85%</span>
+                        <input type="range" min="50" max="99" value="85" class="bp-slider-input" oninput="document.getElementById('index-conf-val').innerText = this.value + '%'">
+                    </div>
+                    <div class="header-slider-item" title="LLM Determinism / Temperature">
+                        <span class="header-slider-label"><span>🌡️</span> Temp:</span>
+                        <span class="header-slider-pill" id="index-temp-val">0.20</span>
+                        <input type="range" min="0" max="100" value="20" class="bp-slider-input" oninput="document.getElementById('index-temp-val').innerText = (this.value / 100).toFixed(2)">
+                    </div>
+                    <div class="header-slider-item" title="Ontology Traversal Depth">
+                        <span class="header-slider-label"><span>🕸️</span> Depth:</span>
+                        <span class="header-slider-pill" id="index-depth-val">3 hops</span>
+                        <input type="range" min="1" max="5" value="3" class="bp-slider-input" oninput="document.getElementById('index-depth-val').innerText = this.value + (this.value === '1' ? ' hop' : ' hops')">
+                    </div>
+                </div>
+
+                <!-- Multi-Cloud Selector -->
+                <div class="cloud-pills-wrapper" title="Multi-Cloud Sync Target">
+                    <button class="cloud-pill-btn active" onclick="this.parentElement.querySelectorAll('.cloud-pill-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">Azure</button>
+                    <button class="cloud-pill-btn" onclick="this.parentElement.querySelectorAll('.cloud-pill-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">AWS</button>
+                    <button class="cloud-pill-btn" onclick="this.parentElement.querySelectorAll('.cloud-pill-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">GCP</button>
+                    <button class="cloud-pill-btn" onclick="this.parentElement.querySelectorAll('.cloud-pill-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">Snowflake</button>
+                    <button class="cloud-pill-btn" onclick="this.parentElement.querySelectorAll('.cloud-pill-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">Foundry</button>
+                </div>
             </div>
+
 
             <!-- Right Pane: Host Switcher (Right Aligned on Extra Right) -->
             <div class="pane-right">
                 <div class="host-switcher-container">
-                    <button class="host-switcher-btn" id="host-switcher-trigger" onclick="AppStore.toggleHostDropdown()">
+                    <button class="host-switcher-btn" id="host-switcher-trigger"
+                        onclick="AppStore.toggleHostDropdown()">
                         <span class="host-switcher-icon" id="current-host-icon">🌐</span>
                         <span id="current-host-name">Production Cluster</span>
                         <span class="host-badge" id="current-host-badge">Prod</span>
@@ -897,7 +1153,8 @@
                                 <div class="activity-item">
                                     <div class="activity-dot" style="background: var(--accent-primary);"></div>
                                     <div>
-                                        <div>Knowledge Agent answered policy query on <span id="feed-host-label">Production Cluster</span></div>
+                                        <div>Knowledge Agent answered policy query on <span
+                                                id="feed-host-label">Production Cluster</span></div>
                                         <div class="activity-time">Just now</div>
                                     </div>
                                 </div>
@@ -915,14 +1172,15 @@
                             <div class="chat-avatar agent">MK</div>
                             <div class="chat-bubble">
                                 <div class="agent-tag">System</div>
-                                <div>Welcome to Phiant AI Ops. Currently connected to <b id="chat-host-indicator">Production Cluster</b>. How can I help you?</div>
+                                <div>Welcome to Phient AI Ops. Currently connected to <b
+                                        id="chat-host-indicator">Production Cluster</b>. How can I help you?</div>
                             </div>
                         </div>
                     </div>
                     <div class="chat-input-bar">
                         <input type="text" class="chat-input" id="chat-input"
-                               placeholder="Ask me anything about Phiant..."
-                               onkeypress="if(event.key==='Enter')sendMessage()">
+                            placeholder="Ask me anything about Phient..."
+                            onkeypress="if(event.key==='Enter')sendMessage()">
                         <button class="chat-send" id="chat-send" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -941,9 +1199,8 @@
                 <div class="section-header">Knowledge Base</div>
                 <div class="card" style="margin-bottom: 16px;">
                     <div style="display: flex; gap: 12px;">
-                        <input type="text" class="chat-input" id="kb-search"
-                               placeholder="Search knowledge base..."
-                               onkeypress="if(event.key==='Enter')searchKnowledge()">
+                        <input type="text" class="chat-input" id="kb-search" placeholder="Search knowledge base..."
+                            onkeypress="if(event.key==='Enter')searchKnowledge()">
                         <button class="chat-send" onclick="searchKnowledge()">Search</button>
                     </div>
                 </div>
@@ -966,7 +1223,8 @@
                         </thead>
                         <tbody id="audit-table-body">
                             <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 8px;" colspan="5" class="activity-time">No audit events logged yet.</td>
+                                <td style="padding: 8px;" colspan="5" class="activity-time">No audit events logged yet.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -976,7 +1234,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <span>Phiant AI Ops Platform</span>
+            <span>Phient AI Ops Platform</span>
             <span id="footer-status-bar">Host: Production Cluster | Active Group: Prod Mesh | 5 Mods Enabled</span>
         </footer>
     </div>
@@ -1339,4 +1597,5 @@
         AppStore.notify(); // Initial render
     </script>
 </body>
+
 </html>
