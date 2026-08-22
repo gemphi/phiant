@@ -77,8 +77,8 @@ class ApiKeyAuth(Auth):
 class EnvAuth(Auth):
     """Resolve authentication from environment variables.
 
-    Looks for ``PHIEGG_TOKEN`` first (→ ``TokenAuth``), then
-    ``PHIEGG_API_KEY`` (→ ``ApiKeyAuth``).
+    Looks for ``PHIADK_TOKEN`` first (→ ``TokenAuth``), then
+    ``PHIADK_API_KEY`` (→ ``ApiKeyAuth``).
 
     :param token_var: Environment variable name for the bearer token.
     :param api_key_var: Environment variable name for the API key.
@@ -86,8 +86,8 @@ class EnvAuth(Auth):
 
     def __init__(
         self,
-        token_var: str = "PHIEGG_TOKEN",
-        api_key_var: str = "PHIEGG_API_KEY",
+        token_var: str = "PHIADK_TOKEN",
+        api_key_var: str = "PHIADK_API_KEY",
     ) -> None:
         self._token_var = token_var
         self._api_key_var = api_key_var

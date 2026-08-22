@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
-from phiegg._core.model_base import ModelBase
-from phiegg._core.topology import Node, SimplexType
+from phiadk._core.model_base import ModelBase
+from phiadk._core.topology import Node, SimplexType
 
 
 @dataclass

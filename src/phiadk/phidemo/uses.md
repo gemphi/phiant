@@ -7,9 +7,9 @@ This guide shows practical Python SDK code examples for **Phidemo** (`phidemo`).
 ## 1. Direct Domain Client Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute domain action
 result = client.phidemo.execute("demo_action", {"sample_param": "value"})
@@ -22,10 +22,10 @@ print("Result:", result)
 
 ```python
 import asyncio
-from phiegg import PhiEggClient
-from phiegg._core import AgentContext
+from phiadk import PhiADKClient
+from phiadk._core import AgentContext
 
-client = PhiEggClient()
+client = PhiADKClient()
 agent = client.agents["phidemo"]
 
 async def main():

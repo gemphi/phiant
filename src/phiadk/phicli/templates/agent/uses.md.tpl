@@ -7,9 +7,9 @@ This guide shows practical Python SDK code examples for **{{agent_name}}** (`{{a
 ## 1. Direct Domain Client Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 
 # Execute domain action
 result = client.{{agent_id}}.execute("{{first_verb}}", {"sample_param": "value"})
@@ -22,10 +22,10 @@ print("Result:", result)
 
 ```python
 import asyncio
-from phiegg import PhiEggClient
-from phiegg._core import AgentContext
+from phiadk import PhiADKClient
+from phiadk._core import AgentContext
 
-client = PhiEggClient()
+client = PhiADKClient()
 agent = client.agents["{{agent_id}}"]
 
 async def main():

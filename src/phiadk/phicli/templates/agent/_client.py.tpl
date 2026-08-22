@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, Dict, Optional
-from phiegg.{{agent_id}}.agent import {{class_name}}
+from phiadk.{{agent_id}}.agent import {{class_name}}
 
 
 class {{client_name}}:

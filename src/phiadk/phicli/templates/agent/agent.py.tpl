@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from phiegg._core.agent_base import AgentContext, PhiAgent
-from phiegg._core.agent_card import AgentLayer
-from phiegg.{{agent_id}}.card import {{card_name}}
-from phiegg.{{agent_id}}.verbs import {{agent_name}}Verb
+from phiadk._core.agent_base import AgentContext, PhiAgent
+from phiadk._core.agent_card import AgentLayer
+from phiadk.{{agent_id}}.card import {{card_name}}
+from phiadk.{{agent_id}}.verbs import {{agent_name}}Verb
 
 
 class {{class_name}}(PhiAgent):

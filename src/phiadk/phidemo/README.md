@@ -19,9 +19,9 @@ graph LR
 ## 2. Python SDK Usage
 
 ```python
-from phiegg import PhiEggClient
+from phiadk import PhiADKClient
 
-client = PhiEggClient()
+client = PhiADKClient()
 agent = client.agents["phidemo"]
 print(f"Agent Version: {agent.version}")
 ```
