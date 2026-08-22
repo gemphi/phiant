@@ -127,8 +127,9 @@ sequenceDiagram
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/gemphi/phiant.git
-cd phiant
+git clone https://github.com/gemphi/phient.git
+cd phient
+
 
 # Create and activate virtual environment
 python -m venv .venv
