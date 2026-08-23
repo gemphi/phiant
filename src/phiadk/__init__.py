@@ -242,21 +242,20 @@ from phiadk.ontologies import (
 # AIP API Platform
 from phiadk.phiapi import create_app as create_app
 
-# SDK Client (Phi* First & Clean Aliases)
+# Master SDK Clients
 from phiadk.client import (
     PhiClient as PhiClient,
-    PhiAsyncClient as PhiAsyncClient,
-    PhiAsync as PhiAsync,
+    AsyncPhiClient as AsyncPhiClient,
     PhientClient as PhientClient,
-    PhientAsyncClient as PhientAsyncClient,
+    AsyncPhientClient as AsyncPhientClient,
     Client as Client,
     AsyncClient as AsyncClient,
     PClient as PClient,
     PAsyncClient as PAsyncClient,
     # Backward compatibility
-    AsyncPhiClient as AsyncPhiClient,
     PhiADKClient as PhiADKClient,
     AsyncPhiADKClient as AsyncPhiADKClient,
+    PhiAsyncClient as PhiAsyncClient,
 )
 
 
@@ -265,18 +264,19 @@ from phiadk._version import __version__ as __version__
 
 __all__ = [
     "__version__",
-    # Master Client (Phi* First)
+    # Master Clients
     "PhiClient",
-    "PhiAsyncClient",
-    "PhiAsync",
+    "AsyncPhiClient",
     "PhientClient",
-    "PhientAsyncClient",
+    "AsyncPhientClient",
     "Client",
     "AsyncClient",
     "PClient",
     "PAsyncClient",
     "PhiADKClient",
     "AsyncPhiADKClient",
+    "PhiAsyncClient",
+
 
     # Domain Agents (Clean Phi* naming)
     "PhiOne",
