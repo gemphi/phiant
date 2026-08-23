@@ -1,5 +1,5 @@
 {
-  "name": "puijs",
+  "name": "@phiace/puijs",
   "version": "0.1.0",
   "description": "Industrial React component library and enterprise design system modeled after Palantir Blueprint",
   "author": "bdizha <bdizha@gmail.com>",
