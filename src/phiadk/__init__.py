@@ -75,21 +75,21 @@ from phiadk._errors import PhiADKException as PhiADKException
 from phiadk._errors import SpaceTraversalError as SpaceTraversalError
 from phiadk._errors import ValidationError as ValidationError
 
-# Domain Agent Classes
-from phiadk.agents.phione import PhiOneAgent as PhiOneAgent
-from phiadk.agents.phical import PhiCalAgent as PhiCalAgent
-from phiadk.agents.phirag import PhiRAGAgent as PhiRAGAgent
-from phiadk.agents.phidoc import PhiDocAgent as PhiDocAgent
-from phiadk.agents.phibot import PhiBotAgent as PhiBotAgent
-from phiadk.agents.phibrd import PhiBrdAgent as PhiBrdAgent
-from phiadk.agents.phiora import PhiOraAgent as PhiOraAgent
-from phiadk.agents.phigit import PhiGitAgent as PhiGitAgent
-from phiadk.agents.philog import PhiLogAgent as PhiLogAgent
-from phiadk.agents.phillm import PhiLLMAgent as PhiLLMAgent
-from phiadk.agents.phisec import PhiSecAgent as PhiSecAgent
-from phiadk.agents.phigov import PhiGovAgent as PhiGovAgent
-from phiadk.agents.phibus import PhiBusAgent as PhiBusAgent
-from phiadk.agents.phimen import PhiMenAgent as PhiMenAgent
+# Domain Agents (Clean Phi* naming)
+from phiadk.agents.phione import PhiOneAgent as PhiOneAgent, PhiOneAgent as PhiOne
+from phiadk.agents.phical import PhiCalAgent as PhiCalAgent, PhiCalAgent as PhiCal
+from phiadk.agents.phirag import PhiRAGAgent as PhiRAGAgent, PhiRAGAgent as PhiRAG
+from phiadk.agents.phidoc import PhiDocAgent as PhiDocAgent, PhiDocAgent as PhiDoc
+from phiadk.agents.phibot import PhiBotAgent as PhiBotAgent, PhiBotAgent as PhiBot
+from phiadk.agents.phibrd import PhiBrdAgent as PhiBrdAgent, PhiBrdAgent as PhiBrd
+from phiadk.agents.phiora import PhiOraAgent as PhiOraAgent, PhiOraAgent as PhiOra
+from phiadk.agents.phigit import PhiGitAgent as PhiGitAgent, PhiGitAgent as PhiGit
+from phiadk.agents.philog import PhiLogAgent as PhiLogAgent, PhiLogAgent as PhiLog
+from phiadk.agents.phillm import PhiLLMAgent as PhiLLMAgent, PhiLLMAgent as PhiLLM
+from phiadk.agents.phisec import PhiSecAgent as PhiSecAgent, PhiSecAgent as PhiSec
+from phiadk.agents.phigov import PhiGovAgent as PhiGovAgent, PhiGovAgent as PhiGov
+from phiadk.agents.phibus import PhiBusAgent as PhiBusAgent, PhiBusAgent as PhiBus
+from phiadk.agents.phimen import PhiMenAgent as PhiMenAgent, PhiMenAgent as PhiMen
 
 # Domain Agent Cards
 from phiadk.agents.phione import PHIONE_CARD as PHIONE_CARD
@@ -242,12 +242,19 @@ from phiadk.ontologies import (
 # AIP API Platform
 from phiadk.phiapi import create_app as create_app
 
-# SDK Client
+# SDK Client (Phi* First & Clean Aliases)
 from phiadk.client import (
     PhiClient as PhiClient,
-    AsyncPhiClient as AsyncPhiClient,
+    PhiAsyncClient as PhiAsyncClient,
+    PhiAsync as PhiAsync,
+    PhientClient as PhientClient,
+    PhientAsyncClient as PhientAsyncClient,
+    Client as Client,
+    AsyncClient as AsyncClient,
     PClient as PClient,
     PAsyncClient as PAsyncClient,
+    # Backward compatibility
+    AsyncPhiClient as AsyncPhiClient,
     PhiADKClient as PhiADKClient,
     AsyncPhiADKClient as AsyncPhiADKClient,
 )
@@ -258,13 +265,35 @@ from phiadk._version import __version__ as __version__
 
 __all__ = [
     "__version__",
-    # Client
+    # Master Client (Phi* First)
     "PhiClient",
-    "AsyncPhiClient",
+    "PhiAsyncClient",
+    "PhiAsync",
+    "PhientClient",
+    "PhientAsyncClient",
+    "Client",
+    "AsyncClient",
     "PClient",
     "PAsyncClient",
     "PhiADKClient",
     "AsyncPhiADKClient",
+
+    # Domain Agents (Clean Phi* naming)
+    "PhiOne",
+    "PhiCal",
+    "PhiRAG",
+    "PhiDoc",
+    "PhiBot",
+    "PhiBrd",
+    "PhiOra",
+    "PhiGit",
+    "PhiLog",
+    "PhiLLM",
+    "PhiSec",
+    "PhiGov",
+    "PhiBus",
+    "PhiMen",
+
 
     # Ontologies
     "Ontology",

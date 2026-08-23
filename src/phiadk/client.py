@@ -189,8 +189,8 @@ class PhiClient:
         return QML.from_space(space_name)
 
 
-class AsyncPhiClient:
-    """Async variant of ``PhiClient``."""
+class PhiAsyncClient:
+    """Async variant of ``PhiClient`` (Phi* prefix first)."""
 
     def __init__(
         self,
@@ -366,8 +366,17 @@ class V2Namespace:
         return self._client.oql(node_id)
 
 
-# Palantir Symmetrical Master Client Aliases
+# Clean Phi* First & Palantir-Symmetrical Aliases
+PhiAsync = PhiAsyncClient
+PhientClient = PhiClient
+PhientAsyncClient = PhiAsyncClient
+Client = PhiClient
+AsyncClient = PhiAsyncClient
 PClient = PhiClient
-PAsyncClient = AsyncPhiClient
+PAsyncClient = PhiAsyncClient
+
+# Backward-compatibility aliases
+AsyncPhiClient = PhiAsyncClient
 PhiADKClient = PhiClient
-AsyncPhiADKClient = AsyncPhiClient
+AsyncPhiADKClient = PhiAsyncClient
+
