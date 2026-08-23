@@ -1,4 +1,4 @@
-# Phient UI (`@phi/pui`) Maintenance & Operational Tasks
+# Phient UI (`@phient/pui`) Maintenance & Operational Tasks
 
 > _Operational tasks, test execution, application development, and build pipelines._
 

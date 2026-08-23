@@ -1,4 +1,4 @@
-# Phient UI (`@phi/pui`) Architectural Roadmap
+# Phient UI (`@phient/pui`) Architectural Roadmap
 
 > _Milestone roadmap for Phient UI component library, Palantir Blueprint parity, and standalone applications._
 
@@ -18,7 +18,7 @@ graph LR
 ## 2. Milestone Breakdown
 
 ### Phase 1: Core Foundation & Rebranding (Completed)
-- [x] Rebrand from `@vvid/ui` to `@phi/pui`
+- [x] Rebrand from `@vvid/ui` to `@phient/pui`
 - [x] Purge domain commerce/cart state from core library
 - [x] Implement Palantir Blueprint standard design tokens (`--phi-*`)
 - [x] Build `PuiProvider` with Foundry, Blueprint, Emerald, and Midnight presets
@@ -31,6 +31,6 @@ graph LR
 - [x] `apps/landing-app`: Design system landing showcase
 
 ### Phase 3: Advanced Data Structures & Virtualization (Upcoming)
-- [ ] `@phi/pui-table`: Virtualized spreadsheet table supporting 100k+ rows with column pinning and sorting
-- [ ] `@phi/pui-select`: Filterable `Select`, `MultiSelect`, `Suggest`, and `Omnibar`
-- [ ] `@phi/pui-graph`: Continuous phase manifold & Topos ontology graph visualizer
+- [ ] `@phient/pui-table`: Virtualized spreadsheet table supporting 100k+ rows with column pinning and sorting
+- [ ] `@phient/pui-select`: Filterable `Select`, `MultiSelect`, `Suggest`, and `Omnibar`
+- [ ] `@phient/pui-graph`: Continuous phase manifold & Topos ontology graph visualizer

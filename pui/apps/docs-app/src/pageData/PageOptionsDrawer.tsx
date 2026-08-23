@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Stack, Title, Text, Input, Button, Divider, Badge, Span, Textarea, Select, Checkbox, Slider } from '@phi/pui';
+import { Drawer, Stack, Title, Text, Input, Button, Divider, Badge, Span, Textarea, Select, Checkbox, Slider } from '@phient/pui';
 import {
   usePageStore,
   getComponentAtPath,

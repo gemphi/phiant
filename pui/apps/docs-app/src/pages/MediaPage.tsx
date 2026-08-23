@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Image, Avatar, Row, Col, Stack } from '@phi/pui';
+import { Image, Avatar, Row, Col, Stack } from '@phient/pui';
 import styles from './pages.module.scss';
 
 export default function MediaPage() {

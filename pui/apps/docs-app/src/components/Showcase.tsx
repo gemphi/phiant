@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Text, Divider, Stack, Card, CardBody } from '@phi/pui';
+import { Title, Text, Divider, Stack, Card, CardBody } from '@phient/pui';
 import { Selectable } from './inspector';
 import styles from './Showcase.module.scss';
 

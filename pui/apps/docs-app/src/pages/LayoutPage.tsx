@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase, PropsTable } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Container, Row, Col, Grid, Stack, Text, Sticky, Navbar, NavbarSection, NavbarItem, FullMode, Button } from '@phi/pui';
+import { Container, Row, Col, Grid, Stack, Text, Sticky, Navbar, NavbarSection, NavbarItem, FullMode, Button } from '@phient/pui';
 import styles from './pages.module.scss';
 
 /* ---------- Container demos ---------- */

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { PuiProvider } from '@phi/pui';
+import { PuiProvider } from '@phient/pui';
 import App from './App';
 import '../../src/tokens/tokens.scss';
 import '../../src/styles/core.scss';

@@ -1,4 +1,4 @@
-# Phient UI (`@phi/pui`) Architecture
+# Phient UI (`@phient/pui`) Architecture
 
 > _Technical architecture, design token system, package boundaries, and application layout for Phient UI._
 
@@ -18,7 +18,7 @@
 
 ```
 pui/
-├── package.json               # @phi/pui package manifest & exports
+├── package.json               # @phient/pui package manifest & exports
 ├── README.md                  # Master documentation & quick start
 ├── ARCHITECTURE.md            # Architecture & boundary definitions
 ├── COMPONENTS.md              # Full component catalog & APIs

@@ -1,4 +1,4 @@
-# Phient UI (`@phi/pui`) Component Catalog
+# Phient UI (`@phient/pui`) Component Catalog
 
 > _Complete catalog of enterprise UI primitives, layout containers, forms, navigation, and data display components._
 

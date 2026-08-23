@@ -1,5 +1,5 @@
 import React from 'react';
-import { PuiProvider } from '@phi/pui';
+import { PuiProvider } from '@phient/pui';
 import { InspectorProvider } from './components/inspector';
 import { AppLayout } from './components/AppLayout';
 import { initStore } from './pageData/store/services';

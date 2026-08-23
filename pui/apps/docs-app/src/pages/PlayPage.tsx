@@ -2,7 +2,7 @@ import React from 'react';
 import { PageHeader } from '../components/Showcase';
 import PageShell from '../components/PageShell';
 import { Play } from '../components/Play';
-import { Title, Text, Stack, Grid, Card, CardHeader, CardBody, Badge, Button, Divider, Span } from '@phi/pui';
+import { Title, Text, Stack, Grid, Card, CardHeader, CardBody, Badge, Button, Divider, Span } from '@phient/pui';
 import { Play as PlayIcon, LayoutTemplate, Globe, Component } from 'lucide-react';
 import { LAYOUT_TEMPLATES, type LayoutTemplate as TemplateType } from '../datasets';
 import { ALL_SITES } from '../pageData/sites';

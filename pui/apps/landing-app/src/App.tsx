@@ -13,7 +13,7 @@ import {
   Text,
   Divider,
   usePuiTheme,
-} from '@phi/pui';
+} from '@phient/pui';
 import {
   Layers,
   Sparkles,

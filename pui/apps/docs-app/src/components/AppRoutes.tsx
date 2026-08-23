@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Container } from '@phi/pui';
+import { Container } from '@phient/pui';
 import PrimitivesPage from '../pages/PrimitivesPage';
 import LayoutPage from '../pages/LayoutPage';
 import FormsPage from '../pages/FormsPage';

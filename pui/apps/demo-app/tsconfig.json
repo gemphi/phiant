@@ -14,8 +14,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@phi/pui": ["../../src"],
-      "@phi/pui/*": ["../../src/*"]
+      "@phient/pui": ["../../src"],
+      "@phient/pui/*": ["../../src/*"]
     }
   },
   "include": ["src"]

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '@phi/pui';
+import { Page } from '@phient/pui';
 import { Selectable } from './inspector';
 import PageNav from './PageNav';
 import styles from './PageShell.module.scss';

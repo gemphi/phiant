@@ -4,7 +4,7 @@ import {
   Button, Icon, Title, Divider, Span, Tooltip, Menu, MenuItem,
   Avatar, Sidebar, SidebarHeader, SidebarBody, SidebarFooter,
   useSidebarContext, Stack, SidebarNav,
-} from '@phi/pui';
+} from '@phient/pui';
 import { ChevronLeft, Settings, LayoutGrid } from 'lucide-react';
 import { NAV_GROUPS } from '../datasets';
 import { handleItemClick } from '../utils/navigation';

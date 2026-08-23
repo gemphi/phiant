@@ -11,7 +11,7 @@ import {
   Breadcrumbs, Link, Menu, MenuItem, MenuChevron, Pagination, TabList, Tabs,
   Tooltip, Popover,
   ProductCard, Price, ItemCard, WishlistList, FilterCard, OrderCard,
-} from '@phi/pui';
+} from '@phient/pui';
 import {
   Check, Mail, Star, Heart, ShoppingCart, Search, Bell, User,
   ChevronDown, ChevronRight, Plus, Minus, X, Package, Home, Settings,

@@ -1,5 +1,5 @@
 {
-  "name": "@phi/pui",
+  "name": "@phient/pui",
   "version": "0.1.0",
   "private": true,
   "description": "Phient UI (PUI) — React component library and enterprise design system modeled after Palantir Blueprint",

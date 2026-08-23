@@ -1,4 +1,4 @@
-import * as Pui from '@phi/pui';
+import * as Pui from '@phient/pui';
 import type { PageComponentType } from './types';
 
 export const COMPONENT_REGISTRY: Record<PageComponentType, React.ComponentType<any>> = {

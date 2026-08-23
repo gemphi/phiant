@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Page } from '@phi/pui';
+import { Page } from '@phient/pui';
 import { useInspector, InspectorDrawer, ExpandMode, SelectorBubble } from './inspector';
 import { SettingsDrawer } from './SettingsDrawer';
 import { AppSidebar } from './AppSidebar';

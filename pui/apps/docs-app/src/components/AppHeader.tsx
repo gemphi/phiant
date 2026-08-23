@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Button, Icon, Input, Divider, Navbar, NavbarSection, NavbarItem,
   usePuiTheme, Stack,
-} from '@phi/pui';
+} from '@phient/pui';
 import { Sun, Moon, Monitor, Search, MousePointerClick } from 'lucide-react';
 import { BrandSelector } from './inspector';
 import { HEADER_TABS } from '../datasets';

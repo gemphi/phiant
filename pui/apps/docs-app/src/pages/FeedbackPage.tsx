@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Spinner, Skeleton, EmptyState, Alert, Button, Row, Col, Stack } from '@phi/pui';
+import { Spinner, Skeleton, EmptyState, Alert, Button, Row, Col, Stack } from '@phient/pui';
 import { PackageSearch } from 'lucide-react';
 import styles from './pages.module.scss';
 

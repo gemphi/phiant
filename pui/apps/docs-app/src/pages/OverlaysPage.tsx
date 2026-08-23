@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Modal, Drawer, Toast, Tooltip, Popover, Button, Row, Col, Stack, Text } from '@phi/pui';
+import { Modal, Drawer, Toast, Tooltip, Popover, Button, Row, Col, Stack, Text } from '@phient/pui';
 import styles from './pages.module.scss';
 
 export default function OverlaysPage() {

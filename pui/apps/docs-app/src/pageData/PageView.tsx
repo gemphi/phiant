@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Span } from '@phi/pui';
+import { Stack, Span } from '@phient/pui';
 import PageShell from '../components/PageShell';
 import { PageHeader, Showcase, PropsTable } from '../components/Showcase';
 import { PageRenderer } from './PageRenderer';

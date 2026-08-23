@@ -1,6 +1,6 @@
 import React from 'react';
-import { Stack, Row, Col, Grid, Card, CardHeader, CardBody, CardFooter } from '@phi/pui';
-import type { GridGap } from '@phi/pui';
+import { Stack, Row, Col, Grid, Card, CardHeader, CardBody, CardFooter } from '@phient/pui';
+import type { GridGap } from '@phient/pui';
 import { COMPONENT_REGISTRY } from './componentRegistry';
 import { ICON_REGISTRY } from './iconRegistry';
 import { resolveActions, type ActionHandler } from './actionMap';

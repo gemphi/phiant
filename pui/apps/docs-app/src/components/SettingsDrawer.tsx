@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Button, Title, Text, Stack, Divider, Icon, Grid, Span, usePuiTheme } from '@phi/pui';
+import { Drawer, Button, Title, Text, Stack, Divider, Icon, Grid, Span, usePuiTheme } from '@phient/pui';
 import { THEME_OPTIONS, THEME_STYLE_OPTIONS, RADIUS_OPTIONS, ANIMATION_SPEED_OPTIONS, LAYOUT_DENSITY_OPTIONS, CHECK_ICON } from '../datasets';
 import styles from './SettingsDrawer.module.scss';
 

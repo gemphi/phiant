@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@phi/pui': path.resolve(__dirname, '../../src'),
+      '@phient/pui': path.resolve(__dirname, '../../src'),
     },
   },
   server: {

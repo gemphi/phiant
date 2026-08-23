@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Title, Text, Button, Row, Col, Card, CardHeader, CardBody, CardFooter, Stack, Grid } from '@phi/pui';
+import { Title, Text, Button, Row, Col, Card, CardHeader, CardBody, CardFooter, Stack, Grid } from '@phient/pui';
 import { BookOpen, Play, Layers, ArrowRight } from 'lucide-react';
 import { CAPABILITIES } from '../datasets';
 import styles from './pages.module.scss';

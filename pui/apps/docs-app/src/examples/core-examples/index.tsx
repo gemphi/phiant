@@ -33,7 +33,7 @@ import {
   Title,
   Text,
   Divider,
-} from '@phi/pui';
+} from '@phient/pui';
 import { Play, Database, Layers, GitBranch, Terminal, Shield, Sparkles, Folder, FileCode, CheckCircle2 } from 'lucide-react';
 
 export const CoreExamples: React.FC = () => {

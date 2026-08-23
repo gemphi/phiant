@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, ChevronRight } from 'lucide-react';
-import { Modal, Button, Title, Text, Stack, Span, Grid, Divider } from '@phi/pui';
+import { Modal, Button, Title, Text, Stack, Span, Grid, Divider } from '@phient/pui';
 import { useInspector } from './InspectorContext';
 
 export const ExpandMode = () => {

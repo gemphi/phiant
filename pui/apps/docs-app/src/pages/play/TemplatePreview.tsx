@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, Title, Text, Stack, Span, Badge, Divider, Drawer } from '@phi/pui';
+import { Card, CardHeader, CardBody, Title, Text, Stack, Span, Badge, Divider, Drawer } from '@phient/pui';
 import { PageRenderer, layoutTemplateToPageData } from '../../pageData';
 import type { LayoutTemplate as TemplateType } from '../../datasets';
 import styles from '../PlayPage.module.scss';

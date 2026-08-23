@@ -1,4 +1,4 @@
-# Phient UI (`@phi/pui`)
+# Phient UI (`@phient/pui`)
 
 > _Enterprise React Component Library & Design System modeled after **Palantir Blueprint** (`@blueprintjs/core`, `@blueprintjs/table`, `@blueprintjs/icons`)._
 
@@ -51,20 +51,20 @@ graph TD
 ### Installation
 
 ```bash
-npm install @phi/pui lucide-react
+npm install @phient/pui lucide-react
 ```
 
 ### 1. Import Core Styles in Your Root Layout
 
 ```tsx
-import '@phi/pui/styles';
-import '@phi/pui/tokens';
+import '@phient/pui/styles';
+import '@phient/pui/tokens';
 ```
 
 ### 2. Wrap with the Theme Provider
 
 ```tsx
-import { PuiProvider } from '@phi/pui';
+import { PuiProvider } from '@phient/pui';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ### 3. Use Components
 
 ```tsx
-import { Button, Tag, Callout, Tree, Stack, Card } from '@phi/pui';
+import { Button, Tag, Callout, Tree, Stack, Card } from '@phient/pui';
 
 export const AgentStatus = () => (
   <Card elevation={1}>

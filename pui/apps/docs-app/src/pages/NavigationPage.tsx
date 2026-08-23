@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Link, Menu, MenuItem, Breadcrumbs, Tabs, TabList, Pagination, Navbar, NavbarSection, NavbarItem, Button, Row, Col, Stack } from '@phi/pui';
+import { Link, Menu, MenuItem, Breadcrumbs, Tabs, TabList, Pagination, Navbar, NavbarSection, NavbarItem, Button, Row, Col, Stack } from '@phient/pui';
 import { ChevronDown } from 'lucide-react';
 
 export default function NavigationPage() {

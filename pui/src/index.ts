@@ -1,5 +1,5 @@
 // ============================================================================
-// @phi/pui (Phient UI) — React Component Library & Enterprise Design System
+// @phient/pui (Phient UI) — React Component Library & Enterprise Design System
 // Modeled after Palantir Blueprint (@blueprintjs/core, @blueprintjs/table, etc.)
 // ============================================================================
 

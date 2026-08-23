@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase, PropsTable } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Button, Badge, Title, Text, Span, Divider, Icon, Row, Col, Stack } from '@phi/pui';
+import { Button, Badge, Title, Text, Span, Divider, Icon, Row, Col, Stack } from '@phient/pui';
 import { Check, X, AlertCircle, Info, Star, Heart } from 'lucide-react';
 
 export default function PrimitivesPage() {

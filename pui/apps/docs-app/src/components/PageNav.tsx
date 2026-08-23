@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Span, Stack } from '@phi/pui';
+import { Span, Stack } from '@phient/pui';
 import { PAGES } from '../datasets';
 import styles from './PageNav.module.scss';
 

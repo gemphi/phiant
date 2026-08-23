@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Title, Text, Divider, Stack, Span, Card,
   Button, Input, Checkbox, Select,
-} from '@phi/pui';
+} from '@phient/pui';
 import styles from './Play.module.scss';
 
 type ControlType = 'select' | 'boolean' | 'text' | 'number';

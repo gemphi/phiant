@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Input, Select, Textarea, Checkbox, Radio, Form, FormField, FormRow, FormActions, Stepper, Slider, Button, Row, Col, Stack } from '@phi/pui';
+import { Input, Select, Textarea, Checkbox, Radio, Form, FormField, FormRow, FormActions, Stepper, Slider, Button, Row, Col, Stack } from '@phient/pui';
 import { Search, Mail } from 'lucide-react';
 
 export default function FormsPage() {

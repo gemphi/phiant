@@ -1,6 +1,6 @@
 import React from 'react';
 import { Maximize2, MousePointer2 } from 'lucide-react';
-import { Drawer, Button, Title, Text, Stack, Span, Divider } from '@phi/pui';
+import { Drawer, Button, Title, Text, Stack, Span, Divider } from '@phient/pui';
 import { useInspector } from './InspectorContext';
 
 export const InspectorDrawer = () => {

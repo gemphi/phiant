@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePuiTheme, Popover, Stack, Span, Grid, Title } from '@phi/pui';
+import { usePuiTheme, Popover, Stack, Span, Grid, Title } from '@phient/pui';
 
 export const BrandSelector = () => {
   const { brandId, setBrandId, brands } = usePuiTheme();

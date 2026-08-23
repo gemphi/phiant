@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader, Showcase } from '../components/Showcase';
 import PageShell from '../components/PageShell';
-import { Card, CardHeader, CardBody, CardFooter, CardImage, Accordion, AccordionItem, Rating, Table, Thead, Tbody, Tr, Th, Td, List, ListItem, Button, Title, Text, Row, Col, Stack } from '@phi/pui';
+import { Card, CardHeader, CardBody, CardFooter, CardImage, Accordion, AccordionItem, Rating, Table, Thead, Tbody, Tr, Th, Td, List, ListItem, Button, Title, Text, Row, Col, Stack } from '@phient/pui';
 import styles from './pages.module.scss';
 
 export default function ShowcasePage() {

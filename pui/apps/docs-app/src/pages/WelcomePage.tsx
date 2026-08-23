@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageShell from '../components/PageShell';
-import { Title, Text, Button, Row, Col, Card, CardHeader, CardBody, Badge, Divider, Stack, Grid, Span } from '@phi/pui';
+import { Title, Text, Button, Row, Col, Card, CardHeader, CardBody, Badge, Divider, Stack, Grid, Span } from '@phient/pui';
 import { Play, Layers, Code, ArrowRight, Sparkles } from 'lucide-react';
 import { EXPLORE_CARDS, SPOTLIGHT_ITEMS, CAPABILITIES } from '../datasets';
 import styles from './WelcomePage.module.scss';
@@ -118,7 +118,7 @@ export default function WelcomePage() {
                 <Divider className={styles.gsDivider} />
                 <Title variant="h5">Install PUI-UI in your app</Title>
                 <Stack direction="row" className={styles.codeBlock}>
-                  <code>npm install @phi/pui</code>
+                  <code>npm install @phient/pui</code>
                 </Stack>
                 <Text variant="sm" className={styles.gsHint}>
                   Wrap your application in <code>PuiProvider</code> and import the components you need. PUIBook demonstrates every available prop and pattern.
