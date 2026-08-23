@@ -1,0 +1,37 @@
+'use client';
+
+import React from 'react';
+import { Title, Text, Stack } from '@phient/pui';
+
+interface PageShellProps {
+  title: string;
+  description?: string;
+  badge?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+export const PageShell: React.FC<PageShellProps> = ({
+  title,
+  description,
+  badge,
+  children,
+}) => {
+  return (
+    <div style={{ maxWidth: '960px', width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <header style={{ borderBottom: '1px solid var(--phi-color-border-subtle)', paddingBottom: '16px' }}>
+        <Stack direction="row" justify="between" align="center">
+          <Title level={2} style={{ letterSpacing: '-0.02em', margin: 0 }}>{title}</Title>
+          {badge}
+        </Stack>
+        {description && (
+          <Text variant="base" color="secondary" style={{ marginTop: '8px' }}>
+            {description}
+          </Text>
+        )}
+      </header>
+      <main style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        {children}
+      </main>
+    </div>
+  );
+};

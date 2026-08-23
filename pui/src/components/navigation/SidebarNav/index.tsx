@@ -1,27 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { type LucideIcon } from 'lucide-react';
 import { cn } from '../../../utils/cn';
 import { Accordion, AccordionItem } from '../../data-display/Accordion';
 import { Menu, MenuItem } from '../Menu';
 import { Button } from '../../primitives/Button';
 import { Icon } from '../../primitives/Icon';
-import { Stack } from '../../layout/Stack';
-import { Row } from '../../layout/Row';
-import { Span } from '../../primitives/Span';
 import styles from './styles.module.scss';
 
-export type SidebarNavItem = {
-  label: string;
-  path: string;
-};
-
-export type SidebarNavGroup = {
-  label: string;
-  icon: LucideIcon;
-  items: SidebarNavItem[];
-};
+export type SidebarNavItem = { label: string; path: string; };
+export type SidebarNavGroup = { label: string; icon: LucideIcon; items: SidebarNavItem[]; };
 
 export type SidebarNavProps = {
   groups: SidebarNavGroup[];
@@ -32,96 +21,74 @@ export type SidebarNavProps = {
   className?: string;
 };
 
-const isPathActive = (activePath: string, itemPath: string) => {
-  if (activePath === itemPath) return true;
-  if (itemPath !== '/' && activePath.startsWith(`${itemPath}/`)) return true;
-  return false;
-};
+const isPathActive = (active: string, item: string) => active === item || (item !== '/' && active.startsWith(`${item}/`));
 
-export const SidebarNav = ({
+export const SidebarNav: React.FC<SidebarNavProps> = ({
   groups,
   collapsed = false,
   activePath = '',
   onItemClick,
   renderLink,
   className = '',
-}: SidebarNavProps) => {
-  const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>(() => {
-    const initial: Record<string, boolean> = {};
-    groups.forEach((group) => {
-      initial[group.label] = group.items.some((item) => isPathActive(activePath, item.path));
-    });
-    return initial;
+}) => {
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
+    const init: Record<string, boolean> = {};
+    groups.forEach((g) => { init[g.label] = g.items.some((i) => isPathActive(activePath, i.path)); });
+    return init;
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setOpenGroups((prev) => {
-      const next: Record<string, boolean> = { ...prev };
-      groups.forEach((group) => {
-        if (group.items.some((item) => isPathActive(activePath, item.path))) {
-          next[group.label] = true;
-        }
+      const next = { ...prev };
+      groups.forEach((g) => {
+        if (g.items.some((i) => isPathActive(activePath, i.path))) next[g.label] = true;
       });
       return next;
     });
   }, [activePath, groups]);
 
-  const handleToggle = (label: string) => {
-    setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
-  };
-
   if (collapsed) {
     return (
-      <Stack direction="column" gap={1} className={cn(styles.nav, className)}>
-        {groups.map((group) => (
-          <Stack key={group.label} align="center" className={styles.navGroup}>
-            <Menu
-              position="right"
-              trigger={
-                <Button variant="ghost" size="sm" aria-label={group.label} className={styles.navIconBtn}>
-                  <Icon name={group.icon} size="sm" />
-                </Button>
-              }
-            >
-              {group.items.map((item) => (
-                <MenuItem key={item.path} onClick={() => onItemClick?.(item.path)}>
-                  {item.label}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Stack>
-        ))}
-      </Stack>
+      <nav className={cn(styles.sidebarNav, styles.collapsed, className)}>
+        {groups.map((group) => {
+          const isGroupActive = group.items.some((item) => isPathActive(activePath, item.path));
+          return (
+            <div key={group.label} className={styles.collapsedItem}>
+              <Button variant={isGroupActive ? 'primary' : 'ghost'} size="sm" className={styles.collapsedBtn} title={group.label}>
+                <Icon icon={group.icon} size="sm" />
+              </Button>
+            </div>
+          );
+        })}
+      </nav>
     );
   }
 
   return (
-    <Accordion className={cn(styles.nav, className)}>
-      {groups.map((group) => (
-        <AccordionItem
-          key={group.label}
-          title={(
-            <Row align="center" gap={2}>
-              <Icon name={group.icon} size="sm" />
-              <Span>{group.label}</Span>
-            </Row>
-          )}
-          open={!!openGroups[group.label]}
-          onToggle={() => handleToggle(group.label)}
-        >
-          <Stack direction="column" gap={1} className={styles.navGroupItems}>
-            {renderLink
-              ? group.items.map((item) => renderLink(item, isPathActive(activePath, item.path)))
-              : group.items.map((item) => (
-                  <Span key={item.path} className={isPathActive(activePath, item.path) ? styles.navLinkActive : ''}>
+    <nav className={cn(styles.sidebarNav, className)}>
+      <Accordion allowMultiple>
+        {groups.map((group) => (
+          <AccordionItem
+            key={group.label}
+            title={<span className={styles.groupHeader}><Icon icon={group.icon} size="sm" />{group.label}</span>}
+            isOpen={openGroups[group.label]}
+            onToggle={() => setOpenGroups((p) => ({ ...p, [group.label]: !p[group.label] }))}
+          >
+            <Menu className={styles.groupMenu}>
+              {group.items.map((item) => {
+                const active = isPathActive(activePath, item.path);
+                return renderLink ? (
+                  <React.Fragment key={item.path}>{renderLink(item, active)}</React.Fragment>
+                ) : (
+                  <MenuItem key={item.path} onClick={() => onItemClick?.(item.path)} className={cn(active && styles.activeItem)}>
                     {item.label}
-                  </Span>
-                ))}
-          </Stack>
-        </AccordionItem>
-      ))}
-    </Accordion>
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </nav>
   );
 };
-
-SidebarNav.displayName = 'SidebarNav';
