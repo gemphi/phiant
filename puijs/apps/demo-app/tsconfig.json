@@ -14,6 +14,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "puijs": ["../../src"],
+      "puijs/*": ["../../src/*"],
       "@phient/pui": ["../../src"],
       "@phient/pui/*": ["../../src/*"]
     }

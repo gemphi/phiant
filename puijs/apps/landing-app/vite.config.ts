@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      'puijs': path.resolve(__dirname, '../../src'),
       '@phient/pui': path.resolve(__dirname, '../../src'),
     },
   },

@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      'puijs': path.resolve(__dirname, '../../src'),
       '@phient/pui': path.resolve(__dirname, '../../src'),
       'next/link': path.resolve(__dirname, './src/mocks/Link.tsx'),
     },
@@ -28,7 +29,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: {
-      modules: { classNameStrategy: 'non-scoped' },
+      modules: {
+        classNameStrategy: 'non-scoped',
+      },
     },
   },
 });
