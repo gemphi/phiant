@@ -1,0 +1,48 @@
+.dark, [data-theme="dark"] {
+  --phi-color-primary: #60a5fa;
+  --phi-color-primary-hover: #3b82f6;
+  --phi-color-primary-light: #1e3a8a;
+  --phi-color-primary-dark: #93c5fd;
+
+  --phi-color-secondary: #94a3b8;
+  --phi-color-secondary-hover: #cbd5e1;
+  --phi-color-secondary-light: #1e293b;
+
+  --phi-color-gray-50: #020617;
+  --phi-color-gray-100: #0f172a;
+  --phi-color-gray-200: #1e293b;
+  --phi-color-gray-300: #334155;
+  --phi-color-gray-400: #475569;
+  --phi-color-gray-500: #64748b;
+  --phi-color-gray-600: #94a3b8;
+  --phi-color-gray-700: #cbd5e1;
+  --phi-color-gray-800: #e2e8f0;
+  --phi-color-gray-900: #f1f5f9;
+  --phi-color-gray-950: #f8fafc;
+
+  --phi-color-success: #34d399;
+  --phi-color-success-light: #064e3b;
+  --phi-color-warning: #fbbf24;
+  --phi-color-warning-light: #78350f;
+  --phi-color-error: #f87171;
+  --phi-color-error-light: #450a0a;
+  --phi-color-info: #38bdf8;
+  --phi-color-info-light: #082f49;
+
+  --phi-color-background: #0f172a;
+  --phi-color-background-secondary: #0b1120;
+  --phi-color-background-card: #1e293b;
+  --phi-color-text-primary: #f8fafc;
+  --phi-color-text-secondary: #94a3b8;
+  --phi-color-text-muted: #64748b;
+  --phi-color-border: #334155;
+  --phi-color-border-subtle: #1e293b;
+
+  --phi-shadow-0: none;
+  --phi-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --phi-shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --phi-shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --phi-shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+
+  --phi-brand-gradient: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+}

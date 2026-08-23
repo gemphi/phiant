@@ -2,36 +2,29 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-}
-
-/* xs breakpoint (no infix) - always applies */
-.col {
   flex: 0 0 auto;
 }
+
 .col-auto {
   flex: 0 0 auto;
   width: auto;
 }
+
 @for $i from 1 through 12 {
   .col-#{$i} {
-    flex: 0 0 percentage($i / 12);
-    max-width: percentage($i / 12);
+    flex: 0 0 calc(#{$i} / 12 * 100%);
+    max-width: calc(#{$i} / 12 * 100%);
   }
   .offset-#{$i} {
-    margin-left: percentage($i / 12);
+    margin-left: calc(#{$i} / 12 * 100%);
   }
   .order-#{$i} {
     order: $i;
   }
 }
-.order-first {
-  order: -1;
-}
-.order-last {
-  order: 13;
-}
+.order-first { order: -1; }
+.order-last { order: 13; }
 
-/* sm breakpoint */
 @mixin col-bp($bp, $min-width) {
   @media (min-width: $min-width) {
     .col-#{$bp} {
@@ -44,22 +37,18 @@
     }
     @for $i from 1 through 12 {
       .col-#{$bp}-#{$i} {
-        flex: 0 0 percentage($i / 12);
-        max-width: percentage($i / 12);
+        flex: 0 0 calc(#{$i} / 12 * 100%);
+        max-width: calc(#{$i} / 12 * 100%);
       }
       .offset-#{$bp}-#{$i} {
-        margin-left: percentage($i / 12);
+        margin-left: calc(#{$i} / 12 * 100%);
       }
       .order-#{$bp}-#{$i} {
         order: $i;
       }
     }
-    .order-#{$bp}-first {
-      order: -1;
-    }
-    .order-#{$bp}-last {
-      order: 13;
-    }
+    .order-#{$bp}-first { order: -1; }
+    .order-#{$bp}-last { order: 13; }
   }
 }
 

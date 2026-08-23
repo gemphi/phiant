@@ -23,6 +23,13 @@ export const DOCS_NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
+    id: 'architecture',
+    title: 'Data Engine & Architecture',
+    items: [
+      { id: 'data-engine', label: 'Store, Services & API', path: '/data-engine', badge: 'Reactive' },
+    ],
+  },
+  {
     id: 'components',
     title: 'Component Catalog',
     items: [
@@ -31,6 +38,7 @@ export const DOCS_NAV_GROUPS: NavGroup[] = [
       { id: 'forms', label: 'Forms & Controls', path: '/components/forms' },
       { id: 'data-display', label: 'Tree & Data Display', path: '/components/data-display' },
       { id: 'overlays', label: 'Dialogs & Overlays', path: '/components/overlays' },
+      { id: 'commerce', label: 'Commerce Suite', path: '/components/commerce', badge: 'New' },
       { id: 'playground', label: 'Live Playground', path: '/playground', badge: 'Interactive' },
     ],
   },

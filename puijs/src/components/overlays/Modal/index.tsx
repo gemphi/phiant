@@ -19,7 +19,7 @@ export const MODAL_SIZES = {
 
 export type ModalSize = (typeof MODAL_SIZES)[keyof typeof MODAL_SIZES];
 
-type ModalProps = {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: React.ReactNode;
@@ -27,10 +27,18 @@ type ModalProps = {
   footer?: React.ReactNode;
   size?: ModalSize;
   className?: string;
-};
+}
 
-export const Modal = ({ isOpen, onClose, title, children, footer, size = MODAL_SIZES.LG, className = '' }: ModalProps) => {
-  if (!isOpen) return null;
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  footer,
+  size = MODAL_SIZES.LG,
+  className = '',
+}) => {
+  if (!isOpen || typeof document === 'undefined') return null;
   return createPortal(
     <Stack direction="row" align="center" justify="center" className={cn(styles.overlay, className)} role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, zIndex: 1000, padding: '1rem' }}>
       <Stack className={styles.backdrop} onClick={onClose} aria-hidden="true" style={{ position: 'absolute', inset: 0 }} />
@@ -47,3 +55,6 @@ export const Modal = ({ isOpen, onClose, title, children, footer, size = MODAL_S
     document.body
   );
 };
+
+export const Dialog = Modal;
+export type DialogProps = ModalProps;

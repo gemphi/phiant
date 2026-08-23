@@ -1,33 +1,32 @@
 // ============================================================================
-// @phient/pui (Phient UI) — React Component Library & Enterprise Design System
-// Modeled after Palantir Blueprint (@blueprintjs/core, @blueprintjs/table, etc.)
+// @phient/pui (Phient UI / puijs) — React 19 Enterprise Design & Data Engine
+// Modeled after Palantir Blueprint (@blueprintjs/core, @blueprintjs/table)
 // ============================================================================
 
-// Primitives
+// UI Presentation Primitives & Layouts
 export * from './components/primitives';
-
-// Layout
 export * from './components/layout';
-
-// Forms & Controls
 export * from './components/forms';
-
-// Overlays & Floating Surfaces
 export * from './components/overlays';
-
-// Feedback & Loading States
 export * from './components/feedback';
-
-// Navigation
 export * from './components/navigation';
-
-// Data Display & Trees
 export * from './components/data-display';
+export * from './components/commerce';
 
-// Theme Providers & Context
+// Reactive Store Layer
+export * from './store';
+
+// Inversion of Control Service Layer & DI
+export * from './services';
+
+// Resilient API & Streaming Layer
+export * from './api';
+
+// Reactive Hooks & Adapters
+export * from './hooks';
+
+// Theme Providers & Global Context
 export * from './providers/PuiProvider';
-export * from './providers/PProvider';
 
-// Hooks & Utilities
-export * from './hooks/usePuiTheme';
+// Utility Helpers
 export * from './utils/cn';

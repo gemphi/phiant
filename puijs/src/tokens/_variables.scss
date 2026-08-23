@@ -1,0 +1,105 @@
+:root {
+  --phi-color-primary: #3b82f6;
+  --phi-color-primary-hover: #2563eb;
+  --phi-color-primary-light: #eff6ff;
+  --phi-color-primary-dark: #1d4ed8;
+
+  --phi-color-secondary: #475569;
+  --phi-color-secondary-hover: #334155;
+  --phi-color-secondary-light: #f1f5f9;
+
+  --phi-color-gray-50: #f8fafc;
+  --phi-color-gray-100: #f1f5f9;
+  --phi-color-gray-200: #e2e8f0;
+  --phi-color-gray-300: #cbd5e1;
+  --phi-color-gray-400: #94a3b8;
+  --phi-color-gray-500: #64748b;
+  --phi-color-gray-600: #475569;
+  --phi-color-gray-700: #334155;
+  --phi-color-gray-800: #1e293b;
+  --phi-color-gray-900: #0f172a;
+  --phi-color-gray-950: #020617;
+
+  --phi-color-success: #10b981;
+  --phi-color-success-hover: #059669;
+  --phi-color-success-light: #ecfdf5;
+
+  --phi-color-warning: #f59e0b;
+  --phi-color-warning-hover: #d97706;
+  --phi-color-warning-light: #fffbeb;
+
+  --phi-color-error: #ef4444;
+  --phi-color-error-hover: #dc2626;
+  --phi-color-error-light: #fef2f2;
+
+  --phi-color-info: #0ea5e9;
+  --phi-color-info-hover: #0284c7;
+  --phi-color-info-light: #f0f9ff;
+
+  --phi-color-background: #ffffff;
+  --phi-color-background-secondary: var(--phi-color-gray-50);
+  --phi-color-background-card: #ffffff;
+  --phi-color-text-primary: var(--phi-color-gray-900);
+  --phi-color-text-secondary: var(--phi-color-gray-500);
+  --phi-color-text-muted: var(--phi-color-gray-400);
+  --phi-color-text-inverse: #ffffff;
+  --phi-color-border: var(--phi-color-gray-200);
+  --phi-color-border-subtle: var(--phi-color-gray-100);
+
+  --phi-shadow-0: none;
+  --phi-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --phi-shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --phi-shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --phi-shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  --phi-surface-gradient: var(--phi-color-background);
+  --phi-surface-gradient-reverse: var(--phi-color-background);
+  --phi-elevation-border: 1px solid var(--phi-color-border);
+  --phi-elevation-shadow: var(--phi-shadow-1);
+  --phi-glass-blur: 0px;
+  --phi-glass-opacity: 1;
+  --phi-brand-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+
+  --phi-radius-none: 0px;
+  --phi-radius-sm: 4px;
+  --phi-radius-md: 6px;
+  --phi-radius-lg: 8px;
+  --phi-radius-xl: 12px;
+  --phi-radius-full: 9999px;
+
+  --phi-space-1: 4px;
+  --phi-space-2: 8px;
+  --phi-space-3: 12px;
+  --phi-space-4: 16px;
+  --phi-space-5: 24px;
+  --phi-space-6: 32px;
+  --phi-space-8: 48px;
+  --phi-space-10: 64px;
+
+  --phi-layout-sidebar-margin: 12px;
+  --phi-layout-header-height: 56px;
+  --phi-layout-content-padding: 24px;
+  --phi-sidebar-collapsed-width: 64px;
+  --phi-sidebar-expanded-width: 250px;
+
+  --phi-transition-fast: 0.1s ease;
+  --phi-transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --phi-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --phi-font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --phi-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  --phi-font-size-xs: 0.75rem;
+  --phi-font-size-sm: 0.8125rem;
+  --phi-font-size-base: 0.875rem;
+  --phi-font-size-lg: 1rem;
+  --phi-font-size-xl: 1.125rem;
+  --phi-font-size-2xl: 1.25rem;
+  --phi-font-size-3xl: 1.5rem;
+
+  --phi-font-weight-normal: 400;
+  --phi-font-weight-medium: 500;
+  --phi-font-weight-semibold: 600;
+  --phi-font-weight-bold: 700;
+}

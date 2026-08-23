@@ -9,7 +9,12 @@ export default defineConfig({
       'puijs': path.resolve(__dirname, '../../src'),
       '@phient/pui': path.resolve(__dirname, '../../src'),
       'next/link': path.resolve(__dirname, './src/mocks/Link.tsx'),
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
+      'lucide-react': path.resolve(__dirname, './node_modules/lucide-react'),
     },
+    dedupe: ['react', 'react-dom', 'lucide-react'],
   },
   css: {
     preprocessorOptions: {
@@ -23,15 +28,5 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-    css: {
-      modules: {
-        classNameStrategy: 'non-scoped',
-      },
-    },
   },
 });

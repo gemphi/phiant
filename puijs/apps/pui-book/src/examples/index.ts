@@ -5,3 +5,7 @@ export * from './CalloutExample';
 export * from './TagExample';
 export * from './FormExample';
 export * from './OverlayExample';
+export * from './CommerceExample';
+export * from './StoreExample';
+export * from './ServiceExample';
+export * from './StreamExample';

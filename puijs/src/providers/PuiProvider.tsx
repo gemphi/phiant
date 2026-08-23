@@ -2,7 +2,9 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Theme, ThemeStyle, PuiContextValue } from './types';
-import { BRAND_THEMES, THEME_STYLES } from './themes';
+import { BRAND_THEMES } from './themes';
+import { ServiceProvider } from '../services/ServiceProvider';
+import { IServiceContainer } from '../services/types';
 
 export * from './types';
 export * from './themes';
@@ -50,6 +52,7 @@ export interface PuiProviderProps {
   defaultTheme?: Theme;
   defaultThemeStyle?: ThemeStyle;
   defaultBrand?: string;
+  container?: IServiceContainer;
 }
 
 export const PuiProvider: React.FC<PuiProviderProps> = ({
@@ -57,24 +60,23 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
   defaultTheme = 'system',
   defaultThemeStyle = 'flat',
   defaultBrand = 'foundry',
+  container,
 }) => {
   const [theme, setThemeState] = useState<Theme>(() => (typeof window !== 'undefined' ? (localStorage.getItem('phi-theme') as Theme) || defaultTheme : defaultTheme));
   const [themeStyle, setThemeStyleState] = useState<ThemeStyle>(() => (typeof window !== 'undefined' ? (localStorage.getItem('phi-style') as ThemeStyle) || defaultThemeStyle : defaultThemeStyle));
   const [brandId, setBrandIdState] = useState<string>(() => (typeof window !== 'undefined' ? localStorage.getItem('phi-brand') || defaultBrand : defaultBrand));
 
-  const isDark = getIsDark(theme);
-
   useEffect(() => {
     applyDOMTheme(theme, brandId, themeStyle);
-  }, [theme, brandId, isDark, themeStyle]);
+  }, [theme, brandId, themeStyle]);
 
   const setTheme = (t: Theme) => { setThemeState(t); localStorage.setItem('phi-theme', t); };
   const setThemeStyle = (s: ThemeStyle) => { setThemeStyleState(s); localStorage.setItem('phi-style', s); };
   const setBrandId = (b: string) => { setBrandIdState(b); localStorage.setItem('phi-brand', b); };
 
   return (
-    <PuiContext.Provider value={{ theme, setTheme, themeStyle, setThemeStyle, brandId, setBrandId, brands: BRAND_THEMES, isDark }}>
-      {children}
+    <PuiContext.Provider value={{ theme, setTheme, themeStyle, setThemeStyle, brandId, setBrandId, brands: BRAND_THEMES, isDark: getIsDark(theme) }}>
+      <ServiceProvider container={container}>{children}</ServiceProvider>
     </PuiContext.Provider>
   );
 };
