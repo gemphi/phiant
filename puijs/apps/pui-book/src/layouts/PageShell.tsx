@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Title, Text, Stack } from '@phient/pui';
+import { Title, Text, Stack } from '@pui/components';
 
 interface PageShellProps {
   title: string;

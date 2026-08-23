@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Stack, Title, Text, Divider, Callout } from '@phient/pui';
+import { Stack, Title, Text, Divider, Callout } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { CommerceExample } from '../examples/CommerceExample';
 import { ShoppingCart } from 'lucide-react';

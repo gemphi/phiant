@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Card, Tag, Stack, Grid, Title, Text, usePuiTheme } from '@phient/pui';
+import { Button, Card, Tag, Stack, Grid, Title, Text, usePuiTheme } from '@pui/components';
 import { Layers, Shield, Sparkles, ArrowRight, Code2, Sun, Moon } from 'lucide-react';
 
 export default function App() {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Stack, Tag, Text } from '@phient/pui';
+import { Stack, Tag, Text } from '@pui/components';
 import { DOCS_NAV_GROUPS, NavItem } from '../content/navigation';
 
 interface AppSidebarProps {

@@ -1,4 +1,4 @@
-# Phient UI (`@phient/pui`) Interaction & Navigation Flows
+# Phient UI (`@pui/components`) Interaction & Navigation Flows
 
 > _User interaction flows, theme switching lifecycle, and overlay management._
 

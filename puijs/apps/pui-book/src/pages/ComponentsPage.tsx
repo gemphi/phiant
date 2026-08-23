@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Table, Tag, Stack, Text, Title } from '@phient/pui';
+import { Card, Table, Tag, Stack, Text, Title } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { COMPONENT_CATALOG } from '../content/components';
 import { ButtonExample, TreeExample, TableExample, CalloutExample, TagExample, FormExample, OverlayExample } from '../examples';

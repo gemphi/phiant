@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FormGroup, Input, Select, Switch, Slider, Stack } from '@phient/pui';
+import { FormGroup, Input, Select, Switch, Slider, Stack } from '@pui/components';
 
 export const FormExample: React.FC = () => {
   const [switchVal, setSwitchVal] = useState(true);

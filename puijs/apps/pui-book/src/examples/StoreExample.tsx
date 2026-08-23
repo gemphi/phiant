@@ -10,7 +10,7 @@ import {
   Text,
   Badge,
   Callout,
-} from '@phient/pui';
+} from '@pui/components';
 import { Undo2, Redo2, Plus, Minus, RotateCcw } from 'lucide-react';
 
 interface CounterState {

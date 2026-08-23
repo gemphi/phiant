@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Callout, Stack } from '@phient/pui';
+import { Callout, Stack } from '@pui/components';
 
 export const CalloutExample: React.FC = () => {
   return (

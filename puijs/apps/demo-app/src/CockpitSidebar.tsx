@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Tree, TreeNode, Title } from '@phient/pui';
+import { Tree, TreeNode, Title } from '@pui/components';
 import { Database, Layers, Activity } from 'lucide-react';
 
 export const treeNodes: TreeNode[] = [

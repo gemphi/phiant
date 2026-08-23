@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { PuiProvider } from '@phient/pui';
+import { PuiProvider } from '@pui/components';
 import App from './App';
-import '@phient/pui/tokens/tokens.scss';
-import '@phient/pui/styles/core.scss';
+import '@pui/components/tokens/tokens.scss';
+import '@pui/components/styles/core.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

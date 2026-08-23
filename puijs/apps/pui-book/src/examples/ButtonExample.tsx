@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Stack, Text } from '@phient/pui';
+import { Button, Stack, Text } from '@pui/components';
 import { Play, Sparkles, AlertCircle, RefreshCw } from 'lucide-react';
 
 export const ButtonExample: React.FC = () => {

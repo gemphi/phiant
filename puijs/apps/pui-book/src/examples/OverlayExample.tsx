@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Dialog, Drawer, Stack, Text, ProgressBar } from '@phient/pui';
+import { Button, Dialog, Drawer, Stack, Text, ProgressBar } from '@pui/components';
 
 export const OverlayExample: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);

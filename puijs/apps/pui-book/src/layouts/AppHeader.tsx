@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Input, Select, Stack, Tag, usePuiTheme } from '@phient/pui';
+import { Button, Input, Select, Stack, Tag, usePuiTheme } from '@pui/components';
 import { Search, Sun, Moon, Sparkles, Sliders } from 'lucide-react';
 
 interface AppHeaderProps {

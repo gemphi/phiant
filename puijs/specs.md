@@ -1,4 +1,4 @@
-# Phient UI (`@phient/pui`) Specifications
+# Phient UI (`@pui/components`) Specifications
 
 > _Formal technical specifications, TypeScript interfaces, and token bindings._
 

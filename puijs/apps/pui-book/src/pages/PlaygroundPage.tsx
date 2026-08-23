@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, FormGroup, Input, Select, Switch, Tag, Button, Stack, Title, Text, Callout } from '@phient/pui';
+import { Card, FormGroup, Input, Select, Switch, Tag, Button, Stack, Title, Text, Callout } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { Play, Sparkles, RefreshCw } from 'lucide-react';
 

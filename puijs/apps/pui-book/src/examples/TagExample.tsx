@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Tag, Stack } from '@phient/pui';
+import { Tag, Stack } from '@pui/components';
 import { CheckCircle2, Shield, Activity } from 'lucide-react';
 
 export const TagExample: React.FC = () => {

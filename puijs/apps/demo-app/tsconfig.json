@@ -16,8 +16,8 @@
     "paths": {
       "puijs": ["../../src"],
       "puijs/*": ["../../src/*"],
-      "@phient/pui": ["../../src"],
-      "@phient/pui/*": ["../../src/*"]
+      "@pui/components": ["../../src"],
+      "@pui/components/*": ["../../src/*"]
     }
   },
   "include": ["src"]

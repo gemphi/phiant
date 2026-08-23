@@ -1,6 +1,6 @@
 # Phient UI Applications (`apps/`)
 
-Applications and workbenches for Phient UI (`@phient/pui`), structured according to the Palantir Blueprint standard (`*-app` / workbench convention).
+Applications and workbenches for Phient UI (`@pui/components`), structured according to the Palantir Blueprint standard (`*-app` / workbench convention).
 
 ---
 

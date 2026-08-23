@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'puijs': path.resolve(__dirname, '../../src'),
-      '@phient/pui': path.resolve(__dirname, '../../src'),
+      '@pui/components': path.resolve(__dirname, '../../src'),
     },
   },
   server: {

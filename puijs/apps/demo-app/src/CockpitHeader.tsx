@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Input, Select, Stack, Tag, usePuiTheme } from '@phient/pui';
+import { Button, Input, Select, Stack, Tag, usePuiTheme } from '@pui/components';
 import { Search, Sun, Moon } from 'lucide-react';
 
 export const CockpitHeader: React.FC = () => {

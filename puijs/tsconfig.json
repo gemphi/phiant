@@ -14,8 +14,8 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-      "@phient/pui": ["./src"],
-      "@phient/pui/*": ["./src/*"]
+      "@pui/components": ["./src"],
+      "@pui/components/*": ["./src/*"]
     }
   },
   "include": ["src"]

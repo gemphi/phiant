@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Drawer, FormGroup, Select, Switch, Stack, Title, Text, Tag, usePuiTheme } from '@phient/pui';
+import { Drawer, FormGroup, Select, Switch, Stack, Title, Text, Tag, usePuiTheme } from '@pui/components';
 
 interface InspectorDrawerProps {
   isOpen: boolean;

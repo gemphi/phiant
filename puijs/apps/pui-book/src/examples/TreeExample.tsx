@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Tree, TreeNode, Card, Stack, Text, Tag } from '@phient/pui';
+import { Tree, TreeNode, Card, Stack, Text, Tag } from '@pui/components';
 import { Folder, Database, FileCode, Layers } from 'lucide-react';
 
 export const TreeExample: React.FC = () => {

@@ -1,5 +1,5 @@
 // ============================================================================
-// @phient/pui (Phient UI / puijs) — React 19 Enterprise Design & Data Engine
+// @pui/components (Phient UI / puijs) — React 19 Enterprise Design & Data Engine
 // Modeled after Palantir Blueprint (@blueprintjs/core, @blueprintjs/table)
 // ============================================================================
 

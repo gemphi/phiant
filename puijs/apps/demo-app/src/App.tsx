@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Callout, Drawer, Title, Text, Divider } from '@phient/pui';
+import { Callout, Drawer, Title, Text, Divider } from '@pui/components';
 import { CockpitHeader } from './CockpitHeader';
 import { CockpitSidebar } from './CockpitSidebar';
 import { MetricsGrid } from './MetricsGrid';

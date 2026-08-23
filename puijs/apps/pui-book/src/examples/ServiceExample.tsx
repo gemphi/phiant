@@ -10,7 +10,7 @@ import {
   Callout,
   useService,
   TelemetryService,
-} from '@phient/pui';
+} from '@pui/components';
 import { Activity, Send, Terminal } from 'lucide-react';
 
 export const ServiceExample: React.FC = () => {

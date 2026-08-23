@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Table, Tag, ProgressBar, Button, Stack, Card, Title, Text } from '@phient/pui';
+import { Table, Tag, ProgressBar, Button, Stack, Card, Title, Text } from '@pui/components';
 import { Cpu, Database, Shield, RefreshCw } from 'lucide-react';
 
 export const SwarmTable: React.FC<{ onInspect: () => void }> = ({ onInspect }) => {

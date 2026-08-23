@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Table, Tag, Title, Text, Stack } from '@phient/pui';
+import { Card, Table, Tag, Title, Text, Stack } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { CORE_TOKENS, ELEVATION_TOKENS } from '../content/tokens';
 

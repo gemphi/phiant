@@ -12,7 +12,7 @@ import {
   useCart,
   useWishlist,
   MOCK_PRODUCTS,
-} from '@phient/pui';
+} from '@pui/components';
 import { ShoppingBag, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export const CommerceExample: React.FC = () => {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Callout, Tag, Stack, Grid, Title, Text } from '@phient/pui';
+import { Card, Callout, Tag, Stack, Grid, Title, Text } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { Database, Activity, Cpu, Layers } from 'lucide-react';
 

@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'puijs': path.resolve(__dirname, '../../src'),
-      '@phient/pui': path.resolve(__dirname, '../../src'),
+      '@pui/components': path.resolve(__dirname, '../../src'),
       'next/link': path.resolve(__dirname, './src/mocks/Link.tsx'),
       'react': path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),

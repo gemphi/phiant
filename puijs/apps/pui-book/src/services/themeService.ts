@@ -1,4 +1,4 @@
-import { Theme, BrandTheme, BRAND_THEMES } from '@phient/pui';
+import { Theme, BrandTheme, BRAND_THEMES } from '@pui/components';
 
 export class ThemeService {
   static getStoredTheme(): Theme {

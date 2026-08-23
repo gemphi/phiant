@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Button, Stack, ProgressBar, Callout, useStream } from '@phient/pui';
+import { Card, Button, Stack, ProgressBar, Callout, useStream } from '@pui/components';
 import { Play, Square, Sparkles } from 'lucide-react';
 
 const STREAM_PROMPT =

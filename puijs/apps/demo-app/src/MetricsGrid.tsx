@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Grid, Title, Text, Tag } from '@phient/pui';
+import { Card, Grid, Title, Text, Tag } from '@pui/components';
 
 export const MetricsGrid: React.FC = () => {
   return (

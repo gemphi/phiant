@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Table, Tag, ProgressBar, Button, Stack } from '@phient/pui';
+import { Table, Tag, ProgressBar, Button, Stack } from '@pui/components';
 import { Cpu, Database, Shield } from 'lucide-react';
 
 export const TableExample: React.FC = () => {
