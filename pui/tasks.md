@@ -6,9 +6,9 @@
 
 ## 1. Development Tasks
 
-### Running the Workbench / Documentation App (`docs-app`)
+### Running the Documentation & Workbench App (`pui-book` / `puijs.com`)
 ```bash
-cd apps/docs-app
+cd apps/pui-book
 npm install
 npm run dev
 ```
@@ -33,7 +33,7 @@ npm run dev
 
 ### Run Component Tests
 ```bash
-cd apps/docs-app
+cd apps/pui-book
 npm test
 ```
 

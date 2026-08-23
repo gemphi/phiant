@@ -15,7 +15,7 @@ Phient UI is an industrial-grade component library specifically tailored for den
 - **Palantir Blueprint Parity**: Pure composable UI building blocks (`Tree`, `Table`, `Card`, `Button`, `Callout`, `Tag`, `Dialog`, `Drawer`, `Toast`, `Tabs`, `Navbar`, `Menu`, `NonIdealState`, `Switch`, `Slider`, `FormGroup`).
 - **Strict Separation of Concerns**: Zero business logic, zero domain carts, zero mock store services in the core library. Props flow down; callbacks flow up.
 - **Multi-Brand Theming**: Built-in Foundry Blue, Blueprint Slate, Emerald, Midnight, and Amber palettes with instant light/dark mode and flat/elevated/glass surface styles.
-- **Dedicated Interactive Workbench (`apps/docs-app`)**: Replaces heavy third-party storybooks with our own lightweight, full-featured live documentation and component playground.
+- **Dedicated Interactive Workbench (`apps/pui-book` / `puijs.com`)**: Replaces heavy third-party storybooks with our own lightweight, full-featured live documentation and component playground.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'nodeBorder': '#3b82f6', 'clusterBkg': 'transparent', 'clusterBorder': '#475569', 'lineColor': '#60a5fa', 'textColor': '#ffffff', 'primaryTextColor': '#ffffff', 'nodeTextColor': '#ffffff', 'edgeLabelBackground': '#0f172a'}}}%%
@@ -31,17 +31,17 @@ graph TD
     end
 
     subgraph "Applications (pui/apps/)"
-        DocsApp["docs-app (Port 3001)<br/>(Interactive Component Docs & Playground)"]
+        PuiBook["pui-book (puijs.com - Port 3001)<br/>(Interactive Component Docs & Playground)"]
         DemoApp["demo-app (Port 3002)<br/>(Enterprise Operational Cockpit)"]
         LandingApp["landing-app (Port 3003)<br/>(Design System Landing Page)"]
     end
 
-    DocsApp --> Primitives
-    DocsApp --> Layout
-    DocsApp --> Forms
-    DocsApp --> Overlays
-    DocsApp --> Nav
-    DocsApp --> Data
+    PuiBook --> Primitives
+    PuiBook --> Layout
+    PuiBook --> Forms
+    PuiBook --> Overlays
+    PuiBook --> Nav
+    PuiBook --> Data
 ```
 
 ---
@@ -99,7 +99,7 @@ export const AgentStatus = () => (
 
 Phient UI includes three dedicated applications in [`apps/`](apps/):
 
-- **[`apps/docs-app`](apps/docs-app/)**: Interactive component catalog, live prop inspector, and code examples.
+- **[`apps/pui-book`](apps/pui-book/)** (`puijs.com`): Interactive component catalog, live prop inspector, and code examples.
 - **[`apps/demo-app`](apps/demo-app/)**: Full enterprise operational dashboard with live ontology trees, data tables, and telemetry drawers.
 - **[`apps/landing-app`](apps/landing-app/)**: Design system landing page and feature tour.
 

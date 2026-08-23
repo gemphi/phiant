@@ -10,7 +10,7 @@
 2. **Zero Business Logic Coupling**: Strictly state-library agnostic (supports Zustand, Redux, Jotai, or plain React state). No e-commerce domain carts or mock store services in the core library.
 3. **Multi-Brand Theming**: Built-in Foundry Blue, Blueprint Slate, Emerald, Midnight, and Amber palettes with instant light/dark mode and flat/elevated/glass surface modes.
 4. **Strict Token System**: Centralized design tokens in `src/tokens/tokens.scss` using `--phi-*` custom properties with zero runtime JavaScript overhead.
-5. **Standalone Applications (`apps/`)**: Replaces heavy third-party storybooks with lightweight, tailored Vite applications (`docs-app`, `demo-app`, `landing-app`).
+5. **Standalone Applications (`apps/`)**: Replaces heavy third-party storybooks with lightweight, tailored Vite applications (`pui-book` for `puijs.com`, `demo-app`, `landing-app`).
 
 ---
 
@@ -27,7 +27,7 @@ pui/
 ├── flows.md                   # Interaction & navigation flows
 ├── tasks.md                   # Maintenance & execution tasks
 │
-├── src/                       # Core Component Library
+├── src/                       # Core Component Library (All files <= 120 LOC)
 │   ├── index.ts               # Public API barrel export
 │   ├── styles/
 │   │   └── core.scss          # Core typography, resets & utilities
@@ -39,6 +39,8 @@ pui/
 │   │   └── usePuiTheme.ts     # Theme state access hook
 │   ├── providers/
 │   │   ├── PuiProvider.tsx    # Primary theme provider
+│   │   ├── themes.ts          # Brand theme definitions
+│   │   ├── types.ts           # Theme context types
 │   │   └── PProvider.tsx      # Re-export alias
 │   └── components/
 │       ├── primitives/        # Button, Tag, Badge, Icon, Title, Text, Span, Divider
@@ -49,9 +51,9 @@ pui/
 │       ├── navigation/        # Navbar, Breadcrumbs, Tabs, Sidebar, Pagination
 │       └── data-display/      # Table, Tree, TreeView, Card, Accordion, List, Rating
 │
-└── apps/                      # Standalone Vite Applications
+└── apps/                      # Standalone Vite Applications (All files <= 120 LOC)
     ├── README.md              # Application guide & port reference
-    ├── docs-app/              # Interactive Component Docs & Live Workbench (Port 3001)
+    ├── pui-book/              # Documentation & Live Workbench at puijs.com (Port 3001)
     ├── demo-app/              # Enterprise Operations Showcase (Port 3002)
     └── landing-app/           # Design System Landing Page (Port 3003)
 ```
@@ -67,7 +69,7 @@ Design tokens are defined in `src/tokens/tokens.scss` under the `--phi-*` namesp
 | **Intent Colors** | `--phi-color-primary`, `--phi-color-success`, `--phi-color-error` | `#3b82f6`, `#10b981`, `#ef4444` |
 | **Grayscale Ramps**| `--phi-color-gray-50` through `950` | Slate palette (`#f8fafc` to `#020617`) |
 | **Surfaces & Text**| `--phi-color-background`, `--phi-color-text-primary` | Dynamic based on light/dark mode |
-| **Elevation** | `--phi-shadow-0` through `4` | Palantir Blueprint elevation levels 0–4 |
+| **Elevation** | `--phi-shadow-0` through `4` | Elevation levels 0–4 |
 | **Radii** | `--phi-radius-sm`, `md`, `lg`, `xl`, `full` | `4px`, `6px`, `8px`, `12px`, `9999px` |
 | **Typography** | `--phi-font-family`, `--phi-font-mono` | Inter / SF Pro / JetBrains Mono |
 

@@ -1,6 +1,6 @@
 # Phient UI Applications (`apps/`)
 
-Applications and workbenches for Phient UI (`@phient/pui`), structured according to the Palantir Blueprint standard (`*-app` convention).
+Applications and workbenches for Phient UI (`@phient/pui`), structured according to the Palantir Blueprint standard (`*-app` / workbench convention).
 
 ---
 
@@ -8,7 +8,7 @@ Applications and workbenches for Phient UI (`@phient/pui`), structured according
 
 | Application | Port | Description |
 |:---|:---|:---|
-| [`docs-app`](./docs-app) | `3001` | **Component Documentation & Live Playground**: Interactive workbench with real-time props inspector, token switcher, and live code examples (replaces legacy Storybook). |
+| [`pui-book`](./pui-book) | `3001` | **Component Documentation & Live Playground (`puijs.com`)**: Interactive workbench with real-time props inspector, token switcher, and live code examples (replaces legacy Storybook). |
 | [`demo-app`](./demo-app) | `3002` | **Enterprise Operations Showcase**: Full operational cockpit featuring agent swarms, ontology Topos trees, dense data tables, and metrics telemetry. |
 | [`landing-app`](./landing-app) | `3003` | **Design System Landing Page**: Showcase and overview of Phient UI's design philosophy, Palantir Blueprint parity, and theming capabilities. |
 
@@ -17,8 +17,8 @@ Applications and workbenches for Phient UI (`@phient/pui`), structured according
 ## Running Applications
 
 ```bash
-# 1. Run the Component Documentation & Workbench
-cd apps/docs-app
+# 1. Run the Component Documentation & Workbench (puijs.com)
+cd apps/pui-book
 npm install
 npm run dev
 
