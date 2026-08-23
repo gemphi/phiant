@@ -1,0 +1,38 @@
+.page {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: var(--phi-color-background);
+  color: var(--phi-color-text-primary);
+  width: 100%;
+}
+
+.sidebarWrapper {
+  flex-shrink: 0;
+  z-index: 100;
+  position: relative;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.header {
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}

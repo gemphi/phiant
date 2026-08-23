@@ -1,0 +1,36 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  overflow: hidden;
+}
+
+.item {
+  border-bottom: 1px solid var(--phi-color-border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.header {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  background-color: var(--phi-color-background-card);
+  transition: background-color var(--phi-transition-fast);
+}
+
+.header:hover {
+  background-color: var(--phi-color-background-secondary);
+}
+
+.title {
+  font-weight: var(--phi-font-weight-medium);
+  color: var(--phi-color-text-primary);
+}
+
+.body {
+  padding: 0.75rem 1rem;
+  background-color: var(--phi-color-background-card);
+}

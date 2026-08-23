@@ -1,0 +1,69 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* xs breakpoint (no infix) - always applies */
+.col {
+  flex: 0 0 auto;
+}
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / 12);
+    max-width: percentage($i / 12);
+  }
+  .offset-#{$i} {
+    margin-left: percentage($i / 12);
+  }
+  .order-#{$i} {
+    order: $i;
+  }
+}
+.order-first {
+  order: -1;
+}
+.order-last {
+  order: 13;
+}
+
+/* sm breakpoint */
+@mixin col-bp($bp, $min-width) {
+  @media (min-width: $min-width) {
+    .col-#{$bp} {
+      flex: 1 0 0%;
+      max-width: 100%;
+    }
+    .col-#{$bp}-auto {
+      flex: 0 0 auto;
+      width: auto;
+    }
+    @for $i from 1 through 12 {
+      .col-#{$bp}-#{$i} {
+        flex: 0 0 percentage($i / 12);
+        max-width: percentage($i / 12);
+      }
+      .offset-#{$bp}-#{$i} {
+        margin-left: percentage($i / 12);
+      }
+      .order-#{$bp}-#{$i} {
+        order: $i;
+      }
+    }
+    .order-#{$bp}-first {
+      order: -1;
+    }
+    .order-#{$bp}-last {
+      order: 13;
+    }
+  }
+}
+
+@include col-bp(sm, 576px);
+@include col-bp(md, 768px);
+@include col-bp(lg, 992px);
+@include col-bp(xl, 1200px);

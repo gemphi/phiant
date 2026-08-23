@@ -1,0 +1,15 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  padding: 0.125rem;
+}
+
+.value {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: var(--phi-font-weight-medium);
+  color: var(--phi-color-text-primary);
+}

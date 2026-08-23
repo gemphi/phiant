@@ -1,0 +1,23 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-primary);
+}
+
+.th,
+.td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--phi-color-border);
+}
+
+.th {
+  font-weight: var(--phi-font-weight-semibold);
+  color: var(--phi-color-text-secondary);
+  background-color: var(--phi-color-background-secondary);
+}
+
+.tr:hover .td {
+  background-color: var(--phi-color-background-secondary);
+}

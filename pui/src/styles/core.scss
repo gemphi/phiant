@@ -1,0 +1,7 @@
+@use '../tokens/tokens';
+
+/*
+ * PUI (Phient UI) core styles
+ * Import once in the root layout (src/app/layout.tsx) so all components
+ * can read the --phi-* CSS custom properties.
+ */

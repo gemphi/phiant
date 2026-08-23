@@ -1,0 +1,23 @@
+.textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background);
+  color: var(--phi-color-text-primary);
+  font-family: var(--phi-font-family);
+  font-size: var(--phi-font-size-base);
+  resize: vertical;
+  transition: border-color var(--phi-transition-fast), box-shadow var(--phi-transition-fast);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--phi-color-primary);
+  box-shadow: 0 0 0 2px var(--phi-color-primary-light);
+}
+
+.error {
+  border-color: var(--phi-color-error);
+}

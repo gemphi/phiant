@@ -1,0 +1,45 @@
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background-card);
+  color: var(--phi-color-text-primary);
+  box-shadow: var(--phi-shadow-md);
+  animation: slideInRight var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.success {
+  border-color: var(--phi-color-success);
+  background-color: var(--phi-color-success-light);
+  color: var(--phi-alert-success-text, #065f46);
+}
+
+.warning {
+  border-color: var(--phi-color-warning);
+  background-color: var(--phi-color-warning-light);
+  color: var(--phi-alert-warning-text, #92400e);
+}
+
+.error {
+  border-color: var(--phi-color-error);
+  background-color: var(--phi-color-error-light);
+  color: var(--phi-alert-error-text, #991b1b);
+}
+
+.info {
+  border-color: var(--phi-color-info);
+  background-color: var(--phi-color-info-light);
+  color: var(--phi-alert-info-text, #1e40af);
+}

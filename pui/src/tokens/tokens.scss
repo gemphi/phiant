@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ==========================================================================
+     PHIENT UI (PUI) DESIGN TOKENS — PALANTIR BLUEPRINT STANDARD
+     ========================================================================== */
+
+  /* Brand / Core Intent Colors (Foundry / Blueprint Spectrum) */
+  --phi-color-primary: #3b82f6;
+  --phi-color-primary-hover: #2563eb;
+  --phi-color-primary-light: #eff6ff;
+  --phi-color-primary-dark: #1d4ed8;
+
+  --phi-color-secondary: #475569;
+  --phi-color-secondary-hover: #334155;
+  --phi-color-secondary-light: #f1f5f9;
+
+  /* Monochromatic Gray Spectrum (Slate) */
+  --phi-color-gray-50: #f8fafc;
+  --phi-color-gray-100: #f1f5f9;
+  --phi-color-gray-200: #e2e8f0;
+  --phi-color-gray-300: #cbd5e1;
+  --phi-color-gray-400: #94a3b8;
+  --phi-color-gray-500: #64748b;
+  --phi-color-gray-600: #475569;
+  --phi-color-gray-700: #334155;
+  --phi-color-gray-800: #1e293b;
+  --phi-color-gray-900: #0f172a;
+  --phi-color-gray-950: #020617;
+
+  /* Intent & Semantic Status Colors (Blueprint Standard) */
+  --phi-color-success: #10b981;
+  --phi-color-success-hover: #059669;
+  --phi-color-success-light: #ecfdf5;
+
+  --phi-color-warning: #f59e0b;
+  --phi-color-warning-hover: #d97706;
+  --phi-color-warning-light: #fffbeb;
+
+  --phi-color-error: #ef4444;
+  --phi-color-error-hover: #dc2626;
+  --phi-color-error-light: #fef2f2;
+
+  --phi-color-info: #0ea5e9;
+  --phi-color-info-hover: #0284c7;
+  --phi-color-info-light: #f0f9ff;
+
+  /* Surfaces, Borders & Text */
+  --phi-color-background: #ffffff;
+  --phi-color-background-secondary: var(--phi-color-gray-50);
+  --phi-color-background-card: #ffffff;
+  --phi-color-text-primary: var(--phi-color-gray-900);
+  --phi-color-text-secondary: var(--phi-color-gray-500);
+  --phi-color-text-muted: var(--phi-color-gray-400);
+  --phi-color-text-inverse: #ffffff;
+  --phi-color-border: var(--phi-color-gray-200);
+  --phi-color-border-subtle: var(--phi-color-gray-100);
+
+  /* Elevation Shadows (Palantir Blueprint Elevation scale: 0-4) */
+  --phi-shadow-0: none;
+  --phi-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --phi-shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --phi-shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --phi-shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* Theme Style Defaults */
+  --phi-surface-gradient: var(--phi-color-background);
+  --phi-surface-gradient-reverse: var(--phi-color-background);
+  --phi-elevation-border: 1px solid var(--phi-color-border);
+  --phi-elevation-shadow: var(--phi-shadow-1);
+  --phi-glass-blur: 0px;
+  --phi-glass-opacity: 1;
+  --phi-brand-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+
+  /* Border Radii */
+  --phi-radius-none: 0px;
+  --phi-radius-sm: 4px;
+  --phi-radius-md: 6px;
+  --phi-radius-lg: 8px;
+  --phi-radius-xl: 12px;
+  --phi-radius-full: 9999px;
+
+  /* Spacing Scale */
+  --phi-space-1: 4px;
+  --phi-space-2: 8px;
+  --phi-space-3: 12px;
+  --phi-space-4: 16px;
+  --phi-space-5: 24px;
+  --phi-space-6: 32px;
+  --phi-space-8: 48px;
+  --phi-space-10: 64px;
+
+  /* Layout Density */
+  --phi-layout-sidebar-margin: 12px;
+  --phi-layout-header-height: 56px;
+  --phi-layout-content-padding: 24px;
+  --phi-sidebar-collapsed-width: 64px;
+  --phi-sidebar-expanded-width: 250px;
+
+  /* Motion & Transitions */
+  --phi-transition-fast: 0.1s ease;
+  --phi-transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --phi-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Typography */
+  --phi-font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --phi-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  --phi-font-size-xs: 0.75rem;
+  --phi-font-size-sm: 0.8125rem;
+  --phi-font-size-base: 0.875rem;
+  --phi-font-size-lg: 1rem;
+  --phi-font-size-xl: 1.125rem;
+  --phi-font-size-2xl: 1.25rem;
+  --phi-font-size-3xl: 1.5rem;
+
+  --phi-font-weight-normal: 400;
+  --phi-font-weight-medium: 500;
+  --phi-font-weight-semibold: 600;
+  --phi-font-weight-bold: 700;
+
+  /* ==========================================================================
+     ALIASES FOR PUI & LEGACY COMPATIBILITY
+     ========================================================================== */
+  --pui-color-primary: var(--phi-color-primary);
+  --pui-color-primary-hover: var(--phi-color-primary-hover);
+  --pui-color-background: var(--phi-color-background);
+  --pui-color-text-primary: var(--phi-color-text-primary);
+  --pui-color-border: var(--phi-color-border);
+
+  --phi-color-primary: var(--phi-color-primary);
+  --phi-color-primary-hover: var(--phi-color-primary-hover);
+  --phi-color-primary-light: var(--phi-color-primary-light);
+  --phi-color-secondary: var(--phi-color-secondary);
+  --phi-color-secondary-hover: var(--phi-color-secondary-hover);
+  --phi-color-gray-50: var(--phi-color-gray-50);
+  --phi-color-gray-100: var(--phi-color-gray-100);
+  --phi-color-gray-200: var(--phi-color-gray-200);
+  --phi-color-gray-300: var(--phi-color-gray-300);
+  --phi-color-gray-400: var(--phi-color-gray-400);
+  --phi-color-gray-500: var(--phi-color-gray-500);
+  --phi-color-gray-600: var(--phi-color-gray-600);
+  --phi-color-gray-700: var(--phi-color-gray-700);
+  --phi-color-gray-800: var(--phi-color-gray-800);
+  --phi-color-gray-900: var(--phi-color-gray-900);
+  --phi-color-gray-950: var(--phi-color-gray-950);
+  --phi-color-success: var(--phi-color-success);
+  --phi-color-success-light: var(--phi-color-success-light);
+  --phi-color-warning: var(--phi-color-warning);
+  --phi-color-warning-light: var(--phi-color-warning-light);
+  --phi-color-error: var(--phi-color-error);
+  --phi-color-error-hover: var(--phi-color-error-hover);
+  --phi-color-error-light: var(--phi-color-error-light);
+  --phi-color-info: var(--phi-color-info);
+  --phi-color-info-hover: var(--phi-color-info-hover);
+  --phi-color-info-light: var(--phi-color-info-light);
+  --phi-color-background: var(--phi-color-background);
+  --phi-color-background-secondary: var(--phi-color-background-secondary);
+  --phi-color-background-card: var(--phi-color-background-card);
+  --phi-color-text-primary: var(--phi-color-text-primary);
+  --phi-color-text-secondary: var(--phi-color-text-secondary);
+  --phi-color-text-inverse: var(--phi-color-text-inverse);
+  --phi-color-border: var(--phi-color-border);
+  --phi-shadow-sm: var(--phi-shadow-1);
+  --phi-shadow-md: var(--phi-shadow-2);
+  --phi-shadow-lg: var(--phi-shadow-3);
+  --phi-radius-sm: var(--phi-radius-sm);
+  --phi-radius-md: var(--phi-radius-md);
+  --phi-radius-lg: var(--phi-radius-lg);
+  --phi-radius-xl: var(--phi-radius-xl);
+  --phi-radius-full: var(--phi-radius-full);
+  --phi-space-1: var(--phi-space-2);
+  --phi-space-2: var(--phi-space-4);
+  --phi-space-3: var(--phi-space-5);
+  --phi-space-4: var(--phi-space-6);
+  --phi-space-5: var(--phi-space-8);
+  --phi-space-6: var(--phi-space-10);
+  --phi-layout-sidebar-margin: var(--phi-layout-sidebar-margin);
+  --phi-layout-header-height: var(--phi-layout-header-height);
+  --phi-layout-content-padding: var(--phi-layout-content-padding);
+  --phi-layout-header-glow: none;
+  --phi-sidebar-collapsed-width: var(--phi-sidebar-collapsed-width);
+  --phi-sidebar-expanded-width: var(--phi-sidebar-expanded-width);
+  --phi-sidebar-collapsed-spacer: 80px;
+  --phi-sidebar-expanded-spacer: 260px;
+  --phi-sidebar-header-height: var(--phi-layout-header-height);
+  --phi-transition-fast: var(--phi-transition-fast);
+  --phi-transition-normal: var(--phi-transition-normal);
+  --phi-font-family: var(--phi-font-family);
+  --phi-font-heading: var(--phi-font-heading);
+  --phi-font-mono: var(--phi-font-mono);
+  --phi-font-size-xs: var(--phi-font-size-xs);
+  --phi-font-size-sm: var(--phi-font-size-sm);
+  --phi-font-size-base: var(--phi-font-size-base);
+  --phi-font-size-lg: var(--phi-font-size-lg);
+  --phi-font-size-xl: var(--phi-font-size-xl);
+  --phi-font-size-xxl: var(--phi-font-size-2xl);
+  --phi-font-weight-normal: var(--phi-font-weight-normal);
+  --phi-font-weight-medium: var(--phi-font-weight-medium);
+  --phi-font-weight-semibold: var(--phi-font-weight-semibold);
+  --phi-font-weight-bold: var(--phi-font-weight-bold);
+  --phi-surface-gradient: var(--phi-surface-gradient);
+  --phi-surface-gradient-reverse: var(--phi-surface-gradient-reverse);
+  --phi-elevation-border: var(--phi-elevation-border);
+  --phi-elevation-shadow: var(--phi-elevation-shadow);
+  --phi-glass-blur: var(--phi-glass-blur);
+  --phi-glass-opacity: var(--phi-glass-opacity);
+  --phi-brand-gradient: var(--phi-brand-gradient);
+  --phi-font-site-active: var(--phi-font-family);
+  --phi-icon-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  --phi-icon-gradient-hover: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+}
+
+/* ==========================================================================
+   DARK THEME (PALANTIR FOUNDRY / BLUEPRINT DARK MODE)
+   ========================================================================== */
+.dark, [data-theme="dark"] {
+  --phi-color-primary: #60a5fa;
+  --phi-color-primary-hover: #3b82f6;
+  --phi-color-primary-light: #1e3a8a;
+  --phi-color-primary-dark: #93c5fd;
+
+  --phi-color-secondary: #94a3b8;
+  --phi-color-secondary-hover: #cbd5e1;
+  --phi-color-secondary-light: #1e293b;
+
+  --phi-color-gray-50: #020617;
+  --phi-color-gray-100: #0f172a;
+  --phi-color-gray-200: #1e293b;
+  --phi-color-gray-300: #334155;
+  --phi-color-gray-400: #475569;
+  --phi-color-gray-500: #64748b;
+  --phi-color-gray-600: #94a3b8;
+  --phi-color-gray-700: #cbd5e1;
+  --phi-color-gray-800: #e2e8f0;
+  --phi-color-gray-900: #f1f5f9;
+  --phi-color-gray-950: #f8fafc;
+
+  --phi-color-success: #34d399;
+  --phi-color-success-light: #064e3b;
+  --phi-color-warning: #fbbf24;
+  --phi-color-warning-light: #78350f;
+  --phi-color-error: #f87171;
+  --phi-color-error-light: #450a0a;
+  --phi-color-info: #38bdf8;
+  --phi-color-info-light: #082f49;
+
+  --phi-color-background: #0f172a;
+  --phi-color-background-secondary: #0b1120;
+  --phi-color-background-card: #1e293b;
+  --phi-color-text-primary: #f8fafc;
+  --phi-color-text-secondary: #94a3b8;
+  --phi-color-text-muted: #64748b;
+  --phi-color-border: #334155;
+  --phi-color-border-subtle: #1e293b;
+
+  --phi-shadow-0: none;
+  --phi-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --phi-shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --phi-shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --phi-shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+
+  --phi-brand-gradient: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+}

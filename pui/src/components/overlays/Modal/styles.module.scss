@@ -1,0 +1,66 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn var(--phi-animation-speed, 0.2s) ease-out forwards;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--phi-backdrop-color, rgba(0, 0, 0, 0.35));
+  animation: fadeIn var(--phi-animation-speed, 0.2s) ease-out forwards;
+}
+
+.modal {
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+  border-radius: var(--phi-radius-lg);
+  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  box-shadow: var(--phi-elevation-shadow, var(--phi-shadow-lg));
+  animation: scaleIn var(--phi-animation-speed, 0.25s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.sm {
+  max-width: 400px;
+}
+
+.md {
+  max-width: 560px;
+}
+
+.lg {
+  max-width: 800px;
+}
+
+.xl {
+  max-width: 1100px;
+}
+
+.title {
+  margin: 0;
+}
+
+.body {
+  overflow: auto;
+  max-height: calc(100vh - 16rem);
+}
+
+.footer {
+  justify-content: flex-end;
+}

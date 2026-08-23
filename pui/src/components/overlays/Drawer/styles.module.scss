@@ -1,0 +1,81 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+@keyframes slideRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--phi-backdrop-color, rgba(0, 0, 0, 0.35));
+  animation: fadeIn var(--phi-animation-speed, 0.25s) ease-out forwards;
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  box-shadow: var(--phi-elevation-shadow, var(--phi-shadow-lg));
+  border-radius: 0;
+}
+
+.left {
+  left: 0;
+  border-right: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0;
+  animation: slideLeft var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.right {
+  right: 0;
+  border-left: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg);
+  animation: slideRight var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.sm {
+  width: 320px;
+}
+
+.md {
+  width: 420px;
+}
+
+.lg {
+  width: 560px;
+}
+
+.xl {
+  width: 680px;
+}
+
+.title {
+  margin: 0;
+}
+
+.body {
+  overflow: auto;
+  flex: 1;
+}
+
+.footer {
+  justify-content: flex-end;
+}

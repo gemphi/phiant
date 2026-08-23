@@ -1,0 +1,19 @@
+.skeleton {
+  background-color: var(--phi-color-background-secondary);
+  border-radius: var(--phi-radius-md);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

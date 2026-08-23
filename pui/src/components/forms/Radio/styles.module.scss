@@ -1,0 +1,37 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-primary);
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.circle {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--phi-color-border);
+  border-radius: 50%;
+  background-color: var(--phi-color-background);
+  transition: border-color var(--phi-transition-fast), background-color var(--phi-transition-fast);
+}
+
+.input:checked + .circle {
+  border-color: var(--phi-color-primary);
+  border-width: 5px;
+}
+
+.error {
+  border-color: var(--phi-color-error);
+}
+
+.label {
+  line-height: 1.25;
+}

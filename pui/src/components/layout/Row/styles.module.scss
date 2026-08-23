@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* xs row-cols (no infix) — use CSS grid so gaps don't cause wrapping */
+@for $i from 1 through 12 {
+  .row-cols-#{$i} {
+    display: grid;
+    grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+
+    > * {
+      max-width: 100%;
+    }
+  }
+}
+
+/* responsive row-cols */
+@mixin row-cols-bp($bp, $min-width) {
+  @media (min-width: $min-width) {
+    @for $i from 1 through 12 {
+      .row-cols-#{$bp}-#{$i} {
+        display: grid;
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+
+        > * {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@include row-cols-bp(sm, 576px);
+@include row-cols-bp(md, 768px);
+@include row-cols-bp(lg, 992px);
+@include row-cols-bp(xl, 1200px);

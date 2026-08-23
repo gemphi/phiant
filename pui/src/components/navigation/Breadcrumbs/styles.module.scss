@@ -1,0 +1,23 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-secondary);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.current {
+  color: var(--phi-color-text-primary);
+  font-weight: var(--phi-font-weight-medium);
+}
+
+.separator {
+  flex-shrink: 0;
+  color: var(--phi-color-text-secondary);
+}

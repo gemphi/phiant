@@ -1,0 +1,112 @@
+.sliderContainer {
+  width: 100%;
+}
+
+.sliderHeader {
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.sliderLabel {
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-secondary);
+  font-weight: var(--phi-font-weight-medium);
+}
+
+.sliderValue {
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-primary);
+  font-weight: var(--phi-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.track {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--phi-radius-full, 64px);
+  background-color: var(--phi-color-background-secondary);
+}
+
+.fill {
+  position: absolute;
+  height: 4px;
+  border-radius: var(--phi-radius-full, 64px);
+  background: var(--phi-brand-gradient, var(--phi-color-primary));
+  pointer-events: none;
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: var(--phi-radius-full, 64px);
+    background: var(--phi-color-background-card, #fff);
+    border: 2px solid var(--phi-color-primary);
+    cursor: pointer;
+    transition: transform var(--phi-transition-fast, 0.15s) ease, box-shadow var(--phi-transition-fast, 0.15s) ease;
+
+    &:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 6px var(--phi-color-primary-light);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--phi-radius-full, 64px);
+    background: var(--phi-color-background-card, #fff);
+    border: 2px solid var(--phi-color-primary);
+    cursor: pointer;
+    transition: transform var(--phi-transition-fast, 0.15s) ease;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+    border: none;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      box-shadow: 0 0 0 6px var(--phi-color-primary-light);
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

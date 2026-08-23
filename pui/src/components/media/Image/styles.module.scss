@@ -1,0 +1,19 @@
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--phi-radius-md);
+}
+
+.square {
+  aspect-ratio: 1 / 1;
+}
+
+.video {
+  aspect-ratio: 16 / 9;
+}
+
+.auto {
+  aspect-ratio: auto;
+}

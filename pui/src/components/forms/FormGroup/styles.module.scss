@@ -1,0 +1,63 @@
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-1);
+  margin-bottom: var(--phi-space-4);
+  font-family: var(--phi-font-family);
+
+  &.inline {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--phi-space-3);
+
+    .label {
+      margin-bottom: 0;
+      min-width: 120px;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-2);
+  font-size: var(--phi-font-size-sm);
+  font-weight: var(--phi-font-weight-medium);
+  color: var(--phi-color-text-primary);
+}
+
+.labelInfo {
+  font-size: var(--phi-font-size-xs);
+  color: var(--phi-color-text-muted);
+  font-weight: var(--phi-font-weight-normal);
+}
+
+.controlWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.helperText {
+  font-size: var(--phi-font-size-xs);
+  color: var(--phi-color-text-secondary);
+}
+
+.intent-error {
+  .label { color: var(--phi-color-error); }
+  .helperText { color: var(--phi-color-error); }
+}
+
+.intent-success {
+  .label { color: var(--phi-color-success); }
+  .helperText { color: var(--phi-color-success); }
+}
+
+.intent-warning {
+  .label { color: var(--phi-color-warning); }
+  .helperText { color: var(--phi-color-warning); }
+}

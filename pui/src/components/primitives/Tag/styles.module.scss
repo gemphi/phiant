@@ -1,0 +1,107 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--phi-space-1);
+  font-family: var(--phi-font-family);
+  font-weight: var(--phi-font-weight-medium);
+  line-height: 1;
+  border-radius: var(--phi-radius-sm);
+  background-color: var(--phi-color-gray-100);
+  color: var(--phi-color-gray-700);
+  border: 1px solid var(--phi-color-gray-200);
+  white-space: nowrap;
+  user-select: none;
+  transition: all var(--phi-transition-fast);
+
+  &.round {
+    border-radius: var(--phi-radius-full);
+  }
+
+  &.interactive {
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  /* Sizes */
+  &.size-sm {
+    padding: 2px 6px;
+    font-size: var(--phi-font-size-xs);
+  }
+
+  &.size-md {
+    padding: 4px 8px;
+    font-size: var(--phi-font-size-sm);
+  }
+
+  &.size-lg {
+    padding: 6px 12px;
+    font-size: var(--phi-font-size-base);
+  }
+
+  /* Intents */
+  &.intent-primary {
+    background-color: var(--phi-color-primary-light);
+    color: var(--phi-color-primary);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  &.intent-success {
+    background-color: var(--phi-color-success-light);
+    color: var(--phi-color-success);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  &.intent-warning {
+    background-color: var(--phi-color-warning-light);
+    color: var(--phi-color-warning);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  &.intent-error {
+    background-color: var(--phi-color-error-light);
+    color: var(--phi-color-error);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  &.intent-info {
+    background-color: var(--phi-color-info-light);
+    color: var(--phi-color-info);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  &.minimal {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+}
+
+.removeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 2px;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  border-radius: var(--phi-radius-sm);
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

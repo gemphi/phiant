@@ -1,0 +1,27 @@
+{
+  "name": "@phi/pui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Phient UI (PUI) — React component library and enterprise design system modeled after Palantir Blueprint",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./src/styles/core.scss",
+    "./tokens": "./src/tokens/tokens.scss",
+    "./utils": "./src/utils/cn.ts"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "lucide-react": ">=0.300.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

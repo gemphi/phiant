@@ -1,0 +1,46 @@
+.nonIdealState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--phi-space-8) var(--phi-space-5);
+  font-family: var(--phi-font-family);
+  color: var(--phi-color-text-secondary);
+}
+
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--phi-space-4);
+  color: var(--phi-color-text-muted);
+  font-size: 48px;
+
+  svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.heading {
+  margin: 0 0 var(--phi-space-2) 0;
+  font-size: var(--phi-font-size-xl);
+  font-weight: var(--phi-font-weight-semibold);
+  color: var(--phi-color-text-primary);
+}
+
+.description {
+  max-width: 420px;
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--phi-space-4);
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--phi-space-3);
+}

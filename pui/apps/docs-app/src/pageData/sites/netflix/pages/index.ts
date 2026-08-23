@@ -1,0 +1,11 @@
+import { NETFLIX_WELCOME_PAGE } from './welcome';
+import { NETFLIX_WATCH_PAGE } from './watch';
+import { NETFLIX_MYLIST_PAGE } from './mylist';
+
+export { NETFLIX_WELCOME_PAGE, NETFLIX_WATCH_PAGE, NETFLIX_MYLIST_PAGE };
+
+export const NETFLIX_PAGES = [
+  NETFLIX_WELCOME_PAGE,
+  NETFLIX_WATCH_PAGE,
+  NETFLIX_MYLIST_PAGE,
+];

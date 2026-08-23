@@ -1,0 +1,58 @@
+.fullMode {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--phi-color-background);
+  display: flex;
+  flex-direction: column;
+  animation: fullModeIn var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header {
+  padding: var(--phi-space-2, 1rem) var(--phi-space-3, 1.5rem);
+  border-bottom: 1px solid var(--phi-color-border);
+  background: var(--phi-surface-gradient, var(--phi-color-background-card));
+  flex-shrink: 0;
+  min-height: var(--phi-layout-header-height, 64px);
+}
+
+.title {
+  font-size: var(--phi-font-size-lg, 1.125rem);
+  font-weight: var(--phi-font-weight-semibold, 600);
+  color: var(--phi-color-text-primary);
+  font-family: var(--phi-font-heading, inherit);
+}
+
+.subtitle {
+  font-size: var(--phi-font-size-sm, 0.875rem);
+  color: var(--phi-color-text-secondary);
+}
+
+.expandIcon {
+  color: var(--phi-color-text-secondary);
+  opacity: 0.5;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--phi-layout-content-padding, var(--phi-space-3, 1.5rem));
+}
+
+.footer {
+  padding: var(--phi-space-2, 1rem) var(--phi-space-3, 1.5rem);
+  border-top: 1px solid var(--phi-color-border);
+  background: var(--phi-color-background-card);
+  flex-shrink: 0;
+}
+
+@keyframes fullModeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

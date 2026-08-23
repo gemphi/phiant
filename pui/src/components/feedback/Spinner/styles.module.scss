@@ -1,0 +1,24 @@
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--phi-color-primary);
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+.label {
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-secondary);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

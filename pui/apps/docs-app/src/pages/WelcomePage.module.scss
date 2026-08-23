@@ -1,0 +1,237 @@
+.welcome {
+  padding-bottom: 3rem;
+}
+
+.hero {
+  padding: 4rem 2rem 3rem;
+  background: linear-gradient(135deg, var(--phi-color-primary-light) 0%, var(--phi-color-background) 100%);
+  border-bottom: 1px solid var(--phi-color-border);
+}
+
+.heroContent {
+  max-width: 720px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.heroBadge {
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--phi-color-primary), var(--phi-color-text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroLead {
+  color: var(--phi-color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  margin-bottom: 1.5rem;
+}
+
+.colGap {
+  margin-bottom: 1rem;
+}
+
+.linkReset {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+/* Explore section */
+.explore {
+  padding: 2.5rem 2rem;
+}
+
+.exploreCard {
+  height: 100%;
+}
+
+.exploreCardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--phi-radius-md);
+  background: var(--phi-color-primary-light);
+  color: var(--phi-color-primary);
+  flex-shrink: 0;
+}
+
+.exploreCardDesc {
+  color: var(--phi-color-text-secondary);
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1.5;
+}
+
+.exploreCardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--phi-color-primary);
+}
+
+/* Spotlight section */
+.spotlight {
+  padding: 2.5rem 2rem;
+  background: var(--phi-color-background-secondary);
+  border-top: 1px solid var(--phi-color-border);
+  border-bottom: 1px solid var(--phi-color-border);
+}
+
+.spotlightCardDesc {
+  color: var(--phi-color-text-secondary);
+  margin-top: 0.375rem;
+  line-height: 1.5;
+}
+
+.spotlightArrow {
+  color: var(--phi-color-text-secondary);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Capabilities section */
+.capabilities {
+  padding: 2.5rem 2rem;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.capabilityIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--phi-radius-sm);
+  background: var(--phi-color-primary-light);
+  color: var(--phi-color-primary);
+  flex-shrink: 0;
+}
+
+.capabilityLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--phi-radius-sm);
+  font-size: 0.8125rem;
+  color: var(--phi-color-text-secondary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--phi-color-background-secondary);
+    color: var(--phi-color-primary);
+  }
+}
+
+/* Getting started section */
+.gettingStarted {
+  padding: 1rem 2rem 2rem;
+}
+
+.gsCard {
+  height: 100%;
+}
+
+.gsHeader {
+  color: var(--phi-color-primary);
+}
+
+.gsDivider {
+  margin: 1.25rem 0;
+}
+
+.codeBlock {
+  margin: 1rem 0;
+  padding: 0.875rem 1rem;
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background-secondary);
+  border: 1px solid var(--phi-color-border);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875rem;
+  overflow-x: auto;
+
+  code {
+    color: var(--phi-color-text-primary);
+  }
+}
+
+.gsHint {
+  color: var(--phi-color-text-secondary);
+
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.8125rem;
+    background-color: var(--phi-color-background-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--phi-radius-sm);
+    color: var(--phi-color-primary);
+  }
+}
+
+.quickLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quickLink {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background-secondary);
+  color: var(--phi-color-text-primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background var(--phi-transition-fast);
+
+  &:hover {
+    background-color: var(--phi-color-primary-light);
+    color: var(--phi-color-primary);
+  }
+}
+
+.featureIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-primary-light);
+  color: var(--phi-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gsCard {
+  height: 100%;
+}
+
+.gsHeader {
+  color: var(--phi-color-primary);
+}

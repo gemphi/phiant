@@ -1,0 +1,28 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  color: var(--phi-color-warning);
+}
+
+.star {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--phi-color-border);
+  cursor: default;
+}
+
+.filled {
+  color: var(--phi-color-warning);
+}
+
+.interactive {
+  cursor: pointer;
+}
+
+.count {
+  margin-left: 0.25rem;
+  font-size: var(--phi-font-size-sm);
+}

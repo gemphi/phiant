@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  width: 100%;
+}
+
+/* xs grid-cols (no infix) */
+@for $i from 1 through 12 {
+  .grid-cols-#{$i} {
+    grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+  }
+}
+
+/* responsive grid-cols */
+@mixin grid-cols-bp($bp, $min-width) {
+  @media (min-width: $min-width) {
+    @for $i from 1 through 12 {
+      .grid-cols-#{$bp}-#{$i} {
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+      }
+    }
+  }
+}
+
+@include grid-cols-bp(sm, 576px);
+@include grid-cols-bp(md, 768px);
+@include grid-cols-bp(lg, 992px);
+@include grid-cols-bp(xl, 1200px);

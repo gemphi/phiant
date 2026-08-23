@@ -1,0 +1,38 @@
+.text {
+  margin: 0;
+  color: var(--phi-color-text-primary);
+  line-height: 1.5;
+}
+
+.default {
+  font-size: var(--phi-font-size-base);
+}
+
+.muted {
+  color: var(--phi-color-text-secondary);
+  font-size: var(--phi-font-size-base);
+}
+
+.sm {
+  font-size: var(--phi-font-size-sm);
+}
+
+.lg {
+  font-size: var(--phi-font-size-lg);
+}
+
+.label {
+  font-size: var(--phi-font-size-sm);
+  font-weight: var(--phi-font-weight-medium);
+  color: var(--phi-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.xs {
+  font-size: var(--phi-font-size-xs);
+}
+
+.center {
+  text-align: center;
+}

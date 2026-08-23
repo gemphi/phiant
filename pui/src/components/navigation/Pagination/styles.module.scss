@@ -1,0 +1,10 @@
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.info {
+  margin-left: 0.5rem;
+  font-size: var(--phi-font-size-sm);
+}

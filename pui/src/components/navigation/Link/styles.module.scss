@@ -1,0 +1,31 @@
+.link {
+  color: var(--phi-color-primary);
+  text-decoration: none;
+  transition: color var(--phi-transition-fast);
+}
+
+.link:hover {
+  color: var(--phi-color-primary-hover);
+}
+
+.default {
+  font-weight: var(--phi-font-weight-medium);
+}
+
+.muted {
+  color: var(--phi-color-text-secondary);
+}
+
+.muted:hover {
+  color: var(--phi-color-text-primary);
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.active {
+  color: var(--phi-color-text-primary);
+  font-weight: var(--phi-font-weight-semibold);
+}

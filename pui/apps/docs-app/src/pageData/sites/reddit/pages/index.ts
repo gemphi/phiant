@@ -1,0 +1,11 @@
+import { REDDIT_WELCOME_PAGE } from './welcome';
+import { REDDIT_SUBREDDIT_PAGE } from './subreddit';
+import { REDDIT_POST_PAGE } from './post';
+
+export { REDDIT_WELCOME_PAGE, REDDIT_SUBREDDIT_PAGE, REDDIT_POST_PAGE };
+
+export const REDDIT_PAGES = [
+  REDDIT_WELCOME_PAGE,
+  REDDIT_SUBREDDIT_PAGE,
+  REDDIT_POST_PAGE,
+];

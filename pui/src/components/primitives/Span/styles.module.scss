@@ -1,0 +1,20 @@
+.span {
+  color: var(--phi-color-text-primary);
+  line-height: inherit;
+}
+
+.default {
+  font-size: inherit;
+}
+
+.bold {
+  font-weight: var(--phi-font-weight-bold);
+}
+
+.muted {
+  color: var(--phi-color-text-secondary);
+}
+
+.sm {
+  font-size: var(--phi-font-size-sm);
+}
