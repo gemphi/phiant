@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "phient-agents"
-version = "1.0.0"
+version = "1.1.0"
 description = "Phient AI Ops Agent Platform - Multi-agent ecosystem for internal operations"
 readme = "README.md"
 requires-python = ">=3.11"
