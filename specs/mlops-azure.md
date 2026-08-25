@@ -1,8 +1,8 @@
-# MLOps Specification — Azure
+# MLOps Specification - Azure
 
 ## 1. Overview
 
-MLOps infrastructure for the Phient Agentic Ecosystem running on Azure. Covers model lifecycle management, experiment tracking, deployment pipelines, and operational monitoring — all integrated with Azure Machine Learning, Azure AI Services, and the existing Entra ID auth layer.
+MLOps infrastructure for the Phient Agentic Ecosystem running on Azure. Covers model lifecycle management, experiment tracking, deployment pipelines, and operational monitoring - all integrated with Azure Machine Learning, Azure AI Services, and the existing Entra ID auth layer.
 
 > **Note**: The AI Ops team doesn't build models (Data Science does). MLOps here focuses on **deploying, serving, versioning, and monitoring** the models and agents that Data Science produces, plus managing the RAG/embedding infrastructure.
 
@@ -179,7 +179,7 @@ with mlflow.start_run(run_name="chunking-strategy-v3"):
 | `agent-prompt-tuning` | Optimise agent system prompts | task success rate, user satisfaction |
 | `reranker-comparison` | Compare re-ranking strategies | NDCG improvement, latency overhead |
 
-## 6. Azure AI Search (Vector Store — Production)
+## 6. Azure AI Search (Vector Store - Production)
 
 ### Index Configuration
 

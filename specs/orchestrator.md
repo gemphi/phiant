@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The orchestrator is the brain of the Phient Agentic Ecosystem. Built on **LangGraph**, it manages the lifecycle of every request — from intent classification through agent execution to response delivery. It supports single-agent, multi-agent sequential, and multi-agent parallel execution patterns.
+The orchestrator is the brain of the Phient Agentic Ecosystem. Built on **LangGraph**, it manages the lifecycle of every request - from intent classification through agent execution to response delivery. It supports single-agent, multi-agent sequential, and multi-agent parallel execution patterns.
 
 ## 2. LangGraph State Machine
 

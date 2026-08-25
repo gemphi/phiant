@@ -1,4 +1,4 @@
-"""PhiCal domain models — topology types for quantum learning.
+"""PhiCal domain models - topology types for quantum learning.
 
 Quantum-inspired types built on the core topology primitives.  These
 model qubits, quantum states, circuits, and semantic search results
@@ -19,7 +19,7 @@ from phiadk._core.model_base import ModelBase
 
 @dataclass
 class Qubit(Node, ModelBase):
-    """A qubit node — the fundamental unit of quantum information.
+    """A qubit node - the fundamental unit of quantum information.
 
     Represented as a point on the Bloch sphere with amplitude
     coefficients ``alpha`` (|0⟩) and ``beta`` (|1⟩).
@@ -53,7 +53,7 @@ class Qubit(Node, ModelBase):
         return 0 if self.probability_zero >= self.probability_one else 1
 
     def hadamard(self) -> "Qubit":
-        """Apply Hadamard gate — creates superposition."""
+        """Apply Hadamard gate - creates superposition."""
         inv_sqrt2 = 1 / math.sqrt(2)
         new_alpha = inv_sqrt2 * (self.alpha + self.beta)
         new_beta = inv_sqrt2 * (self.alpha - self.beta)
@@ -62,7 +62,7 @@ class Qubit(Node, ModelBase):
 
 @dataclass
 class QuantumState(Node, ModelBase):
-    """A multi-qubit quantum state — an n-simplex in Hilbert space."""
+    """A multi-qubit quantum state - an n-simplex in Hilbert space."""
 
     _model_type: str = "quantum_state"
     qubits: List[Qubit] = field(default_factory=list)
@@ -84,7 +84,7 @@ class QuantumState(Node, ModelBase):
 
 @dataclass
 class GateNode(Node, ModelBase):
-    """A quantum gate — a morphism-like node in the circuit topology."""
+    """A quantum gate - a morphism-like node in the circuit topology."""
 
     _model_type: str = "gate"
     gate_type: str = ""  # H, X, Y, Z, CNOT, CZ, Toffoli, etc.
@@ -99,7 +99,7 @@ class GateNode(Node, ModelBase):
 
 @dataclass
 class CircuitNode(Node, ModelBase):
-    """A quantum circuit — a topological chain of gate nodes."""
+    """A quantum circuit - a topological chain of gate nodes."""
 
     _model_type: str = "circuit"
     name: str = ""
@@ -123,7 +123,7 @@ class CircuitNode(Node, ModelBase):
 class SemanticResult(ModelBase):
     """A result from quantum-inspired semantic search.
 
-    Uses amplitude-weighted scoring — each result has a probability
+    Uses amplitude-weighted scoring - each result has a probability
     amplitude that encodes both relevance and confidence.
     """
 

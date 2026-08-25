@@ -24,7 +24,7 @@ class PhiGitAgent(PhiAgent):
     domain = "git_engine"
     layer = AgentLayer.DATA
     version = "1.0.0"
-    description = "Internal git-core engine — content-addressable storage, SHA-1 object store, refs, trees, and commits."
+    description = "Internal git-core engine - content-addressable storage, SHA-1 object store, refs, trees, and commits."
     card = PHIGIT_CARD
 
     def __init__(self, data_resolver=None, engine: Optional[GitEngine] = None) -> None:

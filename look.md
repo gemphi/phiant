@@ -31,7 +31,7 @@ Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontolog
 
 | Palantir Foundry SDK File (`foundry_sdk/v2/ontologies/`) | Palantir Docs File (`docs/v2/Ontologies/`) | Phient Symmetrical Doc (`docs/v2/Ontologies/`) | Phient Code File (`src/phiadk/ontologies/`) | Role & Standard P* Type |
 | :--- | :--- | :--- | :--- | :--- |
-| `__init__.py` | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`__init__.py`](./src/phiadk/ontologies/__init__.py) | Package entrypoint re-exporting Ontology & P* primitives. |
+| `__init__.py` | - | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`__init__.py`](./src/phiadk/ontologies/__init__.py) | Package entrypoint re-exporting Ontology & P* primitives. |
 | `_client.py` | `Ontology.md` | [`Ontology.md`](./docs/v2/Ontologies/Ontology.md) | [`_client.py`](./src/phiadk/ontologies/_client.py) | `POntologyClient` / `OntologyClient` unified router. |
 | `action.py` | `Action.md` | [`Action.md`](./docs/v2/Ontologies/Action.md) | [`action.py`](./src/phiadk/ontologies/action.py) | `ActionClient` executing validated state mutations. |
 | `action_type.py` | `ActionType.md` | [`ActionType.md`](./docs/v2/Ontologies/ActionType.md) | [`action_type.py`](./src/phiadk/ontologies/action_type.py) | `ActionType` & `PActionType` morphism schemas. |
@@ -39,10 +39,10 @@ Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontolog
 | `attachment.py` | `Attachment.md` | [`Attachment.md`](./docs/v2/Ontologies/Attachment.md) | [`attachment.py`](./src/phiadk/ontologies/attachment.py) | `AttachmentClient` (binary assets, uploads, streams). |
 | `attachment_property.py` | `AttachmentProperty.md` | [`AttachmentProperty.md`](./docs/v2/Ontologies/AttachmentProperty.md) | [`attachment_property.py`](./src/phiadk/ontologies/attachment_property.py) | `AttachmentProperty` reference on 0-simplices. |
 | `cipher_text_property.py` | `CipherTextProperty.md` | [`CipherTextProperty.md`](./docs/v2/Ontologies/CipherTextProperty.md) | [`cipher_text_property.py`](./src/phiadk/ontologies/cipher_text_property.py) | `CipherTextProperty` (AES-256-GCM vault properties). |
-| `errors.py` | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`errors.py`](./src/phiadk/ontologies/errors.py) | `OntologyError` error hierarchy. |
+| `errors.py` | - | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`errors.py`](./src/phiadk/ontologies/errors.py) | `OntologyError` error hierarchy. |
 | `geotemporal_series_property.py`| `GeotemporalSeriesProperty.md`| [`GeotemporalSeriesProperty.md`](./docs/v2/Ontologies/GeotemporalSeriesProperty.md)| [`geotemporal_series_property.py`](./src/phiadk/ontologies/geotemporal_series_property.py)| Spatial-temporal trajectories & coordinate curves. |
 | `linked_object.py` | `LinkedObject.md` | [`LinkedObject.md`](./docs/v2/Ontologies/LinkedObject.md) | [`linked_object.py`](./src/phiadk/ontologies/linked_object.py) | `LinkedObjectClient` traversing 1-simplex fiber relations. |
-| `link_type.py` | — | [`LinkType.md`](./docs/v2/Ontologies/LinkType.md) | [`link_type.py`](./src/phiadk/ontologies/link_type.py) | `LinkType` & `PLinkType` (1-simplex fiber definitions). |
+| `link_type.py` | - | [`LinkType.md`](./docs/v2/Ontologies/LinkType.md) | [`link_type.py`](./src/phiadk/ontologies/link_type.py) | `LinkType` & `PLinkType` (1-simplex fiber definitions). |
 | `media_reference_property.py` | `MediaReferenceProperty.md` | [`MediaReferenceProperty.md`](./docs/v2/Ontologies/MediaReferenceProperty.md) | [`media_reference_property.py`](./src/phiadk/ontologies/media_reference_property.py) | `MediaReferenceProperty` Flow Capture UI media references. |
 | `models.py` | `models/` | [`Object.md`](./docs/v2/Ontologies/Object.md) | [`models.py`](./src/phiadk/ontologies/models.py) | `POntologyObject`, `POntologyObjectSet`, `POntologyInterface`. |
 | `object_type.py` | `ObjectType.md` | [`ObjectType.md`](./docs/v2/Ontologies/ObjectType.md) | [`object_type.py`](./src/phiadk/ontologies/object_type.py) | `ObjectType` & `PObjectType` 0-simplex schemas. |
@@ -57,7 +57,7 @@ Comparison between `REFS/palantir/foundry-platform-python/foundry_sdk/v2/ontolog
 | `query_type.py` | `QueryType.md` | [`QueryType.md`](./docs/v2/Ontologies/QueryType.md) | [`query_type.py`](./src/phiadk/ontologies/query_type.py) | `QueryTypeClient` parameterized query definitions. |
 | `time_series_property_v2.py` | `TimeSeriesPropertyV2.md` | [`TimeSeriesPropertyV2.md`](./docs/v2/Ontologies/TimeSeriesPropertyV2.md)| [`time_series.py`](./src/phiadk/ontologies/time_series.py)| Continuous temporal metric curves and streams. |
 | `time_series_value_bank_property.py`| `TimeSeriesValueBankProperty.md`| [`TimeSeriesValueBankProperty.md`](./docs/v2/Ontologies/TimeSeriesValueBankProperty.md)| [`time_series.py`](./src/phiadk/ontologies/time_series.py)| High-throughput value bank streaming properties. |
-| — | — | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`engine.py`](./src/phiadk/ontologies/engine.py) | `POntologyEngine` (`GLOBAL_ONTOLOGY`) simplicial complex registry. |
+| - | - | [`OntologyEngine.md`](./docs/v2/Ontologies/OntologyEngine.md) | [`engine.py`](./src/phiadk/ontologies/engine.py) | `POntologyEngine` (`GLOBAL_ONTOLOGY`) simplicial complex registry. |
 
 
 ---

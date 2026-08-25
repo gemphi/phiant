@@ -1,7 +1,7 @@
-"""PhiRAG — Knowledge Retrieval & Augmented Generation.
+"""PhiRAG - Knowledge Retrieval & Augmented Generation.
 
 RAG-powered knowledge retrieval with LLM-augmented generation.
-Data resolved via phiora — no inline datasets.
+Data resolved via phiora - no inline datasets.
 """
 
 from __future__ import annotations
@@ -36,13 +36,13 @@ class RetrievalClient:
 
 
 class GenerationClient:
-    """LLM-augmented generation — morphism from context → answer."""
+    """LLM-augmented generation - morphism from context → answer."""
 
     def __init__(self, llm_client=None) -> None:
         self._llm = llm_client
 
     async def generate(self, query: str, context: List[Dict[str, Any]]) -> Morphism:
-        """Generate an answer — morphism from knowledge_space → answer_space."""
+        """Generate an answer - morphism from knowledge_space → answer_space."""
         context_text = "\n".join(
             f"--- {c.get('title', 'Unknown')} ---\n{c.get('content', '')}"
             for c in context

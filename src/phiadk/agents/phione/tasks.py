@@ -1,4 +1,4 @@
-"""PhiOne Task enumeration — capability chapters."""
+"""PhiOne Task enumeration - capability chapters."""
 
 from enum import Enum
 

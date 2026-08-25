@@ -1,11 +1,11 @@
 """PhiADK Multi-Model Query Engine.
 
 Provides 5 unified query paradigms:
-    ORM — Object-Ontologylogy Mapping & Repositories
-    VQL — Vector Query Language for semantic similarity
-    RQL — Relational Query Language for structured tabular operations
-    OQL — Object / Ontologylogy Query Language for graph traversals
-    QML — Quantum Model Language for quantum superposition & Born rule measurement
+    ORM - Object-Ontologylogy Mapping & Repositories
+    VQL - Vector Query Language for semantic similarity
+    RQL - Relational Query Language for structured tabular operations
+    OQL - Object / Ontologylogy Query Language for graph traversals
+    QML - Quantum Model Language for quantum superposition & Born rule measurement
 """
 
 from phiadk.query.orm import Field as Field

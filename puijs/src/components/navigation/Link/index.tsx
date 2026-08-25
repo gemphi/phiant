@@ -1,5 +1,4 @@
 import React from 'react';
-import NextLink from 'next/link';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 
@@ -21,12 +20,12 @@ type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export const Link = ({ href, variant = LINK_VARIANTS.DEFAULT, active = false, className = '', children, ...props }: LinkProps) => {
   return (
-    <NextLink
+    <a
       href={href}
       className={cn(styles.link, styles[variant], active && styles.active, className)}
       {...props}
     >
       {children}
-    </NextLink>
+    </a>
   );
 };

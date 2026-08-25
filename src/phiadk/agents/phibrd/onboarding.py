@@ -10,7 +10,7 @@ from typing import Any, Dict, List
 from phiadk._core.topology import Fiber, Morphism
 
 
-# Steps as data — no code duplication
+# Steps as data - no code duplication
 ONBOARDING_STEPS = [
     ("verifying_hr",        "hr",         "Verify employee record"),
     ("creating_identity",   "identity",   "Create Entra ID account"),
@@ -22,10 +22,10 @@ ONBOARDING_STEPS = [
 
 
 class OnboardingClient:
-    """Onboarding fiber — composes cross-domain morphisms."""
+    """Onboarding fiber - composes cross-domain morphisms."""
 
     async def onboard(self, employee_data: Dict[str, Any]) -> Fiber:
-        """Execute a full onboarding — fiber of sequential morphisms."""
+        """Execute a full onboarding - fiber of sequential morphisms."""
         required = ["full_name", "email", "department", "title", "start_date", "country"]
         missing = [f for f in required if not employee_data.get(f)]
         if missing:
@@ -50,7 +50,7 @@ class OnboardingClient:
         return fiber
 
     async def checklist(self) -> List[Dict[str, str]]:
-        """Return the onboarding checklist — pure data, no traversal needed."""
+        """Return the onboarding checklist - pure data, no traversal needed."""
         return [
             {"step": sid, "agent": agent, "description": desc}
             for sid, agent, desc in ONBOARDING_STEPS

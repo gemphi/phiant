@@ -1,4 +1,4 @@
-"""Ontology Object Module — Object Types, Property Types, Object Sets, and Object Clients."""
+"""Ontology Object Module - Object Types, Property Types, Object Sets, and Object Clients."""
 
 from __future__ import annotations
 

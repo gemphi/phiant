@@ -1,4 +1,4 @@
-"""PhiGen Package — Code Generation and Parity Verification Agent."""
+"""PhiGen Package - Code Generation and Parity Verification Agent."""
 
 from ._client import PhiGenClient, AsyncPhiGenClient
 from .agent import PhiGenAgent

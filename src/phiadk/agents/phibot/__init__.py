@@ -1,4 +1,4 @@
-"""PhiBot — Automation domain agent.
+"""PhiBot - Automation domain agent.
 
 Automation engine, playbook orchestration, and repeatable workflow
 execution.

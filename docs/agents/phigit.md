@@ -4,7 +4,7 @@ outline: deep
 
 # PhiGit
 
-> Internal git-core engine — content-addressable storage, SHA-1 object store, refs, trees, commits.
+> Internal git-core engine - content-addressable storage, SHA-1 object store, refs, trees, commits.
 
 | | |
 |---|---|
@@ -23,7 +23,7 @@ PhiGit is the **immutable cryptographic storage engine**. It implements a git-li
 
 ## Tasks & Verbs
 
-### `object_operations` — Content-Addressed Objects
+### `object_operations` - Content-Addressed Objects
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `store_blob` | Store raw content and compute SHA-1 hash | `content: Any` |
@@ -31,14 +31,14 @@ PhiGit is the **immutable cryptographic storage engine**. It implements a git-li
 | `store_tree` | Store directory-like tree from named entries | `entries: list` |
 | `get_tree` | Retrieve tree by SHA-1 hash | `sha1: str` |
 
-### `ref_operations` — Branches & Named References
+### `ref_operations` - Branches & Named References
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `set_ref` | Point named reference to a commit SHA-1 | `name: str, commit_sha1: str` |
 | `get_ref` | Resolve reference to commit SHA-1 | `name: str` |
 | `list_refs` | List all active repository references | - |
 
-### `commit_operations` — Snapshots & Delta Calculation
+### `commit_operations` - Snapshots & Delta Calculation
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `commit` | Create a commit snapshot and advance ref | `tree_sha1: str, message: str, version: str` |
@@ -54,4 +54,4 @@ PhiGit is the **immutable cryptographic storage engine**. It implements a git-li
 
 ## Dependencies
 
-None — PhiGit is a foundational storage primitive.
+None - PhiGit is a foundational storage primitive.

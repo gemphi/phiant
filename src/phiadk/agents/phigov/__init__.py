@@ -1,4 +1,4 @@
-"""PhiGov — Governance Domain Package."""
+"""PhiGov - Governance Domain Package."""
 
 from phiadk.agents.phigov._client import AsyncPhiGovClient, PhiGovClient
 from phiadk.agents.phigov.agent import PGovAgent, PhiGovAgent

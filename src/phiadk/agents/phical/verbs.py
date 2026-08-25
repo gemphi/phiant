@@ -1,4 +1,4 @@
-"""PhiCal Verb enumeration — typed action verbs for quantum and semantic operations."""
+"""PhiCal Verb enumeration - typed action verbs for quantum and semantic operations."""
 
 from enum import Enum
 

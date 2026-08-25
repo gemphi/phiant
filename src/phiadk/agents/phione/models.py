@@ -1,4 +1,4 @@
-"""PhiOne domain models — topology types for HR & Identity.
+"""PhiOne domain models - topology types for HR & Identity.
 
 Each model extends the core topology ``Node`` with domain-specific
 properties, forming the vertices of the phione topology space.
@@ -83,7 +83,7 @@ class LeaveBalance(ModelBase):
 
 @dataclass
 class GroupNode(Node, ModelBase):
-    """A security/distribution group — a 2-simplex in identity space."""
+    """A security/distribution group - a 2-simplex in identity space."""
 
     _model_type: str = "group"
     group_name: str = ""
@@ -97,7 +97,7 @@ class GroupNode(Node, ModelBase):
 
 @dataclass
 class OrgNode(Node, ModelBase):
-    """An organisational unit — a 3-simplex aggregating employees."""
+    """An organisational unit - a 3-simplex aggregating employees."""
 
     _model_type: str = "org_unit"
     manager_name: str = ""

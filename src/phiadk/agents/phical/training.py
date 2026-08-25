@@ -16,7 +16,7 @@ from phiadk._core.model_base import ModelBase
 
 @dataclass
 class TrainingStep(ModelBase):
-    """A single training step — a morphism from state_t to state_{t+1}."""
+    """A single training step - a morphism from state_t to state_{t+1}."""
 
     _model_type: str = "training_step"
     epoch: int = 0
@@ -43,7 +43,7 @@ class TrainingClient:
         learning_rate: float = 0.001,
         data_space: str = "training_data",
     ) -> Morphism:
-        """Execute a training morphism — transforms model parameters
+        """Execute a training morphism - transforms model parameters
         through gradient descent over the data space.
 
         :param model_name: Name of the model to train.

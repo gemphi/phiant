@@ -1,7 +1,7 @@
 """PhiOne Employee space operations.
 
 Refactored from the original ``hr_agent.py``.  All data flows through
-``DataSet`` references resolved by ``phiora`` — no inline datasets.
+``DataSet`` references resolved by ``phiora`` - no inline datasets.
 Common traversal logic is factored into ``_traverse_keyed``.
 """
 
@@ -17,12 +17,12 @@ from phiadk.agents.phione.models import EmployeeNode, EmployeeSpace, OrgNode
 class EmployeeClient:
     """Operations over the employee topology space.
 
-    All methods resolve data via ``DataSet`` refs — never inline.
+    All methods resolve data via ``DataSet`` refs - never inline.
     Repeated resolve→traverse→visit patterns are consolidated into
     ``_traverse_keyed``.
     """
 
-    # DataSet references — resolved by phiora, never inline
+    # DataSet references - resolved by phiora, never inline
     HR_DATA = DataSet(set_id="hr_employees", set_type="live", source="hr_mock.json")
 
     def __init__(self, data_resolver=None) -> None:

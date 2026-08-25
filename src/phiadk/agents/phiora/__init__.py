@@ -1,4 +1,4 @@
-"""PhiOra — Spatial & Content-Addressed Storage Layer Agent (PhiOraDB).
+"""PhiOra - Spatial & Content-Addressed Storage Layer Agent (PhiOraDB).
 
 The data authority for the PhiADK ecosystem. Provides topological spatial store
 (PhiOraDB), content-addressed versioned datasets, and Git-enhanced lineage.

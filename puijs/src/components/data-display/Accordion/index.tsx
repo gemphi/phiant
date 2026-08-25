@@ -12,12 +12,14 @@ import styles from './styles.module.scss';
 
 type AccordionItemProps = {
   title: React.ReactNode;
-  open: boolean;
+  open?: boolean;
+  isOpen?: boolean;
   onToggle: () => void;
   children: React.ReactNode;
 };
 
-export const AccordionItem = ({ title, open, onToggle, children }: AccordionItemProps) => {
+export const AccordionItem = ({ title, open, isOpen, onToggle, children }: AccordionItemProps) => {
+  const isItemOpen = open ?? isOpen ?? false;
   return (
     <Stack direction="column" className={styles.item}>
       <Row
@@ -27,15 +29,16 @@ export const AccordionItem = ({ title, open, onToggle, children }: AccordionItem
         onClick={onToggle}
       >
         <Span className={styles.title}>{title}</Span>
-        <Icon name={open ? ChevronDown : ChevronRight} size="sm" />
+        <Icon name={isItemOpen ? ChevronDown : ChevronRight} size="sm" />
       </Row>
-      {open && <Col className={styles.body}>{children}</Col>}
+      {isItemOpen && <Col className={styles.body}>{children}</Col>}
     </Stack>
   );
 };
 
 type AccordionProps = {
   children: React.ReactNode;
+  allowMultiple?: boolean;
   className?: string;
 };
 

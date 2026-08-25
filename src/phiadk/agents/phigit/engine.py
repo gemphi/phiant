@@ -1,4 +1,4 @@
-"""PhiGit Engine — internal content-addressable storage operations.
+"""PhiGit Engine - internal content-addressable storage operations.
 
 Handles blobs, trees, commits, refs, and diffing.
 """

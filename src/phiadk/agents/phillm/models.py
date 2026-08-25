@@ -1,4 +1,4 @@
-"""PhiLLM domain models — language model endpoints and completion types.
+"""PhiLLM domain models - language model endpoints and completion types.
 
 Mirrors Palantir's ``foundry_sdk.v2.language_models.models``.
 """

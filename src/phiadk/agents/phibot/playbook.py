@@ -1,6 +1,6 @@
 """PhiBot Playbook operations.
 
-Playbook management and execution — data via DataSet refs.
+Playbook management and execution - data via DataSet refs.
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ class PlaybookClient:
         return traversal
 
     async def execute(self, playbook_id: str) -> Morphism:
-        """Execute a playbook — morphism over the automation space."""
+        """Execute a playbook - morphism over the automation space."""
         playbooks = {p["id"]: p for p in self._resolve_list()}
         pb = playbooks.get(playbook_id)
         m = Morphism(

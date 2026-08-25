@@ -1,4 +1,4 @@
-# Phient / PhiADK — Enterprise Autonomous Agentic AI Platform
+# Phient / PhiADK - Enterprise Autonomous Agentic AI Platform
 
 > _Enterprise Multi-Agent SDK & Palantir Foundry-Symmetrical Ontology Substrate._
 

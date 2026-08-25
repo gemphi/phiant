@@ -1,28 +1,28 @@
-"""PhiADK SDK — Ontologylogy-based Agent Platform.
+"""PhiADK SDK - Ontologylogy-based Agent Platform.
 
 The unified Python SDK for the PhiADK ecosystem. Modelled after
 Palantir's ``foundry_sdk`` with topology concepts replacing ontology
 jargon, strict data separation, and a universal recursive agent lifecycle.
 
-Domain agents (each ``phi*`` — 3-letter suffix):
+Domain agents (each ``phi*`` - 3-letter suffix):
 
-    phione — HR & Identity (user identity, employees, groups, leave)
-    phical — Quantum Learning (semantic superposition search, circuits, training)
-    phirag — Knowledge Retrieval & Augmented Generation
-    phidoc — Documentation (workspace knowledge, Notion sync)
-    phibot — Automation (playbook execution, workflows)
-    phibrd — Onboarding (cross-domain lifecycle orchestration)
-    phiora — Data Layer (content-addressed git KV store, vector search, DataSet resolution)
-    phigit — Git-Core Storage Engine (blobs, trees, commits, refs, diffs)
-    philog — Distributed Telemetry (structured logging, audit trails)
-    phillm — Language Models (OpenAI, Anthropic, Gemini multi-provider access)
-    phimen — Virtual CEO (executive strategic orchestration, recursive evaluation)
+    phione - HR & Identity (user identity, employees, groups, leave)
+    phical - Quantum Learning (semantic superposition search, circuits, training)
+    phirag - Knowledge Retrieval & Augmented Generation
+    phidoc - Documentation (workspace knowledge, Notion sync)
+    phibot - Automation (playbook execution, workflows)
+    phibrd - Onboarding (cross-domain lifecycle orchestration)
+    phiora - Data Layer (content-addressed git KV store, vector search, DataSet resolution)
+    phigit - Git-Core Storage Engine (blobs, trees, commits, refs, diffs)
+    philog - Distributed Telemetry (structured logging, audit trails)
+    phillm - Language Models (OpenAI, Anthropic, Gemini multi-provider access)
+    phimen - Virtual CEO (executive strategic orchestration, recursive evaluation)
 
 Query & ORM Layer:
-    ORM    — Object-Ontologylogy Mapping & Repositories
-    VQL    — Vector Query Language for semantic similarity
-    RQL    — Relational Query Language for structured tabular operations
-    OQL    — Object / Ontologylogy Query Language for graph traversals
+    ORM    - Object-Ontologylogy Mapping & Repositories
+    VQL    - Vector Query Language for semantic similarity
+    RQL    - Relational Query Language for structured tabular operations
+    OQL    - Object / Ontologylogy Query Language for graph traversals
 """
 
 # Core types
@@ -240,7 +240,10 @@ from phiadk.ontologies import (
 
 
 # AIP API Platform
-from phiadk.phiapi import create_app as create_app
+try:
+    from phiadk.phiapi import create_app as create_app
+except ImportError:
+    create_app = None  # type: ignore
 
 # Master SDK Clients
 from phiadk.client import (

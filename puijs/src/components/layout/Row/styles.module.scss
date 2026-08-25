@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-/* xs row-cols (no infix) — use CSS grid so gaps don't cause wrapping */
+/* xs row-cols (no infix) - use CSS grid so gaps don't cause wrapping */
 @for $i from 1 through 12 {
   .row-cols-#{$i} {
     display: grid;

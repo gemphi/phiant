@@ -60,24 +60,24 @@ class IdentityClient:
     # ── Morphisms ────────────────────────────────────────────────────
 
     async def morph_provision(self, user_data: Dict[str, Any]) -> Morphism:
-        """Provision a new identity — approval-gated morphism."""
+        """Provision a new identity - approval-gated morphism."""
         return self._approval_morphism("provision_identity", "employee_space", "identity_space", user_data)
 
     async def morph_disable(self, email: str) -> Morphism:
-        """Disable an identity — approval-gated morphism."""
+        """Disable an identity - approval-gated morphism."""
         return self._approval_morphism("disable_identity", "identity_space", "identity_space", {"email": email})
 
     async def morph_assign_license(self, email: str, license_name: str) -> Morphism:
-        """Assign a license — approval-gated morphism."""
+        """Assign a license - approval-gated morphism."""
         return self._approval_morphism("assign_license", "identity_space", "license_space", {"email": email, "license": license_name})
 
     async def morph_add_to_group(self, email: str, group_name: str) -> Morphism:
-        """Add identity to group — immediate morphism."""
+        """Add identity to group - immediate morphism."""
         return self._completed_morphism("add_to_group", "identity_space", "group_space",
                                         {"email": email, "group_name": group_name})
 
     async def morph_remove_from_group(self, email: str, group_name: str) -> Morphism:
-        """Remove identity from group — immediate morphism."""
+        """Remove identity from group - immediate morphism."""
         return self._completed_morphism("remove_from_group", "identity_space", "group_space",
                                         {"email": email, "group_name": group_name})
 

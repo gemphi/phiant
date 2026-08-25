@@ -1,6 +1,6 @@
 """PhiOra domain client.
 
-The data layer client — provides access to Store (KV), Resolver
+The data layer client - provides access to Store (KV), Resolver
 (DataSet resolution), and Vector (embedding search) sub-clients.
 """
 
@@ -37,19 +37,19 @@ class PhiOraClient:
 
     @cached_property
     def Store(self):
-        """Key-value store — content-addressed records in collections."""
+        """Key-value store - content-addressed records in collections."""
         from phiadk.agents.phiora.store import StoreClient
         return StoreClient()
 
     @cached_property
     def Resolver(self):
-        """DataSet resolver — the callable all agents use for data I/O."""
+        """DataSet resolver - the callable all agents use for data I/O."""
         from phiadk.agents.phiora.store import ResolverClient
         return ResolverClient(data_dir=self._data_dir, store_client=self.Store)
 
     @cached_property
     def Vector(self):
-        """Vector storage — embedding index and similarity search."""
+        """Vector storage - embedding index and similarity search."""
         from phiadk.agents.phiora.store import VectorClient
         return VectorClient()
 

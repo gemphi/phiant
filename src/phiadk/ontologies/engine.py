@@ -1,4 +1,4 @@
-"""Ontology Engine — Central Ontology Space & Schema Manager."""
+"""Ontology Engine - Central Ontology Space & Schema Manager."""
 
 from __future__ import annotations
 

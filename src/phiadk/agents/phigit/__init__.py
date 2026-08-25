@@ -1,4 +1,4 @@
-"""PhiGit — Git-Core Storage Engine agent.
+"""PhiGit - Git-Core Storage Engine agent.
 
 Immutable content-addressable storage, SHA-1 object store, refs,
 trees, commits, and diffing.

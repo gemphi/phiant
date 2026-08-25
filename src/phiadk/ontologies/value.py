@@ -1,4 +1,4 @@
-"""Ontology Value Module — Custom value types."""
+"""Ontology Value Module - Custom value types."""
 
 from __future__ import annotations
 

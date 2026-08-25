@@ -1,4 +1,4 @@
-"""PhiOne Agent Card — loaded dynamically from schema.json."""
+"""PhiOne Agent Card - loaded dynamically from schema.json."""
 
 from pathlib import Path
 from phiadk._core.agent_card import AgentCard

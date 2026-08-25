@@ -1,4 +1,4 @@
-"""Ontology Transaction Module — Atomic transactional commits."""
+"""Ontology Transaction Module - Atomic transactional commits."""
 
 from __future__ import annotations
 

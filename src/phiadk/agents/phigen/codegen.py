@@ -1,4 +1,4 @@
-"""PhiGen Code Generation Engine — Synthesizes typed Python dataclasses from POntology ObjectTypes."""
+"""PhiGen Code Generation Engine - Synthesizes typed Python dataclasses from POntology ObjectTypes."""
 
 from __future__ import annotations
 

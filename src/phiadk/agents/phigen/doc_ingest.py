@@ -1,4 +1,4 @@
-"""PhiGen Doc Ingestion Engine — Direct 1:1 Ingestion matching exact Palantir module names."""
+"""PhiGen Doc Ingestion Engine - Direct 1:1 Ingestion matching exact Palantir module names."""
 
 from __future__ import annotations
 

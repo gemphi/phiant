@@ -68,7 +68,7 @@ export const CommerceExample: React.FC = () => {
             icon={<ShoppingBag size={16} />}
             onClick={() => cart.setOpen(true)}
           >
-            Cart ({cart.getTotalCount()}) — <Price amount={cart.getTotalPrice()} />
+            Cart ({cart.getTotalCount()}) - <Price amount={cart.getTotalPrice()} />
           </Button>
         </Stack>
       </Card>

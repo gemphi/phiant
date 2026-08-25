@@ -1,4 +1,4 @@
-"""PhiGen Parity Engine — Audits full 100% parity across Palantir modules, schemas, docs, and domain agents."""
+"""PhiGen Parity Engine - Audits full 100% parity across Palantir modules, schemas, docs, and domain agents."""
 
 from __future__ import annotations
 

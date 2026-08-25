@@ -1,4 +1,4 @@
-"""PhiOne — HR & Identity domain agent.
+"""PhiOne - HR & Identity domain agent.
 
 The identity authority and HR data space for the PhiADK ecosystem.
 Combines user identity, employee records, groups, and leave management

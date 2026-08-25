@@ -1,6 +1,6 @@
 """PhiOne Leave space traversals.
 
-Leave balance management — data resolved via ``DataSet``.
+Leave balance management - data resolved via ``DataSet``.
 """
 
 from __future__ import annotations

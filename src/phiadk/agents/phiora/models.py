@@ -1,4 +1,4 @@
-"""PhiOra domain models — topology types for the data layer.
+"""PhiOra domain models - topology types for the data layer.
 
 Models the data storage hierarchy as a topology:
     Store (Space) → Collection (Space) → Record (Node)
@@ -20,11 +20,11 @@ from phiadk._core.model_base import ModelBase
 from phiadk._core.agent_base import DataSet
 
 
-# ── Record — content-addressed node ──────────────────────────────────
+# ── Record - content-addressed node ──────────────────────────────────
 
 @dataclass
 class Record(Node, ModelBase):
-    """A content-addressed data record — git-style SHA-1 keyed.
+    """A content-addressed data record - git-style SHA-1 keyed.
 
     Records are immutable.  Updating a record creates a new version
     with a new SHA-1 hash, preserving the full history.
@@ -61,11 +61,11 @@ class Record(Node, ModelBase):
         return base
 
 
-# ── Collection — a named space of records ────────────────────────────
+# ── Collection - a named space of records ────────────────────────────
 
 @dataclass
 class Collection(Space):
-    """A named collection of records — analogous to a git tree object."""
+    """A named collection of records - analogous to a git tree object."""
 
     collection_name: str = ""
     records: Dict[str, Record] = field(default_factory=dict)  # key → Record
@@ -107,7 +107,7 @@ class Collection(Space):
         )
 
 
-# ── VectorRecord — record with embedding ─────────────────────────────
+# ── VectorRecord - record with embedding ─────────────────────────────
 
 @dataclass
 class VectorRecord(Record):
@@ -122,7 +122,7 @@ class VectorRecord(Record):
         self.node_type = "vector_record"
 
 
-# ── SpatialRecord — topological spatial entity ───────────────────────
+# ── SpatialRecord - topological spatial entity ───────────────────────
 
 @dataclass
 class SpatialRecord(Record):
@@ -144,11 +144,11 @@ class SpatialRecord(Record):
         self.simplex = SimplexType.POINT
 
 
-# ── Store — the root data space ──────────────────────────────────────
+# ── Store - the root data space ──────────────────────────────────────
 
 @dataclass
 class Store(Space):
-    """The root data store — a topology space containing collections."""
+    """The root data store - a topology space containing collections."""
 
     store_name: str = ""
     collections: Dict[str, Collection] = field(default_factory=dict)

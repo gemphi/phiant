@@ -2,33 +2,57 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 
-export const TEXT_VARIANTS = {
-  DEFAULT: 'default',
-  MUTED: 'muted',
-  SM: 'sm',
-  LG: 'lg',
-  LABEL: 'label',
-  XS: 'xs',
-} as const;
+export type TextIntent =
+  | 'default'
+  | 'muted'
+  | 'secondary'
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'danger';
 
-export type TextVariant = (typeof TEXT_VARIANTS)[keyof typeof TEXT_VARIANTS];
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
+export type TextAlign = 'left' | 'center' | 'right';
 
-type TextProps = React.HTMLAttributes<HTMLParagraphElement> & {
-  variant?: TextVariant;
-  center?: boolean;
+export type TextProps = React.HTMLAttributes<HTMLElement> & {
+  intent?: TextIntent;
+  variant?: TextIntent | TextSize;
+  size?: TextSize;
+  weight?: TextWeight;
+  align?: TextAlign;
+  as?: 'p' | 'span' | 'div' | 'label' | any;
   children?: React.ReactNode;
 };
 
 export const Text = ({
-  variant = TEXT_VARIANTS.DEFAULT,
-  center = false,
+  intent,
+  variant,
+  size = 'md',
+  weight = 'normal',
+  align = 'left',
+  as: Component = 'p',
   className = '',
   children,
   ...props
 }: TextProps) => {
+  const isSizeVariant = variant === 'xs' || variant === 'sm' || variant === 'md' || variant === 'lg' || variant === 'xl' || variant === '2xl';
+  const resolvedSize = isSizeVariant ? variant : size;
+  const resolvedIntent = intent || (!isSizeVariant ? variant : undefined) || 'default';
+
   return (
-    <p className={cn(styles.text, styles[variant], center && styles.center, className)} {...props}>
+    <Component
+      className={cn(
+        styles.text,
+        styles[`intent-${resolvedIntent}`],
+        styles[`size-${resolvedSize}`],
+        styles[`weight-${weight}`],
+        styles[`align-${align}`],
+        className
+      )}
+      {...props}
+    >
       {children}
-    </p>
+    </Component>
   );
 };

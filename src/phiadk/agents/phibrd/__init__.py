@@ -1,4 +1,4 @@
-"""PhiBrd — Onboarding Orchestrator agent.
+"""PhiBrd - Onboarding Orchestrator agent.
 
 Cross-domain onboarding orchestration across HR, Identity, Docs,
 and Automation spaces.

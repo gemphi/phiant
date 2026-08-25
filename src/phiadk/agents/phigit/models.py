@@ -1,10 +1,10 @@
-"""PhiGit domain models — Git-core content-addressable storage primitives.
+"""PhiGit domain models - Git-core content-addressable storage primitives.
 
 Defines the immutable SHA-1 keyed objects:
-    Blob   — raw content
-    Tree   — collection of named entries (blobs/subtrees)
-    Commit — snapshot of a tree with parent lineage, author, and version
-    Ref    — named mutable pointer to a commit
+    Blob   - raw content
+    Tree   - collection of named entries (blobs/subtrees)
+    Commit - snapshot of a tree with parent lineage, author, and version
+    Ref    - named mutable pointer to a commit
 """
 
 from __future__ import annotations

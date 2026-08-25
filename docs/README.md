@@ -1,4 +1,4 @@
-# Phient Agentic Ecosystem — Dependencies Documentation
+# Phient Agentic Ecosystem - Dependencies Documentation
 
 Documentation explaining the selection, purpose, and usage of every primary dependency in the Phient Agentic Ecosystem.
 

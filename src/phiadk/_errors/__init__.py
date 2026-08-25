@@ -1,4 +1,4 @@
-"""PhiADK SDK Errors — unified error hierarchy.
+"""PhiADK SDK Errors - unified error hierarchy.
 
 Re-exports all error types.  Mirrors ``foundry_sdk._errors``.
 """

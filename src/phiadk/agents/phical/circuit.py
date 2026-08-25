@@ -54,7 +54,7 @@ class CircuitClient:
         return circuit
 
     async def simulate(self, circuit_id: str) -> Morphism:
-        """Simulate a circuit — a morphism from circuit space to state space.
+        """Simulate a circuit - a morphism from circuit space to state space.
 
         :param circuit_id: ID of the circuit to simulate.
         :returns: A ``Morphism`` containing the simulation result.
@@ -115,7 +115,7 @@ class CircuitClient:
         return traversal
 
     async def compose(self, circuit_ids: List[str], name: str = "") -> CircuitNode:
-        """Compose multiple circuits into a larger circuit — a morphism
+        """Compose multiple circuits into a larger circuit - a morphism
         that concatenates gate chains.
 
         :param circuit_ids: IDs of circuits to compose.

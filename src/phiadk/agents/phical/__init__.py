@@ -1,4 +1,4 @@
-"""PhiCal — Quantum Learning domain agent.
+"""PhiCal - Quantum Learning domain agent.
 
 A domain agent inspired by phi-oml's quantum module and the PHICAL
 quantum computing spec.  Provides quantum-inspired semantic search,

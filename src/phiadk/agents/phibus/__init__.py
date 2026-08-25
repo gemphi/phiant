@@ -1,4 +1,4 @@
-"""PhiBus — Event Bus Domain Package."""
+"""PhiBus - Event Bus Domain Package."""
 
 from phiadk.agents.phibus._client import AsyncPhiBusClient, PhiBusClient
 from phiadk.agents.phibus.agent import PBusAgent, PhiBusAgent

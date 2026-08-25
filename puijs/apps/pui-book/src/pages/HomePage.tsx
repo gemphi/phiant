@@ -8,7 +8,7 @@ import { ArrowRight, Layers, Shield, Zap, Code2 } from 'lucide-react';
 export const HomePage: React.FC<{ onNavigate: (p: string) => void }> = ({ onNavigate }) => {
   return (
     <PageShell
-      title="Phient UI (PUI) — Documentation & Workbench"
+      title="Phient UI (PUI) - Documentation & Workbench"
       description="Enterprise React design system engineered for dense interfaces, knowledge graphs, and AI agent swarms."
       badge={<Tag intent="primary" round>puijs.com</Tag>}
     >

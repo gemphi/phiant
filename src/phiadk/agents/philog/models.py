@@ -1,4 +1,4 @@
-"""PhiLog domain models — structured telemetry and audit records."""
+"""PhiLog domain models - structured telemetry and audit records."""
 
 from __future__ import annotations
 

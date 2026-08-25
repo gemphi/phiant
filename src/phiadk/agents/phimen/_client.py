@@ -34,13 +34,13 @@ class PhiMenClient:
 
     @cached_property
     def Executive(self):
-        """The executive agent — envision→apply→eval→iterate lifecycle."""
+        """The executive agent - envision→apply→eval→iterate lifecycle."""
         from phiadk.agents.phimen.executive import ExecutiveAgent
         return ExecutiveAgent(domain_clients=self._domain_clients, data_resolver=self._data_resolver)
 
     @cached_property
     def Strategy(self):
-        """Strategic operations — high-level convenience methods."""
+        """Strategic operations - high-level convenience methods."""
         from phiadk.agents.phimen.executive import StrategyClient
         return StrategyClient(executive=self.Executive)
 

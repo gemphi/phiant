@@ -1,4 +1,4 @@
-"""Ontology Query Module — Typed query execution."""
+"""Ontology Query Module - Typed query execution."""
 
 from __future__ import annotations
 

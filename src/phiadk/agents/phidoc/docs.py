@@ -37,11 +37,11 @@ class SearchClient:
 
 
 class PageClient:
-    """Morphisms over documentation pages — create, update, sync."""
+    """Morphisms over documentation pages - create, update, sync."""
 
     @staticmethod
     async def create(title: str) -> Morphism:
-        """Create a new doc page — morphism into doc space."""
+        """Create a new doc page - morphism into doc space."""
         m = Morphism(
             morphism_type="create_page",
             source_space="request_space",
@@ -56,7 +56,7 @@ class PageClient:
 
     @staticmethod
     async def sync() -> Morphism:
-        """Sync knowledge base — bulk morphism."""
+        """Sync knowledge base - bulk morphism."""
         m = Morphism(
             morphism_type="sync_knowledge_base",
             source_space="documentation_space",

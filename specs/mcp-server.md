@@ -34,7 +34,7 @@ server_config = {
 | `onboard_employee` | Start onboarding workflow | `employee_data: dict` |
 | `check_leave_balance` | Check leave balance | `email: str` |
 | `list_team_members` | List direct reports | `manager_email: str` |
-| `agent_status` | Check system health | — |
+| `agent_status` | Check system health | - |
 
 ### Tool Schemas (JSON Schema)
 

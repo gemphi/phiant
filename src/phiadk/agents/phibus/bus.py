@@ -1,4 +1,4 @@
-"""PhiBus Client — Pure Pub/Sub Event Bus Manager."""
+"""PhiBus Client - Pure Pub/Sub Event Bus Manager."""
 
 from __future__ import annotations
 

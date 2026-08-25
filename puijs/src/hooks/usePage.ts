@@ -11,7 +11,7 @@ export function usePage(meta?: PageMetadata) {
 
   useEffect(() => {
     if (meta?.title && typeof document !== 'undefined') {
-      document.title = `${meta.title} — Phient UI`;
+      document.title = `${meta.title} - Phient UI`;
     }
   }, [meta?.title]);
 

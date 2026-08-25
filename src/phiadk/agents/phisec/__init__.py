@@ -1,4 +1,4 @@
-"""PhiSec — Security Domain Package."""
+"""PhiSec - Security Domain Package."""
 
 from phiadk.agents.phisec._client import AsyncPhiSecClient, PhiSecClient
 from phiadk.agents.phisec.agent import PSecAgent, PhiSecAgent

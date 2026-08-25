@@ -1,4 +1,4 @@
-"""PhiDoc — Documentation domain agent.
+"""PhiDoc - Documentation domain agent.
 
 Documentation search, Notion workspace sync, and knowledge base
 page generation.

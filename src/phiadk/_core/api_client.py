@@ -43,7 +43,7 @@ _DEFAULT_BACKOFF_SLOT_MS = 250
 
 
 # ──────────────────────────────────────────────────────────────────────
-# RequestInfo — Typed Request Specification
+# RequestInfo - Typed Request Specification
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass

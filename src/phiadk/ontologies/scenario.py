@@ -1,4 +1,4 @@
-"""Ontology Scenario Client — What-if simulation and branching."""
+"""Ontology Scenario Client - What-if simulation and branching."""
 
 from __future__ import annotations
 

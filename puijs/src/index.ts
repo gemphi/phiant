@@ -1,5 +1,5 @@
 // ============================================================================
-// @pui/components (Phient UI / puijs) — React 19 Enterprise Design & Data Engine
+// @pui/components (Phient UI / puijs) - React 19 Enterprise Design & Data Engine
 // Modeled after Palantir Blueprint (@blueprintjs/core, @blueprintjs/table)
 // ============================================================================
 
@@ -11,6 +11,7 @@ export * from './components/overlays';
 export * from './components/feedback';
 export * from './components/navigation';
 export * from './components/data-display';
+export * from './components/media';
 export * from './components/commerce';
 
 // Reactive Store Layer

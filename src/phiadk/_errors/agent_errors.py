@@ -28,6 +28,6 @@ class SpaceTraversalError(PhiADKException):
 class MorphismFailedError(PhiADKException):
     """Raised when a topology morphism fails to complete.
 
-    Morphisms are structure-preserving transformations — this error
+    Morphisms are structure-preserving transformations - this error
     indicates the transformation could not preserve required invariants.
     """

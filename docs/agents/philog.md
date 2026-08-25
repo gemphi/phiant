@@ -4,7 +4,7 @@ outline: deep
 
 # PhiLog
 
-> Distributed telemetry — structured logging, audit trails, query filtering, and real-time log streaming.
+> Distributed telemetry - structured logging, audit trails, query filtering, and real-time log streaming.
 
 | | |
 |---|---|
@@ -23,19 +23,19 @@ PhiLog is the **observability and telemetry backbone**. Every agent in the ecosy
 
 ## Tasks & Verbs
 
-### `logging_operations` — Emit Events
+### `logging_operations` - Emit Events
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `log` | Emit structured log record | `level: str, message: str, **details` |
 | `tail` | Stream most recent N log entries | `n: int` |
 
-### `query_operations` — Search & Filter
+### `query_operations` - Search & Filter
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `query` | Search logs with agent or level filters | `agent_id: str, level: str` |
 | `count` | Count matching entries in buffer | - |
 
-### `audit_operations` — Cryptographic Auditing
+### `audit_operations` - Cryptographic Auditing
 | Verb | Description | Parameters |
 |------|-------------|------------|
 | `record_audit` | Record immutable state mutation audit trail | `action: str, agent_id: str, target: str, commit_sha1: str` |
@@ -48,4 +48,4 @@ PhiLog is the **observability and telemetry backbone**. Every agent in the ecosy
 
 ## Dependencies
 
-None — PhiLog is a foundational observability primitive.
+None - PhiLog is a foundational observability primitive.

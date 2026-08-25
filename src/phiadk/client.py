@@ -1,4 +1,4 @@
-"""Phient / PhiADK Client — Unified Master SDK Entrypoint.
+"""Phient / PhiADK Client - Unified Master SDK Entrypoint.
 
 Structured consistently after Palantir Foundry SDK (`FoundryClient` / `AsyncFoundryClient`),
 exposing all 15 canonical domain agents, Palantir 20 namespaces, POntologyEngine,

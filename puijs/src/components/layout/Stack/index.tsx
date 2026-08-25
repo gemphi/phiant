@@ -8,7 +8,7 @@ export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around' | '
 
 type StackProps = React.HTMLAttributes<HTMLDivElement> & {
   direction?: StackDirection;
-  gap?: number;
+  gap?: number | string;
   align?: StackAlign;
   justify?: StackJustify;
   wrap?: boolean;
@@ -43,12 +43,13 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(({
   style,
   ...props
 }, ref) => {
+  const gapValue = typeof gap === 'number' ? `${gap * 0.25}rem` : gap === 'xs' ? '0.25rem' : gap === 'sm' ? '0.5rem' : gap === 'md' ? '1rem' : gap === 'lg' ? '1.5rem' : gap;
   const computedStyle: React.CSSProperties = {
     flexDirection: direction,
     alignItems: alignMap[align],
     justifyContent: justifyMap[justify],
     flexWrap: wrap ? 'wrap' : 'nowrap',
-    gap: `${gap * 0.25}rem`,
+    gap: gapValue,
     ...style,
   };
 

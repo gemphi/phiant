@@ -1,4 +1,4 @@
-"""PhiRAG — Knowledge Retrieval & Augmented Generation agent.
+"""PhiRAG - Knowledge Retrieval & Augmented Generation agent.
 
 RAG-powered knowledge retrieval using topology traversals over the
 knowledge space, with LLM-augmented generation as morphisms.

@@ -4,7 +4,7 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 
-export interface NonIdealStateProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NonIdealStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   icon?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;

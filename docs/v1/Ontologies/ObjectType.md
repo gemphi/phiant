@@ -89,7 +89,7 @@ client = PhiADKClient()
 try:
     all_types = client.v2.topos.ObjectType.list()
     for ot in all_types:
-        print(f"[{ot.api_name}] {ot.display_name} — Primary: {ot.primary_key}")
+        print(f"[{ot.api_name}] {ot.display_name} - Primary: {ot.primary_key}")
 except Exception as e:
     print(f"POntology error when calling ObjectType.list: {e}\n")
 ```

@@ -32,13 +32,13 @@ class PhiRAGClient:
 
     @cached_property
     def Retrieval(self):
-        """Knowledge retrieval — vector-store traversals."""
+        """Knowledge retrieval - vector-store traversals."""
         from phiadk.agents.phirag.retrieval import RetrievalClient
         return RetrievalClient(data_resolver=self._data_resolver)
 
     @cached_property
     def Generation(self):
-        """LLM-augmented generation — context→answer morphisms."""
+        """LLM-augmented generation - context→answer morphisms."""
         from phiadk.agents.phirag.retrieval import GenerationClient
         return GenerationClient()
 

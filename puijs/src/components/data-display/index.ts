@@ -4,3 +4,4 @@ export * from './Accordion';
 export * from './List';
 export * from './Rating';
 export * from './Tree';
+export * from './ThreeDMode';

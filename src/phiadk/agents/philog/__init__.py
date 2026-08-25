@@ -1,4 +1,4 @@
-"""PhiLog — Distributed Telemetry & Structured Logging agent.
+"""PhiLog - Distributed Telemetry & Structured Logging agent.
 
 Structured logging, audit trails, query filtering, metrics, and export.
 """

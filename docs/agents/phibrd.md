@@ -4,7 +4,7 @@ outline: deep
 
 # PhiBrd
 
-> Cross-domain onboarding orchestrator — executes onboarding workflows as unified fiber bundles.
+> Cross-domain onboarding orchestrator - executes onboarding workflows as unified fiber bundles.
 
 | | |
 |---|---|

@@ -176,7 +176,7 @@ jobs:
           path: htmlcov/
 ```
 
-### 4.2 CD — Staging (`cd-staging.yml`)
+### 4.2 CD - Staging (`cd-staging.yml`)
 
 Auto-deploys to staging on merge to main.
 
@@ -271,7 +271,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-### 4.3 CD — Production (`cd-production.yml`)
+### 4.3 CD - Production (`cd-production.yml`)
 
 Manual trigger with approval gates.
 

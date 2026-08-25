@@ -1,4 +1,4 @@
-"""Ontology Interface Module — Polymorphic interfaces across Object Types."""
+"""Ontology Interface Module - Polymorphic interfaces across Object Types."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""PhiLLM — Language Model & Inference domain agent.
+"""PhiLLM - Language Model & Inference domain agent.
 
 Multi-provider model endpoint management, completions, embeddings,
 and parameter hot-swapping.

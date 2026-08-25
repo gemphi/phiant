@@ -1,7 +1,7 @@
 """PhiMen Executive operations.
 
 The virtual CEO agent that orchestrates cross-domain decisions.
-PhiMen doesn't own data — it traverses other agents' spaces and
+PhiMen doesn't own data - it traverses other agents' spaces and
 composes their morphisms into strategic fiber bundles.
 """
 
@@ -17,20 +17,20 @@ from phiadk.agents.phimen.verbs import PhiMenVerb
 
 
 class ExecutiveAgent(PhiAgent):
-    """Virtual CEO — extends PhiAgent with the standard recursive lifecycle.
+    """Virtual CEO - extends PhiAgent with the standard recursive lifecycle.
 
     PhiMen's lifecycle:
         envision: Assess the situation across all domains
         apply:    Delegate to domain agents, compose results into a strategic fiber
         eval:     Score outcomes against strategic objectives
-        iterate:  Decide next action — escalate, scale, or conclude
+        iterate:  Decide next action - escalate, scale, or conclude
     """
 
     agent_id = "phimen"
     agent_name = "PhiMen"
     domain = "executive"
     layer = AgentLayer.EXECUTIVE
-    description = "Virtual CEO — cross-domain strategic orchestration and recursive evaluation."
+    description = "Virtual CEO - cross-domain strategic orchestration and recursive evaluation."
     card = PHIMEN_CARD
 
     def __init__(self, domain_clients: Optional[Dict[str, Any]] = None, data_resolver=None) -> None:
@@ -38,7 +38,7 @@ class ExecutiveAgent(PhiAgent):
         self._domains = domain_clients or {}
 
     async def envision(self, ctx: AgentContext) -> AgentContext:
-        """Assess the situation — build a manifold view across domains."""
+        """Assess the situation - build a manifold view across domains."""
         verb = ctx.verb or ctx.parameters.get("verb", "assess_objective")
         ctx.verb = verb
         manifold = Manifold(dimension=len(self._domains))
@@ -50,7 +50,7 @@ class ExecutiveAgent(PhiAgent):
         return ctx
 
     async def apply(self, ctx: AgentContext) -> AgentContext:
-        """Delegate to domain agents — compose a strategic fiber."""
+        """Delegate to domain agents - compose a strategic fiber."""
         objective = ctx.parameters.get("objective", "")
         domains = ctx.parameters.get("domains", list(self._domains.keys()))
 
@@ -108,7 +108,7 @@ PhiMenAgent = ExecutiveAgent
 
 
 class StrategyClient:
-    """Strategic operations — high-level convenience methods over the ExecutiveAgent."""
+    """Strategic operations - high-level convenience methods over the ExecutiveAgent."""
 
     def __init__(self, executive: Optional[ExecutiveAgent] = None) -> None:
         self._executive = executive or ExecutiveAgent()

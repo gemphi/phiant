@@ -1,4 +1,4 @@
-"""PhiAPI — Palantir AIP-style API Server and Interactive Console.
+"""PhiAPI - Palantir AIP-style API Server and Interactive Console.
 
 Exposes REST endpoints for all 11 domain agents, query builders,
 workforce operations (PhiOne), virtual CEO strategy (PhiMen),

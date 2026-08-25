@@ -6,3 +6,4 @@ export * from './Grid';
 export * from './Page';
 export * from './Sticky';
 export * from './FullMode';
+export * from './DocsPortal';

@@ -1,38 +1,35 @@
 .text {
   margin: 0;
-  color: var(--phi-color-text-primary);
-  line-height: 1.5;
+  line-height: 1.55;
+  font-family: var(--phi-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
 }
 
-.default {
-  font-size: var(--phi-font-size-base);
-}
+/* Semantic Intent Colors */
+.intent-default { color: var(--phi-color-text-primary, #f8fafc); }
+.intent-muted { color: var(--phi-color-text-muted, #94a3b8); }
+.intent-secondary { color: var(--phi-color-text-secondary, #cbd5e1); }
+.intent-primary { color: var(--phi-color-primary, #60a5fa); }
+.intent-success { color: var(--phi-color-success, #34d399); }
+.intent-warning { color: var(--phi-color-warning, #fbbf24); }
+.intent-danger { color: var(--phi-color-error, #f87171); }
 
-.muted {
-  color: var(--phi-color-text-secondary);
-  font-size: var(--phi-font-size-base);
-}
+/* Typography Scale */
+.size-xs { font-size: 0.75rem !important; line-height: 1.4 !important; }
+.size-sm { font-size: 0.875rem !important; line-height: 1.45 !important; }
+.size-md { font-size: 0.95rem !important; line-height: 1.55 !important; }
+.size-lg { font-size: 1.05rem !important; line-height: 1.6 !important; }
+.size-xl { font-size: 1.25rem !important; line-height: 1.6 !important; }
+.size-2xl { font-size: 1.5rem !important; line-height: 1.4 !important; }
 
-.sm {
-  font-size: var(--phi-font-size-sm);
-}
+/* Font Weights */
+.weight-normal { font-weight: 400 !important; }
+.weight-medium { font-weight: 500 !important; }
+.weight-semibold { font-weight: 600 !important; }
+.weight-bold { font-weight: 700 !important; }
 
-.lg {
-  font-size: var(--phi-font-size-lg);
-}
-
-.label {
-  font-size: var(--phi-font-size-sm);
-  font-weight: var(--phi-font-weight-medium);
-  color: var(--phi-color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-}
-
-.xs {
-  font-size: var(--phi-font-size-xs);
-}
-
-.center {
-  text-align: center;
-}
+/* Text Alignment */
+.align-left { text-align: left !important; }
+.align-center { text-align: center !important; }
+.align-right { text-align: right !important; }

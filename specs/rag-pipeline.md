@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Retrieval-Augmented Generation (RAG) pipeline grounds Phient's Knowledge Agent in real organisational context. It ingests documents from Notion, internal wikis, and uploaded files — then chunks, embeds, stores, and retrieves them for contextual LLM responses.
+The Retrieval-Augmented Generation (RAG) pipeline grounds Phient's Knowledge Agent in real organisational context. It ingests documents from Notion, internal wikis, and uploaded files - then chunks, embeds, stores, and retrieves them for contextual LLM responses.
 
 ## 2. Pipeline Stages
 

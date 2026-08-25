@@ -6,11 +6,11 @@ extend without redefining.  The lifecycle is recursive:
     envision → apply → eval → iterate/scale
 
 At each stage the same four operations apply, allowing fractal
-composition — an agent's ``apply`` step can itself contain a full
+composition - an agent's ``apply`` step can itself contain a full
 envision→apply→eval→iterate sub-cycle.
 
 Data and code are strictly separated.  Agents never contain inline
-datasets — all data flows through ``DataSet`` references resolved
+datasets - all data flows through ``DataSet`` references resolved
 by the ``phiora`` data layer.
 """
 
@@ -47,12 +47,12 @@ class Phase(str, Enum):
 
 
 # ──────────────────────────────────────────────────────────────────────
-# DataSet reference — strict separation of data and code
+# DataSet reference - strict separation of data and code
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class DataSet:
-    """A reference to an external data set — never inline data.
+    """A reference to an external data set - never inline data.
 
     Data sets are resolved by ``phiora`` (the data layer).  This
     reference is passed around but never contains the data itself.
@@ -119,15 +119,15 @@ class AgentContext:
 class PhiAgent(ABC):
     """Universal base for ALL PhiADK domain agents.
 
-    Every agent implements the same four lifecycle methods — no agent
+    Every agent implements the same four lifecycle methods - no agent
     redefines the abstract layer.  The lifecycle is recursive: each
     phase can spawn sub-cycles at increased depth.
 
     Lifecycle:
-        1. ``envision(ctx)`` — define intent, plan topology operations
-        2. ``apply(ctx)`` — execute morphisms over spaces
-        3. ``eval(ctx)`` — measure outcomes, compute metrics
-        4. ``iterate(ctx)`` — decide: scale, refine, or terminate
+        1. ``envision(ctx)`` - define intent, plan topology operations
+        2. ``apply(ctx)`` - execute morphisms over spaces
+        3. ``eval(ctx)`` - measure outcomes, compute metrics
+        4. ``iterate(ctx)`` - decide: scale, refine, or terminate
 
     Data separation:
         Agents reference ``DataSet`` objects but never contain inline data.
@@ -185,7 +185,7 @@ class PhiAgent(ABC):
             pass
         return None
 
-    # ── The lifecycle — do NOT override these ────────────────────────
+    # ── The lifecycle - do NOT override these ────────────────────────
 
     async def run(self, ctx: AgentContext) -> AgentContext:
         """Execute the full lifecycle: envision → apply → eval → iterate.
@@ -240,7 +240,7 @@ class PhiAgent(ABC):
         )
         return await self.run(ctx)
 
-    # ── The four phases — agents implement these ────────────────────
+    # ── The four phases - agents implement these ────────────────────
 
     @abstractmethod
     async def envision(self, ctx: AgentContext) -> AgentContext:
@@ -254,7 +254,7 @@ class PhiAgent(ABC):
     async def apply(self, ctx: AgentContext) -> AgentContext:
         """Phase 2: Execute morphisms over topology spaces.
 
-        Carry out the plan — run traversals, execute morphisms,
+        Carry out the plan - run traversals, execute morphisms,
         transform data.  Populate ``ctx.results["output"]``.
         """
 

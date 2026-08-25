@@ -1,4 +1,4 @@
-"""PhiADK Agents Domain Packages — 15 Strictly 6-Letter Enterprise Domain Agents."""
+"""PhiADK Agents Domain Packages - 15 Strictly 6-Letter Enterprise Domain Agents."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Phient Ontologies Package — Concise, modular 1:1 Palantir Symmetrical Ontology Engine."""
+"""Phient Ontologies Package - Concise, modular 1:1 Palantir Symmetrical Ontology Engine."""
 
 from __future__ import annotations
 
@@ -169,7 +169,7 @@ __all__ = [
     "Query",
     "QueryParameter",
 
-    # Property Specializations (Clean Concise 1-2 Word Naming)
+    # Property Attentions (Clean Concise 1-2 Word Naming)
     "Attachment",
     "AttachmentProperty",
     "CipherProperty",

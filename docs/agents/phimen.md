@@ -4,7 +4,7 @@ outline: deep
 
 # PhiMen
 
-> Virtual CEO — cross-domain strategic orchestration, recursive evaluation, and enterprise decision routing.
+> Virtual CEO - cross-domain strategic orchestration, recursive evaluation, and enterprise decision routing.
 
 | | |
 |---|---|

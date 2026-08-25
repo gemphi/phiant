@@ -53,6 +53,41 @@ class PhiLLMAgent(PhiAgent):
 
         if verb in (PhiLLMVerb.COMPLETE, PhiLLMVerb.CHAT):
             prompt = params.get("prompt", params.get("query", ""))
+            if str(model).lower().startswith("phiano"):
+                import urllib.request
+                import json
+                try:
+                    req_data = json.dumps({"text": prompt}).encode("utf-8")
+                    req = urllib.request.Request(
+                        "http://127.0.0.1:3005/api/chat",
+                        data=req_data,
+                        headers={"Content-Type": "application/json"},
+                    )
+                    with urllib.request.urlopen(req, timeout=10) as response:
+                        res = json.loads(response.read().decode("utf-8"))
+                        resp_content = res.get("response", "")
+                        prompt_toks = len(prompt.split())
+                        resp_toks = len(resp_content.split())
+                        self._usage["prompt_tokens"] += prompt_toks
+                        self._usage["completion_tokens"] += resp_toks
+                        self._usage["total_tokens"] += (prompt_toks + resp_toks)
+                        ctx.results["output"] = {
+                            "content": resp_content,
+                            "model": "phiano-manifold",
+                            "speech_act": res.get("speech_act"),
+                            "direction_of_fit": res.get("direction_of_fit"),
+                            "coherence": res.get("coherence"),
+                            "vocabulary": res.get("vocabulary"),
+                            "usage": {
+                                "prompt_tokens": prompt_toks,
+                                "completion_tokens": resp_toks,
+                                "total_tokens": prompt_toks + resp_toks,
+                            },
+                        }
+                        return ctx
+                except Exception:
+                    pass
+
             resp = self.openai.create_chat_completion(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],

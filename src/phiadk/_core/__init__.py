@@ -1,4 +1,4 @@
-"""PhiADK SDK Core — shared infrastructure.
+"""PhiADK SDK Core - shared infrastructure.
 
 Re-exports auth, config, API client, model base, topology primitives,
 and the universal agent lifecycle base with Agent Card schemas.

@@ -1,4 +1,4 @@
-"""PhiOne Verb enumeration — typed action verbs."""
+"""PhiOne Verb enumeration - typed action verbs."""
 
 from enum import Enum
 

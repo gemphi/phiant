@@ -30,7 +30,7 @@ T = TypeVar("T")
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Simplex Type — classification of nodes
+# Simplex Type - classification of nodes
 # ──────────────────────────────────────────────────────────────────────
 
 class SimplexType(str, Enum):
@@ -49,12 +49,12 @@ class SimplexType(str, Enum):
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Node — the fundamental entity in any topology
+# Node - the fundamental entity in any topology
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Node:
-    """A discrete point in the topology — the atomic domain entity.
+    """A discrete point in the topology - the atomic domain entity.
 
     Every employee, document, circuit, or playbook is a ``Node`` at its
     core.  Nodes carry typed properties and can participate in ``Edge``
@@ -116,7 +116,7 @@ class Node:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Edge — direct connection between two nodes
+# Edge - direct connection between two nodes
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -152,12 +152,12 @@ class Edge:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Space — a connected subspace (collection of nodes)
+# Space - a connected subspace (collection of nodes)
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Space:
-    """A connected subspace — a collection of ``Node`` objects that share
+    """A connected subspace - a collection of ``Node`` objects that share
     a topological neighbourhood.
 
     Analogous to Palantir's ``ObjectSet`` but framed as a topological
@@ -184,7 +184,7 @@ class Space:
 
     @property
     def connectivity(self) -> float:
-        """Edge-to-node ratio — a simple density measure."""
+        """Edge-to-node ratio - a simple density measure."""
         if not self.nodes:
             return 0.0
         return len(self.edges) / len(self.nodes)
@@ -209,14 +209,14 @@ class Space:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Morphism — structure-preserving transformation between spaces
+# Morphism - structure-preserving transformation between spaces
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Morphism:
     """A structure-preserving transformation between topological spaces.
 
-    Analogous to Palantir's ``Action`` — a morphism maps nodes from a
+    Analogous to Palantir's ``Action`` - a morphism maps nodes from a
     source space into a target space while preserving edge structure.
     In practice this models operations like ``provision_identity``,
     ``create_document``, ``execute_playbook``.
@@ -265,14 +265,14 @@ class Morphism:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Traversal — path-finding through the topology
+# Traversal - path-finding through the topology
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Traversal:
-    """A directed path through the topology — the query primitive.
+    """A directed path through the topology - the query primitive.
 
-    Analogous to Palantir's ``Query`` — a traversal starts from a seed
+    Analogous to Palantir's ``Query`` - a traversal starts from a seed
     node or space and follows edges according to filter criteria,
     collecting visited nodes along the way.
 
@@ -314,14 +314,14 @@ class Traversal:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Fiber — a bundle of related mutations over a base space
+# Fiber - a bundle of related mutations over a base space
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Fiber:
-    """A fiber bundle — a collection of related morphisms over a base space.
+    """A fiber bundle - a collection of related morphisms over a base space.
 
-    Analogous to Palantir's ``OntologyTransaction`` — a fiber groups
+    Analogous to Palantir's ``OntologyTransaction`` - a fiber groups
     multiple mutations (morphisms) that must succeed or fail atomically.
     In physics and TDA, a fiber bundle attaches additional structure
     to each point of a base space.
@@ -341,7 +341,7 @@ class Fiber:
         self.morphisms.append(morphism)
 
     def execute_all(self) -> None:
-        """Execute all morphisms in order — mark fiber as completed."""
+        """Execute all morphisms in order - mark fiber as completed."""
         self.status = "executing"
         for m in self.morphisms:
             m.status = "executing"
@@ -357,14 +357,14 @@ class Fiber:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Manifold — a smooth local view over a topology region
+# Manifold - a smooth local view over a topology region
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Manifold:
-    """A manifold — a smooth local coordinate chart over a topology region.
+    """A manifold - a smooth local coordinate chart over a topology region.
 
-    Analogous to Palantir's ``Interface`` — a manifold provides a
+    Analogous to Palantir's ``Interface`` - a manifold provides a
     projected, flattened view of a potentially complex topology.  Used
     for dashboards, reports, and API response surfaces.
 
@@ -393,12 +393,12 @@ class Manifold:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Ontologylogy — the root container
+# Ontologylogy - the root container
 # ──────────────────────────────────────────────────────────────────────
 
 @dataclass
 class Ontologylogy:
-    """The root container — the connected space of all domain objects.
+    """The root container - the connected space of all domain objects.
 
     A ``Ontologylogy`` aggregates multiple ``Space`` instances and provides
     global operations (cross-space traversals, persistence homology

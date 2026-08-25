@@ -147,7 +147,7 @@ class StoreClient:
 
 
 class ResolverClient:
-    """DataSet resolution — the bridge between agents and data.
+    """DataSet resolution - the bridge between agents and data.
 
     This is the callable that agents receive as ``data_resolver``.
     It loads data from files, stores, or external sources.
@@ -223,7 +223,7 @@ class VectorClient:
 
 
 class SpatialStore:
-    """PhiOraDB — Topological Spatial Store engine.
+    """PhiOraDB - Topological Spatial Store engine.
 
     Unlike generic raw vector flat tables, PhiOraDB operates as a true Spatial Store:
     1. Organizes entities across N-dimensional topological manifolds (R^2, R^3, Hilbert spaces).

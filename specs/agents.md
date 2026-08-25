@@ -64,10 +64,10 @@ class AgentResult:
 
 ### Capabilities
 
-- `knowledge_search` — Search internal knowledge base
-- `policy_lookup` — Find specific policies and procedures
-- `faq_answer` — Answer frequently asked questions
-- `document_summary` — Summarise long documents
+- `knowledge_search` - Search internal knowledge base
+- `policy_lookup` - Find specific policies and procedures
+- `faq_answer` - Answer frequently asked questions
+- `document_summary` - Summarise long documents
 
 ### Tools
 
@@ -111,10 +111,10 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ### Capabilities
 
-- `run_automation` — Execute a predefined automation playbook
-- `list_automations` — List available automation playbooks
-- `schedule_automation` — Schedule recurring automation
-- `check_automation_status` — Check status of running automation
+- `run_automation` - Execute a predefined automation playbook
+- `list_automations` - List available automation playbooks
+- `schedule_automation` - Schedule recurring automation
+- `check_automation_status` - Check status of running automation
 
 ### Tools
 
@@ -143,12 +143,12 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ### Capabilities
 
-- `user_lookup` — Find user details in Entra ID
-- `user_provision` — Create new user account
-- `user_deprovision` — Disable/remove user account
-- `group_manage` — Add/remove users from groups
-- `access_review` — Review and report on access rights
-- `license_assign` — Assign/revoke software licenses
+- `user_lookup` - Find user details in Entra ID
+- `user_provision` - Create new user account
+- `user_deprovision` - Disable/remove user account
+- `group_manage` - Add/remove users from groups
+- `access_review` - Review and report on access rights
+- `license_assign` - Assign/revoke software licenses
 
 ### Tools
 
@@ -177,12 +177,12 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ### Capabilities
 
-- `employee_lookup` — Find employee details
-- `org_structure` — Query organisational hierarchy
-- `leave_balance` — Check leave balances
-- `leave_request` — Submit leave requests
-- `team_report` — Generate team composition reports
-- `headcount_report` — Headcount by country/department
+- `employee_lookup` - Find employee details
+- `org_structure` - Query organisational hierarchy
+- `leave_balance` - Check leave balances
+- `leave_request` - Submit leave requests
+- `team_report` - Generate team composition reports
+- `headcount_report` - Headcount by country/department
 
 ### Tools
 
@@ -210,11 +210,11 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ### Capabilities
 
-- `search_docs` — Search Notion workspace
-- `create_page` — Create new Notion page
-- `update_page` — Update existing page
-- `sync_knowledge_base` — Sync Notion content to RAG vector store
-- `generate_doc` — Generate documentation from templates
+- `search_docs` - Search Notion workspace
+- `create_page` - Create new Notion page
+- `update_page` - Update existing page
+- `sync_knowledge_base` - Sync Notion content to RAG vector store
+- `generate_doc` - Generate documentation from templates
 
 ### Tools
 
@@ -234,9 +234,9 @@ Agent: According to the IT Equipment Policy (IT-POL-003)...
 
 ### Capabilities
 
-- `onboard_employee` — Full onboarding workflow
-- `onboarding_status` — Check onboarding progress
-- `onboarding_checklist` — Generate/update onboarding checklist
+- `onboard_employee` - Full onboarding workflow
+- `onboarding_status` - Check onboarding progress
+- `onboarding_checklist` - Generate/update onboarding checklist
 
 ### Workflow Steps
 

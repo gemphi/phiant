@@ -1,6 +1,6 @@
 """PhiADK SDK Model Base.
 
-Provides ``ModelBase`` — the base class for all domain-specific models.
+Provides ``ModelBase`` - the base class for all domain-specific models.
 Domain models extend both ``ModelBase`` and topology primitives
 (``Node``, ``Space``, etc.) to gain serialization, versioning, and git-like lineage.
 """

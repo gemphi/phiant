@@ -10,6 +10,7 @@ export type ColSpec = ColSize | { span?: ColSize; offset?: number; order?: numbe
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type ColProps = React.HTMLAttributes<HTMLDivElement> & {
+  span?: ColSize;
   gap?: ColGap;
   align?: ColAlign;
   justify?: ColJustify;
@@ -35,20 +36,26 @@ const toOffset = (s?: ColSpec) => (typeof s === 'object' ? s.offset : undefined)
 const toOrder = (s?: ColSpec) => (typeof s === 'object' ? s.order : undefined);
 
 export const Col: React.FC<ColProps> = ({
-  gap, align, justify, fill, className, children, xs, sm, md, lg, xl, style, ...props
+  span, gap, align, justify, fill, className, children, xs, sm, md, lg, xl, style, ...props
 }) => {
   const bp = { xs, sm, md, lg, xl };
   const bpClasses: string[] = [];
 
+  if (span != null) {
+    if (span === true) bpClasses.push(styles['col']);
+    else if (span === 'auto') bpClasses.push(styles['col-auto']);
+    else if (typeof span === 'number') bpClasses.push(styles[`col-${span}`]);
+  }
+
   (Object.keys(bp) as Breakpoint[]).forEach((b) => {
     const spec = bp[b];
-    const span = toSpan(spec);
+    const s = toSpan(spec);
     const offset = toOffset(spec);
     const order = toOrder(spec);
 
-    if (span === true) bpClasses.push(styles[`col-${b}`]);
-    else if (span === 'auto') bpClasses.push(styles[`col-${b}-auto`]);
-    else if (typeof span === 'number') bpClasses.push(styles[`col-${b}-${span}`]);
+    if (s === true) bpClasses.push(styles[`col-${b}`]);
+    else if (s === 'auto') bpClasses.push(styles[`col-${b}-auto`]);
+    else if (typeof s === 'number') bpClasses.push(styles[`col-${b}-${s}`]);
 
     if (offset != null) bpClasses.push(styles[`offset-${b}-${offset}`]);
     if (order != null) bpClasses.push(styles[`order-${b}-${order}`]);

@@ -1,7 +1,7 @@
 """PhiCal Quantum Semantic Search.
 
 Implements superposition-inspired vector search with amplitude-weighted
-scoring — the topology equivalent of Palantir's ontology search but
+scoring - the topology equivalent of Palantir's ontology search but
 grounded in quantum probability amplitudes.
 
 Inspired by phi-oml's ``quantum/search.rs`` (superposition search).
@@ -19,7 +19,7 @@ from phiadk.agents.phical.models import SemanticResult, SemanticSpace
 class SemanticSearchClient:
     """Quantum-inspired semantic search over knowledge spaces.
 
-    Uses amplitude superposition to rank results — each document
+    Uses amplitude superposition to rank results - each document
     exists in a superposition of relevance states until the search
     query "collapses" the state into ranked probabilities.
     """
@@ -49,7 +49,7 @@ class SemanticSearchClient:
         # simulate superposition search with mock data.
         raw_results = await self._retrieve(text, top_k)
 
-        # Apply Born rule scoring — normalise amplitudes
+        # Apply Born rule scoring - normalise amplitudes
         if raw_results:
             total_score = sum(r.score for r in raw_results) or 1.0
             for r in raw_results:
@@ -77,7 +77,7 @@ class SemanticSearchClient:
         """Execute a fiber bundle search across multiple spaces.
 
         The fiber bundles results from different topology spaces into
-        a single coherent result set — analogous to searching across
+        a single coherent result set - analogous to searching across
         multiple databases simultaneously in superposition.
 
         :param text: Search query.
@@ -126,7 +126,7 @@ class SemanticSearchClient:
         # Mock results for demonstration
         return [
             SemanticResult(
-                content=f"Quantum result for '{query}' — superposition state {i}",
+                content=f"Quantum result for '{query}' - superposition state {i}",
                 score=1.0 / (i + 1),
                 source=f"quantum_kb_{i}",
             )

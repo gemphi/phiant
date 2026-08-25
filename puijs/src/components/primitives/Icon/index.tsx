@@ -4,28 +4,33 @@ import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 
 export const ICON_SIZES = {
+  XS: 'xs',
   SM: 'sm',
   MD: 'md',
   LG: 'lg',
   XL: 'xl',
 } as const;
 
-export type IconSize = (typeof ICON_SIZES)[keyof typeof ICON_SIZES];
+export type IconSize = (typeof ICON_SIZES)[keyof typeof ICON_SIZES] | 'xs';
 
-type IconProps = {
-  name: LucideIcon;
+export type IconProps = {
+  name?: LucideIcon;
+  icon?: LucideIcon;
   size?: IconSize | number;
   className?: string;
 };
 
-const sizeMap: Record<IconSize, number> = {
-  [ICON_SIZES.SM]: 14,
-  [ICON_SIZES.MD]: 16,
-  [ICON_SIZES.LG]: 20,
-  [ICON_SIZES.XL]: 24,
+const sizeMap: Record<string, number> = {
+  xs: 12,
+  sm: 14,
+  md: 16,
+  lg: 20,
+  xl: 24,
 };
 
-export const Icon = ({ name: Name, size = ICON_SIZES.MD, className = '' }: IconProps) => {
-  const numericSize = typeof size === 'number' ? size : sizeMap[size];
-  return <Name className={cn(styles.icon, className)} size={numericSize} color="currentColor" />;
+export const Icon = ({ name, icon, size = ICON_SIZES.MD, className = '' }: IconProps) => {
+  const IconComponent = icon || name;
+  if (!IconComponent) return null;
+  const numericSize = typeof size === 'number' ? size : sizeMap[size] || 16;
+  return <IconComponent className={cn(styles.icon, className)} size={numericSize} color="currentColor" />;
 };

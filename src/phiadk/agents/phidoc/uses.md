@@ -16,7 +16,7 @@ doc_index = client.phidoc.indexer.index_directory("docs/")
 print(f"Total Documents Indexed: {len(doc_index)}")
 
 for doc in doc_index:
-    print(f"- {doc['title']} ({doc['path']}) — {doc['word_count']} words")
+    print(f"- {doc['title']} ({doc['path']}) - {doc['word_count']} words")
 ```
 
 ---

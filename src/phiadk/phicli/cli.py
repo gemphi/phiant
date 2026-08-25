@@ -1,18 +1,18 @@
-"""PhiCLI — Command Line Interface and Palantir-Style Developer Toolchain.
+"""PhiCLI - Command Line Interface and Palantir-Style Developer Toolchain.
 
 Commands:
-    phi agents list               — List all active domain agents, layers, and specs
-    phi topo inspect <agent>      — Inspect agent topology, simplicial structure, and MDX
-    phi generate-spec             — Auto-generate and validate agent schema.json definitions
-    phi generate-docs             — Compile MDX topology docs into platform documentation
-    phi version set <version>     — Set version across agents and platform schemas
-    phi qml run <circuit>         — Execute Quantum Model Language simulation & Born measurement
-    phi query vql/rql/oql/qml     — Run multi-model queries
-    phi kv get/put/keys           — Key-value operations
-    phi git log/diff/refs         — Git-core repository operations
-    phi log tail                  — Stream real-time structured logs
-    phi server start              — Start the PhiADK AIP server
-    phi repl                      — Interactive agent REPL session
+    phi agents list               - List all active domain agents, layers, and specs
+    phi topo inspect <agent>      - Inspect agent topology, simplicial structure, and MDX
+    phi generate-spec             - Auto-generate and validate agent schema.json definitions
+    phi generate-docs             - Compile MDX topology docs into platform documentation
+    phi version set <version>     - Set version across agents and platform schemas
+    phi qml run <circuit>         - Execute Quantum Model Language simulation & Born measurement
+    phi query vql/rql/oql/qml     - Run multi-model queries
+    phi kv get/put/keys           - Key-value operations
+    phi git log/diff/refs         - Git-core repository operations
+    phi log tail                  - Stream real-time structured logs
+    phi server start              - Start the PhiADK AIP server
+    phi repl                      - Interactive agent REPL session
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ from phiadk.client import PhiADKClient
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="phi", description="PhiADK CLI — Palantir-Style Ontologylogy Platform Toolchain")
+    parser = argparse.ArgumentParser(prog="phi", description="PhiADK CLI - Palantir-Style Ontologylogy Platform Toolchain")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # ── phi agents ───────────────────────────────────────────────────

@@ -18,7 +18,7 @@ export const MENU_POSITIONS = {
 export type MenuPosition = (typeof MENU_POSITIONS)[keyof typeof MENU_POSITIONS];
 
 type MenuProps = {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   children: React.ReactNode;
   position?: MenuPosition;
   className?: string;
@@ -27,6 +27,9 @@ type MenuProps = {
 export const Menu = ({ trigger, children, position = MENU_POSITIONS.BOTTOM_END, className = '' }: MenuProps) => {
   const [open, setOpen] = useState(false);
   const positionClass = styles[position];
+  if (!trigger) {
+    return <Stack direction="column" className={cn(styles.dropdown, className)}>{children}</Stack>;
+  }
   return (
     <Stack
       direction="column"

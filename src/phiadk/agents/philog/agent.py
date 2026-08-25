@@ -24,7 +24,7 @@ class PhiLogAgent(PhiAgent):
     domain = "telemetry"
     layer = AgentLayer.INFRASTRUCTURE
     version = "1.0.0"
-    description = "Distributed telemetry — structured logging, audit trails, query filtering, and real-time streaming."
+    description = "Distributed telemetry - structured logging, audit trails, query filtering, and real-time streaming."
     card = PHILOG_CARD
 
     def __init__(self, data_resolver=None, logger: Optional[StructuredLogger] = None) -> None:

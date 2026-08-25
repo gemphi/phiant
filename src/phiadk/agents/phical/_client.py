@@ -1,6 +1,6 @@
 """PhiCal domain client.
 
-Follows Palantir's ``_client.py`` pattern — lazy sub-clients for
+Follows Palantir's ``_client.py`` pattern - lazy sub-clients for
 semantic search, circuit, and training topology spaces.
 """
 
@@ -36,21 +36,21 @@ class PhiCalClient:
 
     @cached_property
     def SemanticSearch(self):
-        """Quantum semantic search space — superposition-based retrieval."""
+        """Quantum semantic search space - superposition-based retrieval."""
         from phiadk.agents.phical.semantic_search import SemanticSearchClient
 
         return SemanticSearchClient()
 
     @cached_property
     def Circuit(self):
-        """Quantum circuit space — create, simulate, compose circuits."""
+        """Quantum circuit space - create, simulate, compose circuits."""
         from phiadk.agents.phical.circuit import CircuitClient
 
         return CircuitClient()
 
     @cached_property
     def Training(self):
-        """Training morphism space — gradient-based model training."""
+        """Training morphism space - gradient-based model training."""
         from phiadk.agents.phical.training import TrainingClient
 
         return TrainingClient()
