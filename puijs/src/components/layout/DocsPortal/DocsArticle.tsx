@@ -89,12 +89,13 @@ export const DocsArticle: React.FC<DocsArticleProps> = ({
       {/* Academic References Callout */}
       {guide.citations && guide.citations.length > 0 && (
         <aside style={{
-          background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
+          background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
           border: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
-          borderRadius: 'var(--radius-md, 8px)',
+          borderRadius: '14px',
+          overflow: 'hidden',
           padding: '1.25rem 1.5rem',
           marginBottom: '2rem',
-          boxShadow: 'var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.5))',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
         }}>
           <p style={{
             display: 'flex',
@@ -136,9 +137,10 @@ export const DocsArticle: React.FC<DocsArticleProps> = ({
               flexDirection: 'column',
               alignItems: 'flex-start',
               gap: '0.25rem',
-              background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
+              background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
               border: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
-              borderRadius: 'var(--radius-md, 8px)',
+              borderRadius: '12px',
+              overflow: 'hidden',
               padding: '0.75rem 1.25rem',
               cursor: 'pointer',
               textAlign: 'left',
@@ -158,9 +160,10 @@ export const DocsArticle: React.FC<DocsArticleProps> = ({
               flexDirection: 'column',
               alignItems: 'flex-end',
               gap: '0.25rem',
-              background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
+              background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
               border: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
-              borderRadius: 'var(--radius-md, 8px)',
+              borderRadius: '12px',
+              overflow: 'hidden',
               padding: '0.75rem 1.25rem',
               cursor: 'pointer',
               textAlign: 'right',
@@ -191,17 +194,18 @@ function RichMarkdownContent({ content }: { content: string }) {
               <figure
                 key={idx}
                 style={{
-                  background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
+                  background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
                   border: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
-                  borderRadius: 'var(--radius-md, 8px)',
+                  borderRadius: '12px',
                   overflow: 'hidden',
-                  boxShadow: 'var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.5))',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
                   margin: '0.5rem 0',
                 }}
               >
                 <figcaption style={{
-                  background: 'var(--border-color, rgba(129, 140, 248, 0.2))',
-                  padding: '0.35rem 0.95rem',
+                  background: 'linear-gradient(180deg, rgba(99, 102, 241, 0.15) 0%, transparent 100%)',
+                  borderBottom: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
+                  padding: '0.45rem 1rem',
                   fontSize: '0.72rem',
                   fontWeight: 700,
                   textTransform: 'uppercase',
@@ -235,10 +239,11 @@ function RichMarkdownContent({ content }: { content: string }) {
                 style={{
                   overflowX: 'auto',
                   margin: '0.75rem 0',
-                  border: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
-                  borderRadius: 'var(--radius-md, 8px)',
-                  background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
-                  boxShadow: 'var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.5))',
+                  border: '1px solid var(--border-color, rgba(129, 140, 248, 0.25))',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
                 }}
               >
                 <table style={{
@@ -249,7 +254,7 @@ function RichMarkdownContent({ content }: { content: string }) {
                 }}>
                   <thead>
                     <tr style={{
-                      background: 'rgba(99, 102, 241, 0.12)',
+                      background: 'linear-gradient(180deg, rgba(99, 102, 241, 0.18) 0%, transparent 100%)',
                       borderBottom: '1px solid var(--border-color, rgba(129, 140, 248, 0.2))',
                     }}>
                       {sec.headers.map((h, i) => (
@@ -354,9 +359,10 @@ function RichMarkdownContent({ content }: { content: string }) {
                 key={idx}
                 style={{
                   borderLeft: '4px solid var(--color-primary, #818cf8)',
-                  background: 'var(--gradient-card, rgba(14, 16, 38, 0.8))',
+                  background: 'linear-gradient(180deg, rgba(14, 16, 38, 0.85) 0%, transparent 100%)',
                   padding: '1rem 1.25rem',
-                  borderRadius: '0 var(--radius-md, 8px) var(--radius-md, 8px) 0',
+                  borderRadius: '0 12px 12px 0',
+                  overflow: 'hidden',
                   color: 'var(--text-primary, #f8fafc)',
                   fontStyle: 'italic',
                   margin: '0.5rem 0',
